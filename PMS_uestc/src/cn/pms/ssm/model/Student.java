@@ -8,9 +8,9 @@ package cn.pms.ssm.model;
  *
  */
 public class Student {
-	private int Stu_id;
+	private String Stu_id;
 	private String Stu_name;
-	private int Stu_teacherId;
+	private String Stu_teacherId;
 	private int Stu_gradeList;
 	private String Stu_major;
 	private String Stu_stuType;
