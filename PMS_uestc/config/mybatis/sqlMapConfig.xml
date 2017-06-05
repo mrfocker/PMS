@@ -2,8 +2,8 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
-	
 	<!-- 全局setting配置，根据需要添加 -->
 	
 	<!-- 配置别名 -->
@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 配置mapper
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
 	 -->
-
-	<!-- <mappers>
-	
-	</mappers> -->
+	 
+	 <mappers>
+	 	<mapper resource="cn/pms/ssm/mapper/studentInfoMapper.xml"/>
+	 </mappers>
 </configuration>
