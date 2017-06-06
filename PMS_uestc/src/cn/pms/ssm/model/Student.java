@@ -24,7 +24,7 @@ public class Student {
 	/**
 	 * @return the stu_id
 	 */
-	public int getStu_id() {
+	public String getStu_id() {
 		return Stu_id;
 	}
 
@@ -32,7 +32,7 @@ public class Student {
 	 * @param stu_id
 	 *            the stu_id to set
 	 */
-	public void setStu_id(int stu_id) {
+	public void setStu_id(String stu_id) {
 		Stu_id = stu_id;
 	}
 
@@ -54,7 +54,7 @@ public class Student {
 	/**
 	 * @return the stu_teacherId
 	 */
-	public int getStu_teacherId() {
+	public String getStu_teacherId() {
 		return Stu_teacherId;
 	}
 
@@ -62,7 +62,7 @@ public class Student {
 	 * @param stu_teacherId
 	 *            the stu_teacherId to set
 	 */
-	public void setStu_teacherId(int stu_teacherId) {
+	public void setStu_teacherId(String stu_teacherId) {
 		Stu_teacherId = stu_teacherId;
 	}
 

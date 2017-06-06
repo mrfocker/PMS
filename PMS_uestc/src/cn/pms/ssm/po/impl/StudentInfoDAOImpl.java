@@ -6,7 +6,6 @@ package cn.pms.ssm.po.impl;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.pms.ssm.model.Student;
 import cn.pms.ssm.po.StudentInfoDAO;
