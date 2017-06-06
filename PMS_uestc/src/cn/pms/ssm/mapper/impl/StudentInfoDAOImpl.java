@@ -1,14 +1,17 @@
 /**
  * 
  */
-package cn.pms.ssm.po.impl;
+package cn.pms.ssm.mapper.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 
-import cn.pms.ssm.model.Student;
-import cn.pms.ssm.po.StudentInfoDAO;
+import cn.pms.ssm.mapper.StudentInfoDAO;
+import cn.pms.ssm.po.Student;
+
 
 /**
  * @author Xiaozhe
@@ -16,8 +19,16 @@ import cn.pms.ssm.po.StudentInfoDAO;
  */
 public class StudentInfoDAOImpl implements StudentInfoDAO {
 	
+	@Resource(name="sqlSession")
 	private SqlSession sqlSession;
 	
+	/**
+	 * @return the sqlSession
+	 */
+	public SqlSession getSqlSession() {
+		return sqlSession;
+	}
+
 	/**
 	 * @param sqlSession the sqlSession to set
 	 */
@@ -28,10 +39,9 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
 	/* (non-Javadoc)
 	 * @see cn.pms.ssm.po.StudentInfoDAO#getStudentInfo()
 	 */
-	@Override
 	public List<Student> getStudentInfo() {
 		// TODO Auto-generated method stub
-		List<Student> list = sqlSession.selectList("cn.pms.ssm.mapper.studentInfoMapper.getStudentInfo");
+		List<Student> list = sqlSession.selectList("sqlmap.studentInfoMapper.getStudentInfo");
 		return list;
 	}
 

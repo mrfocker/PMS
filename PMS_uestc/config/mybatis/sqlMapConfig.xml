@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>
 	<!-- 全局setting配置，根据需要添加 -->
-	<settings>
+<!-- 	<settings>
 		<setting name="mapUnderscoreCamelCase" value="true"/>
-	</settings>
+	</settings> -->
 	<!-- 配置别名 -->
 <!-- 	<typeAliases>
 		批量扫描别名
@@ -18,7 +18,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
 	 -->
 	 
-<!-- 	 <mappers>
-	 	<mapper resource="cn/pms/ssm/mapper/studentInfoMapper.xml"/>
-	 </mappers> -->
+	 <mappers>
+	 <!-- 	<mapper resource="sqlmap/studentInfoMapper.xml"/> -->
+	 	<package name="org.mybatis.builder"/>
+	 </mappers> 
 </configuration>

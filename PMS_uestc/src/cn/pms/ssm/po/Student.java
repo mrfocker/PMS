@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.pms.ssm.model;
+package cn.pms.ssm.po;
 
 /**
  * @author Xiaozhe
