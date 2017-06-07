@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.LoginStudentDAO">
+	<select id="selectstudentlogin" resultType="Integer" parameterType="cn.pms.ssm.po.Student">
+		SELECT 
+		Stu_isonline 
+		FROM 
+		login_student 
+		WHERE 
+		Stu_id=#{Stu_id} AND Stu_password=#{Stu_password}
+	</select>
+</mapper>

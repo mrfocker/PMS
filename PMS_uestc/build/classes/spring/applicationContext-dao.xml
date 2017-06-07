@@ -40,7 +40,7 @@
 	<!-- mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
-		<property name="basePackage" value="cn.pms.ssm.mapper"></property>
+		<property name="basePackage" value="cn.pms.ssm.mapper,cn.pms.ssm.mapper.impl"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
      
@@ -49,6 +49,10 @@
 	</bean>
 	
 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	<bean id="loginStudentDAOImpl" class="cn.pms.ssm.mapper.impl.LoginStudentDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 

@@ -11,6 +11,8 @@ import java.sql.Date;
  */
 public class Student {
 	private String Stu_id;
+	private String Stu_password;
+	private Boolean Stu_isonline;
 	private String Stu_name;
 	private String Stu_teacherId;
 	private String Stu_major;
@@ -136,6 +138,34 @@ public class Student {
 	 */
 	public void setStu_requestReplyTime(Date stu_requestReplyTime) {
 		Stu_requestReplyTime = stu_requestReplyTime;
+	}
+
+	/**
+	 * @return the stu_isonline
+	 */
+	public Boolean getStu_isonline() {
+		return Stu_isonline;
+	}
+
+	/**
+	 * @param stu_isonline the stu_isonline to set
+	 */
+	public void setStu_isonline(Boolean stu_isonline) {
+		Stu_isonline = stu_isonline;
+	}
+
+	/**
+	 * @return the stu_password
+	 */
+	public String getStu_password() {
+		return Stu_password;
+	}
+
+	/**
+	 * @param stu_password the stu_password to set
+	 */
+	public void setStu_password(String stu_password) {
+		Stu_password = stu_password;
 	}
 
 }
