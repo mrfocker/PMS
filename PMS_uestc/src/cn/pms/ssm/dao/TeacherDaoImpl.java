@@ -25,7 +25,7 @@ public class TeacherDaoImpl extends SqlSessionDaoSupport implements TeacherDao {
 		//继承SqlSessionDaoSupport,通过this。getSqlSession（）得到sqlSession
 		SqlSession sqlSession = this.getSqlSession();
 
-		Teacher teacher = sqlSession.selectOne("test.findUserById", id);
+		Teacher teacher = sqlSession.selectOne("test.findTeacherById", id);
 
 		return teacher;
 
