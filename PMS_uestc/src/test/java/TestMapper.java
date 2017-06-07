@@ -33,24 +33,17 @@ import cn.pms.ssm.po.Student;
 @ContextConfiguration({"classpath:spring/applicationContext-dao.xml"})
 public class TestMapper {
 
-	private static StudentInfoDAO studentInfoDAO;
-	
-	@BeforeClass
-	public static void BeforeClass() {
-		// TODO Auto-generated method stub
-		studentInfoDAO = new StudentInfoDAOImpl();
-	}
+	private StudentInfoDAOImpl studentInfoDAOImpl;
 	
 	@Test
 	public void test() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		studentInfoDAO = ctx.getBean("studentInfoDAO",StudentInfoDAO.class);
-		List<Student> list = studentInfoDAO.getStudentInfo();
+		studentInfoDAOImpl = ctx.getBean("studentInfoDAOImpl",StudentInfoDAOImpl.class);
+		List<Student> list = studentInfoDAOImpl.getStudentInfo();
 		for(Student student:list){
 			System.out.println(student);
 		}
 		assertNotNull(list);
-		fail("Not yet implemented");
 	}
 
 }

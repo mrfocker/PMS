@@ -3,6 +3,8 @@
  */
 package cn.pms.ssm.po;
 
+import java.sql.Date;
+
 /**
  * @author Xiaozhe
  *
@@ -11,16 +13,11 @@ public class Student {
 	private String Stu_id;
 	private String Stu_name;
 	private String Stu_teacherId;
-	private int Stu_gradeList;
 	private String Stu_major;
 	private String Stu_stuType;
 	private String Stu_degreeType;
 	private String Stu_teacherCompany;
-	private String Stu_requestReplyTime;
-	private String Stu_CompetitiveGroupId;
-	private String Stu_judegTeacherOne;
-	private String Stu_judegTeacherTwo;
-
+	private Date Stu_requestReplyTime;
 	/**
 	 * @return the stu_id
 	 */
@@ -64,21 +61,6 @@ public class Student {
 	 */
 	public void setStu_teacherId(String stu_teacherId) {
 		Stu_teacherId = stu_teacherId;
-	}
-
-	/**
-	 * @return the stu_gradeList
-	 */
-	public int getStu_gradeList() {
-		return Stu_gradeList;
-	}
-
-	/**
-	 * @param stu_gradeList
-	 *            the stu_gradeList to set
-	 */
-	public void setStu_gradeList(int stu_gradeList) {
-		Stu_gradeList = stu_gradeList;
 	}
 
 	/**
@@ -144,7 +126,7 @@ public class Student {
 	/**
 	 * @return the stu_requestReplyTime
 	 */
-	public String getStu_requestReplyTime() {
+	public Date getStu_requestReplyTime() {
 		return Stu_requestReplyTime;
 	}
 
@@ -152,52 +134,8 @@ public class Student {
 	 * @param stu_requestReplyTime
 	 *            the stu_requestReplyTime to set
 	 */
-	public void setStu_requestReplyTime(String stu_requestReplyTime) {
+	public void setStu_requestReplyTime(Date stu_requestReplyTime) {
 		Stu_requestReplyTime = stu_requestReplyTime;
 	}
 
-	/**
-	 * @return the stu_CompetitiveGroupId
-	 */
-	public String getStu_CompetitiveGroupId() {
-		return Stu_CompetitiveGroupId;
-	}
-
-	/**
-	 * @param stu_CompetitiveGroupId
-	 *            the stu_CompetitiveGroupId to set
-	 */
-	public void setStu_CompetitiveGroupId(String stu_CompetitiveGroupId) {
-		Stu_CompetitiveGroupId = stu_CompetitiveGroupId;
-	}
-
-	/**
-	 * @return the stu_judegTeacherOne
-	 */
-	public String getStu_judegTeacherOne() {
-		return Stu_judegTeacherOne;
-	}
-
-	/**
-	 * @param stu_judegTeacherOne
-	 *            the stu_judegTeacherOne to set
-	 */
-	public void setStu_judegTeacherOne(String stu_judegTeacherOne) {
-		Stu_judegTeacherOne = stu_judegTeacherOne;
-	}
-
-	/**
-	 * @return the stu_judegTeacherTwo
-	 */
-	public String getStu_judegTeacherTwo() {
-		return Stu_judegTeacherTwo;
-	}
-
-	/**
-	 * @param stu_judegTeacherTwo
-	 *            the stu_judegTeacherTwo to set
-	 */
-	public void setStu_judegTeacherTwo(String stu_judegTeacherTwo) {
-		Stu_judegTeacherTwo = stu_judegTeacherTwo;
-	}
 }

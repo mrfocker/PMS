@@ -48,7 +48,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="studentInfoDAO" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 

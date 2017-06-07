@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.pms.ssm.mapper.StudentInfoDAO">
+	<resultMap type="cn.pms.ssm.po.Student" id="student">
+		<result property="Stu_id" column="Stu_id"/>
+		<result property="Stu_name" column="Stu_name"/>
+		<result property="Stu_teacherId" column="Stu_teacherId"/>
+		<result property="Stu_major" column="Stu_major"/>
+		<result property="Stu_stuType" column="Stu_stuType"/>
+		<result property="Stu_degreeType" column=" Stu_degreeType"/>
+		<result property="Stu_teacherCompany" column="Stu_teacherCompany"/>
+		<result property="Stu_requestReplyTime" column="Stu_requestReplyTime"/>
+	</resultMap>
+	<select id="getStudentInfo" resultMap="student" resultType="Student">
+		select * from Student
+	</select>
+</mapper>

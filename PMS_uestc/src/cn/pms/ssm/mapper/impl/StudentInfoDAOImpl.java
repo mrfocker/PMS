@@ -41,7 +41,7 @@ public class StudentInfoDAOImpl implements StudentInfoDAO {
 	 */
 	public List<Student> getStudentInfo() {
 		// TODO Auto-generated method stub
-		List<Student> list = sqlSession.selectList("sqlmap.studentInfoMapper.getStudentInfo");
+		List<Student> list = sqlSession.selectList("cn.pms.ssm.mapper.StudentInfoDAO.getStudentInfo"); //namespace
 		return list;
 	}
 
