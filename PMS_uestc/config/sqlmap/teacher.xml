@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	resultType：指定sql输出结果 的所映射的java对象类型，select指定resultType表示将单条记录映射成的java对象。
 	 -->
-	<select id="findUserById" parameterType="int" resultType="cn.pms.ssm.po.Teacher">
+	<select id="findTeacherById" parameterType="int" resultType="cn.pms.ssm.po.Teacher">
 		SELECT * FROM USER WHERE id=#{value}
 	</select>
 	
