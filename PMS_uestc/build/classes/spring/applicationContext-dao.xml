@@ -41,20 +41,14 @@
 		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
 	</bean>
 	
-	<!-- mapper扫描器 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
-		<property name="basePackage" value="cn.pms.ssm.mapper"></property>
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	</bean>
 
    <!-- mapper配置 
    MapperFactoryBean:根据mapper接口生成代理对象
    -->
    <bean id = "teacherMapper" class = "org.mybatis.spring.mapper.MapperFactoryBean">
-   	<!-- mapperInterface 指定mapper接口-->
-   	<property name="mapperInterface" value = "cn.pms.ssm.mapper.TeacherMapper"></property>
-   	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+   		<!-- mapperInterface 指定mapper接口-->
+   		<property name="mapperInterface" value = "cn.pms.ssm.mapper.TeacherMapper"></property>
+   		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
    </bean>
    
 

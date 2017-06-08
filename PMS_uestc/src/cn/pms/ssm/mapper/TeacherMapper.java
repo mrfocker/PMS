@@ -2,9 +2,8 @@ package cn.pms.ssm.mapper;
 
 import java.util.List;
 
-import cn.itcast.ssm.po.User;
-import cn.itcast.ssm.po.UserCustom;
-import cn.itcast.ssm.po.UserQueryVo;
+import cn.pms.ssm.po.User;
+import cn.pms.ssm.po.Teacher;
 
 /**
  * 
@@ -15,11 +14,11 @@ import cn.itcast.ssm.po.UserQueryVo;
  * @date	2015-4-22涓嬪崍2:45:12
  * @version 1.0
  */
-public interface UserMapper {
+public interface TeacherMapper {
 	
 	
 	//鏍规嵁id鏌ヨ鐢ㄦ埛淇℃伅
-	public User findUserById(int id) throws Exception;
+	public Teacher FindTeacherById(int id) throws Exception;
 	
 		
 

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 
 注意：使用mapper代理方法开发，namespace有特殊重要的作用
 -->
-<mapper namespace="test">
+<mapper namespace="cn.pms.ssm.mapper.TeacherMapper">
 
 	<!-- 在 映射文件中配置很多sql语句 -->
 	<!-- 需求：通过id查询用户表的记录 -->
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	resultType：指定sql输出结果 的所映射的java对象类型，select指定resultType表示将单条记录映射成的java对象。
 	 -->
-	<select id="findTeacherById" parameterType="int" resultType="cn.pms.ssm.po.Teacher">
+	<select id="FindTeacherById" parameterType="int" resultType="cn.pms.ssm.po.Teacher">
 		SELECT * FROM TEACHER WHERE teacher_id=#{value}
 	</select>
 	
