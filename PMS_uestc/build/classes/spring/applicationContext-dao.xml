@@ -45,12 +45,19 @@
    <!-- mapper配置 
    MapperFactoryBean:根据mapper接口生成代理对象
    -->
-   <bean id = "teacherMapper" class = "org.mybatis.spring.mapper.MapperFactoryBean">
-   		<!-- mapperInterface 指定mapper接口-->
+ <!--   <bean id = "teacherMapper" class = "org.mybatis.spring.mapper.MapperFactoryBean">
+   		mapperInterface 指定mapper接口
    		<property name="mapperInterface" value = "cn.pms.ssm.mapper.TeacherMapper"></property>
    		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
-   </bean>
+   </bean> -->
    
+   <!-- mapper的批量扫描 ，从mapper包中扫描出mapper接口，自动创建代理对象并且在spring容器中注册
+   	遵循规范，将mapper。java和mapper。xml放在一个文件夹-->
+   <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+   		<!-- 指定扫描的包名 -->
+   		<property name="basePackage" value = "cn.pms.ssm.mapper"></property>
+   		<property name="sqlSessionFactoryBeanName" value = "sqlSessionFactory"></property>
+   </bean>
 
 
 
