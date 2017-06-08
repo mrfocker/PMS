@@ -48,6 +48,15 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
+   <!-- mapper配置 
+   MapperFactoryBean:根据mapper接口生成代理对象
+   -->
+   <bean id = "teacherMapper" class = "org.mybatis.spring.mapper.MapperFactoryBean">
+   	<!-- mapperInterface 指定mapper接口-->
+   	<property name="mapperInterface" value = "cn.pms.ssm.mapper.TeacherMapper"></property>
+   	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+   </bean>
+   
 
 
 
