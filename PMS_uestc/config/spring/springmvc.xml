@@ -24,7 +24,7 @@
 	<!-- 扩充注解驱动，可将请求参数绑定到控制器参数 -->
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="cn.pms.ssm.service cn.pms.ssm.service.impl cn.pms.ssm.controller"/>  
+	<context:component-scan base-package="cn.pms.ssm.service，cn.pms.ssm.service.impl，cn.pms.ssm.controller"/>  
 	<!-- 静态资源处理，css,js,imgs -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<!-- 配置ViewResolver可以用多个ViewResolver，使用order属性，InternalResourceViewResolver放在最后 -->
@@ -32,7 +32,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsps" />
+		<property name="prefix" value="/WEB-INF/pages/html" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 </beans>

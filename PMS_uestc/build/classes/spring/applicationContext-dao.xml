@@ -48,13 +48,29 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<!-- Mapper注册 -->
 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 	
-	<bean id="loginStudentDAOImpl" class="cn.pms.ssm.mapper.impl.LoginStudentDAOImpl">
+	<bean id="loginDAOImpl" class="cn.pms.ssm.mapper.impl.LoginDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 
+	<!-- Service注册 -->
+	<bean id="loginServiceImpl" class="cn.pms.ssm.service.impl.LoginServiceImpl">
+		<property name="loginDAOImpl" ref="loginDAOImpl"></property>
+	</bean>
+	
+	<!-- Controller注册 -->
+	
+	<!-- JSP action -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="login.do">LoginController</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>

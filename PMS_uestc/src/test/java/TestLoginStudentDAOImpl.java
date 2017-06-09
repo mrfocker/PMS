@@ -11,9 +11,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.pms.ssm.mapper.LoginStudentDAO;
-import cn.pms.ssm.mapper.impl.LoginStudentDAOImpl;
+import cn.pms.ssm.mapper.LoginDAO;
+import cn.pms.ssm.mapper.impl.LoginDAOImpl;
 import cn.pms.ssm.po.Student;
+import cn.pms.ssm.po.Teacher;
+import cn.pms.ssm.service.LoginService;
+import cn.pms.ssm.service.impl.LoginServiceImpl;
 
 /** 
  * <p>Title: TestLoginStudentDAOImpl</p> 
@@ -28,14 +31,32 @@ import cn.pms.ssm.po.Student;
 @ContextConfiguration({"classpath:spring/applicationContext-dao.xml"})
 public class TestLoginStudentDAOImpl {
 
+//	Login DAO层测试
 	@Test
 	public void test() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		Student s = new Student();
-		s.setStu_id("201621220160");
-		s.setStu_password("123");
-		LoginStudentDAO loginStudentDAO = (LoginStudentDAO) ctx.getBean("loginStudentDAOImpl", LoginStudentDAOImpl.class);
-		Integer s1 = loginStudentDAO.selectstudentlogin(s);
+		//Student s = new Student();
+		Teacher s = new Teacher();
+//		s.setStu_id("201621220160");
+//		s.setStu_password("123");
+		s.setTeacher_id("111111111111");
+		s.setTeacher_password("123");
+		LoginDAO loginStudentDAO = (LoginDAO) ctx.getBean("loginDAOImpl", LoginDAOImpl.class);
+		//Integer s1 = loginStudentDAO.selectstudentlogin(s);
+		Integer s1 = loginStudentDAO.selectteacherlogin(s);
+		System.out.println(s1);
+	}
+	
+	@Test
+	public void testLoginService() {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
+		Teacher s = new Teacher();
+//		s.setStu_id("201621220160");
+//		s.setStu_password("123");
+		s.setTeacher_id("111111111111");
+		s.setTeacher_password("123");
+		LoginService loginService = (LoginService)ctx.getBean("loginServiceImpl",LoginServiceImpl.class);
+		Integer s1 = loginService.selectteacherlogin(s);
 		System.out.println(s1);
 	}
 }
