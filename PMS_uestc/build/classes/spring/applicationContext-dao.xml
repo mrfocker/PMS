@@ -44,6 +44,7 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
      
+     <!-- sqlSession创建代理 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
@@ -63,12 +64,15 @@
 	</bean>
 	
 	<!-- Controller注册 -->
+	<bean id="loginController" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginServiceImpl" ref="loginServiceImpl"/>
+	</bean>
 	
 	<!-- JSP action -->
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="login.do">LoginController</prop>
+				<prop key="login.do">loginController</prop>
 			</props>
 		</property>
 	</bean>

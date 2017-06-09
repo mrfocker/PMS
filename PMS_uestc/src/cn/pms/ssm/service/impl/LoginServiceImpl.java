@@ -65,5 +65,32 @@ public class LoginServiceImpl implements LoginService {
 		this.loginDAOImpl = loginDAOImpl;
 	}
 
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#updateStudentStatus(cn.pms.ssm.po.Student)
+	 */
+	@Override
+	public void updateStudentStatus(Student student) {
+		// TODO Auto-generated method stub
+		loginDAOImpl.updateStudentStatus(student);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#updateTeacherStatus(cn.pms.ssm.po.Teacher)
+	 */
+	@Override
+	public void updateTeacherStatus(Teacher teacher) {
+		// TODO Auto-generated method stub
+		loginDAOImpl.updateTeacherStatus(teacher);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#updateAdminStatus(cn.pms.ssm.po.Administrator)
+	 */
+	@Override
+	public void updateAdminStatus(Administrator administrator) {
+		// TODO Auto-generated method stub
+		loginDAOImpl.updateAdminStatus(administrator);
+	}
+
 
 }

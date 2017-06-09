@@ -61,25 +61,25 @@ public class LoginDAOImpl implements LoginDAO {
 	 * @see cn.pms.ssm.mapper.LoginDAO#updateStudentStatus(java.lang.Boolean)
 	 */
 	@Override
-	public void updateStudentStatus(Boolean isonline) {
+	public void updateStudentStatus(Student student) {
 		// TODO Auto-generated method stub
-		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateStudentStatus", isonline);
+		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateStudentStatus", student);
 	}
 	/* (non-Javadoc)
 	 * @see cn.pms.ssm.mapper.LoginDAO#updateTeacherStatus(java.lang.Boolean)
 	 */
 	@Override
-	public void updateTeacherStatus(Boolean isonline) {
+	public void updateTeacherStatus(Teacher teacher) {
 		// TODO Auto-generated method stub
-		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateTeacherStatus", isonline);
+		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateTeacherStatus", teacher);
 	}
 	/* (non-Javadoc)
 	 * @see cn.pms.ssm.mapper.LoginDAO#updateAdminStatus(java.lang.Boolean)
 	 */
 	@Override
-	public void updateAdminStatus(Boolean isonline) {
+	public void updateAdminStatus(Administrator administrator) {
 		// TODO Auto-generated method stub
-		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateAdminStatus", isonline);
+		sqlSession.update("cn.pms.ssm.mapper.LoginDAO.updateAdminStatus", administrator);
 	}
 
 }

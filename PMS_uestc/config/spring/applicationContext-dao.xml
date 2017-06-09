@@ -64,7 +64,7 @@
 	</bean>
 	
 	<!-- Controller注册 -->
-	<bean id="LoginController" class="cn.pms.ssm.controller.LoginController">
+	<bean id="loginController" class="cn.pms.ssm.controller.LoginController">
 		<property name="loginServiceImpl" ref="loginServiceImpl"/>
 	</bean>
 	
@@ -72,7 +72,7 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="login.do">LoginController</prop>
+				<prop key="login.action">loginController</prop>
 			</props>
 		</property>
 	</bean>

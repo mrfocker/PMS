@@ -16,12 +16,38 @@ public class Teacher {
 	  private String Teacher_password;
 	  private Boolean Teacher_isonline;
 	  private String Teacher_name;
-	  private String Teacher_proTitle;
+	  private String Teacher_proTitle; //职称
 	  private String Teacher_researchOne;
 	  private String Teacher_researchTwo;
 	  private String Teacher_researchThree;
 	  private String Teacher_email;
 	  private String Teacher_tel;
+	  private int Teacher_count;
+	  private int Teacher_limit;
+	  /**
+	 * @return the teacher_count
+	 */
+	public int getTeacher_count() {
+		return Teacher_count;
+	}
+	/**
+	 * @param teacher_count the teacher_count to set
+	 */
+	public void setTeacher_count(int teacher_count) {
+		Teacher_count = teacher_count;
+	}
+	/**
+	 * @return the teacher_limit
+	 */
+	public int getTeacher_limit() {
+		return Teacher_limit;
+	}
+	/**
+	 * @param teacher_limit the teacher_limit to set
+	 */
+	public void setTeacher_limit(int teacher_limit) {
+		Teacher_limit = teacher_limit;
+	}
 	/**
 	 * @return the teacher_id
 	 */

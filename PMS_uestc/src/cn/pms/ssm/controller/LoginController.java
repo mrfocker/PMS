@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.test.annotation.Repeat;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -28,6 +29,7 @@ import cn.pms.ssm.service.LoginService;
  * @date 创建时间：2017年6月8日 上午11:16:03 
  * @version 1.0 
 */
+//@RequestMapping("/login.do")
 public class LoginController implements Controller{
 
 	private static final int ADMIN = 0;
@@ -42,7 +44,8 @@ public class LoginController implements Controller{
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//	@RequestMapping(params = "handleRequest") 
+	public @ResponseBody ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
@@ -60,6 +63,8 @@ public class LoginController implements Controller{
 					log.debug("logintest================>"+result);
 					
 					if (0 ==result) {
+						administrator.setSu_isonline(true);
+						loginService.updateAdminStatus(administrator);
 						model.put("success", "success");
 						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
 					} else {
@@ -82,6 +87,8 @@ public class LoginController implements Controller{
 					log.debug("logintest================>"+result);
 					
 					if (0 ==result) {
+						teacher.setTeacher_isonline(true);
+						loginService.updateTeacherStatus(teacher);
 						model.put("success", "success");
 						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
 					} else {
@@ -104,6 +111,8 @@ public class LoginController implements Controller{
 					log.debug("logintest================>"+result);
 					
 					if (0 ==result) {
+						student.setStu_isonline(true);
+						loginService.updateStudentStatus(student);
 						model.put("success", "success");
 						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
 					} else {

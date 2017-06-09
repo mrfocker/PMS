@@ -23,10 +23,10 @@ public interface LoginDAO {
 	
 	public Integer selectadminlogin(Administrator administrator);
 	
-	public void updateStudentStatus(Boolean isonline);
+	public void updateStudentStatus(Student student);
 	
-	public void updateTeacherStatus(Boolean isonline);
+	public void updateTeacherStatus(Teacher teacher);
 	
-	public void updateAdminStatus(Boolean isonline);
+	public void updateAdminStatus(Administrator administrator);
 
 }
