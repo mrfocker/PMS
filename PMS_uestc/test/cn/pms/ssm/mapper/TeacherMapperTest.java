@@ -1,7 +1,5 @@
 package cn.pms.ssm.mapper;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -14,14 +12,14 @@ import cn.pms.ssm.po.Teacher;
  * <p>Description:TODO </p> 
  * <p>Company: uestc_xr</p> 
  * @author  liuxiang 
- * @date ´´½¨Ê±¼ä£º2017Äê6ÔÂ8ÈÕ ÏÂÎç3:16:30 
+ * @date ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2017ï¿½ï¿½6ï¿½ï¿½8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3:16:30 
  * @version 1.0 
 */
 
 public class TeacherMapperTest {
 	private ApplicationContext applicationContext;
 
-	//ÔÚsetUpÕâ¸ö·½·¨µÃµ½springÈİÆ÷
+	//ï¿½ï¿½setUpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½springï¿½ï¿½ï¿½ï¿½
 	@Before
 	public void setUp() throws Exception{
 		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
@@ -32,6 +30,26 @@ public class TeacherMapperTest {
 		TeacherMapper teacherMapper = (TeacherMapper) applicationContext.getBean("teacherMapper");
 		Teacher teacher =  teacherMapper.FindTeacherById(1);
 		System.out.println(teacher);
+		
+	}
+	
+	@Test
+	public void testinsertTeacherList() throws Exception{
+		
+		TeacherMapper teacherMapper = (TeacherMapper) applicationContext.getBean("teacherMapper");
+		Teacher teacher = new Teacher();
+		teacher.setTeacher_id("00001");
+		teacher.setTeacher_name("å¼ ä¸‰");
+		teacher.setTeacher_isonline(0);
+		teacher.setTeacher_password("123456");
+		teacher.setTeacher_proTitle("ç½‘ç»œæŠ€æœ¯");
+		teacher.setTeacher_researchOne("å¤§æ•°æ®");
+		teacher.setTeacher_researchTwo("åˆ†å¸ƒå¼");
+		teacher.setTeacher_researchThree("åµŒå…¥å¼");
+		teacher.setTeacher_tel("1355555555");
+		teacher.setTeacher_email("123456@qq.com");
+		
+		teacherMapper.insertTeacherList(teacher);
 		
 	}
 

@@ -1,7 +1,5 @@
 package cn.pms.ssm.dao;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -14,14 +12,14 @@ import cn.pms.ssm.po.Teacher;
  * <p>Description:TODO </p> 
  * <p>Company: uestc_xr</p> 
  * @author  liuxiang 
- * @date ´´½¨Ê±¼ä£º2017Äê6ÔÂ7ÈÕ ÏÂÎç4:49:01 
+ * @date ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2017ï¿½ï¿½6ï¿½ï¿½7ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:49:01 
  * @version 1.0 
 */
 
 public class TeacherDaoImplTest {
 	private ApplicationContext applicationContext;
 	
-	//ÔÚsetUpÕâ¸ö·½·¨µÃµ½springÈÝÆ÷
+	//ï¿½ï¿½setUpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½springï¿½ï¿½ï¿½ï¿½
 	@Before
 	public void setUp() throws Exception {
 		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
@@ -33,7 +31,7 @@ public class TeacherDaoImplTest {
 		
 		TeacherDao teacherDao = (TeacherDao) applicationContext.getBean("TeacherDao");
 		
-		//µ÷ÓÃteacherDaoµÄ·½·¨
+		//ï¿½ï¿½ï¿½ï¿½teacherDaoï¿½Ä·ï¿½ï¿½ï¿½
 		Teacher teacher = teacherDao.findTeacherById(1);
 		
 		System.out.println(teacher);

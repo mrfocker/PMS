@@ -3,7 +3,6 @@ package cn.pms.ssm.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import cn.pms.ssm.dao.TeacherDao;
@@ -14,7 +13,7 @@ import cn.pms.ssm.po.Teacher;
  * <p>Description:TODO </p> 
  * <p>Company: uestc_xr</p> 
  * @author  liuxiang 
- * @date ´´½¨Ê±¼ä£º2017Äê6ÔÂ6ÈÕ ÉÏÎç11:28:03 
+ * @date ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º2017ï¿½ï¿½6ï¿½ï¿½6ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½11:28:03 
  * @version 1.0 
 */
 
@@ -22,7 +21,7 @@ public class TeacherDaoImpl extends SqlSessionDaoSupport implements TeacherDao {
 
 	@Override
 	public Teacher findTeacherById(int id) throws Exception {
-		//¼Ì³ÐSqlSessionDaoSupport,Í¨¹ýthis¡£getSqlSession£¨£©µÃµ½sqlSession
+		//ï¿½Ì³ï¿½SqlSessionDaoSupport,Í¨ï¿½ï¿½thisï¿½ï¿½getSqlSessionï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½sqlSession
 		SqlSession sqlSession = this.getSqlSession();
 
 		Teacher teacher = sqlSession.selectOne("test.findTeacherById", id);
@@ -55,7 +54,7 @@ public class TeacherDaoImpl extends SqlSessionDaoSupport implements TeacherDao {
 //
 //		List<Teacher> list = sqlSession.selectList("test.findUserByName", name);
 //
-//		// ÊÍ·Å×ÊÔ´
+//		// ï¿½Í·ï¿½ï¿½ï¿½Ô´
 //		sqlSession.close();
 //
 //		return list;
@@ -66,13 +65,13 @@ public class TeacherDaoImpl extends SqlSessionDaoSupport implements TeacherDao {
 //	public void inserTeacher(Teacher teacher) throws Exception {
 //		SqlSession sqlSession = sqlSessionFactory.openSession();
 //
-//		//Ö´ÐÐ²åÈë²Ù×÷
+//		//Ö´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		sqlSession.insert("test.insertUser", teacher);
 //
-//		// Ìá½»ÊÂÎñ
+//		// ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 //		sqlSession.commit();
 //
-//		// ÊÍ·Å×ÊÔ´
+//		// ï¿½Í·ï¿½ï¿½ï¿½Ô´
 //		sqlSession.close();
 //
 //	}
@@ -81,13 +80,13 @@ public class TeacherDaoImpl extends SqlSessionDaoSupport implements TeacherDao {
 //	public void deleteTeacher(int id) throws Exception {
 //		SqlSession sqlSession = sqlSessionFactory.openSession();
 //
-//		//Ö´ÐÐ²åÈë²Ù×÷
+//		//Ö´ï¿½Ð²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		sqlSession.delete("test.deleteUser", id);
 //
-//		// Ìá½»ÊÂÎñ
+//		// ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 //		sqlSession.commit();
 //
-//		// ÊÍ·Å×ÊÔ´
+//		// ï¿½Í·ï¿½ï¿½ï¿½Ô´
 //		sqlSession.close();
 //
 //	}

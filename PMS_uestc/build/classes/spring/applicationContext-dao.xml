@@ -52,7 +52,7 @@
    </bean> -->
    
    <!-- mapper的批量扫描 ，从mapper包中扫描出mapper接口，自动创建代理对象并且在spring容器中注册
-   	遵循规范，将mapper。java和mapper。xml放在一个文件夹-->
+   	遵循规范，将mapper。java和mapper。xml放在一个文件  夹-->
    <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
    		<!-- 指定扫描的包名 -->
    		<property name="basePackage" value = "cn.pms.ssm.mapper"></property>
