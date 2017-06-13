@@ -19,8 +19,6 @@ public interface TeacherMapper {
 	//批量教师信息导入
 	public void insertTeacherList(Teacher teacher) throws Exception;
 	
-	
-	
 		
 
 }

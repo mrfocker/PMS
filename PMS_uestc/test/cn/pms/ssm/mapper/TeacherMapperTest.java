@@ -52,5 +52,8 @@ public class TeacherMapperTest {
 		teacherMapper.insertTeacherList(teacher);
 		
 	}
+	
+	
+	
 
 }
