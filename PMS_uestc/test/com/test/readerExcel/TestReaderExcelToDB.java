@@ -16,18 +16,30 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Before;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import cn.pms.ssm.import_export.ReaderExcelUtils;
+import cn.pms.ssm.mapper.TeacherMapper;
+import cn.pms.ssm.po.Students;
+//import com.test.util.SqlSessionUtil;
 
-import com.beanutils.MyBeanUtils;
-import com.excelutils.ReaderExcelUtils;
-import com.test.model.Students;
-import com.test.util.SqlSessionUtil;
+import cn.pms.ssm.BeanUtils.MyBeanUtils;;
 
 public class TestReaderExcelToDB {
 
+	private static ApplicationContext applicationContext;
 	private static ReaderExcelUtils reu = new ReaderExcelUtils();
-	private static SqlSessionUtil su = new SqlSessionUtil();
-	private static SqlSession session = su.getSqlSession();
+	//private static SqlSessionUtil su = new SqlSessionUtil();
+	//private static SqlSession session = su.getSqlSession();
 	private static String className = TestReaderExcelToDB.class.getName() + ".";
+	
+	
+	@Before
+	public void setUp() throws Exception{
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
+	}
+	
 
 	public static void main(String[] args) throws Exception {
 		InsertToDataBase();
@@ -42,9 +54,13 @@ public class TestReaderExcelToDB {
 	 */
 	@SuppressWarnings({ "rawtypes", "static-access" })
 	public static void InsertToDataBase() throws Exception {
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
+		
+		TeacherMapper teacherMapper = (TeacherMapper) applicationContext.getBean("teacherMapper");
+		
 		Date date = new Date();
 		long time = date.getTime();
-		String excelFileName = "D://Export Excel By MyBatis.xls";
+		String excelFileName = "e:/test.xls";
 		File file = new File(excelFileName);
 		List<Map> dataListMap = reu.ReaderExcel(file);
 		Iterator it = dataListMap.iterator();
@@ -61,14 +77,15 @@ public class TestReaderExcelToDB {
 
 				int result = 0;
 				try {
-					result = session.insert(className + "insertStudent",beanMap);
+					teacherMapper.insertStudent(beanMap);
+					//result = session.insert(className + "insertStudent",beanMap);
 					if(result < 1){
 						System.out.println("插入数据库错误");
 					}
-					session.commit();
+					//session.commit();
 				} catch (Exception e) {
 					e.printStackTrace();
-					session.rollback();
+					//session.rollback();
 				}
 			}
 			System.out.println("全部插入数据库");

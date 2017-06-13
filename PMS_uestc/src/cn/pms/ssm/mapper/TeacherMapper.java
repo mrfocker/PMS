@@ -1,5 +1,7 @@
 package cn.pms.ssm.mapper;
 
+import java.util.Map;
+
 import cn.pms.ssm.po.Teacher;
 
 /**
@@ -19,6 +21,8 @@ public interface TeacherMapper {
 	//批量教师信息导入
 	public void insertTeacherList(Teacher teacher) throws Exception;
 	
+	//excel学生测试
+	public void insertStudent(Map map) throws Exception;
 		
 
 }

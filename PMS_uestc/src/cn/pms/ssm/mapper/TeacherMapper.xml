@@ -23,6 +23,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	</insert>
+	
+
+<!-- //测试excel -->
+	<select id="getStudent" resultType="map">
+		select * from students order by id
+	</select>
+
+	<select id="getStudentById" resultType="map" parameterType="map">
+		select * from students where id = #{userId}
+	</select>
+	
+	<delete id="deleteStuentById" parameterType="map">
+		delete from students where id = #{userId}
+	</delete>
+	
+	<insert id="insertStudent" parameterType="map">
+		insert into students 
+			(username,age,salary)
+		values
+			(
+				#{username},
+				#{age},
+				#{salary}
+			)
+	</insert>
 
 
 </mapper>
