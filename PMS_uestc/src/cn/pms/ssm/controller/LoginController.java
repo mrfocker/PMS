@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.servlet.mvc.Controller;
 
@@ -44,11 +45,11 @@ public class LoginController{
 	/* (non-Javadoc)
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	@RequestMapping(value="/login.action", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
-	public String login(@PathVariable("userId") String userId, 
-			@PathVariable("userPwd") String userPwd, 
-			@PathVariable("userType") String userType, Model model) throws Exception {
+	public String login(@RequestParam("userId") String userId, 
+			@RequestParam("userPwd") String userPwd, 
+			@RequestParam("userType") String userType, Model model) throws Exception {
 //		 TODO Auto-generated method stub
 //		String userId = request.getParameter("userId");
 //		String userPwd = request.getParameter("userPwd");
@@ -71,15 +72,15 @@ public class LoginController{
 						administrator.setSu_isonline(true);
 						loginService.updateAdminStatus(administrator);
 						model.addAttribute("success", "success");
-						return "/test.jsp";
+						return "/test";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
-						return "/index.jsp";
+						return "/index";
 					}
 					
 				} else {
 					model.addAttribute("error", "用户名或密码错误");
-					return "/index.jsp";
+					return "/index";
 				}
 				
 		case TEACHER:
@@ -95,15 +96,15 @@ public class LoginController{
 						teacher.setTeacher_isonline(true);
 						loginService.updateTeacherStatus(teacher);
 						model.addAttribute("success", "success");
-						return "/test.jsp";
+						return "/test";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
-						return "/index.jsp";
+						return "/index";
 					}
 					
 				} else {
 					model.addAttribute("error", "用户名或密码错误");
-					return "/index.jsp";
+					return "/index";
 				}
 				
 			case STUDENT:
@@ -119,15 +120,15 @@ public class LoginController{
 						student.setStu_isonline(true);
 						loginService.updateStudentStatus(student);
 						model.addAttribute("success", "success");
-						return "/test.jsp";
+						return "/test";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
-						return "/index.jsp";
+						return "/index";
 					}
 					
 				} else {
 					model.addAttribute("error", "用户名或密码错误");
-					return "/index.jsp";
+					return "/index";
 				}
 	
 			default:

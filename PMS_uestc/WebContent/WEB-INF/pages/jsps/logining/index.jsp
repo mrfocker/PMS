@@ -14,7 +14,7 @@
 </head>
 <body>
 	
-	<form action="<%=basePath%>logining/login.action" method="post">
+	<form action="${pageContext.request.contextPath}/login.action" method="post">
 		<label>id:</label><input type="text" name="userId" /> <br /> 
 		<label>password:</label><input
 			type="password" name="userPwd" /> <br /> 

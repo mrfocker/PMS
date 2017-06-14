@@ -16,6 +16,13 @@
 	<!-- 加载db.properties文件中的内容 -->
 	<context:property-placeholder location="classpath:db.properties" />
 
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.mange.demo.controller">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
 	<!-- 配置数据源 ，dbcp ,根据自己数据情况配置-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -64,17 +71,17 @@
 	</bean>
 	
 	<!-- Controller注册 -->
-	<bean id="LoginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+<!-- 	<bean id="loginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
 		<property name="loginService" ref="loginService"/>
-	</bean>
+	</bean> -->
 	
 	<!-- JSP action -->
-	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="login.action">LoginController</prop>
+				<prop key="login.action">loginController</prop>
 			</props>
 		</property>
-	</bean> 
+	</bean>  -->
 
 </beans>
