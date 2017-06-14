@@ -3,6 +3,8 @@
  */
 package cn.pms.ssm.mapper;
 
+import org.springframework.stereotype.Repository;
+
 import cn.pms.ssm.po.Administrator;
 import cn.pms.ssm.po.Student;
 import cn.pms.ssm.po.Teacher;

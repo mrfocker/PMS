@@ -3,18 +3,15 @@
  */
 package cn.pms.ssm.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+//import org.springframework.web.servlet.mvc.Controller;
 
 import cn.pms.ssm.po.Administrator;
 import cn.pms.ssm.po.Student;
@@ -29,30 +26,38 @@ import cn.pms.ssm.service.LoginService;
  * @date 创建时间：2017年6月8日 上午11:16:03 
  * @version 1.0 
 */
-//@RequestMapping("/login.do")
-public class LoginController implements Controller{
+@Controller
+@RequestMapping("/logining")
+public class LoginController{
 
 	private static final int ADMIN = 0;
 	private static final int TEACHER = 1;
 	private static final int STUDENT = 2;
+//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	@Autowired
 	private LoginService loginService;
+	
 	private Integer result;
 	private Logger log;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
-	@Override
-//	@RequestMapping(params = "handleRequest") 
-	public @ResponseBody ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		int userType = Integer.parseInt(request.getParameter("userType"));
-		Map<String, Object> model = new HashMap<String, Object>();
+	@RequestMapping(value="/login.action", method=RequestMethod.POST)
+	@ResponseBody
+	public String login(@PathVariable("userId") String userId, 
+			@PathVariable("userPwd") String userPwd, 
+			@PathVariable("userType") String userType, Model model) throws Exception {
+//		 TODO Auto-generated method stub
+//		String userId = request.getParameter("userId");
+//		String userPwd = request.getParameter("userPwd");
+		int userTypes = Integer.parseInt(userType);
+//		Map<String, Object> model = new HashMap<String, Object>();
 		
-		switch (userType) {
+		System.out.println("-------------------------------------->Controller");
+		System.out.println("-------------------------------------->LoginController");
+		switch (userTypes) {
 			case ADMIN:
 				Administrator administrator = new Administrator();
 				administrator.setSu_id(Float.parseFloat(userId));
@@ -65,16 +70,16 @@ public class LoginController implements Controller{
 					if (0 ==result) {
 						administrator.setSu_isonline(true);
 						loginService.updateAdminStatus(administrator);
-						model.put("success", "success");
-						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
+						model.addAttribute("success", "success");
+						return "/test.jsp";
 					} else {
-						model.put("error", "当前用户已登录");
-						return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+						model.addAttribute("error", "当前用户已登录");
+						return "/index.jsp";
 					}
 					
 				} else {
-					model.put("error", "用户名或密码错误");
-					return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+					model.addAttribute("error", "用户名或密码错误");
+					return "/index.jsp";
 				}
 				
 		case TEACHER:
@@ -89,16 +94,16 @@ public class LoginController implements Controller{
 					if (0 ==result) {
 						teacher.setTeacher_isonline(true);
 						loginService.updateTeacherStatus(teacher);
-						model.put("success", "success");
-						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
+						model.addAttribute("success", "success");
+						return "/test.jsp";
 					} else {
-						model.put("error", "当前用户已登录");
-						return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+						model.addAttribute("error", "当前用户已登录");
+						return "/index.jsp";
 					}
 					
 				} else {
-					model.put("error", "用户名或密码错误");
-					return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+					model.addAttribute("error", "用户名或密码错误");
+					return "/index.jsp";
 				}
 				
 			case STUDENT:
@@ -113,16 +118,16 @@ public class LoginController implements Controller{
 					if (0 ==result) {
 						student.setStu_isonline(true);
 						loginService.updateStudentStatus(student);
-						model.put("success", "success");
-						return new ModelAndView("WEB-INF/pages/html/test.jsp", model);
+						model.addAttribute("success", "success");
+						return "/test.jsp";
 					} else {
-						model.put("error", "当前用户已登录");
-						return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+						model.addAttribute("error", "当前用户已登录");
+						return "/index.jsp";
 					}
 					
 				} else {
-					model.put("error", "用户名或密码错误");
-					return new ModelAndView("WEB-INF/pages/html/index.jsp", model);
+					model.addAttribute("error", "用户名或密码错误");
+					return "/index.jsp";
 				}
 	
 			default:
@@ -130,17 +135,4 @@ public class LoginController implements Controller{
 		}
 		return null;
 	}
-	/**
-	 * @return the loginService
-	 */
-	public LoginService getLoginService() {
-		return loginService;
-	}
-	/**
-	 * @param loginService the loginService to set
-	 */
-	public void setLoginService(LoginService loginService) {
-		this.loginService = loginService;
-	}
-
 }

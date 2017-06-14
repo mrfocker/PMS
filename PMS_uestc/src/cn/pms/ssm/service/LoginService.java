@@ -25,7 +25,7 @@ import cn.pms.ssm.po.Teacher;
  * @version 1.0
  */
 
-@Service
+@Service("loginService")
 public interface LoginService {
 	public Integer selectstudentlogin(Student student);
 

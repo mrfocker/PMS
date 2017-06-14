@@ -13,9 +13,13 @@
 <title>登录</title>
 </head>
 <body>
-	<form action="login.action" method="post">
-		<label>id:</label><input type="text" name="userId" /> <br /> <label>password:</label><input
-			type="text" name="userPwd" /> <br /> <input type="submit" value="登录" />
+	
+	<form action="<%=basePath%>logining/login.action" method="post">
+		<label>id:</label><input type="text" name="userId" /> <br /> 
+		<label>password:</label><input
+			type="password" name="userPwd" /> <br /> 
+		<label>用户类型：</label><input type="text" name="userType"/>
+			<input type="submit" value="登录" />
 		<input type="reset" value="重置" />
 	</form>
 	<input type="text" value="${error}" />

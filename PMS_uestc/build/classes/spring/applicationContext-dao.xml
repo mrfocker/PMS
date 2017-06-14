@@ -59,22 +59,22 @@
 	</bean>
 
 	<!-- Service注册 -->
-	<bean id="loginServiceImpl" class="cn.pms.ssm.service.impl.LoginServiceImpl">
+	<bean id="loginService" class="cn.pms.ssm.service.impl.LoginServiceImpl">
 		<property name="loginDAOImpl" ref="loginDAOImpl"></property>
 	</bean>
 	
 	<!-- Controller注册 -->
-	<bean id="loginController" class="cn.pms.ssm.controller.LoginController">
-		<property name="loginServiceImpl" ref="loginServiceImpl"/>
+	<bean id="LoginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginService" ref="loginService"/>
 	</bean>
 	
 	<!-- JSP action -->
-	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="login.do">loginController</prop>
+				<prop key="login.action">LoginController</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> 
 
 </beans>

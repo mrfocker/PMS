@@ -1,1 +1,90 @@
-��ʾ��
+��ʾ��
+@Override
+	@ResponseBody
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse arg1) throws Exception {
+		// TODO Auto-generated method stub
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		int userTypes = Integer.parseInt(request.getParameter("userType"));
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		System.out.println("-------------------------------------->Controller");
+		System.out.println("-------------------------------------->LoginController");
+		switch (userTypes) {
+			case ADMIN:
+				Administrator administrator = new Administrator();
+				administrator.setSu_id(Float.parseFloat(userId));
+				administrator.setSu_password(userPwd);
+				
+				if (loginService.selectadminlogin(administrator) != null) {
+					result = loginService.selectadminlogin(administrator);
+					log.debug("logintest================>"+result);
+					
+					if (0 ==result) {
+						administrator.setSu_isonline(true);
+						loginService.updateAdminStatus(administrator);
+						model.put("success", "success");
+						return new ModelAndView("/test", model);
+					} else {
+						model.put("error", "当前用户已登录");
+						return new ModelAndView("/index", model);
+					}
+					
+				} else {
+					model.put("error", "用户名或密码错误");
+					return new ModelAndView("/index", model);
+				}
+				
+		case TEACHER:
+				Teacher teacher = new Teacher();
+				teacher.setTeacher_id(userId);
+				teacher.setTeacher_password(userPwd);
+				
+				if (loginService.selectteacherlogin(teacher) != null) {
+					result = loginService.selectteacherlogin(teacher);
+					log.debug("logintest================>"+result);
+					
+					if (0 ==result) {
+						teacher.setTeacher_isonline(true);
+						loginService.updateTeacherStatus(teacher);
+						model.put("success", "success");
+						return new ModelAndView("/test", model);
+					} else {
+						model.put("error", "当前用户已登录");
+						return new ModelAndView("/index", model);
+					}
+					
+				} else {
+					model.put("error", "用户名或密码错误");
+					return new ModelAndView("/index", model);
+				}
+				
+			case STUDENT:
+				Student student = new Student();
+				student.setStu_id(userId);
+				student.setStu_password(userPwd);
+				
+				if (loginService.selectstudentlogin(student) != null) {
+					result = loginService.selectstudentlogin(student);
+					log.debug("logintest================>"+result);
+					
+					if (0 ==result) {
+						student.setStu_isonline(true);
+						loginService.updateStudentStatus(student);
+						model.put("success", "success");
+						return new ModelAndView("/test", model);
+					} else {
+						model.put("error", "当前用户已登录");
+						return new ModelAndView("/index", model);
+					}
+					
+				} else {
+					model.put("error", "用户名或密码错误");
+					return new ModelAndView("/index", model);
+				}
+	
+			default:
+				break;
+		}
+		return null;
+	}

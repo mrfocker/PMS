@@ -20,7 +20,7 @@ import cn.pms.ssm.service.LoginService;
  * @date 创建时间：2017年6月8日 上午11:25:22 
  * @version 1.0 
 */
-@Service
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
 	private LoginDAOImpl loginDAOImpl; 

@@ -55,7 +55,7 @@ public class TestLoginStudentDAOImpl {
 //		s.setStu_password("123");
 		s.setTeacher_id("111111111111");
 		s.setTeacher_password("123");
-		LoginService loginService = (LoginService)ctx.getBean("loginServiceImpl",LoginServiceImpl.class);
+		LoginService loginService = (LoginService)ctx.getBean("loginService",LoginServiceImpl.class);
 		Integer s1 = loginService.selectteacherlogin(s);
 		System.out.println(s1);
 	}

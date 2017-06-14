@@ -5,6 +5,7 @@ package cn.pms.ssm.mapper.impl;
 
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import cn.pms.ssm.mapper.LoginDAO;
 import cn.pms.ssm.po.Administrator;
@@ -19,7 +20,7 @@ import cn.pms.ssm.po.Teacher;
  * @date 创建时间：2017年6月7日 下午3:39:38 
  * @version 1.0 
 */
-
+//@Repository("loginDAOImpl")
 public class LoginDAOImpl implements LoginDAO {
 
 
