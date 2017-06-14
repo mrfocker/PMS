@@ -34,13 +34,6 @@ public class TestReaderExcelToDB {
 	//private static SqlSession session = su.getSqlSession();
 	private static String className = TestReaderExcelToDB.class.getName() + ".";
 	
-	
-	@Before
-	public void setUp() throws Exception{
-		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
-	}
-	
-
 	public static void main(String[] args) throws Exception {
 		InsertToDataBase();
 	}
@@ -75,13 +68,13 @@ public class TestReaderExcelToDB {
 				students.setSalary(Integer.parseInt(oneMap.get("工资").toString()));
 				Map beanMap = mu.describe(students);
 
-				int result = 0;
+				//int result = 0;
 				try {
 					teacherMapper.insertStudent(beanMap);
 					//result = session.insert(className + "insertStudent",beanMap);
-					if(result < 1){
-						System.out.println("插入数据库错误");
-					}
+					//if(result < 1){
+						//System.out.println("插入数据库错误");
+					//}
 					//session.commit();
 				} catch (Exception e) {
 					e.printStackTrace();
