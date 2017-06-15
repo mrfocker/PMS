@@ -22,17 +22,18 @@ import org.springframework.context.ApplicationContext;
 
 import cn.pms.ssm.mapper.TeacherMapper;
 import cn.pms.ssm.po.Students;
+import cn.pms.ssm.po.Teacher;
 //import com.test.util.SqlSessionUtil;
 
 import cn.pms.ssm.BeanUtils.MyBeanUtils;;
 
-public class TestReaderExcelToDB {
+public class ReaderExcelToDB {
 
 	private static ApplicationContext applicationContext;
 	private static ReaderExcelUtils reu = new ReaderExcelUtils();
 	//private static SqlSessionUtil su = new SqlSessionUtil();
 	//private static SqlSession session = su.getSqlSession();
-	private static String className = TestReaderExcelToDB.class.getName() + ".";
+	private static String className = ReaderExcelToDB.class.getName() + ".";
 	
 	public static void main(String[] args) throws Exception {
 		InsertToDataBase();
@@ -53,20 +54,34 @@ public class TestReaderExcelToDB {
 		
 		Date date = new Date();
 		long time = date.getTime();
-		String excelFileName = "e:/test.xls";
+		String excelFileName = "e:/teacher.xls";
 		File file = new File(excelFileName);
 		List<Map> dataListMap = reu.ReaderExcel(file);
 		Iterator it = dataListMap.iterator();
-		Students students = new Students();
+		//Students students = new Students();
+		Teacher teacher = new Teacher();
 		MyBeanUtils mu = new MyBeanUtils();
 
 		try {
 			while (it.hasNext()) {
 				Map oneMap = (Map) it.next();
-				students.setUsername(oneMap.get("姓名").toString());
-				students.setAge(Integer.parseInt(oneMap.get("年龄").toString()));
-				students.setSalary(Integer.parseInt(oneMap.get("工资").toString()));
-				Map beanMap = mu.describe(students);
+				//从excel表读入
+				teacher.setTeacher_id(oneMap.get("招生代码").toString());
+				teacher.setTeacher_name(oneMap.get("姓名").toString());
+				teacher.setTeacher_proTitle(oneMap.get("职称").toString());
+				teacher.setTeacher_researchOne(oneMap.get("研究方向1").toString());
+				teacher.setTeacher_researchTwo(oneMap.get("研究方向2").toString());
+				teacher.setTeacher_researchThree(oneMap.get("研究方向3").toString());
+				teacher.setTeacher_email(oneMap.get("邮箱").toString());
+				teacher.setTeacher_tel(oneMap.get("电话").toString());
+				//其余字段添加
+				teacher.setTeacher_password(oneMap.get("招生代码").toString());
+				
+				
+				
+			/*	students.setAge(Integer.parseInt(oneMap.get("年龄").toString()));
+				students.setSalary(Integer.parseInt(oneMap.get("工资").toString()));*/
+				Map beanMap = mu.describe(teacher);
 
 				//int result = 0;
 				try {

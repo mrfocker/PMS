@@ -14,8 +14,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 		insert into
-		teacher(Teacher_id,Teacher_password,Teacher_isonline,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel)
-		value(#{Teacher_id},#{Teacher_password},#{Teacher_isonline},#{Teacher_name},#{Teacher_proTitle},#{Teacher_researchOne},#{Teacher_researchTwo},#{Teacher_researchThree},#{Teacher_email},#{Teacher_tel})
+		teacher(Teacher_id,Teacher_password,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel)
+		value(#{Teacher_id},#{Teacher_password},#{Teacher_name},#{Teacher_proTitle},#{Teacher_researchOne},#{Teacher_researchTwo},#{Teacher_researchThree},#{Teacher_email},#{Teacher_tel})
 		<!-- 使用mysql的uuid（）生成主键 执行过程： 首先通过uuid()得到主键，将主键设置到user对象的id属性中 其次在insert执行时，从user对象中取出id属性值 -->
 		<!-- <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String"> 
 			SELECT uuid() </selectKey> insert into user(id,username,birthday,sex,address) 
@@ -39,14 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<insert id="insertStudent" parameterType="map">
-		insert into students 
-			(username,age,salary)
-		values
-			(
-				#{username},
-				#{age},
-				#{salary}
-			)
+		insert into
+		teacher(Teacher_id,Teacher_password,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel)
+		value(#{Teacher_id},#{Teacher_password},#{Teacher_name},#{Teacher_proTitle},#{Teacher_researchOne},#{Teacher_researchTwo},#{Teacher_researchThree},#{Teacher_email},#{Teacher_tel})
  </insert>
 
 

@@ -26,12 +26,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-/**
- * 读取Excel
- * @author CYX
- * @since 2016-6-4 上午1:03:23
- */
 public class ReaderExcelUtils {
 	
 	/**
