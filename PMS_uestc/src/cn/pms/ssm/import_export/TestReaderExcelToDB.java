@@ -1,4 +1,4 @@
-package com.test.readerExcel;
+package cn.pms.ssm.import_export;
 /** 
  * <p>Title: </p> 
  * <p>Description:TODO </p> 
@@ -19,7 +19,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
-import cn.pms.ssm.import_export.ReaderExcelUtils;
+
 import cn.pms.ssm.mapper.TeacherMapper;
 import cn.pms.ssm.po.Students;
 //import com.test.util.SqlSessionUtil;
