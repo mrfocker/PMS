@@ -1,7 +1,7 @@
 package cn.pms.ssm.BeanUtils;
 /** 
- * <p>Title: </p> 
- * <p>Description:TODO </p> 
+ * <p>Title: MyBeanUtils</p> 
+ * <p>Description:read data from javabean and save as map </p> 
  * <p>Company: uestc_xr</p> 
  * @author:  liuxiang 
  * @date:2017年6月13日

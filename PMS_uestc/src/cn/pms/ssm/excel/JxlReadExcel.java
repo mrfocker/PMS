@@ -38,9 +38,9 @@ public class JxlReadExcel {
 		 * row : 一行
 		 */
 		
-		if(checkExcel2007(file)){
+		/*if(checkExcel2007(file)){
 			return importToExcel2007(file);
-		}
+		}*/
 		
 		//初始化返回值和字段名数组
 		ArrayList<Map> arr = new ArrayList<Map>();
@@ -153,7 +153,7 @@ public class JxlReadExcel {
 	}
 	
 	/**
-	 * 输入2007版以上excel文件,解析后返回ArrayList(有个bug,暂时不用,保留)
+	 * 输入2007版以上excel文件,解析后返回ArrayList
 	 * @param file
 	 * @return
 	 */

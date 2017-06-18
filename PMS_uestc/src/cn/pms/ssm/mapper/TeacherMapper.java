@@ -22,7 +22,7 @@ public interface TeacherMapper {
 	public void insertTeacherList(Teacher teacher) throws Exception;
 	
 	//excel学生测试
-	public void insertStudent(Map map) throws Exception;
+	public int insertStudent(Teacher teacher) throws Exception;
 		
 
 }

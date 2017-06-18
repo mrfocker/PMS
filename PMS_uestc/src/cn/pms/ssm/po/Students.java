@@ -8,6 +8,7 @@ package cn.pms.ssm.po;
  * @version 1.0 
 */
 
+
 public class Students {
 	private int id;
 	private String username;
