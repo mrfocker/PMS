@@ -46,6 +46,7 @@
 	</bean>
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<!-- 原始dao接口 -->
 	<bean id = "teacherDao" class = "cn.pms.ssm.dao.TeacherDaoImpl">
 		<!-- 加载mybatis -->
@@ -72,6 +73,8 @@
 
 
 =======
+=======
+>>>>>>> jj_branch
 	<!-- mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
@@ -111,6 +114,9 @@
 			</props>
 		</property>
 	</bean>  -->
+<<<<<<< HEAD
+>>>>>>> jj_branch
+=======
 >>>>>>> jj_branch
 
 </beans>

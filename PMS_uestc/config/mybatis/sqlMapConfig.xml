@@ -5,6 +5,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<!-- 全局setting配置，根据需要添加 -->
+<!-- 	<settings>
+		<setting name="mapUnderscoreCamelCase" value="true"/>
+	</settings> -->
+	<!-- 配置别名 -->
+<!-- 	<typeAliases>
+		批量扫描别名
+=======
+>>>>>>> jj_branch
 
 	<!-- 全局配置参数，需要时再设置 -->
 	<!-- <settings>
@@ -22,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 批量别名定义 
 		指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以）
 		-->
+<<<<<<< HEAD
 =======
 	<!-- 全局setting配置，根据需要添加 -->
 <!-- 	<settings>
@@ -31,10 +43,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-- 	<typeAliases>
 		批量扫描别名
 >>>>>>> jj_branch
+=======
+>>>>>>> 43c3e52f1b7e516f13b09fdaf7938c8d63642491
+>>>>>>> jj_branch
 		<package name="cn.pms.ssm.po"/>
 		
 	</typeAliases>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+ -->
+=======
+>>>>>>> jj_branch
 	
 	<!-- 加载 映射文件 -->
 	<!-- <mappers>
@@ -57,8 +77,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</mappers> -->
 	
 	
+<<<<<<< HEAD
 =======
  -->
+>>>>>>> jj_branch
+=======
+>>>>>>> 43c3e52f1b7e516f13b09fdaf7938c8d63642491
 >>>>>>> jj_branch
 	<!-- 配置mapper
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。

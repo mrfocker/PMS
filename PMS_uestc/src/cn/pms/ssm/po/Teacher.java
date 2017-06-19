@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package cn.pms.ssm.po;
 
 /**
@@ -132,6 +133,8 @@ public class Teacher {
 /**
  * 
  */
+=======
+>>>>>>> jj_branch
 package cn.pms.ssm.po;
 /** 
  * <p>Title: Teacher</p> 
@@ -298,6 +301,41 @@ public class Teacher {
 	 */
 	public void setTeacher_tel(String teacher_tel) {
 		Teacher_tel = teacher_tel;
+	}
+<<<<<<< HEAD
+>>>>>>> jj_branch
+=======
+	@Override
+	public String toString() {
+		return "Teacher [Teacher_id=" + Teacher_id + ", Teacher_password="
+				+ Teacher_password + ", Teacher_isonline=" + Teacher_isonline
+				+ ", Teacher_name=" + Teacher_name + ", Teacher_proTitle="
+				+ Teacher_proTitle + ", Teacher_researchOne="
+				+ Teacher_researchOne + ", Teacher_researchTwo="
+				+ Teacher_researchTwo + ", Teacher_researchThree="
+				+ Teacher_researchThree + ", Teacher_email=" + Teacher_email
+				+ ", Teacher_tel=" + Teacher_tel + "]";
+	}
+	
+	public Teacher(String teacher_id, String teacher_password,
+			int teacher_isonline, String teacher_name, String teacher_proTitle,
+			String teacher_researchOne, String teacher_researchTwo,
+			String teacher_researchThree, String teacher_email,
+			String teacher_tel) {
+		super();
+		Teacher_id = teacher_id;
+		Teacher_password = teacher_password;
+		Teacher_isonline = teacher_isonline;
+		Teacher_name = teacher_name;
+		Teacher_proTitle = teacher_proTitle;
+		Teacher_researchOne = teacher_researchOne;
+		Teacher_researchTwo = teacher_researchTwo;
+		Teacher_researchThree = teacher_researchThree;
+		Teacher_email = teacher_email;
+		Teacher_tel = teacher_tel;
+	}
+	public Teacher(){
+		
 	}
 >>>>>>> jj_branch
 }
