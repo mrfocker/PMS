@@ -2,7 +2,9 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
+<<<<<<< HEAD
 
 	<!-- 全局配置参数，需要时再设置 -->
 	<!-- <settings>
@@ -20,9 +22,19 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 批量别名定义 
 		指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以）
 		-->
+=======
+	<!-- 全局setting配置，根据需要添加 -->
+<!-- 	<settings>
+		<setting name="mapUnderscoreCamelCase" value="true"/>
+	</settings> -->
+	<!-- 配置别名 -->
+<!-- 	<typeAliases>
+		批量扫描别名
+>>>>>>> jj_branch
 		<package name="cn.pms.ssm.po"/>
 		
 	</typeAliases>
+<<<<<<< HEAD
 	
 	<!-- 加载 映射文件 -->
 	<!-- <mappers>
@@ -45,12 +57,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</mappers> -->
 	
 	
+=======
+ -->
+>>>>>>> jj_branch
 	<!-- 配置mapper
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
 	必须遵循：mapper.xml和mapper.java文件同名且在一个目录 
 	 -->
-
-	<!-- <mappers>
-	
-	</mappers> -->
+	 
+	 <mappers>
+	 <!-- 	<mapper resource="sqlmap/studentInfoMapper.xml"/> -->
+	 	<package name="org.mybatis.builder"/>
+	 </mappers> 
 </configuration>

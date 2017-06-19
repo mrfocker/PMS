@@ -2,6 +2,7 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<<<<<<< HEAD
 <configuration>
 
 	<!-- 全局配置参数，需要时再设置 -->
@@ -53,4 +54,26 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- <mappers>
 	
 	</mappers> -->
+=======
+
+<configuration>
+	<!-- 全局setting配置，根据需要添加 -->
+<!-- 	<settings>
+		<setting name="mapUnderscoreCamelCase" value="true"/>
+	</settings> -->
+	<!-- 配置别名 -->
+<!-- 	<typeAliases>
+		批量扫描别名
+		<package name="cn.pms.ssm.po"/>
+	</typeAliases>
+ -->
+	<!-- 配置mapper
+	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
+	 -->
+	 
+	 <mappers>
+	 <!-- 	<mapper resource="sqlmap/studentInfoMapper.xml"/> -->
+	 	<package name="org.mybatis.builder"/>
+	 </mappers> 
+>>>>>>> jj_branch
 </configuration>

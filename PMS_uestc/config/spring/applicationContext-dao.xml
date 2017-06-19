@@ -16,6 +16,13 @@
 	<!-- 加载db.properties文件中的内容 -->
 	<context:property-placeholder location="classpath:db.properties" />
 
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.mange.demo.controller">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
 	<!-- 配置数据源 ，dbcp ,根据自己数据情况配置-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -26,6 +33,7 @@
 		<property name="maxActive" value="30" /> 
 		<property name="maxIdle" value="5" />
 	</bean>
+	
 	<!-- sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 加载mybatis的配置文件 -->
@@ -33,8 +41,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- 加载mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
+		<property name="typeAliasesPackage" value="cn.pms.ssm.po"/>
+		<property name="mapperLocations" value="classpath:sqlmap/*.xml"></property>
 	</bean>
 	
+<<<<<<< HEAD
 	<!-- 原始dao接口 -->
 	<bean id = "teacherDao" class = "cn.pms.ssm.dao.TeacherDaoImpl">
 		<!-- 加载mybatis -->
@@ -60,5 +71,46 @@
    </bean>
 
 
+=======
+	<!-- mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
+		<property name="basePackage" value="cn.pms.ssm.mapper,cn.pms.ssm.mapper.impl"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+     
+     <!-- sqlSession创建代理 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- Mapper注册 -->
+	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	<bean id="loginDAOImpl" class="cn.pms.ssm.mapper.impl.LoginDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+
+	<!-- Service注册 -->
+	<bean id="loginService" class="cn.pms.ssm.service.impl.LoginServiceImpl">
+		<property name="loginDAOImpl" ref="loginDAOImpl"></property>
+	</bean>
+	
+	<!-- Controller注册 -->
+<!-- 	<bean id="loginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginService" ref="loginService"/>
+	</bean> -->
+	
+	<!-- JSP action -->
+<!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="login.action">loginController</prop>
+			</props>
+		</property>
+	</bean>  -->
+>>>>>>> jj_branch
 
 </beans>
