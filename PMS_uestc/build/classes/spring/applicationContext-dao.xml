@@ -36,12 +36,21 @@
 	
 	<!-- sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 加载mybatis的配置文件 -->
 		<!-- 数据库连接池 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 加载mybatis的全局配置文件 -->
 		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
 		<property name="typeAliasesPackage" value="cn.pms.ssm.po"/>
 		<property name="mapperLocations" value="classpath:sqlmap/*.xml"></property>
+		<property name="maxActive" value="30" /> 
+		<property name="maxIdle" value="5" />
+	</bean>
+	
+	<!-- 原始dao接口 -->
+	<bean id = "teacherDao" class = "cn.pms.ssm.dao.TeacherDaoImpl">
+		<!-- 加载mybatis -->
+		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
 	</bean>
 	
 	<!-- mapper扫描器 -->
@@ -83,5 +92,5 @@
 			</props>
 		</property>
 	</bean>  -->
-
+ 
 </beans>

@@ -17,7 +17,19 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 配置mapper
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
 	 -->
-	 
+	 	<typeAliases>
+		
+		<!-- 针对单个别名定义
+		type：类型的路径
+		alias：别名
+		 -->
+		<!-- <typeAlias type="cn.itcast.mybatis.po.User" alias="user"/> -->
+		<!-- 批量别名定义 
+		指定包名，mybatis自动扫描包中的po类，自动定义别名，别名就是类名（首字母大写或小写都可以）
+		-->
+		<package name="cn.pms.ssm.po"/>
+		
+	</typeAliases>
 	 <mappers>
 	 <!-- 	<mapper resource="sqlmap/studentInfoMapper.xml"/> -->
 	 	<package name="org.mybatis.builder"/>
