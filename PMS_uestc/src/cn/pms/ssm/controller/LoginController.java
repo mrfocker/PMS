@@ -46,7 +46,7 @@ public class LoginController{
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	@ResponseBody
+//	@ResponseBody
 	public String login(@RequestParam("userId") String userId, 
 			@RequestParam("userPwd") String userPwd, 
 			@RequestParam("userType") String userType, Model model) throws Exception {
