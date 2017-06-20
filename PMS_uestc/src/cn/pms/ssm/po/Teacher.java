@@ -178,7 +178,7 @@ public class Teacher {
 	}
 	
 	public Teacher(String teacher_id, String teacher_password,
-			int teacher_isonline, String teacher_name, String teacher_proTitle,
+			Boolean teacher_isonline, String teacher_name, String teacher_proTitle,
 			String teacher_researchOne, String teacher_researchTwo,
 			String teacher_researchThree, String teacher_email,
 			String teacher_tel) {

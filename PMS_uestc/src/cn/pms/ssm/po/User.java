@@ -3,7 +3,7 @@ package cn.pms.ssm.po;
 /**
  * 
  * <p>Title: User</p>
- * <p>Description: dao接口，用户管理</p>
+ * <p>Description: dao锟接口ｏ拷锟矫伙拷锟斤拷锟斤拷</p>
  * <p>Company: uestc_xr</p> 
  * @author	
  * @date	

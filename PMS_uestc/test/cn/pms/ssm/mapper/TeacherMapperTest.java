@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.pms.ssm.mapper.TeacherMapper;
 import cn.pms.ssm.po.Teacher;
 
 /** 
@@ -40,7 +41,7 @@ public class TeacherMapperTest {
 		Teacher teacher = new Teacher();
 		teacher.setTeacher_id("00001");
 		teacher.setTeacher_name("张三");
-		teacher.setTeacher_isonline(0);
+		teacher.setTeacher_isonline(false);
 		teacher.setTeacher_password("123456");
 		teacher.setTeacher_proTitle("网络技术");
 		teacher.setTeacher_researchOne("大数据");

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.pms.ssm.dao.TeacherDao;
 import cn.pms.ssm.po.Teacher;
 
 /** 

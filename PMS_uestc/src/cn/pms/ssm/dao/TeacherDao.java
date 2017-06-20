@@ -9,22 +9,22 @@ import cn.pms.ssm.po.Teacher;
  * <p>Description:TODO </p> 
  * <p>Company: uestc_xr</p> 
  * @author  liuxiang 
- * @date ╢╢╫╗й╠╪Дё╨2017дЙ6тб6ху ионГ11:26:58 
+ * @date О©╫О©╫О©╫О©╫й╠О©╫Дё╨2017О©╫О©╫6О©╫О©╫6О©╫О©╫ О©╫О©╫О©╫О©╫11:26:58 
  * @version 1.0 
 */
 
 public interface TeacherDao {
 	
-	//╦Ы╬щid╡Ия╞сц╩╖пео╒
+	//О©╫О©╫О©╫О©╫idО©╫О©╫я╞О©╫ц╩О©╫О©╫О©╫о╒
 	public Teacher findTeacherById(int id) throws Exception;
 	
-	//╦Ы╬щсц╩╖цШап╡Ия╞сц╩╖ап╠М
+	//О©╫О©╫О©╫О©╫О©╫ц╩О©╫О©╫О©╫О©╫п╡О©╫я╞О©╫ц╩О©╫О©╫п╠О©╫
 	public List<Teacher> findTeacherByName(String name) throws Exception;
 	
-	//лМ╪ссц╩╖пео╒
+	//О©╫О©╫О©╫О©╫ц╩О©╫О©╫О©╫о╒
 	public void inserTeacher(Teacher teacher) throws Exception;
 	
-	//и╬ЁЩсц╩╖пео╒
+	//и╬О©╫О©╫О©╫ц╩О©╫О©╫О©╫о╒
 	public void deleteTeacher(int id) throws Exception;
 	
 	
