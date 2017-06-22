@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.LoginMapper">
+	<select id="selectstudentlogin" resultType="Integer" parameterType="cn.pms.ssm.po.Student">
+		SELECT 
+		Stu_isonline 
+		FROM 
+		login_student 
+		WHERE 
+		Stu_id=#{Stu_id} AND Stu_password=#{Stu_password}
+	</select>
+	
+	<select id="selectteacherlogin" resultType="Integer" parameterType="cn.pms.ssm.po.Teacher">
+		SELECT 
+		Teacher_isonline 
+		FROM 
+		login_teacher
+		where 
+		Teacher_id = #{Teacher_id} AND Teacher_password = #{Teacher_password}
+	</select>
+	
+	<select id="selectadminlogin" resultType="Integer" parameterType="cn.pms.ssm.po.Teacher">
+		SELECT 
+		su_isonline 
+		FROM 
+		login_admin
+		WHERE 
+		su_id = #{su_id} AND su_password = #{su_password}	
+	</select>
+	
+	<update id="updateStudentStatus">
+		UPDATE 
+		login_student 
+		SET 
+		Stu_isonline = #{Stu_isonline}
+	</update>
+	
+	<update id="updateTeacherStatus">
+		UPDATE 
+		login_teacher 
+		SET 
+		Teacher_isonline = #{Teacher_isonline}
+	</update>
+	
+	<update id="updateAdminStatus">
+		UPDATE 
+		login_admin 
+		SET 
+		su_isonline = #{su_isonline}
+	</update>
+</mapper>

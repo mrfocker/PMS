@@ -3,10 +3,10 @@
  */
 package cn.pms.ssm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.pms.ssm.mapper.LoginDAO;
-import cn.pms.ssm.mapper.impl.LoginDAOImpl;
+import cn.pms.ssm.mapper.LoginMapper;
 import cn.pms.ssm.po.Administrator;
 import cn.pms.ssm.po.Student;
 import cn.pms.ssm.po.Teacher;
@@ -14,7 +14,7 @@ import cn.pms.ssm.service.LoginService;
 
 /** 
  * <p>Title: LoginServiceImpl</p> 
- * <p>Description:TODO </p> 
+ * <p>Description:登录Service </p> 
  * <p>Company: uestc_xr</p> 
  * @author  Xiaozhe 
  * @date 创建时间：2017年6月8日 上午11:25:22 
@@ -23,14 +23,15 @@ import cn.pms.ssm.service.LoginService;
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
-	private LoginDAOImpl loginDAOImpl; 
+	@Autowired
+	private LoginMapper loginMapper; 
 	/* (non-Javadoc)
 	 * @see cn.pms.ssm.service.LoginService#selectstudentlogin(cn.pms.ssm.po.Student)
 	 */
 	@Override
 	public Integer selectstudentlogin(Student student) {
 		// TODO Auto-generated method stub
-		return loginDAOImpl.selectstudentlogin(student);
+		return loginMapper.selectstudentlogin(student);
 	}
 
 	/* (non-Javadoc)
@@ -39,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer selectteacherlogin(Teacher teacher) {
 		// TODO Auto-generated method stub
-		return loginDAOImpl.selectteacherlogin(teacher);
+		return loginMapper.selectteacherlogin(teacher);
 	}
 
 	/* (non-Javadoc)
@@ -48,21 +49,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer selectadminlogin(Administrator administrator) {
 		// TODO Auto-generated method stub
-		return loginDAOImpl.selectadminlogin(administrator);
-	}
-
-	/**
-	 * @return the loginDAOImpl
-	 */
-	public LoginDAOImpl getLoginDAOImpl() {
-		return loginDAOImpl;
-	}
-
-	/**
-	 * @param loginDAOImpl the loginDAOImpl to set
-	 */
-	public void setLoginDAOImpl(LoginDAOImpl loginDAOImpl) {
-		this.loginDAOImpl = loginDAOImpl;
+		return loginMapper.selectadminlogin(administrator);
 	}
 
 	/* (non-Javadoc)
@@ -71,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void updateStudentStatus(Student student) {
 		// TODO Auto-generated method stub
-		loginDAOImpl.updateStudentStatus(student);
+		loginMapper.updateStudentStatus(student);
 	}
 
 	/* (non-Javadoc)
@@ -80,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void updateTeacherStatus(Teacher teacher) {
 		// TODO Auto-generated method stub
-		loginDAOImpl.updateTeacherStatus(teacher);
+		loginMapper.updateTeacherStatus(teacher);
 	}
 
 	/* (non-Javadoc)
@@ -89,7 +76,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void updateAdminStatus(Administrator administrator) {
 		// TODO Auto-generated method stub
-		loginDAOImpl.updateAdminStatus(administrator);
+		loginMapper.updateAdminStatus(administrator);
 	}
 
 
