@@ -77,7 +77,7 @@ public class ReaderExcelToDB {
 				System.out.println(beanMap);
 				int result = 0;
 				try {
-					result = teacherMapper.insertStudent(teacher);
+					result = teacherMapper.insertTeacherInfo(teacher);
 					System.out.println(result);
 					if(result < 1){
 						System.out.println("插入数据库错误");

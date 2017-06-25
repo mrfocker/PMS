@@ -1,1 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ <beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                     http://www.springframework.org/schema/context
+                      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                     http://www.springframework.org/schema/mvc
+                      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                     ">
+<!-- 配置Handler -->
+<!-- <bean name = "/queryTeacherInfo.action" class = "cn.pms.ssm.controller.TeacherInfoController1"/> -->
+
+<!-- 对于注解的handler可以单个配置,实际开发中建议使用组件扫描 -->
+<!-- <bean class = "cn.itcast.ssm.controller.ItemsController3"/> -->
+
+<!-- 可以扫描controller、service、...这里扫描controller,指定controller包 -->
+<context:component-scan base-package="cn.pms.ssm.controller"></context:component-scan>
+
+<!-- 处理器映射器 
+将bean的那么作为url进行查找，需要在配置Handler时指定beanname（url）
+-->
+<!-- <bean class = "org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> -->
+
+<!-- 注解映射器 -->
+<bean class = "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+<!-- 注解适配器 -->
+<bean class = "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+<!-- 使用mvc：annotation-drivern代替上边注解映射器喝注解适配器配置
+mvc：annotation-drivern默认加载了很多默认绑定方法 ，比如json转换得解析器，如果使用这个，就不用配置上面得两个；
+实际开发使用 -->
+
+<!-- 处理器适配器 
+所以处理器适配器都实现HandlerAdapter接口-->
+<!-- <bean class = "org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> -->
+<!-- 视图解析器 -->
+<bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+
+  </beans>   

@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离 注意：使用mapper代理方法开发，namespace有特殊重要的作用，namespace等于mapper接口地址 -->
 <mapper namespace="cn.pms.ssm.mapper.TeacherMapper">
 
-	<insert id="insertStudent" parameterType="cn.pms.ssm.po.Teacher">
+	<insert id="insertTeacherInfo" parameterType="cn.pms.ssm.po.Teacher">
 		<!-- 将插入数据的主键返回，返回到user对象中 SELECT LAST_INSERT_ID()：得到刚insert进去记录的主键值，只适用与自增主键 
 			keyProperty：将查询到主键值设置到parameterType指定的对象的哪个属性 order：SELECT LAST_INSERT_ID()执行顺序，相对于insert语句来说它的执行顺序 
 			resultType：指定SELECT LAST_INSERT_ID()的结果类型 -->
@@ -27,23 +27,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- //测试excel -->
-	<select id="getStudent" resultType="map">
-		select * from students order
-		by id
+	<select id="getTeacherList" resultType="map">
+		select * from teacher order by Teacher_id
 	</select>
 
 	<select id="getStudentById" resultType="map" parameterType="map">
 		select * from students where id = #{userId}
 	</select>
-
+	
 	<delete id="deleteStuentById" parameterType="map">
-		delete from students
-		where id = #{userId}
+		delete from students where id = #{userId}
 	</delete>
-
-	<!-- <insert id="insertStudent" parameterType="map"> insert into teacher(Teacher_id,Teacher_password,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel) 
-		value(#{Teacher_id},#{Teacher_password},#{Teacher_name},#{Teacher_proTitle},#{Teacher_researchOne},#{Teacher_researchTwo},#{Teacher_researchThree},#{Teacher_email},#{Teacher_tel}) 
-		</insert> -->
+	
+	<insert id="insertStudent" parameterType="map">
+		insert into students 
+			(username,age,salary)
+		values
+			(
+				#{username},
+				#{age},
+				#{salary}
+			)
+	</insert>
 
 
 </mapper>
