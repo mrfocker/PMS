@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 */
 
 @Controller
-public class TeacherInfoController3 {
+public class PaperInfoController {
 	
 	//查询列表
-	@RequestMapping("/query1")
+	@RequestMapping("/queryPaperInfo")
 	public ModelAndView queryPaper()throws Exception{
 		/*//返回ModelAndView
 		ModelAndView modelAndView =  new ModelAndView();
@@ -32,7 +32,7 @@ public class TeacherInfoController3 {
 		modelAndView.setViewName("tables");
 
 		return modelAndView;*/
-		return new ModelAndView("table");
+		return new ModelAndView("tables");
 	}
 
 }

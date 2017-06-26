@@ -46,6 +46,14 @@
 		</property>
 </bean>
 
+
+<!-- For static resources -->    
+<mvc:resources mapping="/img/**" location="/WEB-INF/pages/img/" />    
+<mvc:resources mapping="/js/**" location="/WEB-INF/pages/js/" />    
+<mvc:resources mapping="/css/**" location="/WEB-INF/pages/css/" />    
+<mvc:resources mapping="/html/**" location="/WEB-INF/pages/html/" /> 
+
+
 <!-- 处理器映射器 
 将bean的那么作为url进行查找，需要在配置Handler时指定beanname（url）
 -->
