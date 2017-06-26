@@ -42,7 +42,7 @@ public class TeacherInfoController1 implements Controller {
 				//modelAndView.addObject("itemsList", itemsList);
 				
 				//指定视图
-				modelAndView.setViewName("/WEB-INF/pages/html/index.jsp");
+				modelAndView.setViewName("/WEB-INF/pages/html/tables.html");
 
 				return modelAndView;
 	}
