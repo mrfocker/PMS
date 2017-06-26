@@ -23,9 +23,14 @@
 		<input type="reset" value="重置" />
 	</form>
 	<input type="text" value="${error}" />
-	
+	<!-- value="${paper.Paper_stuId}" value="${paper.Paper_researchOne}" value="${paper.Paper_researchTwo}"
+	 -->
 	<form action="${pageContext.request.contextPath }/load/uploadfile.action" method="post" enctype="multipart/form-data">
-		<input type="file" name="file"/>
+		id:<input type="text" name="Paper_stuId"/><br/>
+		researchOne:<input type="text" name="Paper_researchOne"/><br/>
+		researchTwo:<input type="text" name="Paper_researchTwo"/><br/>
+		type:<input type="text" name="paperType"/><br/>
+		<input type="file" name="file"/><br/>
 		<input type="submit" value="ok"/>
 	</form>
 </body>

@@ -3,6 +3,7 @@
  */
 package cn.pms.ssm.service;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import cn.pms.ssm.po.Paper;
@@ -16,6 +17,7 @@ import cn.pms.ssm.po.Paper;
  * @version 1.0 
 */
 @Service
+@Scope("property")
 public interface UploadService {
 	
 	public void insertPaperItem(Paper paper);

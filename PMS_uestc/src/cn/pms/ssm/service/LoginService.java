@@ -33,6 +33,12 @@ public interface LoginService {
 
 	public Integer selectadminlogin(Administrator administrator);
 
+	public Boolean selectStudentStatus(String id);
+
+	public Boolean selectTeacherStatus(String id);
+
+	public Boolean selectAdminStatus(String id);
+
 	public void updateStudentStatus(Student student);
 
 	public void updateTeacherStatus(Teacher teacher);

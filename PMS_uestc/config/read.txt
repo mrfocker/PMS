@@ -1,0 +1,24 @@
+<!-- Mapper注册 -->
+<!-- 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	 -->
+	<!-- <bean id="loginDAOImpl" class="cn.pms.ssm.mapper.impl.LoginDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean> -->
+	<!-- Controller注册 -->
+<!-- 	<bean id="loginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginService" ref="loginService"/>
+	</bean> -->
+	
+	<!-- JSP action -->
+<!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="login.action">loginController</prop>
+			</props>
+		</property>
+	</bean>  -->
+	
+		<!-- <bean name="/uploadfile.action" class="cn.pms.ssm.controller.UploadController" 
+		/> -->

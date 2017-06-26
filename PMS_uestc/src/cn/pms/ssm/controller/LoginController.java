@@ -3,6 +3,8 @@
  */
 package cn.pms.ssm.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ import cn.pms.ssm.service.LoginService;
 
 /** 
  * <p>Title: LoginController</p> 
- * <p>Description:TODO </p> 
+ * <p>Description:登录的Controller </p> 
  * <p>Company: uestc_xr</p> 
  * @author  Xiaozhe 
  * @date 创建时间：2017年6月8日 上午11:16:03 
@@ -40,14 +42,14 @@ public class LoginController{
 	private LoginService loginService;
 	
 	private Integer result;
-	private Logger log;
+	private Logger log = Logger.getLogger(LoginController.class);
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 //	@ResponseBody
-	public String login(@RequestParam("userId") String userId, 
+	public String login(HttpSession httpSession, @RequestParam("userId") String userId, 
 			@RequestParam("userPwd") String userPwd, 
 			@RequestParam("userType") String userType, Model model) throws Exception {
 //		 TODO Auto-generated method stub
@@ -55,9 +57,10 @@ public class LoginController{
 //		String userPwd = request.getParameter("userPwd");
 		int userTypes = Integer.parseInt(userType);
 //		Map<String, Object> model = new HashMap<String, Object>();
+		httpSession.setAttribute("id", userId);
+		httpSession.setAttribute("userTypes", userType);
 		
-		System.out.println("-------------------------------------->Controller");
-		System.out.println("-------------------------------------->LoginController");
+//		System.out.println("-------------------------------------->LoginController");
 		switch (userTypes) {
 			case ADMIN:
 				Administrator administrator = new Administrator();
@@ -72,10 +75,10 @@ public class LoginController{
 						administrator.setSu_isonline(true);
 						loginService.updateAdminStatus(administrator);
 						model.addAttribute("success", "success");
-						return "/test";
+						return "/indexs";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
-						return "/index";
+						return "/logining/index";
 					}
 					
 				} else {

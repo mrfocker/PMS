@@ -3,8 +3,6 @@
  */
 package cn.pms.ssm.mapper;
 
-import org.springframework.stereotype.Repository;
-
 import cn.pms.ssm.po.Administrator;
 import cn.pms.ssm.po.Student;
 import cn.pms.ssm.po.Teacher;
@@ -24,6 +22,12 @@ public interface LoginMapper {
 	public Integer selectteacherlogin(Teacher teacher);
 	
 	public Integer selectadminlogin(Administrator administrator);
+	
+	public Boolean selectStudentStatus(String id);
+	
+	public Boolean selectTeacherStatus(String id);
+	
+	public Boolean selectAdminStatus(String id);
 	
 	public void updateStudentStatus(Student student);
 	

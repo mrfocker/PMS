@@ -4,6 +4,7 @@
 package cn.pms.ssm.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import cn.pms.ssm.mapper.LoginMapper;
@@ -77,6 +78,33 @@ public class LoginServiceImpl implements LoginService {
 	public void updateAdminStatus(Administrator administrator) {
 		// TODO Auto-generated method stub
 		loginMapper.updateAdminStatus(administrator);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#selectStudentStatus(java.lang.String)
+	 */
+	@Override
+	public Boolean selectStudentStatus(String id) {
+		// TODO Auto-generated method stub
+		return loginMapper.selectStudentStatus(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#selectTeacherStatus(java.lang.String)
+	 */
+	@Override
+	public Boolean selectTeacherStatus(String id) {
+		// TODO Auto-generated method stub
+		return loginMapper.selectTeacherStatus(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.LoginService#selectAdminStatus(java.lang.String)
+	 */
+	@Override
+	public Boolean selectAdminStatus(String id) {
+		// TODO Auto-generated method stub
+		return loginMapper.selectAdminStatus(id);
 	}
 
 
