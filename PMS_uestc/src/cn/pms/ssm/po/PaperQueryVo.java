@@ -1,7 +1,7 @@
 package cn.pms.ssm.po;
 /** 
- * <p>Title: </p> 
- * <p>Description:TODO </p> 
+ * <p>Title:PaperQueryVo </p> 
+ * <p>Description:包装查询对象 </p> 
  * <p>Company: uestc_xr</p> 
  * @author:  liuxiang 
  * @date:2017年6月25日
@@ -9,4 +9,5 @@ package cn.pms.ssm.po;
 */
 public class PaperQueryVo {
 
+	private Student student;
 }
