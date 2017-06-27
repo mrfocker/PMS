@@ -33,7 +33,7 @@ h1 {
 #lg-head {
 	height: 26px;
 	margin: 10px 0;
-	background: url(../img_/login-sprite.png) no-repeat;
+	background: url(../img/login-sprite.png) no-repeat;
 }
 #lg-head p {
 	padding: 6px 0 0 42px;
@@ -58,13 +58,13 @@ h1 {
 #usr-field {
 	width: 462px;
 	height: 32px;
-	background: url(../img_/login-sprite.png);
+	background: url(../img/login-sprite.png);
 	background-position: 0px -27px;
 }
 #psw-field {
 	width: 462px;
 	height: 32px;
-	background: url(../img_/login-sprite.png);
+	background: url(../img/login-sprite.png);
 	background-position: 0px -60px;
 }
 .input {
@@ -90,7 +90,7 @@ h1 {
 	float: none;
 }
 .submit {
-	background: url(../img_/login-sprite.png) -1px -93px no-repeat;
+	background: url(../img/login-sprite.png) -1px -93px no-repeat;
 	width: 82px;
 	height: 26px;
 	border: none;
@@ -113,7 +113,7 @@ label.error {
 	position: relative;
 	top: -25px;
 	left: 354px;
-	background: url(../img_/login-sprite.png) no-repeat;
+	background: url(../img/login-sprite.png) no-repeat;
 	background-position: -360px -111px;
 	border: none;
 	float: none;
