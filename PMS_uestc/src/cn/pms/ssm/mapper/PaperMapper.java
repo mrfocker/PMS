@@ -8,5 +8,8 @@ package cn.pms.ssm.mapper;
  * @version 1.0 
 */
 public class PaperMapper {
+	
+	//论文信息综合查询
+	
 
 }

@@ -9,5 +9,10 @@ package cn.pms.ssm.po;
 */
 public class PaperQueryVo {
 
-	private Student student;
+	//论文信息
+	private Paper paper;
+	//为了系统可扩展性，对原始po进行扩展
+	private PaperInfoExtend paperInfoExtend;
+	
+	
 }

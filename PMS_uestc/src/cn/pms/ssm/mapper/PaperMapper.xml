@@ -5,9 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="cn.pms.ssm.mapper.PaperMapper">
-<!--论文信息综合查询  -->
-<select id="findpaperlist" parameterType = "cn.pms.ssm.po.PaperQueryVo">
 
-</select>
-
+	<!--定义论文查询的sql片段，就是论文信息查询条件-->
+	<sql id = "query_paper_where">
+		
+	</sql>
+	<!--论文信息综合查询 -->
+	<select id="findpaperlist" parameterType="cn.pms.ssm.po.PaperQueryVo"
+		resultType="cn.pms.ssm.po.PaperInfoExtend ">
+		SELECT paper.* FROM paper
+		<where>
+		
+		</where>
+	</select>
+ 
 </mapper>
