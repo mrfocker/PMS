@@ -48,17 +48,17 @@ public class LoginController{
 	 * @see org.springframework.web.servlet.mvc.Controller#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-//	@ResponseBody
-	public String login(HttpSession httpSession, @RequestParam("userId") String userId, 
-			@RequestParam("userPwd") String userPwd, 
-			@RequestParam("userType") String userType, Model model) throws Exception {
+	public @ResponseBody String login(HttpSession httpSession, @RequestParam("userId") String userId, 
+			@RequestParam("userPwd") String userPwd, Model model) throws Exception {
 //		 TODO Auto-generated method stub
-//		String userId = request.getParameter("userId");
-//		String userPwd = request.getParameter("userPwd");
-		int userTypes = Integer.parseInt(userType);
+		
+		int userTypes = 1;
+		if(null != userId){
+			userTypes = userId.charAt(0);
+		}
 //		Map<String, Object> model = new HashMap<String, Object>();
 		httpSession.setAttribute("id", userId);
-		httpSession.setAttribute("userTypes", userType);
+		httpSession.setAttribute("userTypes", userTypes);
 		
 //		System.out.println("-------------------------------------->LoginController");
 		switch (userTypes) {
@@ -75,10 +75,10 @@ public class LoginController{
 						administrator.setSu_isonline(true);
 						loginService.updateAdminStatus(administrator);
 						model.addAttribute("success", "success");
-						return "/indexs";
+						return "/tables";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
-						return "/logining/index";
+						return "/index";
 					}
 					
 				} else {
@@ -99,7 +99,7 @@ public class LoginController{
 						teacher.setTeacher_isonline(true);
 						loginService.updateTeacherStatus(teacher);
 						model.addAttribute("success", "success");
-						return "/test";
+						return "/tables";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
 						return "/index";
@@ -123,7 +123,7 @@ public class LoginController{
 						student.setStu_isonline(true);
 						loginService.updateStudentStatus(student);
 						model.addAttribute("success", "success");
-						return "/test";
+						return "/tables";
 					} else {
 						model.addAttribute("error", "当前用户已登录");
 						return "/index";

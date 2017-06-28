@@ -1,3 +1,4 @@
+<!-- 没用 -->
 <!-- Mapper注册 -->
 <!-- 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
@@ -22,3 +23,17 @@
 	
 		<!-- <bean name="/uploadfile.action" class="cn.pms.ssm.controller.UploadController" 
 		/> -->
+<!-- END -->
+
+		<!-- 有问题 -->
+		<!-- 	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error/error.jsp页面
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">index</prop>
+			</props>
+		</property>
+	</bean> -->
+	<!-- END -->

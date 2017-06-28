@@ -47,12 +47,19 @@ public class UploadController {
 		
 		
 		String newFileName = paper.getPaper_stuId()+"#"+paperType;
+		String filepath = "resources"+File.separator+"PaperFile";
+		File newfile = new File( filepath, newFileName );
 		
 		if ( !file.isEmpty() ) {
 			logger.debug("Process file: "+file.getOriginalFilename());
 			
+			if (newfile.exists()) {
+				logger.error(newFileName+" exist");
+				//删除已存在文件
+				
+			}
 //			文件路径？
-			FileUtils.copyInputStreamToFile(file.getInputStream(), new File(".\resources/PaperFile", newFileName));
+			FileUtils.copyInputStreamToFile(file.getInputStream(), newfile);
 			
 			paper.setPaper_title(newFileName);
 			

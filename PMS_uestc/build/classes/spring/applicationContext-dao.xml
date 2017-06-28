@@ -15,15 +15,6 @@
 
 	<!-- 加载db.properties文件中的内容 -->
 	<context:property-placeholder location="classpath:db.properties" />
-
-<!-- 	<context:annotation-config />
-
-	<context:component-scan base-package="com.mange.demo.controller">
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
-	
-	<context:component-scan base-package="cn.pms.ssm.service cn.pms.ssm.service.impl cn.pms.ssm.controller"/>   -->
 	
 	<!-- 配置数据源 ，dbcp ,根据自己数据情况配置-->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
