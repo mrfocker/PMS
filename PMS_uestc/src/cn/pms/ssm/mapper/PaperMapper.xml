@@ -6,17 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cn.pms.ssm.mapper.PaperMapper">
 
-	<!--定义论文查询的sql片段，就是论文信息查询条件-->
-	<sql id = "query_paper_where">
-		
-	</sql>
-	<!--论文信息综合查询 -->
+	<!--根据学生信息查论文信息 -->
 	<select id="findpaperlist" parameterType="cn.pms.ssm.po.PaperQueryVo"
 		resultType="cn.pms.ssm.po.PaperInfoExtend ">
-		SELECT paper.* FROM paper
-		<where>
-		
-		</where>
+		SELECT * FROM student, PAPER WHERE Stu_id = Paper_stuId
 	</select>
- 
+	<!--学生信息综合查询 ，只展示姓名、学号、导师-->
+	<select id="get_student_info" parameterType="cn.pms.ssm.po.PaperQueryVo"
+		resultType="cn.pms.ssm.po.PaperQueryVo">
+		SELECT * FROM student WHERE Stu_id = #{Stu_id}
+	</select>
 </mapper>

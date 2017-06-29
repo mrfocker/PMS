@@ -1,4 +1,12 @@
 package cn.pms.ssm.mapper;
+
+import java.util.List;
+
+import cn.pms.ssm.po.Paper;
+import cn.pms.ssm.po.PaperInfoExtend;
+import cn.pms.ssm.po.PaperQueryVo;
+import cn.pms.ssm.po.Teacher;
+
 /** 
  * <p>Title: </p> 
  * <p>Description:TODO </p> 
@@ -7,9 +15,9 @@ package cn.pms.ssm.mapper;
  * @date:2017年6月27日
  * @version 1.0 
 */
-public class PaperMapper {
+public interface PaperMapper {
 	
 	//论文信息综合查询
-	
+	public List<PaperInfoExtend> findpaperlist(PaperQueryVo paperQueryVo) throws Exception;
 
 }

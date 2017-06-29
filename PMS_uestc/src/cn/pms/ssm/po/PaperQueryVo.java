@@ -14,5 +14,18 @@ public class PaperQueryVo {
 	//为了系统可扩展性，对原始po进行扩展
 	private PaperInfoExtend paperInfoExtend;
 	
+	public Paper getPaper() {
+		return paper;
+	}
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}
+	public PaperInfoExtend getPaperInfoExtend() {
+		return paperInfoExtend;
+	}
+	public void setPaperInfoExtend(PaperInfoExtend paperInfoExtend) {
+		this.paperInfoExtend = paperInfoExtend;
+	}
+	
 	
 }
