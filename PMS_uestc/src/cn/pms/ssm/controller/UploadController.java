@@ -18,53 +18,73 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.service.UploadService;
 
-/** 
- * <p>Title: UploadController</p> 
- * <p>Description:上传的Controller </p> 
- * <p>Company: uestc_xr</p> 
- * @author  Xiaozhe 
- * @date 创建时间：2017年6月21日 下午7:59:44 
- * @version 1.0 
-*/
+/**
+ * <p>
+ * name: UploadController
+ * </p>
+ * <p>
+ * Description:上传的Controller
+ * </p>
+ * <p>
+ * Company: uestc_xr
+ * </p>
+ * 
+ * @author Xiaozhe
+ * @date 创建时间：2017年6月21日 下午7:59:44
+ * @version 1.0
+ */
 @Controller
-@RequestMapping("/load")
+@RequestMapping("/pages")
 public class UploadController {
 
 	@Autowired
 	private UploadService uploadService;
-	
+
 	private static Logger logger = Logger.getLogger(UploadController.class);
-	
-	@RequestMapping(value="/uploadfile", method={RequestMethod.GET,RequestMethod.POST})
-	@ResponseBody
-	public String upload(Paper paper,
-			@RequestParam("paperType") String paperType, 
-			@RequestParam("file") MultipartFile file) throws IOException{
+
+	@RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody ModelAndView upload(Paper paper, @RequestParam("paperType") String paperType,
+			@RequestParam("file") MultipartFile file) throws IOException {
+
+//		文件重命名
+		String newFileName = paper.getPaper_stuId() + "#" + paperType + ".docx";
 		
+//		绝对路径
+		String filepath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
+				+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile";
 		
-		String newFileName = paper.getPaper_stuId()+"#"+paperType;
-		String filepath = "resources"+File.separator+"PaperFile";
-		File newfile = new File( filepath, newFileName );
+		File newfile = new File(filepath, newFileName);
 		
-		if ( !file.isEmpty() ) {
-			logger.debug("Process file: "+file.getOriginalFilename());
-			
+		ModelAndView modelAndView = new ModelAndView();
+		paper.setPaper_name(newFileName);
+
+		if (!file.isEmpty()) {
+			logger.error("Process file: " + file.getOriginalFilename());
+			logger.error("Process file path: " + filepath);
+
 			if (newfile.exists()) {
-				logger.error(newFileName+" exist");
-				//删除已存在文件
-				
+				logger.error(newFileName + " exist");
+				// 删除已存在文件
+//				 newfile.delete();
 			}
-//			文件路径？
+			
 			FileUtils.copyInputStreamToFile(file.getInputStream(), newfile);
-			
-			paper.setPaper_title(newFileName);
-			
-			uploadService.insertPaperItem(paper);
+
+			if (uploadService.selectPaperItem(paper).contains(newFileName)) {
+				// uploadService.updatePaperItem(paper);
+				logger.debug("------------------------->exit");
+			} else {
+				uploadService.insertPaperItem(paper);
+			}
 		}
-		return "logining/index";
+		
+		modelAndView.addObject("success","success");
+		modelAndView.setViewName("/tables");
+		return modelAndView;
 	}
 }

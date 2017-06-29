@@ -3,6 +3,8 @@
  */
 package cn.pms.ssm.service;
 
+import java.util.ArrayList;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,11 @@ import cn.pms.ssm.po.Paper;
 public interface UploadService {
 	
 	public void insertPaperItem(Paper paper);
+	
+	//覆盖老版本论文
+	public void updatePaperItem(Paper paper);
+	
+	//查找已有论文版本
+	public ArrayList<String> selectPaperItem(Paper paper);
 	
 }

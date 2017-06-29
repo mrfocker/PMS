@@ -19,7 +19,9 @@ package cn.pms.ssm.po;
  * @version 1.0
  */
 public class Paper {
-
+	
+	private String Paper_stuId;
+	private String Paper_name;
 	private String Paper_title;
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
@@ -29,7 +31,7 @@ public class Paper {
 	private float Paper_repetitiveRateSingle;
 	private int Paper_ifPass;
 	
-	private String Paper_stuId;
+	
 	/**
 	 * @return the paper_stuId
 	 */
@@ -137,6 +139,18 @@ public class Paper {
 	 */
 	public void setPaper_ifPass(int paper_ifPass) {
 		Paper_ifPass = paper_ifPass;
+	}
+	/**
+	 * @return the paper_name
+	 */
+	public String getPaper_name() {
+		return Paper_name;
+	}
+	/**
+	 * @param paper_name the paper_name to set
+	 */
+	public void setPaper_name(String paper_name) {
+		Paper_name = paper_name;
 	}
 	
 }

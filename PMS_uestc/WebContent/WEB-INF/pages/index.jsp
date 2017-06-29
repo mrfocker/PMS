@@ -1,9 +1,11 @@
-<!doctype html>
-<html lang="en">
-
+<!-- <!doctype html> -->
+<!-- <html lang="en"> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <meta charset="utf-8">
-<title>研究生论文管理系统--登录</title>
+<title>研究生论文管理系统 - 登录</title>
 <link rel="shortcut icon" href="favicon.gif">
 <!---CSS Files-->
 <link rel="stylesheet" href="css/master.css">
@@ -12,6 +14,11 @@
 <script src="js/jquery-1.7.1.min.js"></script>
 <script src="js/jquery.spinner.js"></script>
 <script type="text/javascript" src="js/forms/jquery.validate.min.js"></script>
+
+<!-- Cookie插件 -->
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="js/loginCookie.js"></script>
+
 <!---Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
@@ -21,6 +28,7 @@
   <![endif]-->
 <!---FadeIn Effect, Validation and Spinner-->
 <script>
+	/* var url = ${pageContext.request.contextPath }; */
 	$(document).ready(function() {
 		$('div.wrapper').hide();
 		$('div.wrapper').fadeIn(1200);
@@ -49,14 +57,14 @@
 					<div class="separator"></div>
 				</div>
 				<div class="login">
-					<form id="lg-form" method="post" action="/logining/login.action">
+					<form id="lg-form" method="post" action="${pageContext.request.contextPath }/pages/login.action">
 						<fieldset>
 							<ul>
 								<li id="usr-field"><input class="input required"
 									name="userId" type="text" size="26" minlength="1"
 									placeholder="用户名..." /></li>
 								<li id="psw-field"><input class="input required"
-									name="userType" type="password" size="26" minlength="1"
+									name="userPwd" type="password" size="26" minlength="1"
 									placeholder="密码..." /></li>
 								<li class="checkbox"><input class="checkbox"
 									type="checkbox" id="remember-me" value="remember" /> <label

@@ -4,6 +4,24 @@
 	<insert id="insertPaperItem" parameterType="cn.pms.ssm.po.Paper" >
 		INSERT INTO 
 		upload_paper 
-		VALUES(#{Paper_stuId},#{Paper_title},#{Paper_researchOne},#{Paper_researchTwo})
+		VALUES(#{Paper_stuId},#{Paper_researchOne},#{Paper_researchTwo},#{Paper_name})
 	</insert>
+	
+	<update id="updatePaperItem" parameterType="cn.pms.ssm.po.Paper">
+		UPDATE 
+		upload_paper 
+		SET 
+		Paper_name = #{Paper_name} 
+		WHERE 
+		Paper_stuId = #{Paper_stuId}
+	</update>
+	
+	<select id="selectPaperItem" parameterType="cn.pms.ssm.po.Paper" resultType="java.lang.String">
+		SELECT 
+		Paper_name 
+		FROM 
+		Paper 
+		WHERE 
+		Paper_stuId = #{Paper_stuId}
+	</select>
 </mapper>

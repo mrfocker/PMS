@@ -37,5 +37,26 @@ public class UpLoadMapperTest {
 		upLoadMapper.insertPaperItem(paper);
 		System.out.println("------------------end------------------");
 	}
+	
+	@Test
+	public void testUpdatePaperItem() {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
+		Paper paper = new Paper();
+		paper.setPaper_stuId("121");
+		paper.setPaper_title("CCNA");
+		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
+		upLoadMapper.updatePaperItem(paper);
+		System.out.println("------------------end------------------");
+	}
+	
+	@Test
+	public void testSelectPaperItem() {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
+		Paper paper = new Paper();
+		paper.setPaper_stuId("121");
+		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
+		upLoadMapper.selectPaperItem(paper);
+		System.out.println("------------------end------------------");
+	}
 
 }

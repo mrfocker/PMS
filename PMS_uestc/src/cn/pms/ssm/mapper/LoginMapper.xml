@@ -85,6 +85,6 @@
 		SET
 		su_isonline = #{su_isonline}
 		WHERE
-		su_id = #{Su_id}
+		su_id = #{su_id}
 	</update>
 </mapper>

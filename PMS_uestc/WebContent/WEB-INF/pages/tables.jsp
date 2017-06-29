@@ -1,9 +1,11 @@
-<!doctype html>
-<html lang="en">
-
+<!-- <!doctype html>
+<html lang="en"> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
   <meta charset="utf-8">
-  <title>Adminity - Tables</title>
+  <title>研究生论文管理系统</title>
   <link rel="shortcut icon" href="favicon.gif">
   <!---CSS Files-->
   <link rel="stylesheet" href="css/master.css">
@@ -49,7 +51,7 @@
           <div id="usr-info">
             <p id="usr-name">Welcome back, Michael.</p>
             <p id="usr-notif">You have 6 notifications. <a href="#">View</a></p>
-            <p><a href="#">Preferences</a><a href="#">Profile</a><a href="index.html">Log out</a></p>
+            <p><a href="#">Preferences</a><a href="#">Profile</a><a href="${pageContext.request.contextPath }/pages/exitLogin.action">退出登录</a></p>
           </div>
         </li>
         <li>

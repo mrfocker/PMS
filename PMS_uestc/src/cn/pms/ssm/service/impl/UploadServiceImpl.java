@@ -3,6 +3,8 @@
  */
 package cn.pms.ssm.service.impl;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,22 @@ public class UploadServiceImpl implements UploadService {
 	public void insertPaperItem(Paper paper) {
 		// TODO Auto-generated method stub
 		upLoadMapper.insertPaperItem(paper);
+	}
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.UploadService#updatePaperItem(cn.pms.ssm.po.Paper)
+	 */
+	@Override
+	public void updatePaperItem(Paper paper) {
+		// TODO Auto-generated method stub
+		upLoadMapper.updatePaperItem(paper);
+	}
+	/* (non-Javadoc)
+	 * @see cn.pms.ssm.service.UploadService#selectPaperItem(cn.pms.ssm.po.Paper)
+	 */
+	@Override
+	public ArrayList<String> selectPaperItem(Paper paper) {
+		// TODO Auto-generated method stub
+		return upLoadMapper.selectPaperItem(paper);
 	}
 
 }

@@ -17,18 +17,21 @@ import cn.pms.ssm.po.Teacher;
 */
 public interface LoginMapper {
 	
+	//根据用户名密码查询登录状态
 	public Integer selectstudentlogin(Student student);
 	
 	public Integer selectteacherlogin(Teacher teacher);
 	
 	public Integer selectadminlogin(Administrator administrator);
 	
+	//根据已登录用户ID查询登录状态
 	public Boolean selectStudentStatus(String id);
 	
 	public Boolean selectTeacherStatus(String id);
 	
 	public Boolean selectAdminStatus(String id);
 	
+	//更新用户登录状态
 	public void updateStudentStatus(Student student);
 	
 	public void updateTeacherStatus(Teacher teacher);
