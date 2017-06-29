@@ -1,4 +1,10 @@
 package cn.pms.ssm.mapper;
+
+import java.util.List;
+
+import cn.pms.ssm.po.Teacher;
+import cn.pms.ssm.po.TeacherVo;
+
 /** 
  * <p>Title: TeacherInfoMapper</p> 
  * <p>Description:TODO </p> 
@@ -9,8 +15,9 @@ package cn.pms.ssm.mapper;
 */
 
 public interface TeacherInfoMapper {
-
-	public String selectTeacherRearch(String tea_id);
-
+	//
+	public List<TeacherVo> selectTeacherInfo();
+	//增加导师评阅数量
+	public void incTeachercCount(String tea_Id);
 }
 

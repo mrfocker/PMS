@@ -1,6 +1,11 @@
 package cn.pms.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import cn.pms.ssm.po.Teacher;
+import cn.pms.ssm.po.TeacherVo;
 
 /** 
  * <p>Title: TeacherInfoService</p> 
@@ -12,6 +17,8 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public interface TeacherInfoService {
-	public String selectTeacherRearch(String tea_id);
+	public List<TeacherVo> selectTeacherInfo();
+	
+	public void incTeachercCount(String tea_Id);
 }
 

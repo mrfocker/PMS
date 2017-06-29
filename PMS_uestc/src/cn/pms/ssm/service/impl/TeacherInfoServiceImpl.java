@@ -1,9 +1,13 @@
 package cn.pms.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.pms.ssm.mapper.TeacherInfoMapper;
+import cn.pms.ssm.po.Teacher;
+import cn.pms.ssm.po.TeacherVo;
 
 /** 
  * <p>Title: TeacherInfoServiceImpl</p> 
@@ -20,9 +24,14 @@ public class TeacherInfoServiceImpl implements TeacherInfoService{
 	private TeacherInfoMapper teacherInfoMapper;
 	
 	@Override
-	public String selectTeacherRearch(String tea_id) {
+	public List<TeacherVo> selectTeacherInfo() {
 		// TODO Auto-generated method stub
-		return teacherInfoMapper.selectTeacherRearch(tea_id);
+		return teacherInfoMapper.selectTeacherInfo();
+	}
+	
+	public void incTeachercCount(String tea_Id){
+			teacherInfoMapper.incTeachercCount(tea_Id);
+		return ;
 	}
 
 	

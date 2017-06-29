@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.pms.ssm.mapper.TeacherInfoMapper">
-	<select id="selectTeacherRearch" resultType="String"
-		parameterType="cn.pms.ssm.po.Teacher">
+	<select id="selectTeacherInfo" resultType="TeacherVo"
+		parameterType="cn.pms.ssm.po.TeacherVo">
 		SELECT 
-			Teacher_researchOne
+			*
 		FROM 
-			teacher 
-		WHERE 
-			Teacher_id=#{Teacher_id}
+			teacher
+		
 	</select>
+	
+	<update id="incTeachercCount" parameterType="cn.pms.ssm.po.TeacherVo">
+		UPDATE
+			teacher
+		SET
+			Teacher_count=Teacher_count+1
+		WHERE
+			Teacher_id=#{tea_Id}
+	</update>
 </mapper>

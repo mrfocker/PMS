@@ -8,6 +8,7 @@
 </head>
 <body>
 
- hello ${str} 
+ hello 
+ 
 </body>
 </html>
