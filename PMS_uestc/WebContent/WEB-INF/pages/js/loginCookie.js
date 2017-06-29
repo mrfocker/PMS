@@ -18,7 +18,7 @@ var login = {
 		cookie:{
 			init:function(param){
 				//登录
-				
+				$.cookie('userId', usr-field, {expires:1, path:'${pageContext.request.contextPath }/pages/login'});
 			}
 		}
 }
