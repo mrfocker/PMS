@@ -19,17 +19,10 @@ import cn.pms.ssm.mapper.TeacherMapper;
 
 public class ExportDBToExcel {
 
-	// private static ExportExcelService ees = new ExportExcelServiceImpl();
 	private static ApplicationContext applicationContext;
-	// static TeacherMapper teacherMapper = (TeacherMapper)
-	// applicationContext.getBean("teacherMapper");
 	private static ExportExcelUtil eeu = new ExportExcelUtil();
 	public static void main(String[] args) {
-		// selectAll();
-		// selectOneById();
-		// deleteStudentById();
-		// insertStudent();
-
+		
 		String[] title = "序号,招生代码,姓名,职称,研究方向1,研究方向2,研究方向3,邮箱,电话".split(",");
 		String[] column = "Teacher_id,Teacher_password,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel"
 				.split(",");

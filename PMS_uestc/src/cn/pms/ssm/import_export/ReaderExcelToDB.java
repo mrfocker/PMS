@@ -21,9 +21,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
 
 import cn.pms.ssm.mapper.TeacherMapper;
-//import cn.pms.ssm.po.Students;
 import cn.pms.ssm.po.Teacher;
-//import com.test.util.SqlSessionUtil;
 
 import cn.pms.ssm.BeanUtils.MyBeanUtils;;
 
