@@ -2,6 +2,10 @@
 <!-- <html lang="en"> -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String userId = request.getParameter("userId");
+	String userPwd = request.getParameter("userPwd");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <meta charset="utf-8">
@@ -15,10 +19,6 @@
 <script src="js/jquery.spinner.js"></script>
 <script type="text/javascript" src="js/forms/jquery.validate.min.js"></script>
 
-<!-- Cookie插件 -->
-<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="js/loginCookie.js"></script>
-
 <!---Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
@@ -27,7 +27,10 @@
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 <!---FadeIn Effect, Validation and Spinner-->
-<script>
+<!-- Cookie插件 -->
+<script
+	src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript">
 	/* var url = ${pageContext.request.contextPath }; */
 	$(document).ready(function() {
 		$('div.wrapper').hide();
@@ -38,7 +41,14 @@
 			$this.spinner();
 			setTimeout(function() {
 				$this.spinner('remove');
-			}, 1000);
+			}, 1000); 
+			console.log("id = " + $("#userId").val()); //TODO
+			$.cookie('userId', $("#userId").val(), {
+				expires : 1
+			});
+			$.cookie('userPwd', $("#userPwd").val(), {
+				expires : 1
+			});
 		});
 	});
 </script>
@@ -57,13 +67,14 @@
 					<div class="separator"></div>
 				</div>
 				<div class="login">
-					<form id="lg-form" method="post" action="${pageContext.request.contextPath }/pages/login.action">
+					<form id="lg-form" method="post"
+						action="${pageContext.request.contextPath }/pages/login.action">
 						<fieldset>
 							<ul>
-								<li id="usr-field"><input class="input required"
+								<li id="usr-field"><input id="userId" class="input required"
 									name="userId" type="text" size="26" minlength="1"
 									placeholder="用户名..." /></li>
-								<li id="psw-field"><input class="input required"
+								<li id="psw-field"><input id="userPwd" class="input required"
 									name="userPwd" type="password" size="26" minlength="1"
 									placeholder="密码..." /></li>
 								<li class="checkbox"><input class="checkbox"
@@ -73,7 +84,7 @@
 							</ul>
 						</fieldset>
 					</form>
-					<span id="lost-psw"> <a href="#">忘记密码</a>
+					<span id="lost-psw"> <a href="#">密码修改</a>
 					</span>
 				</div>
 			</div>

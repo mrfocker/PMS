@@ -38,7 +38,6 @@ public class LoginController{
 	private static final int ADMIN = 9;
 	private static final int TEACHER = 1;
 	private static final int STUDENT = 2;
-//	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private LoginService loginService;
@@ -63,8 +62,6 @@ public class LoginController{
 //		Map<String, Object> model = new HashMap<String, Object>();
 //		httpSession.setAttribute("id", userId);
 //		httpSession.setAttribute("userTypes", userTypes);
-		
-//		System.out.println("-------------------------------------->LoginController");
 		switch (userTypes) {
 			case ADMIN:
 				Administrator administrator = new Administrator();

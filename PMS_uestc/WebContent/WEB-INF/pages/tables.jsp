@@ -29,6 +29,9 @@
   <!--[if lte IE 8]>
   <script language="javascript" type="text/javascript" src="js/flot/excanvas.min.js"></script>
   <![endif]-->
+  <script type="text/javascript">
+  
+  </script>
 </head>
 <body>
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.ChangePwdMapper">
+
+	<select id="selectPwdByStudentId" parameterType="Student" resultType="String">
+		SELECT
+		Stu_password
+		FROM
+		login_student
+		WHERE
+		Stu_id=#{Stu_id}
+	</select>
+	
+	<select id="selectPwdByTeacherId" parameterType="Teacher" resultType="String">
+		SELECT
+		Teacher_password
+		FROM
+		login_teacher
+		where
+		Teacher_id = #{Teacher_id}
+	</select>
+	
+	<select id="selectPwdByAdminId" parameterType="Administrator" resultType="String">
+		SELECT
+		su_password
+		FROM
+		login_admin
+		WHERE
+		su_id = #{su_id}
+	</select>
+
+	<update id="updatePwdStudent" parameterType="Student">
+		UPDATE
+		login_student
+		SET
+		Stu_password = #{Stu_password}
+		WHERE
+		Stu_id = #{Stu_id}
+	</update>
+
+	<update id="updatePwdTeacher" parameterType="Teacher">
+		UPDATE 
+		login_teacher 
+		SET 
+		Teacher_password = #{Teacher_password} 
+		WHERE 
+		Teacher_id = #{Teacher_id}
+	</update>
+
+	<update id="updatePwdAdmin" parameterType="Administrator">
+		UPDATE 
+		login_admin 
+		SET 
+		su_password = #{su_password} 
+		WHERE 
+		su_id = #{su_id}
+	</update>
+</mapper>
