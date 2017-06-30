@@ -32,6 +32,7 @@ public class PaperMapper {
 		PaperMapper paperMapper = (PaperMapper) applicationContext.getBean("papaerMapper");
 		
 		
+		
 	}
 
 }
