@@ -19,7 +19,7 @@ import cn.pms.ssm.po.Teacher;
  * @date:2017年6月29日
  * @version 1.0 
 */
-public class PaperMapper {
+public class Test_PaperMapper {
 	private ApplicationContext applicationContext;
 	
 	@Before
@@ -29,7 +29,7 @@ public class PaperMapper {
 	
 	@Test
 	public void test_findpaperlist() throws Exception{
-		PaperMapper paperMapper = (PaperMapper) applicationContext.getBean("papaerMapper");
+		Test_PaperMapper test_PaperMapper = (Test_PaperMapper) applicationContext.getBean("papaerMapper");
 		
 		
 		

@@ -1,10 +1,12 @@
 package cn.pms.ssm.mapper;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
 
 import cn.pms.ssm.po.PaperInfoExtend;
 import cn.pms.ssm.po.PaperQueryVo;
-
+import cn.pms.ssm.po.Paper;
 /** 
  * <p>Title: </p> 
  * <p>Description:TODO </p> 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.pms.ssm.mapper.PaperInfoExtendMapper;
+import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.po.PaperInfoExtend;
 import cn.pms.ssm.po.PaperQueryVo;
 import cn.pms.ssm.service.PaperService;
@@ -21,6 +22,7 @@ public class PaperServiceImpl implements PaperService{
 	
 	@Autowired
 	private PaperInfoExtendMapper paperInfoExtendMapper;
+
 	
 	@Override
 	public List<PaperInfoExtend> findpaperlist(PaperQueryVo paperQueryVo) throws Exception{

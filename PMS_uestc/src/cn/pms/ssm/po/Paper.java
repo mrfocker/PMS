@@ -80,32 +80,5 @@ public class Paper {
 	public void setPaper_blindJudge(int paper_blindJudge) {
 		Paper_blindJudge = paper_blindJudge;
 	}
-	@Override
-	public String toString() {
-		return "Paper [Paper_stuid=" + Paper_stuid + ", Paper_title=" + Paper_title + ", Paper_researchOne="
-				+ Paper_researchOne + ", Paper_researchTwo=" + Paper_researchTwo + ", Paper_reaserchThree="
-				+ Paper_reaserchThree + ", Paper_reason=" + Paper_reason + ", Paper_repetitiveRateAll="
-				+ Paper_repetitiveRateAll + ", Paper_repetitiveRateSing=" + Paper_repetitiveRateSing + ", Paper_ifPass="
-				+ Paper_ifPass + ", Paper_blindJudge=" + Paper_blindJudge + "]";
-	}
-	public Paper(String paper_stuid, String paper_title, String paper_researchOne, String paper_researchTwo,
-			String paper_reaserchThree, String paper_reason, Float paper_repetitiveRateAll,
-			Float paper_repetitiveRateSing, int paper_ifPass, int paper_blindJudge) {
-		super();
-		Paper_stuid = paper_stuid;
-		Paper_title = paper_title;
-		Paper_researchOne = paper_researchOne;
-		Paper_researchTwo = paper_researchTwo;
-		Paper_reaserchThree = paper_reaserchThree;
-		Paper_reason = paper_reason;
-		Paper_repetitiveRateAll = paper_repetitiveRateAll;
-		Paper_repetitiveRateSing = paper_repetitiveRateSing;
-		Paper_ifPass = paper_ifPass;
-		Paper_blindJudge = paper_blindJudge;
-	}
 	
-	public Paper(){
-		
-	}
-
 }

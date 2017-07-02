@@ -4,11 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="cn.pms.ssm.mapper.PaperMapper">
+<mapper namespace="cn.pms.ssm.mapper.PaperInfoExtendMapper">
 
 	<!--根据学生信息查论文信息 -->
-	<select id="findpaperlist" parameterType="cn.pms.ssm.po.PaperQueryVo"
-		resultType="cn.pms.ssm.po.PaperInfoExtend ">
+	<select id="findpaperlist" parameterType="cn.pms.ssm.po.PaperQueryVo" resultType="cn.pms.ssm.po.PaperInfoExtend">
 		SELECT * FROM student, PAPER WHERE Stu_id = Paper_stuId
 	</select>
 </mapper>

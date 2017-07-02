@@ -1,9 +1,15 @@
 package cn.pms.ssm.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.pms.ssm.po.PaperInfoExtend;
+import cn.pms.ssm.po.PaperQueryVo;
+import cn.pms.ssm.service.PaperService;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PaperInfoController {
 	
+	@Autowired
+	private PaperService paperService;
+	
 	//查询列表
 	@RequestMapping("/queryPaperInfo")
 	public ModelAndView queryPaper()throws Exception{
@@ -32,7 +41,13 @@ public class PaperInfoController {
 		modelAndView.setViewName("tables");
 
 		return modelAndView;*/
-		return new ModelAndView("tables");
+		
+		List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("paperList",paperlist);
+		modelAndView.setViewName("/tables");
+		return modelAndView;
+		//return new ModelAndView("tables");
 	}
 
 }
