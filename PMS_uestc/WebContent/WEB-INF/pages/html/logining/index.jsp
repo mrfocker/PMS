@@ -32,7 +32,7 @@
 	<input type="text" value="${error}" />
 	<!-- value="${paper.Paper_stuId}" value="${paper.Paper_researchOne}" value="${paper.Paper_researchTwo}"
 	 -->
-	<form action="${pageContext.request.contextPath }/pages/upload.action" method="post" enctype="multipart/form-data">
+	<form action="${pageContext.request.contextPath }/pages/downloadSingle.action" method="post" enctype="multipart/form-data">
 		id:<input type="text" name="Paper_stuId"/><br/>
 		researchOne:<input type="text" name="Paper_researchOne"/><br/>
 		researchTwo:<input type="text" name="Paper_researchTwo"/><br/>

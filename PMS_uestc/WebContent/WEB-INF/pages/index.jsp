@@ -84,7 +84,7 @@
 							</ul>
 						</fieldset>
 					</form>
-					<span id="lost-psw"> <a href="#">密码修改</a>
+					<span id="lost-psw"> <a href="#">修改密码</a>
 					</span>
 				</div>
 			</div>

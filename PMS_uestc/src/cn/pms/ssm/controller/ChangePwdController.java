@@ -45,7 +45,7 @@ public class ChangePwdController {
 
 	// 从Cookie中获取ID，从页面上获取用户填写的当前密码,AJAX刷新页面,成功才能修改密码
 	@RequestMapping(value = "/checkPwd", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView checkPwd(@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd) {
+	public ModelAndView checkPwd(@RequestParam("userId") String userId, @RequestParam("userOldPwd") String userPwd) {
 		int userTypes = 1;
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -95,7 +95,7 @@ public class ChangePwdController {
 //	修改密码操作
 	@RequestMapping(value = "/changePwd", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody ModelAndView changePwd(@RequestParam("userId") String userId,
-			@RequestParam("userPwd") String userPwd) {
+			@RequestParam("userNewPwd") String userPwd) {
 
 		int userTypes = 1;
 		ModelAndView modelAndView = new ModelAndView();

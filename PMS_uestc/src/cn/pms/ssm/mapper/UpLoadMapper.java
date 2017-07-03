@@ -23,8 +23,7 @@ public interface UpLoadMapper {
 	//覆盖老版本论文
 	public void updatePaperItem(Paper paper);
 	
-	//查找已有论文版本
+	//查找已有论文版本(下载也用这个)
 	public ArrayList<String> selectPaperItem(Paper paper);
-	
 	
 }

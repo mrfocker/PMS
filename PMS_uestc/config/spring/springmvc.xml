@@ -55,6 +55,7 @@
 		</bean> </list> </property> <property name="ignoreAcceptHeader" value="true"/> 
 		</bean> -->
 
+	<!-- 注册拦截器 -->
 	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**"/> <bean 
 		class="cn.pms.ssm.interceptor.LoginInterceptor"></bean> </mvc:interceptor> 
 		</mvc:interceptors> -->
