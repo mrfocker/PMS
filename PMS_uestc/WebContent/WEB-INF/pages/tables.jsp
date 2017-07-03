@@ -126,10 +126,10 @@
           <tbody>
           <c:forEach items = "${paperlist}" var = "item">
             <tr class="odd gradeX">
-              <td>${item.Paper_title}</td>
-              <td>大数据</td>
-              <td>移动通信技术</td>
-              <td>网络信息安全</td>
+              <td>${item}</td>
+              <td>${item.Paper_researchOne}</td>
+              <td>${item.Paper_researchTwo}</td>
+              <td>${item.Stu_id}</td>
               <td>%4</td>
               <td>%4</td>
               <td>通过</td>

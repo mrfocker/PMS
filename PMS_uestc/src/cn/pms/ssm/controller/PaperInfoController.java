@@ -45,15 +45,20 @@ public class PaperInfoController {
 
 		return modelAndView;*/
 		
-		//List<PaperInfoExtend> paperlist;// = paperService.findpaperlist(null);
-		List<Paper> paperlist = new ArrayList<Paper>();
-		Paper paper = new Paper();
-		paper.setPaper_title("hajh");
-		paperlist.add(paper);
-		System.out.println("ok23");
-		System.out.println(paperlist);
-	/*	for(int i = 0; i < paperlist.size();i++)
-		{System.out.println(paperlist.get(i));}*/
+		List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
+		System.out.println("ok11283");
+		//测试数据
+		List<PaperInfoExtend> pa = paperService.findpaperlist(null);
+		PaperInfoExtend Pa1 = null;
+	
+		for(int i = 0; i < pa.size();i++)
+		{
+			Pa1 = pa.get(i);
+			System.out.println(Pa1.getPaper_title());
+			}
+		
+		
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("paperlist",paperlist);
 		modelAndView.setViewName("/tables");
