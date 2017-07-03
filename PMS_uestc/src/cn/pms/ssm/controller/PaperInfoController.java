@@ -1,5 +1,6 @@
 package cn.pms.ssm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.po.PaperInfoExtend;
 import cn.pms.ssm.po.PaperQueryVo;
 import cn.pms.ssm.service.PaperService;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 */
 
 @Controller
+@RequestMapping("/pages")
 public class PaperInfoController {
 	
 	@Autowired
@@ -42,9 +45,17 @@ public class PaperInfoController {
 
 		return modelAndView;*/
 		
-		List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
+		//List<PaperInfoExtend> paperlist;// = paperService.findpaperlist(null);
+		List<Paper> paperlist = new ArrayList<Paper>();
+		Paper paper = new Paper();
+		paper.setPaper_title("hajh");
+		paperlist.add(paper);
+		System.out.println("ok23");
+		System.out.println(paperlist);
+	/*	for(int i = 0; i < paperlist.size();i++)
+		{System.out.println(paperlist.get(i));}*/
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("paperList",paperlist);
+		modelAndView.addObject("paperlist",paperlist);
 		modelAndView.setViewName("/tables");
 		return modelAndView;
 		//return new ModelAndView("tables");

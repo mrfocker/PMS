@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8
-    "%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -109,6 +108,7 @@
       <div class="box grid_12">
         <div class="box-head"><h2>毕业论文信息</h2></div>
         <div class="box-content no-pad">
+        <form action="${pageContext.request.contextPath }/pages/queryPaperInfo" method = "post">
           <table class="display">
           <thead>
             <tr>
@@ -124,8 +124,9 @@
             </tr>
           </thead>
           <tbody>
+          <c:forEach items = "${paperlist}" var = "item">
             <tr class="odd gradeX">
-              <td>基于xxx的系统设计与实现</td>
+              <td>${item.Paper_title}</td>
               <td>大数据</td>
               <td>移动通信技术</td>
               <td>网络信息安全</td>
@@ -135,8 +136,10 @@
               <td>通过</td>
               <td>无</td>
             </tr>
+           </c:forEach>
           </tbody>
          </table>
+        </form>
         </div>
       </div>
 
