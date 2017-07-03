@@ -18,4 +18,5 @@
 		WHERE
 			Teacher_id=#{tea_Id}
 	</update>
+	
 </mapper>

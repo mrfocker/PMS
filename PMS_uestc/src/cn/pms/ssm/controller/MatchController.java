@@ -39,18 +39,19 @@ public class MatchController {
 		System.out.println("run controller");
 		//遍历TeacherVos的listmap去重
 		Map map=mapCombine(geTeacherVos());
-		
+
 		List<PaperVo> list =new ArrayList<>() ;
 		list = gePaperVos();
 		for(int i=0;i<list.size();i++){
 			PaperVo pVo=list.get(i);
-			TeacherVo teacherVo = findTeacher(map, pVo.getPaper_researchOne());
-			System.out.println(pVo.getPaper_stuId()+"=="+pVo.getPaper_title()+"===盲审导师=="+teacherVo.getTeacher_name());
+			List<TeacherVo> list_teacherVo = findTeacher(map, pVo);
+			System.out.println(pVo.getPaper_stuId()+"=="+pVo.getPaper_title()+
+					"===盲审导师1=="+list_teacherVo.get(0).getTeacher_name()+
+					"===盲审导师2=="+list_teacherVo.get(1).getTeacher_name());
 		}
 		
-		modelAndView.setViewName("test");
-		return modelAndView;
-		
+		modelAndView.setViewName("tables");
+		return modelAndView;		
 	}
 	/*
 	 * 从Teacher表中得到TeacherInfo
@@ -63,19 +64,17 @@ public class MatchController {
 		List<Map> listmap = new ArrayList<>();
 		
 		for(int i=0;i<list.size();i++){
-			Map map1 = new HashMap<>();
-			Map map2= new HashMap<>();
-			Map map3 = new HashMap<>();
-			map1.put(list.get(i).getTeacher_researchOne(), list.get(i));
-			map2.put(list.get(i).getTeacher_researchTwo(), list.get(i));
-			map3.put(list.get(i).getTeacher_researchThree(), list.get(i));
-			listmap.add(map1);
-			listmap.add(map2);
-			listmap.add(map3);
+			Map map = new HashMap<>();
+			map.put(list.get(i).getTeacher_researchOne(), list.get(i));
+			listmap.add(map);
+			map.put(list.get(i).getTeacher_researchTwo(), list.get(i));
+			listmap.add(map);
+			map.put(list.get(i).getTeacher_researchThree(), list.get(i));
+			listmap.add(map);
 		}
 		return listmap;	
 	}
-	
+
 	/*
 	 * 从paperVO中得到paperinfo
 	 */
@@ -110,19 +109,39 @@ public class MatchController {
 		} 
 		
 		//在m中查询满足key方向条件的导师
-		public  TeacherVo findTeacher(Map m, String key) {
-			List<TeacherVo>  list2 = new ArrayList<>();
-			list2 = (List<TeacherVo>) m.get(key);
+		public  List<TeacherVo> findTeacher(Map m, PaperVo pVo) {
+			List<TeacherVo> list = new ArrayList<>();
 			
-			for(int i=0;i<list2.size();i++){
-				TeacherVo teacher=new TeacherVo();
-				teacher = list2.get(i);
-				if(teacher.getTeacher_count()<teacher.getTeacher_limit()){	
-					teacherInfoService.incTeachercCount( teacher.getTeacher_id());
-					return teacher;
+			List<TeacherVo>  listT1 = new ArrayList<>();
+			List<TeacherVo>  listT2 = new ArrayList<>();
+			TeacherVo teacher=new TeacherVo();
+			TeacherVo FirstT = new TeacherVo();
+			
+			listT1 = (List<TeacherVo>) m.get(pVo.getPaper_researchOne());
+			
+			listT2 = (List<TeacherVo>) m.get(pVo.getPaper_researchTwo());
+			
+			for(int i=0;i<listT1.size();i++){
+				
+				teacher = listT1.get(i);
+				if((teacher.getTeacher_count()<teacher.getTeacher_limit())
+						&&(teacher.getTeacher_id()!=pVo.getStu_teacherId())){	
+					teacherInfoService.incTeachercCount(teacher.getTeacher_id());
+				     list.add(teacher);
+				     FirstT = teacher;
+				     break;
 				}
 			}
-			return null;
+			for(int i=0;i<listT2.size();i++){
+				teacher = listT2.get(i);
+				if((teacher.getTeacher_count() < teacher.getTeacher_limit())&&(teacher!=FirstT)
+						&&(teacher.getTeacher_id()!=pVo.getStu_teacherId())){	
+					teacherInfoService.incTeachercCount( teacher.getTeacher_id());
+				     list.add(teacher);
+				     break;
+				}
+			}
+			return list;
 		}	
 	
 }

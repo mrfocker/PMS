@@ -4,10 +4,13 @@
 	
 	<select id="selectPaperInfo" resultType="PaperVo"
 		parameterType="cn.pms.ssm.po.PaperVo">
-		SELECT 
-			*
-		FROM 
+		SELECT
+  			Paper_stuId,Paper_title,Paper_researchOne,Paper_researchTwo,Stu_teacherId
+		FROM
 			paper
-		
+		INNER JOIN 
+			student
+		ON 
+			paper.Paper_stuId=student.Stu_id
 	</select>
 </mapper>
