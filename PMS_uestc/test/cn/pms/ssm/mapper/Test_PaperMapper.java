@@ -29,9 +29,13 @@ public class Test_PaperMapper {
 	
 	@Test
 	public void test_findpaperlist() throws Exception{
-		Test_PaperMapper test_PaperMapper = (Test_PaperMapper) applicationContext.getBean("papaerMapper");
-		
-		
+		PaperInfoExtendMapper paperInfoExtendMapper = (PaperInfoExtendMapper) applicationContext.getBean("paperInfoExtendMapper");
+		PaperQueryVo paperQueryVo = new PaperQueryVo();
+		PaperInfoExtend paperInfoExtend = new PaperInfoExtend();
+		paperInfoExtend.setPaper_title("hahahah");
+		paperQueryVo.setPaperInfoExtend(paperInfoExtend);
+		List<PaperInfoExtend> paperlist = paperInfoExtendMapper.findpaperlist(paperQueryVo);
+		System.out.println(paperlist);
 		
 	}
 
