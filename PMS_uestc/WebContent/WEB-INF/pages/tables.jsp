@@ -38,7 +38,7 @@
   <!--- HEADER -->
 
 	<div class="header">
-   <a href="dashboard.html"><img src="img/logo.png" alt="Logo" /></a> 
+   <a href="${pageContext.request.contextPath }/pages/login.action"><img src="img/logo.png" alt="Logo" /></a> 
    <div class="styler">
      <ul class="styler-show">
        <li><div id="colorSelector-top-bar"></div></li>

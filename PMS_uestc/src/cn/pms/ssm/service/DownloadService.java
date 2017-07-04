@@ -3,8 +3,6 @@
  */
 package cn.pms.ssm.service;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Service;
 
 import cn.pms.ssm.po.Paper;
@@ -20,5 +18,5 @@ import cn.pms.ssm.po.Paper;
 @Service
 public interface DownloadService {
 
-	public void downloadFile(Paper paper, HttpServletResponse response);
+	public Paper downloadSingle(Paper paper);
 }
