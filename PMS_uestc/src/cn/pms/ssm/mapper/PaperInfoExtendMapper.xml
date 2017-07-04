@@ -8,6 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!--根据学生信息查论文信息 -->
 	<select id="findpaperlist" parameterType="cn.pms.ssm.po.PaperQueryVo" resultType="cn.pms.ssm.po.PaperInfoExtend">
-		SELECT * FROM student, PAPER WHERE Stu_id = Paper_stuId
+		SELECT * FROM paper, student WHERE Paper_stuId = Stu_id
 	</select>
 </mapper>

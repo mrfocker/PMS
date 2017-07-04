@@ -47,6 +47,7 @@ public class PaperInfoController {
 		
 		List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
 		System.out.println("ok11283");
+		System.out .println(paperlist);
 		//测试数据
 		List<PaperInfoExtend> pa = paperService.findpaperlist(null);
 		PaperInfoExtend Pa1 = null;

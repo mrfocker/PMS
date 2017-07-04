@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -124,13 +126,13 @@
             </tr>
           </thead>
           <tbody>
-          <c:forEach items = "${paperlist}" var = "item">
+           <c:forEach items="${paperlist }" var="item">
             <tr class="odd gradeX">
-              <td>${item}</td>
-              <td>${item.Paper_researchOne}</td>
-              <td>${item.Paper_researchTwo}</td>
-              <td>${item.Stu_id}</td>
-              <td>%4</td>
+              <td>${item.getPaper_title()}</td>
+              <td>${item.getPaper_researchOne()}</td>
+              <td>${item.getPaper_researchTwo()}</td>
+              <td>1234</td>
+              <td>%49</td>
               <td>%4</td>
               <td>通过</td>
               <td>通过</td>
