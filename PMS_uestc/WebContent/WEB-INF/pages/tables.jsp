@@ -165,7 +165,22 @@
     }); /* For the data tables */
   });
 </script>
-
+<script type = "text/javascript">
+function requestJson(){
+	
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath }/pages/requestJson',
+		contenType: 'application/json;charset=utf-8',
+		success: function(data){
+	          
+	          data = $.parseJSON(data);
+	          console.log(data);},
+		
+	});
+	
+}
+</script>
 
 </body>
 </html>
