@@ -15,8 +15,9 @@ function requestJson(){
 		url:'${pageContext.request.contextPath }/requestJson',
 		contentType:'application/json;charset=utf-8',
 		//数据格式是json串，商品信息
-		data:'{"Paper_stuId":"手机","Paper_title":"999","Paper_ repetitiveRateAll":0.4,"Paper_ repetitiveRateSingle":0.1,"Paper_ ifPass",1}',
+		data:'{"paper_title":"999","paper_repetitiveRateAll":"0.4","paper_repetitiveRateAll":"0.1"}',
 		success:function(data){//返回json结果
+			console.log(data);
 			alert(data);
 		}
 		
@@ -35,6 +36,7 @@ function responseJson(){
 		//数据格式是json串，商品信息
 		data:'name=手机&price=999',
 		success:function(data){//返回json结果
+			console.log(data);
 			alert(data.name);
 		}
 		

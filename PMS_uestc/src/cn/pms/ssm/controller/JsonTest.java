@@ -26,6 +26,7 @@ public class JsonTest {
 	public @ResponseBody PaperInfoExtend requestJson(@RequestBody PaperInfoExtend paperInfoExtend){
 		
 		//@ResponseBody将itemsCustom转成json输出
+		System.out.println(paperInfoExtend);
 		return paperInfoExtend;
 	}
 	

@@ -10,21 +10,21 @@ package cn.pms.ssm.po;
 
 public class Paper {
 	
-	private String Paper_stuid;
+	private String Paper_stuId;
 	private String Paper_title;
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
 	private String Paper_reaserchThree;
 	private String Paper_reason;
 	private Float Paper_repetitiveRateAll;
-	private Float Paper_repetitiveRateSing;
+	private Float Paper_repetitiveRateSingle;
 	private int Paper_ifPass;
 	private int Paper_blindJudge;
 	public String getPaper_stuid() {
-		return Paper_stuid;
+		return Paper_stuId;
 	}
 	public void setPaper_stuid(String paper_stuid) {
-		Paper_stuid = paper_stuid;
+		Paper_stuId = paper_stuid;
 	}
 	public String getPaper_title() {
 		return Paper_title;
@@ -63,10 +63,10 @@ public class Paper {
 		Paper_repetitiveRateAll = paper_repetitiveRateAll;
 	}
 	public Float getPaper_repetitiveRateSing() {
-		return Paper_repetitiveRateSing;
+		return Paper_repetitiveRateSingle;
 	}
-	public void setPaper_repetitiveRateSing(Float paper_repetitiveRateSing) {
-		Paper_repetitiveRateSing = paper_repetitiveRateSing;
+	public void setPaper_repetitiveRateSing(Float paper_repetitiveRateSingle) {
+		Paper_repetitiveRateSingle = paper_repetitiveRateSingle;
 	}
 	public int getPaper_ifPass() {
 		return Paper_ifPass;
