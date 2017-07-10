@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.GetPaperMatchMapper">
+
+	
+	<select id="matchPaper" resultType="TeacherVo" parameterType="cn.pms.ssm.po.PaperVo">
+		SELECT T.* FROM paper as P
+		JOIN teacher as T 
+			ON P.Paper_researchOne = T.Teacher_researchOne OR P.Paper_researchOne = T.Teacher_researchTwo OR P.Paper_researchOne = T.Teacher_researchThree
+				OR P.Paper_researchTwo = T.Teacher_researchOne OR P.Paper_researchTwo = T.Teacher_researchTwo OR P.Paper_researchTwo = T.Teacher_researchThree 
+		JOIN student AS S 
+			ON 
+				P.Paper_stuId = S.Stu_id AND S.Stu_teacherId != T.Teacher_id
+		WHERE  
+		 (P.Paper_stuId =#{P.Paper_stuId} ) 
+		</select>
+		
+		
+		
+		
+</mapper>
