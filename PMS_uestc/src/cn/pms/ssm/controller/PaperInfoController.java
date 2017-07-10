@@ -35,7 +35,7 @@ public class PaperInfoController {
 	
 	//后台数据转化成Json
 	@RequestMapping("/requestJson")
-	public @ResponseBody List<PaperInfoExtend> requestJson(@RequestBody List<PaperInfoExtend> paperlist){
+	public @ResponseBody List<PaperInfoExtend> requestJson(List<PaperInfoExtend> paperlist){
 		
 		
 		try {
@@ -44,6 +44,7 @@ public class PaperInfoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(paperlist);
 		return paperlist;
 		
 	}
@@ -61,24 +62,25 @@ public class PaperInfoController {
 
 		return modelAndView;*/
 		
-		List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
+		//List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
 		System.out.println("ok11283");
-		System.out .println(paperlist);
+		//System.out .println(paperlist);
 		//测试数据
-		List<PaperInfoExtend> pa = paperService.findpaperlist(null);
+		/*List<PaperInfoExtend> pa = paperService.findpaperlist(null);
 		PaperInfoExtend Pa1 = null;
 	
 		for(int i = 0; i < pa.size();i++)
 		{
 			Pa1 = pa.get(i);
 			System.out.println(Pa1.getPaper_title());
-			}
+			}*/
 		
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("paperlist",paperlist);
+		//modelAndView.addObject("paperlist",paperlist);
 		modelAndView.setViewName("/tables");
+		System.out.println(modelAndView);
 		return modelAndView;
 		//return new ModelAndView("tables");
 	}

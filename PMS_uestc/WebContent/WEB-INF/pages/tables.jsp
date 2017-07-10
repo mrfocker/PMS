@@ -110,7 +110,7 @@
       <div class="box grid_12">
         <div class="box-head"><h2>毕业论文信息</h2></div>
         <div class="box-content no-pad">
-        <form action="${pageContext.request.contextPath }/pages/queryPaperInfo" method = "post">
+        <form <%-- action="${pageContext.request.contextPath }/pages/requestJson" method = "post" --%>>
           <table class="display">
           <thead>
             <tr>
@@ -126,7 +126,7 @@
             </tr>
           </thead>
           <tbody>
-           <c:forEach items="${paperlist }" var="item">
+           <%-- <c:forEach items="${paperlist }" var="item">
             <tr class="odd gradeX">
               <td>${item.getPaper_title()}</td>
               <td>${item.getPaper_researchOne()}</td>
@@ -138,7 +138,18 @@
               <td>通过</td>
               <td>无</td>
             </tr>
-           </c:forEach>
+           </c:forEach> --%>
+           <tr class="odd gradeX">
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>1234</td>
+              <td>%49</td>
+              <td>%4</td>
+              <td>通过</td>
+              <td>通过</td>
+              <td>无</td>
+            </tr>
           </tbody>
          </table>
         </form>
@@ -151,7 +162,7 @@
   <p>Powered by Adminity Administration Interface</p>
 </div>
 
-<script> /* SCRIPTS */
+<!-- <script> /* SCRIPTS */
   $(function () {
     $('#dt1').dataTable( {
         "bJQueryUI": true   
@@ -164,7 +175,7 @@
         "sPaginationType": "full_numbers"   
     }); /* For the data tables */
   });
-</script>
+</script> -->
 <script type = "text/javascript">
 function requestJson(){
 	
@@ -175,7 +186,12 @@ function requestJson(){
 		success: function(data){
 	          
 	          data = $.parseJSON(data);
+	          console.log("ok");
 	          console.log(data);},
+	         
+	    error: function(data){
+	          console.log('failed')
+	            }
 		
 	});
 	
