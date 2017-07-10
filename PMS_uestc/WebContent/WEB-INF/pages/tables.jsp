@@ -126,7 +126,7 @@
             </tr>
           </thead>
           <tbody>
-           <%-- <c:forEach items="${paperlist }" var="item">
+           <c:forEach items="${paperlist }" var="item">
             <tr class="odd gradeX">
               <td>${item.getPaper_title()}</td>
               <td>${item.getPaper_researchOne()}</td>
@@ -138,8 +138,8 @@
               <td>通过</td>
               <td>无</td>
             </tr>
-           </c:forEach> --%>
-           <tr class="odd gradeX">
+           </c:forEach>
+          <!--  <tr class="odd gradeX">
               <td>1</td>
               <td>2</td>
               <td>3</td>
@@ -149,7 +149,7 @@
               <td>通过</td>
               <td>通过</td>
               <td>无</td>
-            </tr>
+            </tr> -->
           </tbody>
          </table>
         </form>
@@ -162,7 +162,7 @@
   <p>Powered by Adminity Administration Interface</p>
 </div>
 
-<!-- <script> /* SCRIPTS */
+<script> /* SCRIPTS */
   $(function () {
     $('#dt1').dataTable( {
         "bJQueryUI": true   
@@ -175,8 +175,8 @@
         "sPaginationType": "full_numbers"   
     }); /* For the data tables */
   });
-</script> -->
-<script type = "text/javascript">
+</script>
+<!-- <script type = "text/javascript">
 function requestJson(){
 	
 	$.ajax({
@@ -196,7 +196,7 @@ function requestJson(){
 	});
 	
 }
-</script>
+</script> -->
 
 </body>
 </html>

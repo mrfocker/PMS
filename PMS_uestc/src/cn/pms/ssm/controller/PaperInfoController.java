@@ -3,6 +3,8 @@ package cn.pms.ssm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,7 +53,7 @@ public class PaperInfoController {
 	
 	//查询列表
 	@RequestMapping("/queryPaperInfo")
-	public ModelAndView queryPaper()throws Exception{
+	public @ResponseBody ModelAndView queryPaper(HttpServletRequest request, PaperQueryVo paperQueryVo)throws Exception{
 		/*//返回ModelAndView
 		ModelAndView modelAndView =  new ModelAndView();
 		//相当 于request的setAttribut，在jsp页面中通过itemsList取数据
@@ -62,9 +64,9 @@ public class PaperInfoController {
 
 		return modelAndView;*/
 		
-		//List<PaperInfoExtend> paperlist = paperService.findpaperlist(null);
+		List<PaperInfoExtend> paperlist = paperService.findpaperlist(paperQueryVo);
 		System.out.println("ok11283");
-		//System.out .println(paperlist);
+		System.out .println(paperlist);
 		//测试数据
 		/*List<PaperInfoExtend> pa = paperService.findpaperlist(null);
 		PaperInfoExtend Pa1 = null;
@@ -78,7 +80,7 @@ public class PaperInfoController {
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
-		//modelAndView.addObject("paperlist",paperlist);
+		modelAndView.addObject("paperlist",paperlist);
 		modelAndView.setViewName("/tables");
 		System.out.println(modelAndView);
 		return modelAndView;
