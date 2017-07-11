@@ -52,7 +52,7 @@ public class UploadController {
 			@RequestParam("file") MultipartFile file) throws IOException {
 
 //		文件重命名
-		String newFileName = paper.getPaper_stuId() + "#" + paperType + ".docx";
+		String newFileName = paper.getPaper_stuId() + "a" + paperType + ".docx";
 		
 //		绝对路径
 		String filepath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator

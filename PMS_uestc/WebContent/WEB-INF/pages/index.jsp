@@ -56,7 +56,7 @@
 <body>
 	<div class="wrapper">
 		<div class="logo">
-			<a href="${pageContext.request.contextPath }/pages/login.action"><a href="${pageContext.request.contextPath }/pages/login.action"><h1>LOGIN PAGE</h1></a></a>
+			<a href="${pageContext.request.contextPath }/pages/login.action"><h1>LOGIN PAGE</h1></a>
 		</div>
 		<div class="lg-body">
 			<div class="inner">
@@ -90,6 +90,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

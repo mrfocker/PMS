@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/pages/index.jsp"></jsp:forward>
+	<%-- <jsp:forward page="/WEB-INF/pages/index.jsp"></jsp:forward> --%>
+	<jsp:forward page="/pages/searchAll.action"></jsp:forward>
 </body>
 </html>

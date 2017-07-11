@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import cn.pms.ssm.mapper.DownloadMapper;
 import cn.pms.ssm.mapper.UpLoadMapper;
 import cn.pms.ssm.po.Paper;
 
@@ -56,6 +57,8 @@ public class UpLoadMapperTest {
 		paper.setPaper_stuId("121");
 		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
 		upLoadMapper.selectPaperItem(paper);
+//		DownloadMapper downloadMapper = ctx.getBean("downloadMapper", DownloadMapper.class);
+//		downloadMapper.selectPaperItem(paper);
 		System.out.println("------------------end------------------");
 	}
 

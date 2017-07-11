@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,6 +24,7 @@
 <link
 	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
+
 </head>
 <body>
 	<div class="header">
@@ -107,12 +109,12 @@
 			</div>
 			<div class="box-content no-pad">
 				<ul class="table-toolbar">
-					<li><a href="#"><img src="img/icons/basic/plus.png" alt="" />
-							Add</a></li>
+					<li><a
+						href="${pageContext.request.contextPath }/pages/searchAll.action"><img
+							src="img/icons/basic/plus.png" alt="" /> 查询</a></li>
 					<li><a href="#"><img src="img/icons/basic/delete.png"
 							alt="" /> Remove</a></li>
-					<li><a href="#"><img src="img/icons/basic/save.png" alt="" />
-							一键下载</a></li>
+					<li><a href="javascript:void(0)" onclick="Pst()" id="down"><img src="img/icons/basic/save.png" alt=""/> 一键下载</a></li>
 					<li><a href="#"><img src="img/icons/basic/print.png"
 							alt="" /> Print</a></li>
 					<li><a href="#"><img src="img/icons/basic/up.png" alt="" />
@@ -128,26 +130,57 @@
 							<th>姓名</th>
 							<th>论文题目</th>
 							<th>论文版本</th>
+							<th></th>
+							<th></th>
+							<th style="display: none;"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${itemsList }" var="item">
-							<tr>
-								<td>${item.name }</td>
-								<td>${item.price }</td>
-								<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-								<td>${item.detail }</td>
 
+						<c:forEach items="${downloadList}" var="downloadVo"
+							varStatus="status">
+							<tr>
+								<td>${status.index + 1 }</td>
+								<td>${downloadVo.paper_stuId }</td>
+								<td>${downloadVo.stu_name }</td>
+								<td>${downloadVo.paper_title}</td>
+								<td>${downloadVo.paper_reason }</td>
+								<td><input type="checkbox" /></td>
 								<td><a
-									href="${pageContext.request.contextPath }/pages/downloadSingle.action?id=${item.id}">修改</a></td>
+									href="${pageContext.request.contextPath }/pages/downloadSingleAdmin.action?id=${downloadVo.paper_stuId}&name=${downloadVo.paper_name}/">下载</a></td>
+								<td class="name" style="display: none;">${downloadVo.paper_name }</td>
 							</tr>
 						</c:forEach>
+
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	<script>
+
+	<script type="text/javascript">
+	function Pst() {
+		 $("#down").click(function() {  
+			var list[];
+			$("dt2").find("tr").find(".name").each(function(index, String) {
+				var td = $(this).children();
+				list[index] = td.val();
+			});
+			
+			$.post("${pageContext.request.contextPath }/pages/downloadMulti.action", JSON.stringify(list));
+			/* $.ajax({
+				url : "${pageContext.request.contextPath }/pages/downloadMulti.action",
+				type: "post",
+				contentType:"application/json;charset=utf-8",
+				data: JSON.stringify(list),
+				dataType : "json",
+				success : function(successful) {
+					
+				}
+			}); */
+			
+		 }); 
+	};
 		/* SCRIPTS */
 		$(function() {
 			$('#dt2').dataTable({

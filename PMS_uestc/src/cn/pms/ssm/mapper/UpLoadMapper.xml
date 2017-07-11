@@ -20,7 +20,7 @@
 		SELECT 
 		Paper_name 
 		FROM 
-		Paper 
+		upload_paper 
 		WHERE 
 		Paper_stuId = #{Paper_stuId}
 	</select>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.DownloadMapper">
+
+	<select id="selectPaperItem" parameterType="cn.pms.ssm.po.Paper" resultType="java.lang.String">
+		SELECT 
+		Paper_name 
+		FROM 
+		upload_paper 
+		WHERE 
+		Paper_stuId = #{Paper_stuId}
+	</select>
+	
+	<select id="selectAllItem" resultType="cn.pms.ssm.vo.DownloadVo">
+		SELECT 
+		* 
+		FROM 
+		download_paper 
+	</select>
+</mapper>
