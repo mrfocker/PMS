@@ -17,7 +17,9 @@ import cn.pms.ssm.po.Paper;
 */
 public interface PaperInfoExtendMapper {
 	
-	//论文信息综合查询
+	//学生查询论文信息综合查询
 	public List<PaperInfoExtend> findpaperlist(PaperQueryVo paperQueryVo) throws Exception;
+	
+	//教师查询自己学生论文信息
 
 }
