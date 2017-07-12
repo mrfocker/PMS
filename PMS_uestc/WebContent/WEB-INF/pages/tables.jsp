@@ -110,7 +110,6 @@
       <div class="box grid_12">
         <div class="box-head"><h2>毕业论文信息</h2></div>
         <div class="box-content no-pad">
-        <form <%-- action="${pageContext.request.contextPath }/pages/requestJson" method = "post" --%>>
           <table class="display">
           <thead>
             <tr>
@@ -139,20 +138,8 @@
               <td>无</td>
             </tr>
            </c:forEach>
-          <!--  <tr class="odd gradeX">
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>1234</td>
-              <td>%49</td>
-              <td>%4</td>
-              <td>通过</td>
-              <td>通过</td>
-              <td>无</td>
-            </tr> -->
           </tbody>
          </table>
-        </form>
         </div>
       </div>
 
