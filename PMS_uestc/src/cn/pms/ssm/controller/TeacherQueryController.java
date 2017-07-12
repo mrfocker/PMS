@@ -26,7 +26,7 @@ import cn.pms.ssm.service.TeacherQueryService;
 @Controller
 @RequestMapping("/pages")
 public class TeacherQueryController {
-	
+	 
 	@Autowired
 	private TeacherQueryService teacherQueryService;
 	
@@ -36,11 +36,10 @@ public class TeacherQueryController {
 		List<TeacherQueryVo> mystulist = teacherQueryService.findMyStuInfo(teacherQueryVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("mystulist",mystulist);
-		modelAndView.setViewName("/teachertables");
+		modelAndView.setViewName("/mystudents");
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
 	
 	
-
 }

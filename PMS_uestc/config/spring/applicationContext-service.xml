@@ -16,6 +16,8 @@
                      
 <!-- 论文信息查询论文信息查询service -->
 <bean id = "PaperService" class = "cn.pms.ssm.service.impl.PaperServiceImpl"/>
+<!-- 导师查询自己学生论信息service -->
+<bean id = "TeacherQueryService" class = "cn.pms.ssm.service.impl.TeacherQueryServiceImpl"/>
 
                      
 </beans>
