@@ -58,22 +58,21 @@ public class DownloadController {
 
 	@Autowired
 	private DownloadService downloadService;
-	
-	private Logger Log = Logger.getLogger(DownloadController.class);
-	
-	private static final String FilePath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
-			+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile" + File.separator;  
 
-	//师生单个
+	private Logger Log = Logger.getLogger(DownloadController.class);
+
+	private static final String FilePath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS"
+			+ File.separator + "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile"
+			+ File.separator;
+
+	// 师生单个
 	@RequestMapping(value = "/downloadSingle.action", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView downloadSingle(Paper paper, HttpServletResponse response) {
 
 		// ModelAndView modelAndView = new ModelAndView();
 		Paper paperTemp = downloadService.downloadSingle(paper);
 		// 目标文件名
-		String fileName = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
-				+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile" + File.separator
-				+ paperTemp.getPaper_name();
+		String fileName = FilePath + paperTemp.getPaper_name();
 		// 获取输入流
 		InputStream bis;
 		try {
@@ -109,7 +108,8 @@ public class DownloadController {
 	}
 
 	@RequestMapping(value = "/downloadSingleAdmin.action", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView downloadSingleAdmin(@RequestParam("name") String paperName, @RequestParam("id") String stuId, HttpServletResponse response) {
+	public ModelAndView downloadSingleAdmin(@RequestParam("name") String paperName, @RequestParam("id") String stuId,
+			HttpServletResponse response) {
 
 		// 目标文件名
 		String fileName = FilePath + paperName;
@@ -125,7 +125,7 @@ public class DownloadController {
 			response.addHeader("Content-Disposition", "attachment;filename=" + filename);
 			// 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
 			response.setContentType("multipart/form-data");
-			
+
 			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
 			int len = 0;
 			while ((len = bis.read()) != -1) {
@@ -147,7 +147,7 @@ public class DownloadController {
 		// return modelAndView;
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/searchAll", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody ModelAndView getDownloadList() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -178,74 +178,73 @@ public class DownloadController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/downloadMulti", method = { RequestMethod.POST, RequestMethod.GET })
-	public @ResponseBody ModelAndView downloadMulti(@RequestBody ArrayList<String> list, HttpServletResponse response) {
-		//生成的ZIP文件名为Demo.zip    
-        String tmpFileName = "selectedFile.zip";    
-        byte[] buffer = new byte[1024];    
-        String strZipPath = FilePath + tmpFileName;    
-        try {    
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(    
-                    strZipPath));    
-            // 需要同时下载的两个文件result.txt ，source.txt    
-            ArrayList<File> files = new ArrayList<File>();
-            for(int index = 0; index < list.size(); index++){
-            	files.set(index, new File(FilePath+list.get(index)));
-            }
-            
-            for (int i = 0; i < files.size(); i++) {    
-                FileInputStream fis = new FileInputStream(files.get(i));    
-                out.putNextEntry(new ZipEntry(files.get(i).getName()));    
-                //设置压缩文件内的字符编码，不然会变成乱码    
-                out.setEncoding("GBK");    
-                int len;    
-                // 读入需要下载的文件的内容，打包到zip文件    
-                while ((len = fis.read(buffer)) > 0) {    
-                    out.write(buffer, 0, len);    
-                }    
-                out.closeEntry();    
-                fis.close();    
-            }    
-            out.close();    
-            this.downFile(response, tmpFileName);    
-        } catch (Exception e) {    
-            Log.error("文件下载出错", e);    
-        }    
+	@RequestMapping(value = "/downloadMulti", method = { RequestMethod.POST,
+			RequestMethod.GET }, consumes = "application/json;charset=utf-8")
+	public ModelAndView downloadMulti(@RequestBody String[] str, HttpServletResponse response) {
 		
-		return null;
+		ModelAndView modelAndView = new ModelAndView();
+		// 生成的ZIP文件名为selectedFile.zip
+		String tmpFileName = "selectedFile.zip";
+		byte[] buffer = new byte[1024];
+		String strZipPath = FilePath + tmpFileName;
+		try {
+			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(strZipPath));
+			// 需要同时下载的两个文件result.txt ，source.txt
+			File[] files = new File[1024];
+			for (int index = 0; index < str.length; index++) {
+				if (null != str[index]) {
+					files[index] = new File(FilePath + str[index]);
+				}
+			}
+
+			for (int i = 0; i < files.length; i++) {
+				if (null != files[i]) {
+					FileInputStream fis = new FileInputStream(files[i]);
+					out.putNextEntry(new ZipEntry(files[i].getName()));
+					// 设置压缩文件内的字符编码，不然会变成乱码
+					out.setEncoding("GBK");
+					int len;
+					// 读入需要下载的文件的内容，打包到zip文件
+					while ((len = fis.read(buffer)) > 0) {
+						out.write(buffer, 0, len);
+					}
+					out.closeEntry();
+					fis.close();
+				}
+			}
+			out.close();
+			// this.downFile(response, tmpFileName);
+			File file = new File(strZipPath);
+			
+			if (file.exists()) {
+//				BufferedInputStream bins = new BufferedInputStream(new FileInputStream(file));// 放到缓冲流里面
+//				BufferedOutputStream bouts = new BufferedOutputStream(response.getOutputStream()); // 获取文件输出IO流
+//				response.setContentType("application/x-download");// 设置response内容的类型
+//																// application/x-download
+//				response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(tmpFileName, "UTF-8"));// 设置头部信息
+//				int bytesRead = 0;
+//				byte[] buffer1 = new byte[8192];
+//				// 开始向网络传输文件流
+//				while ((bytesRead = bins.read(buffer1, 0, 8192)) != -1) {
+//					// while ((bytesRead = bins.read()) != -1) {
+//					bouts.write(buffer1, 0, bytesRead);
+//				
+//				}
+//				bouts.flush();// 这里一定要调用flush()方法
+//				 bins.close();
+//				bouts.close();
+				modelAndView.addObject("file", strZipPath);
+			} else {
+//				response.sendRedirect("/index");
+				modelAndView.addObject("file", "error");     
+			}
+		}catch (Exception e) {
+			Log.error("文件下载出错", e);
+		}
+		
+		modelAndView.setViewName("/adminDownload");
+		return modelAndView;
 
 	}
-	
-	private void downFile(HttpServletResponse response, String str) {    
-        try {    
-            String path = FilePath + str;    
-            File file = new File(path);    
-            if (file.exists()) {    
-                InputStream ins = new FileInputStream(path);    
-                BufferedInputStream bins = new BufferedInputStream(ins);// 放到缓冲流里面    
-                OutputStream outs = response.getOutputStream();// 获取文件输出IO流    
-                BufferedOutputStream bouts = new BufferedOutputStream(outs);    
-                response.setContentType("application/x-download");// 设置response内容的类型    
-                response.setHeader(    
-                        "Content-disposition",    
-                        "attachment;filename="    
-                                + URLEncoder.encode(str, "UTF-8"));// 设置头部信息    
-                int bytesRead = 0;    
-                byte[] buffer = new byte[8192];    
-                // 开始向网络传输文件流    
-                while ((bytesRead = bins.read(buffer, 0, 8192)) != -1) {    
-                    bouts.write(buffer, 0, bytesRead);    
-                }    
-                bouts.flush();// 这里一定要调用flush()方法    
-                ins.close();    
-                bins.close();    
-                outs.close();    
-                bouts.close();    
-            } else {    
-                response.sendRedirect("../error.jsp");    
-            }    
-        } catch (IOException e) {    
-            Log.error("文件下载出错", e);    
-        }    
-    }    
+
 }

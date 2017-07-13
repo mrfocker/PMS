@@ -1,7 +1,9 @@
+<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ page import="cn.pms.ssm.vo.DownloadVo" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -104,6 +106,7 @@
 	<div class="content container_12">
 
 		<div class="box grid_12">
+			<input type="text" value="${downloadList}" id="downloadList" style="display: none">
 			<div class="box-head">
 				<h2>论文批量下载</h2>
 			</div>
@@ -114,7 +117,8 @@
 							src="img/icons/basic/plus.png" alt="" /> 查询</a></li>
 					<li><a href="#"><img src="img/icons/basic/delete.png"
 							alt="" /> Remove</a></li>
-					<li><a href="javascript:void(0)" onclick="Pst()" id="down"><img src="img/icons/basic/save.png" alt=""/> 一键下载</a></li>
+					<li><a href="javascript:;;" class="down"><img
+							src="img/icons/basic/save.png" alt="" /> 一键下载</a></li>
 					<li><a href="#"><img src="img/icons/basic/print.png"
 							alt="" /> Print</a></li>
 					<li><a href="#"><img src="img/icons/basic/up.png" alt="" />
@@ -139,16 +143,18 @@
 
 						<c:forEach items="${downloadList}" var="downloadVo"
 							varStatus="status">
-							<tr>
+							<tr class="trye">
 								<td>${status.index + 1 }</td>
 								<td>${downloadVo.paper_stuId }</td>
 								<td>${downloadVo.stu_name }</td>
 								<td>${downloadVo.paper_title}</td>
 								<td>${downloadVo.paper_reason }</td>
 								<td><input type="checkbox" /></td>
+							<%-- 	<td><a
+									href="${pageContext.request.contextPath }/pages/downloadSingleAdmin.action?id=${downloadVo.paper_stuId}&name=${downloadVo.paper_name}/">下载</a></td> --%>
 								<td><a
-									href="${pageContext.request.contextPath }/pages/downloadSingleAdmin.action?id=${downloadVo.paper_stuId}&name=${downloadVo.paper_name}/">下载</a></td>
-								<td class="name" style="display: none;">${downloadVo.paper_name }</td>
+									href="${pageContext.request.contextPath }/PaperFile/121a0.docx" download="test.docx">下载</a></td>
+								<td class="pname" style="display: none;">${downloadVo.paper_name }</td>
 							</tr>
 						</c:forEach>
 
@@ -159,33 +165,33 @@
 	</div>
 
 	<script type="text/javascript">
-	function Pst() {
-		 $("#down").click(function() {  
-			var list[];
-			$("dt2").find("tr").find(".name").each(function(index, String) {
-				var td = $(this).children();
-				list[index] = td.val();
-			});
-			
-			$.post("${pageContext.request.contextPath }/pages/downloadMulti.action", JSON.stringify(list));
-			/* $.ajax({
-				url : "${pageContext.request.contextPath }/pages/downloadMulti.action",
-				type: "post",
-				contentType:"application/json;charset=utf-8",
-				data: JSON.stringify(list),
-				dataType : "json",
-				success : function(successful) {
-					
-				}
-			}); */
-			
-		 }); 
-	};
 		/* SCRIPTS */
 		$(function() {
 			$('#dt2').dataTable({
 				"bJQueryUI" : true
 			});
+			
+			 $(".down").click(function() {  
+					
+					var result = new Array();
+					
+					$(".trye").find(".pname").each(function(index, String) {
+						result[index] = $(this).text();
+						console.log(result[index]);
+					});
+					
+					$.ajaxSetup({  
+				        contentType : 'application/json;charset=utf-8'  
+				    }); 
+					/* $.post("${pageContext.request.contextPath }/pages/downloadMulti.action", JSON.stringify(result), function(file) {
+						if ("error" != file) {
+							
+						} else {
+
+						}
+					}); */
+										
+				 }); 
 		});
 	</script>
 </html>

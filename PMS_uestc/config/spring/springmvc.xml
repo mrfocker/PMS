@@ -29,6 +29,8 @@
 	<mvc:resources mapping="/js/**" location="/WEB-INF/pages/js/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/pages/css/" />
 	<mvc:resources mapping="/pages/**" location="/WEB-INF/pages/" /> 
+	
+<!-- 	<mvc:resources mapping="/PaperFile/**" location="/Users/JJ/Downloads/resources/PaperFile/" />  -->
 
 	<!-- HandlerMapping无需配置，默认启动DefaultAnnotationHandlerMapping annotation-driven 
 		HandlerMapping -->
@@ -47,13 +49,6 @@
 	<!-- 处理器适配器 所以处理器适配器都实现HandlerAdapter接口 -->
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
-	<!-- 配置ViewResolver可以用多个ViewResolver，使用order属性，InternalResourceViewResolver放在最后 -->
-	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
-		<property name="mediaTypes"> <map> <entry key="json" value="application/json"/> 
-		<entry key="xml" value="application/xml"/> <entry key="htm" value="text/html"/> 
-		</map> </property> <property name="defaultViews"> <list> <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
-		</bean> </list> </property> <property name="ignoreAcceptHeader" value="true"/> 
-		</bean> -->
 
 	<!-- 注册拦截器 -->
 	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**"/> <bean 
@@ -71,26 +66,6 @@
 	<bean id="freemarkerConfiguration"
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 	</bean>
-
-<!-- 	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="exposeRequestAttributes" value="true" />
-		<property name="exposeSessionAttributes" value="true" />
-		<property name="viewClass">
-			<value>org.springframework.web.servlet.view.freemarker.FreeMarkerView
-			</value>
-		</property>
-		<property name="cache">
-			<value>true</value>
-		</property>
-		<property name="prefix" value="/WEB-INF/pages"></property>
-		<property name="suffix">
-			<value>.html</value>
-		</property>
-		<property name="contentType">
-			<value>text/html; charset=UTF-8</value>
-		</property>
-	</bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -66,3 +66,50 @@ function postID() {
 				e.printStackTrace();
 			}
 		}
+		
+		// private ModelAndView downFile(HttpServletResponse response, String str) {
+	// try {
+	// String path = FilePath + str;
+	// File file = new File(path);
+	// if (file.exists()) {
+	// BufferedInputStream bins = new BufferedInputStream(new
+	// FileInputStream(file));// 放到缓冲流里面
+	// BufferedOutputStream bouts = new
+	// BufferedOutputStream(response.getOutputStream()); // 获取文件输出IO流
+	// response.setContentType("multipart/form-data");// 设置response内容的类型
+	// application/x-download
+	// response.setHeader(
+	// "Content-disposition",
+	// "attachment;filename="
+	// + URLEncoder.encode(str, "UTF-8"));// 设置头部信息
+	// int bytesRead = 0;
+	// byte[] buffer = new byte[8192];
+	// // 开始向网络传输文件流
+	// while ((bytesRead = bins.read(buffer, 0, 8192)) != -1) {
+	//// while ((bytesRead = bins.read()) != -1) {
+	// bouts.write(buffer, 0, bytesRead);
+	// }
+	// bouts.flush();// 这里一定要调用flush()方法
+	//// bins.close();
+	// bouts.close();
+	// } else {
+	// response.sendRedirect("../index.jsp");
+	// }
+	// } catch (IOException e) {
+	// Log.error("文件下载出错", e);
+	// }
+	// return null;
+	// }
+	
+	application/x-download
+	
+	/* $.ajax({
+						url : "${pageContext.request.contextPath }/pages/downloadMulti.action",
+						type: "post",
+						contentType:"application/json;charset=utf-8",
+						data: JSON.stringify(list),
+						dataType : "json",
+						success : function(successful) {
+							
+						}
+					}); */

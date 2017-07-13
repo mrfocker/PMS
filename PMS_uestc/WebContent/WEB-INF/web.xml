@@ -47,7 +47,7 @@
         </listener-class>  
     </listener>  
 <!-- end -->  
-
+	
 	<!-- springmvc前端控制器 -->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
@@ -60,6 +60,11 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.docx</url-pattern>
+	</servlet-mapping>
 
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
