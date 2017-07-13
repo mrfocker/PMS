@@ -127,9 +127,9 @@
           <tbody>
            <c:forEach items="${mystulist }" var="item">
             <tr class="odd gradeX">
-              <td>${item.getStu_name()}</td>
-              <td>${item.getStu_id()}</td>
-              <td>wu</td>
+              <td>${item.stu_name}</td>
+              <td>${item.stu_id}</td>
+              <td>${item.teacher_name}</td>
               <td>1234</td>
               <td>%49</td>
               <td>%4</td>

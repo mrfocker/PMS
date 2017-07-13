@@ -9,9 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--导师查询自己学生的论文信息-->
 <select id="findMyStuInfo" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
 		SELECT
-		  paper.*,
+		  paper.Paper_title,
+		  paper.Paper_researchOne,
+		  paper.Paper_researchTwo,
+		  paper.Paper_researchThree,
 		  student.Stu_name,
-		  student.Stu_id
+		  student.Stu_id,
+		  teacher.Teacher_id,
+		  teacher.Teacher_name
 		FROM 
 		  paper, 
 		  student,
