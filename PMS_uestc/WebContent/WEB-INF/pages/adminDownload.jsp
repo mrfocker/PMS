@@ -148,12 +148,12 @@
 								<td>${downloadVo.paper_stuId }</td>
 								<td>${downloadVo.stu_name }</td>
 								<td>${downloadVo.paper_title}</td>
-								<td>${downloadVo.paper_reason }</td>
+								<td>${downloadVo.file_type }</td>
 								<td><input type="checkbox" /></td>
 							<%-- 	<td><a
 									href="${pageContext.request.contextPath }/pages/downloadSingleAdmin.action?id=${downloadVo.paper_stuId}&name=${downloadVo.paper_name}/">下载</a></td> --%>
 								<td><a
-									href="${pageContext.request.contextPath }/PaperFile/121a0.docx" download="test.docx">下载</a></td>
+									href="/resources/PaperFile/${downloadVo.file_name}" download="${downloadVo.paper_stuId}_论文.docx">下载</a></td>
 								<td class="pname" style="display: none;">${downloadVo.paper_name }</td>
 							</tr>
 						</c:forEach>
@@ -180,18 +180,11 @@
 						console.log(result[index]);
 					});
 					
-					$.ajaxSetup({  
-				        contentType : 'application/json;charset=utf-8'  
-				    }); 
-					/* $.post("${pageContext.request.contextPath }/pages/downloadMulti.action", JSON.stringify(result), function(file) {
-						if ("error" != file) {
-							
-						} else {
-
-						}
-					}); */
+					var str =  JSON.stringify(result);
+					console.log(str);
+					window.location.href="${pageContext.request.contextPath }/pages/downloadMulti.action?str="+str;
 										
-				 }); 
+			}); 
 		});
 	</script>
 </html>

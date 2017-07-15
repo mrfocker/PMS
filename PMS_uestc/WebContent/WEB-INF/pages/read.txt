@@ -103,13 +103,4 @@ function postID() {
 	
 	application/x-download
 	
-	/* $.ajax({
-						url : "${pageContext.request.contextPath }/pages/downloadMulti.action",
-						type: "post",
-						contentType:"application/json;charset=utf-8",
-						data: JSON.stringify(list),
-						dataType : "json",
-						success : function(successful) {
-							
-						}
-					}); */
+	/*  */

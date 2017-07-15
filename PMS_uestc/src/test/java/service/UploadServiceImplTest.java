@@ -10,8 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.service.UploadService;
+import cn.pms.ssm.vo.UploadVo;
 
 /** 
  * <p>Title: UploadServiceImplTest</p> 
@@ -28,13 +28,16 @@ public class UploadServiceImplTest {
 	@Test
 	public void test() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		Paper paper = new Paper();
-		paper.setPaper_stuId("121");
+		UploadVo paper = new UploadVo();
+		paper.setPaper_stuId("122");
 		paper.setPaper_title("CCNA");
 		paper.setPaper_researchOne("MINE");
 		paper.setPaper_researchTwo("IEEE");
+		paper.setFile_name("999.docx");
+		paper.setFile_type(1);
 		UploadService uploadService = ctx.getBean("uploadService", UploadService.class);
 		uploadService.insertPaperItem(paper);
+		uploadService.insertFileItem(paper);
 		System.out.println("------------------end------------------");
 	}
 

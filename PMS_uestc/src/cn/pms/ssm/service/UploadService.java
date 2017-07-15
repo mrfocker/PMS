@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import cn.pms.ssm.po.Paper;
+import cn.pms.ssm.vo.UploadVo;
 
 /** 
  * <p>Title: UploadService</p> 
@@ -22,12 +23,17 @@ import cn.pms.ssm.po.Paper;
 @Scope("property")
 public interface UploadService {
 	
-	public void insertPaperItem(Paper paper);
+	//上传论文
+	public void insertPaperItem(UploadVo uploadVo);
+	public void insertFileItem(UploadVo uploadVo);
+	
+	//添加新版本论文
+	public UploadVo selectPaperIfExist(UploadVo uploadVo);
 	
 	//覆盖老版本论文
-	public void updatePaperItem(Paper paper);
+	public void updatePaperItem(UploadVo uploadVo);
 	
 	//查找已有论文版本
-	public ArrayList<String> selectPaperItem(Paper paper);
+	public ArrayList<Integer> selectPaperItem(UploadVo uploadVo);
 	
 }

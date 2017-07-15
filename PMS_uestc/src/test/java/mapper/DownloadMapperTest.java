@@ -38,7 +38,7 @@ public class DownloadMapperTest {
 		DownloadMapper downloadMapper = ctx.getBean("downloadMapper", DownloadMapper.class);
 		ArrayList<DownloadVo> list = downloadMapper.selectAllItem();
 		for (DownloadVo downloadVo : list) {
-			System.out.println(downloadVo.getPaper_name());
+			System.out.println(downloadVo.getFile_name());
 		}
 		
 		//fail("Not yet implemented");

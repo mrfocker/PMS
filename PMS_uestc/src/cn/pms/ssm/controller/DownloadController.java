@@ -4,26 +4,16 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,17 +22,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.service.DownloadService;
 import cn.pms.ssm.vo.DownloadVo;
-import sun.org.mozilla.javascript.internal.regexp.SubString;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * <p>
  * Title: DownloadController
  * </p>
  * <p>
- * Description:TODO
+ * Description:批量下载Controller，getDownloadList()获取可下载列表， downloadMulti()批量下载-压缩后下载
  * </p>
  * <p>
  * Company: uestc_xr
@@ -65,89 +56,6 @@ public class DownloadController {
 			+ File.separator + "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile"
 			+ File.separator;
 
-	// 师生单个
-	@RequestMapping(value = "/downloadSingle.action", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView downloadSingle(Paper paper, HttpServletResponse response) {
-
-		// ModelAndView modelAndView = new ModelAndView();
-		Paper paperTemp = downloadService.downloadSingle(paper);
-		// 目标文件名
-		String fileName = FilePath + paperTemp.getPaper_name();
-		// 获取输入流
-		InputStream bis;
-		try {
-			bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
-			// 假如以中文名下载的话
-			String filename = paperTemp.getPaper_stuId() + "_论文.docx";
-			// 转码，免得文件名中文乱码
-			filename = URLEncoder.encode(filename, "UTF-8");
-			// 设置文件下载头
-			response.addHeader("Content-Disposition", "attachment;filename=" + filename);
-			// 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
-			response.setContentType("multipart/form-data");
-			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
-			int len = 0;
-			while ((len = bis.read()) != -1) {
-				out.write(len);
-				out.flush();
-			}
-			out.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// modelAndView.setViewName("/index");
-		// return modelAndView;
-		return null;
-	}
-
-	@RequestMapping(value = "/downloadSingleAdmin.action", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView downloadSingleAdmin(@RequestParam("name") String paperName, @RequestParam("id") String stuId,
-			HttpServletResponse response) {
-
-		// 目标文件名
-		String fileName = FilePath + paperName;
-		// 获取输入流
-		InputStream bis;
-		try {
-			bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
-			// 假如以中文名下载的话
-			String filename = stuId + "_Paper.docx";
-			// 转码，免得文件名中文乱码
-			filename = URLEncoder.encode(filename, "UTF-8");
-			// 设置文件下载头
-			response.addHeader("Content-Disposition", "attachment;filename=" + filename);
-			// 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
-			response.setContentType("multipart/form-data");
-
-			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
-			int len = 0;
-			while ((len = bis.read()) != -1) {
-				out.write(len);
-				out.flush();
-			}
-			out.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// modelAndView.setViewName("/index");
-		// return modelAndView;
-		return null;
-	}
-
 	@RequestMapping(value = "/searchAll", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody ModelAndView getDownloadList() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -159,41 +67,32 @@ public class DownloadController {
 		// downloadVo.setStu_name(s);
 		String s = null;
 
-		for (int i = 0; i < list.size(); i++) {
-			if (null != list.get(i)) {
-				s = list.get(i).getPaper_name();
-				if (null != s) {
-					list.get(i).setPaper_reason(s.substring(s.lastIndexOf("a") + 1, s.lastIndexOf("a") + 2));
-				} else {
-					System.out.println("error");
-				}
-			} else {
-				System.out.println("error");
-			}
-		}
-
 		modelAndView.addObject("downloadList", list);
 		// modelAndView.addObject("type", arr);
 		modelAndView.setViewName("/adminDownload");// adminDownload
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/downloadMulti", method = { RequestMethod.POST,
-			RequestMethod.GET }, consumes = "application/json;charset=utf-8")
-	public ModelAndView downloadMulti(@RequestBody String[] str, HttpServletResponse response) {
-		
-		ModelAndView modelAndView = new ModelAndView();
+	@RequestMapping(value = "/downloadMulti", method = { RequestMethod.POST, RequestMethod.GET }) 
+	public ModelAndView downloadMulti(@RequestParam("str") String str, HttpServletResponse response) {
+
 		// 生成的ZIP文件名为selectedFile.zip
 		String tmpFileName = "selectedFile.zip";
 		byte[] buffer = new byte[1024];
 		String strZipPath = FilePath + tmpFileName;
+		
+		//URL中的JSON不能被@equestbody解析，所以手动解析
+		ArrayList<String> namelist = new ArrayList<String>();
+		JSONArray jsonArray = JSONArray.fromObject(str);
+		namelist = (ArrayList<String>) JSONArray.toList(jsonArray);
+		
 		try {
 			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(strZipPath));
 			// 需要同时下载的两个文件result.txt ，source.txt
 			File[] files = new File[1024];
-			for (int index = 0; index < str.length; index++) {
-				if (null != str[index]) {
-					files[index] = new File(FilePath + str[index]);
+			for (int index = 0; index < namelist.size(); index++) {
+				if (null != namelist.get(index)) {
+					files[index] = new File(FilePath + namelist.get(index));
 				}
 			}
 
@@ -213,37 +112,35 @@ public class DownloadController {
 				}
 			}
 			out.close();
-			// this.downFile(response, tmpFileName);
-			File file = new File(strZipPath);
 			
+			File file = new File(strZipPath);
+
 			if (file.exists()) {
-//				BufferedInputStream bins = new BufferedInputStream(new FileInputStream(file));// 放到缓冲流里面
-//				BufferedOutputStream bouts = new BufferedOutputStream(response.getOutputStream()); // 获取文件输出IO流
-//				response.setContentType("application/x-download");// 设置response内容的类型
-//																// application/x-download
-//				response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(tmpFileName, "UTF-8"));// 设置头部信息
-//				int bytesRead = 0;
-//				byte[] buffer1 = new byte[8192];
-//				// 开始向网络传输文件流
-//				while ((bytesRead = bins.read(buffer1, 0, 8192)) != -1) {
-//					// while ((bytesRead = bins.read()) != -1) {
-//					bouts.write(buffer1, 0, bytesRead);
-//				
-//				}
-//				bouts.flush();// 这里一定要调用flush()方法
-//				 bins.close();
-//				bouts.close();
-				modelAndView.addObject("file", strZipPath);
+				BufferedInputStream bins = new BufferedInputStream(new FileInputStream(file));// 放到缓冲流里面
+				BufferedOutputStream bouts = new BufferedOutputStream(response.getOutputStream()); // 获取文件输出IO流
+				response.setContentType("multipart/form-data");// 设置response内容的类型
+																// application/x-download
+				response.setHeader("Content-disposition",
+						"attachment;filename=" + URLEncoder.encode(tmpFileName, "UTF-8"));// 设置头部信息
+				int bytesRead = 0;
+				byte[] buffer1 = new byte[8192];
+				// 开始向网络传输文件流
+				while ((bytesRead = bins.read(buffer1, 0, 8192)) != -1) {
+					
+					bouts.write(buffer1, 0, bytesRead);
+
+				}
+				bouts.flush();// 这里一定要调用flush()方法
+				bins.close();
+				bouts.close();
 			} else {
-//				response.sendRedirect("/index");
-				modelAndView.addObject("file", "error");     
+				response.sendRedirect("/index");
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			Log.error("文件下载出错", e);
 		}
-		
-		modelAndView.setViewName("/adminDownload");
-		return modelAndView;
+
+		return null;
 
 	}
 

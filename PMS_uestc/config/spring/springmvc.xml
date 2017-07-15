@@ -30,7 +30,7 @@
 	<mvc:resources mapping="/css/**" location="/WEB-INF/pages/css/" />
 	<mvc:resources mapping="/pages/**" location="/WEB-INF/pages/" /> 
 	
-<!-- 	<mvc:resources mapping="/PaperFile/**" location="/Users/JJ/Downloads/resources/PaperFile/" />  -->
+	<!-- <mvc:resources mapping="/resources/PaperFile/**" location="/WEB-INF/resources/PaperFile" /> -->
 
 	<!-- HandlerMapping无需配置，默认启动DefaultAnnotationHandlerMapping annotation-driven 
 		HandlerMapping -->

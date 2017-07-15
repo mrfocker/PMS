@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import cn.pms.ssm.mapper.DownloadMapper;
 import cn.pms.ssm.mapper.UpLoadMapper;
 import cn.pms.ssm.po.Paper;
+import cn.pms.ssm.vo.UploadVo;
 
 /** 
  * <p>Title: UpLoadMapperTest</p> 
@@ -29,22 +30,25 @@ public class UpLoadMapperTest {
 	@Test
 	public void test() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		Paper paper = new Paper();
-		paper.setPaper_stuId("121");
+		UploadVo paper = new UploadVo();
+		paper.setPaper_stuId("122");
 		paper.setPaper_title("CCNA");
 		paper.setPaper_researchOne("MINE");
 		paper.setPaper_researchTwo("IEEE");
+		paper.setFile_name("999.docx");
+		paper.setFile_type(1);
 		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
 		upLoadMapper.insertPaperItem(paper);
+		upLoadMapper.insertFileItem(paper);
 		System.out.println("------------------end------------------");
 	}
 	
 	@Test
 	public void testUpdatePaperItem() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		Paper paper = new Paper();
+		UploadVo paper = new UploadVo();
 		paper.setPaper_stuId("121");
-		paper.setPaper_title("CCNA");
+		paper.setFile_name("999.docx");
 		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
 		upLoadMapper.updatePaperItem(paper);
 		System.out.println("------------------end------------------");
@@ -53,7 +57,7 @@ public class UpLoadMapperTest {
 	@Test
 	public void testSelectPaperItem() {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml");
-		Paper paper = new Paper();
+		UploadVo paper = new UploadVo();
 		paper.setPaper_stuId("121");
 		UpLoadMapper upLoadMapper = ctx.getBean("upLoadMapper", UpLoadMapper.class);
 		upLoadMapper.selectPaperItem(paper);

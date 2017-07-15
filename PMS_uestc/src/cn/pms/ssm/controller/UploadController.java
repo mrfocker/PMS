@@ -5,6 +5,9 @@ package cn.pms.ssm.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.xml.ws.Action;
 
@@ -20,8 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.service.UploadService;
+import cn.pms.ssm.vo.UploadVo;
 
 /**
  * <p>
@@ -48,38 +51,36 @@ public class UploadController {
 	private static Logger logger = Logger.getLogger(UploadController.class);
 
 	@RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody ModelAndView upload(Paper paper, @RequestParam("paperType") String paperType,
-			@RequestParam("file") MultipartFile file) throws IOException {
+	public @ResponseBody ModelAndView upload(UploadVo uploadVo, @RequestParam("file") MultipartFile file) throws IOException {
 
+		Date date = new Date();
+		Random random = new Random();
+		ModelAndView modelAndView = new ModelAndView();
 //		文件重命名
-		String newFileName = paper.getPaper_stuId() + "a" + paperType + ".docx";
-		
+		String newFileName = date.getTime() +"0"+ random.nextInt() + ".docx";
+		logger.info(newFileName);
 //		绝对路径
 		String filepath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
 				+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile";
 		
 		File newfile = new File(filepath, newFileName);
-		
-		ModelAndView modelAndView = new ModelAndView();
-		paper.setPaper_name(newFileName);
 
 		if (!file.isEmpty()) {
 			logger.error("Process file: " + file.getOriginalFilename());
 			logger.error("Process file path: " + filepath);
-
-			if (newfile.exists()) {
-				logger.error(newFileName + " exist");
-				// 删除已存在文件
-//				 newfile.delete();
-			}
 			
 			FileUtils.copyInputStreamToFile(file.getInputStream(), newfile);
 
-			if (uploadService.selectPaperItem(paper).contains(newFileName)) {
-				// uploadService.updatePaperItem(paper);
-				logger.debug("------------------------->exit");
+			uploadVo.setFile_name(newFileName);
+			if (null != uploadService.selectPaperIfExist(uploadVo)) {
+				logger.error(newFileName + " exist");
+				// 删除已存在文件
+				File temp = new File(filepath+uploadVo.getFile_name());
+				temp.delete();
+				uploadService.updatePaperItem(uploadVo);
 			} else {
-				uploadService.insertPaperItem(paper);
+				uploadService.insertPaperItem(uploadVo);
+				uploadService.insertFileItem(uploadVo);
 			}
 		}
 		
