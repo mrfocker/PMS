@@ -1,5 +1,7 @@
 package cn.pms.ssm.mapper;
 
+import java.util.List;
+
 import cn.pms.ssm.po.BlindJudgeGroupVo;
 import cn.pms.ssm.po.Teacher;
 
@@ -15,7 +17,7 @@ import cn.pms.ssm.po.Teacher;
 public interface BlindJudgeMapper {
 	
 	//导师查询自己要盲审的论文
-	
+	public List<BlindJudgeGroupVo> findMyStuInfo(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//导师提交盲审结果
 	public void insertBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 }
