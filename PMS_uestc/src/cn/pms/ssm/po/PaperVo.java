@@ -15,6 +15,7 @@ public class PaperVo extends Paper {
 	private String Judge_teacherIdOne; //该论文第一盲审老师id
 	private String Judge_teacherIdTwo;//该论文第二盲审老师id
 	
+
 	public String getJudge_teacherIdOne() {
 		return Judge_teacherIdOne;
 	}

@@ -68,4 +68,15 @@
 <!-- 视图解析器 -->
 <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
 
+<!--  解决返回字体乱码 
+<bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+    <constructor-arg value="UTF-8" index="0">  
+    </constructor-arg>  
+    <property name="supportedMediaTypes">  
+        <list>  
+            <value>text/plain;charset=UTF-8</value>  
+        </list>  
+    </property>  
+</bean>  --> 
+
   </beans>   

@@ -10,5 +10,14 @@ package cn.pms.ssm.po;
 
 public class TeacherVo extends Teacher {
 	//扩展TeacherVO类
+	private String paper_stuId;
+
+	public String getPaper_stuId() {
+		return paper_stuId;
+	}
+
+	public void setPaper_stuId(String paper_stuId) {
+		this.paper_stuId = paper_stuId;
+	}
 }
 

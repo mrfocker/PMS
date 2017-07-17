@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.BlindJudgeMapper">
+
+	<select id="writematchBlindJudgeInfo" parameterType="cn.pms.ssm.po.Matchchoose">
+		 insert into  
+  			blindjudgegroup(Stu_id,teacher_id)
+		VALUES(#{paper_stuId},#{choose_teaId})
+	</select>
+
+</mapper>

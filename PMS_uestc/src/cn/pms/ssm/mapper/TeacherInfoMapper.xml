@@ -3,20 +3,20 @@
 <mapper namespace="cn.pms.ssm.mapper.TeacherInfoMapper">
 	<select id="selectTeacherInfo" resultType="TeacherVo"
 		parameterType="cn.pms.ssm.po.TeacherVo">
-		SELECT 
-			*
-		FROM 
-			teacher
-		
+		SELECT
+		*
+		FROM
+		teacher
+
 	</select>
-	
+
 	<update id="incTeachercCount" parameterType="cn.pms.ssm.po.TeacherVo">
 		UPDATE
-			teacher
+		teacher
 		SET
-			Teacher_count=Teacher_count+1
+		Teacher_count=Teacher_count+1
 		WHERE
-			Teacher_id=#{tea_Id}
+		Teacher_id=#{tea_Id}
 	</update>
-	
+
 </mapper>

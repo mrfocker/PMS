@@ -28,5 +28,9 @@ public class GetPaperMatchServiceImpl implements GetPaperMatchService {
 			return getPaperMatchMapper.matchPaper(Paper_stuId);
 		}
 		
+		public List<TeacherVo> randomMatchPaper(String Paper_stuId){
+			return getPaperMatchMapper.randomMatchPaper(Paper_stuId);
+		}
+		
 }
 

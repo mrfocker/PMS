@@ -15,6 +15,7 @@ public interface GetPaperMatchMapper {
 
 	//通过传入的Paper_stuID进行匹配老师，并返回满足条件的TeacherList
 	public List<TeacherVo>  matchPaper(String Paper_stuId);
-	
+	//通过传入的Paper_stuID进行匹配老师，随机选取并返回满足条件的TeacherList
+	public List<TeacherVo>  randomMatchPaper(String Paper_stuId);
 }
 

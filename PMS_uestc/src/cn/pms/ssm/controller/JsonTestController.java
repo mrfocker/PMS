@@ -17,6 +17,7 @@ import cn.pms.ssm.po.PaperVo;
 */
 @Controller
 @RequestMapping("pages")
+
 public class JsonTestController {
 	
 	//请求json,输出相应json
