@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.pms.ssm.po.BlindJudgeGroup;
+import cn.pms.ssm.po.BlindJudgeGroupVo;
 import cn.pms.ssm.po.PaperInfoExtend;
 
 /**
@@ -23,11 +25,11 @@ public class JsonTest {
 	//@RequestBody将请求的商品信息的json串转成itemsCustom对象
 	//@ResponseBody将itemsCustom转成json输出
 	@RequestMapping("/requestJson")
-	public @ResponseBody PaperInfoExtend requestJson(@RequestBody PaperInfoExtend paperInfoExtend){
+	public @ResponseBody BlindJudgeGroupVo requestJson(@RequestBody BlindJudgeGroupVo blindJudgeGroupVo){
 		
 		//@ResponseBody将itemsCustom转成json输出
-		System.out.println(paperInfoExtend);
-		return paperInfoExtend;
+		System.out.println(blindJudgeGroupVo);
+		return blindJudgeGroupVo;
 	}
 	
 	/*//请求key/value，输出json
