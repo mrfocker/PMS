@@ -14,7 +14,7 @@ import cn.pms.ssm.po.BlindJudgeGroupVo;
 public interface BlindJudgeGroupService {
 	
 	//导师查询需要盲审的论文信息
-	public List<BlindJudgeGroupVo> findBlindJudgePaper(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
+	public List<BlindJudgeGroupVo> do_findBlindJudgePaper(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//导师提交盲审结果
 	public void submitBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 

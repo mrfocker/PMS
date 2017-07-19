@@ -13,12 +13,12 @@
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/tables.css">
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!---jQuery Files-->
   
   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
   <!--<script src="js/jquery-1.7.1.min.js"></script>-->
-  <script src="js/jquery-ui-1.8.17.min.js"></script>
+  <!-- <script src="js/jquery-ui-1.8.17.min.js"></script> -->
   <script src="js/styler.js"></script>
   <script src="js/jquery.tipTip.js"></script>
   <script src="js/colorpicker.js"></script>
@@ -26,7 +26,7 @@
   <script src="js/global.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
   <script src="bootstrap-fileinput/js/fileinput.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js"></script>
   <!---Fonts-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
@@ -99,14 +99,16 @@
             </tr>
           </thead>
           <tbody>
+           <c:forEach items="${blindJudgelist }" var="item">
             <tr class="odd gradeX">
-              <td>基于xxx的系统设计与实现</td>
-              <td>大数据</td>
-              <td>移动通信技术</td>
-              <td>网络信息安全</td>
+              <td>${item.paper_title}</td>
+              <td>${item.paper_researchOne}</td>
+              <td>${item.paper_researchTwo}</td>
+              <td>${item.paper_researchThree}</td>
               <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='details({{quanli_list.id}});'>评审</button><td>
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.getStu_id()});'>评审</button><td> 
             </tr>
+           </c:forEach>
           </tbody>
          </table>
         </div>
@@ -196,21 +198,71 @@
   });
 </script>
 
+<!--导师提交盲审结果-->
 <script type="text/javascript">
   function do_blindjudge(){
     var score = $('#score').val();
     var return_cont = $('#return_cont').val();
+    var str = {teacher_Grade:score,teacher_description:return_cont};
+    /* var str = []; */
+    /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
+    str = JSON.stringify(str);
+    console.log(str);
     $.ajax({
-      url:'${pageContext.request.contextPath }/pages/requestJson',
-      type'post',
+      url:'${pageContext.request.contextPath }/pages/submitblindjudge',
+      type:'post',
       contentType:'application/json;charset=utf-8',
-      data:'{"Teacher_Grade":"score","Teacher_description":"return_cont"}',
-      success:function(data){
-        alert(data);
-      }
+      data:str,
+      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
+      success: function(data){
+          
+          
+          console.log("ok");
+          },
+         
+    error: function(data){
+          console.log('failed')
+            }
+	
     });
   }
-</script>>
+</script>
+
+<!--将论文盲审信息映射倒模态框-->
+<script type="text/javascript">
+function 
+
+
+</script>
+
+<!-- <script type="text/javascript">
+  function do_blindjudge(){
+    var score = $('#score').val();
+    var return_cont = $('#return_cont').val();
+    var str = {teacher_Grade:score,teacher_description:return_cont};
+    /* var str = []; */
+    /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
+    str = JSON.stringify(str);
+    console.log(str);
+    $.ajax({
+      url:'${pageContext.request.contextPath }/requestJson',
+      type:'post',
+      contentType:'application/json;charset=utf-8',
+      data:str,
+      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
+      success: function(data){
+          
+          
+          console.log("ok");
+          console.log(data);},
+         
+    error: function(data){
+          console.log('failed')
+            }
+	
+    });
+  }
+</script>> -->
 
 </body>
 </html>

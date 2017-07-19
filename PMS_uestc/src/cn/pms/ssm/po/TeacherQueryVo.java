@@ -26,9 +26,9 @@ public class TeacherQueryVo {
 	private String Paper_title;
 	
 	//论文研究方向
-	private String researchOne;
-	private String researchTwo;
-	private String researchThree;
+	private String Paper_researchOne;
+	private String Paper_researchTwo;
+	private String Paper_researchThree;
 	public String getStu_id() {
 		return Stu_id;
 	}
@@ -47,23 +47,23 @@ public class TeacherQueryVo {
 	public void setPaper_title(String paper_title) {
 		Paper_title = paper_title;
 	}
-	public String getResearchOne() {
-		return researchOne;
+	public String getPaper_researchOne() {
+		return Paper_researchOne;
 	}
-	public void setResearchOne(String researchOne) {
-		this.researchOne = researchOne;
+	public void setPaper_researchOne(String paper_researchOne) {
+		Paper_researchOne = paper_researchOne;
 	}
-	public String getResearchTwo() {
-		return researchTwo;
+	public String getPaper_researchTwo() {
+		return Paper_researchTwo;
 	}
-	public void setResearchTwo(String researchTwo) {
-		this.researchTwo = researchTwo;
+	public void setPaper_researchTwo(String paper_researchTwo) {
+		Paper_researchTwo = paper_researchTwo;
 	}
-	public String getResearchThree() {
-		return researchThree;
+	public String getPaper_researchThree() {
+		return Paper_researchThree;
 	}
-	public void setResearchThree(String researchThree) {
-		this.researchThree = researchThree;
+	public void setPaper_researchThree(String paper_researchThree) {
+		Paper_researchThree = paper_researchThree;
 	}
 	public String getTeacher_name() {
 		return Teacher_name;

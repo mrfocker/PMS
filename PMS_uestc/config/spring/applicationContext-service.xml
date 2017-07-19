@@ -18,6 +18,9 @@
 <bean id = "PaperService" class = "cn.pms.ssm.service.impl.PaperServiceImpl"/>
 <!-- 导师查询自己学生论信息service -->
 <bean id = "TeacherQueryService" class = "cn.pms.ssm.service.impl.TeacherQueryServiceImpl"/>
-
+<!--导师盲审查询-->
+<bean id = "BlindJudgeGroupService" class = "cn.pms.ssm.service.impl.BlindJudgeGroupServiceImpl"/>
+<!--导师信息在页面展示-->
+<bean id = "ShowTeacherInfoService" class = "cn.pms.ssm.service.impl.ShowTeacherInfoServiceImpl"/>
                      
 </beans>

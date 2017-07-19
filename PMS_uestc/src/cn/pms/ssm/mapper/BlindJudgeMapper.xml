@@ -6,17 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cn.pms.ssm.mapper.BlindJudgeMapper">
 
-<!--填充教师信息到页面-->
-<select id="getTeacherInfo" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
-		SELECT
-		 teacher.Teacher_id,
-		 teacher.Teacher_name
-		FROM 
-		  teacher
-		WHERE 
-		  id = #{Teacher_id}
-</select>
-
 <!--导师提交盲审结果-->
 <insert id="insertBlindJudge" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo">
 		insert into blindjudgegroup 
@@ -30,17 +19,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </insert>
 
 <!--查询盲审分配结果-->
-<select id="findBlindJudgePaper" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
+<select id="findBlindJudgePaper" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" resultType="cn.pms.ssm.po.BlindJudgeGroupVo">
 		SELECT
 		 paper.Paper_title,
 		 paper.Paper_researchOne,
 		 paper.Paper_researchTwo,
-		 paper.Paper_researchThree
+		 paper.Paper_researchThree,
+		 blindjudgegroup.Stu_id
 		FROM 
 		  paper,
 		  blindjudgegroup
 		WHERE 
-		  blindjudgegroup.Stu_id = paper.Paper_stuId
+		  blindjudgegroup.Stu_id = paper.Paper_stuId 
 </select>
 
 <!--导师查询已经盲审的结果-->

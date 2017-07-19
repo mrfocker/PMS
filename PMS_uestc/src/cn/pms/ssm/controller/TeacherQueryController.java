@@ -33,7 +33,7 @@ public class TeacherQueryController {
 	@RequestMapping("/teacherQueryStu")
 	public @ResponseBody ModelAndView teacherQueryStu(HttpServletRequest request, TeacherQueryVo teacherQueryVo) throws Exception{
 		
-		List<TeacherQueryVo> mystulist = teacherQueryService.findMyStuInfo(teacherQueryVo);
+		List<TeacherQueryVo> mystulist = teacherQueryService.do_findMyStuInfo(teacherQueryVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("mystulist",mystulist);
 		modelAndView.setViewName("/mystudents");

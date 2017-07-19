@@ -175,7 +175,7 @@ function requestJson(){
 	
 	$.ajax({
 		type:'post',
-		url:'${pageContext.request.contextPath }/pages/requestJson',
+		url:'${pageContext.request.contextPath }/requestJson',
 		contentType: 'application/json;charset=UTF-8',
 		success: function(data){
 	          

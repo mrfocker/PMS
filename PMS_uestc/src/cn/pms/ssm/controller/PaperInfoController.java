@@ -41,7 +41,7 @@ public class PaperInfoController {
 		
 		
 		try {
-			paperlist = paperService.findpaperlist(null);
+			paperlist = paperService.do_findpaperlist(null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class PaperInfoController {
 
 		return modelAndView;*/
 		
-		List<PaperInfoExtend> paperlist = paperService.findpaperlist(paperQueryVo);
+		List<PaperInfoExtend> paperlist = paperService.do_findpaperlist(paperQueryVo);
 		System.out.println("ok11283");
 		System.out .println(paperlist);
 		//测试数据

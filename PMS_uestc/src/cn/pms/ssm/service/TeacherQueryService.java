@@ -16,6 +16,6 @@ import cn.pms.ssm.po.TeacherQueryVo;
 public interface TeacherQueryService {
 	
 	//导师查询自己学生的论文信息
-	public List<TeacherQueryVo> findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception;
+	public List<TeacherQueryVo> do_findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception;
 
 }

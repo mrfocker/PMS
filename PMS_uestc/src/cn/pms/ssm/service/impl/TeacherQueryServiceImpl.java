@@ -26,7 +26,7 @@ public class TeacherQueryServiceImpl implements TeacherQueryService{
 	private TeacherQueryStudentMapper teacherQueryStudentMapper;
 
 	@Override
-	public List<TeacherQueryVo> findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception {
+	public List<TeacherQueryVo> do_findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception {
 		// TODO Auto-generated method stub
 		return teacherQueryStudentMapper.findMyStuInfo(teacherQueryVo);
 	}

@@ -30,9 +30,9 @@ public class BlindJudgeGroupServiceImpl implements BlindJudgeGroupService {
 	}
 
 	@Override
-	public List<BlindJudgeGroupVo> findBlindJudgePaper(
+	public List<BlindJudgeGroupVo> do_findBlindJudgePaper(
 			BlindJudgeGroupVo blindJudgeGroupVo) throws Exception {
 		
-		return null;
+		return blindJudgeMapper.findBlindJudgePaper(blindJudgeGroupVo);
 	}
 }

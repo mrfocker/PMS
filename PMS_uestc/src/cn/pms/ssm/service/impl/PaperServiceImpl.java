@@ -25,7 +25,7 @@ public class PaperServiceImpl implements PaperService{
 
 	
 	@Override
-	public List<PaperInfoExtend> findpaperlist(PaperQueryVo paperQueryVo) throws Exception{
+	public List<PaperInfoExtend> do_findpaperlist(PaperQueryVo paperQueryVo) throws Exception{
 		//通过PaperInfoExtend查询数据库
 		return paperInfoExtendMapper.findpaperlist(paperQueryVo);
 	}

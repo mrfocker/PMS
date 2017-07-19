@@ -16,6 +16,6 @@ import cn.pms.ssm.po.PaperQueryVo;
 public interface PaperService {
 	
 	//论文信息综合查询
-		public List<PaperInfoExtend> findpaperlist(PaperQueryVo paperQueryVo) throws Exception;
+		public List<PaperInfoExtend> do_findpaperlist(PaperQueryVo paperQueryVo) throws Exception;
 
 }
