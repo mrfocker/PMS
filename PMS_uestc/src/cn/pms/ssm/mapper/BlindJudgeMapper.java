@@ -20,4 +20,6 @@ public interface BlindJudgeMapper {
 	public List<BlindJudgeGroupVo> findBlindJudgePaper(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//导师提交盲审结果
 	public void insertBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
+	//模态框显示已经盲审的结果
+	public BlindJudgeGroupVo findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 }

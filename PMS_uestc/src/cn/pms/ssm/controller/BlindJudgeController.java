@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,9 +40,9 @@ public class BlindJudgeController {
 	}
 	
 	@RequestMapping("/blindjudge")
-	public @ResponseBody ModelAndView teacherBlindJudge (BlindJudgeGroupVo blindJudgeGroup) throws Exception{
+	public @ResponseBody ModelAndView teacherBlindJudge (BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
-		List<BlindJudgeGroupVo> blindJudgelist = blindJudgeGroupService.do_findBlindJudgePaper(blindJudgeGroup);
+		List<BlindJudgeGroupVo> blindJudgelist = blindJudgeGroupService.do_findBlindJudgePaper(blindJudgeGroupVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("blindJudgelist",blindJudgelist);
 		modelAndView.setViewName("/teacher_blind_tables");
@@ -50,5 +51,11 @@ public class BlindJudgeController {
 		
 	}
 	
+	@RequestMapping("/bingjudgeResult")
+	public @ResponseBody BlindJudgeGroupVo show_blindjudgeResult(@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
+		
+		blindJudgeGroupVo = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
+		return blindJudgeGroupVo;
+	}
 	
 }

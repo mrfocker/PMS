@@ -35,4 +35,10 @@ public class BlindJudgeGroupServiceImpl implements BlindJudgeGroupService {
 		
 		return blindJudgeMapper.findBlindJudgePaper(blindJudgeGroupVo);
 	}
+	
+	@Override
+	public BlindJudgeGroupVo do_findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
+		
+		return blindJudgeMapper.findBlindResult(blindJudgeGroupVo);
+	} 
 }

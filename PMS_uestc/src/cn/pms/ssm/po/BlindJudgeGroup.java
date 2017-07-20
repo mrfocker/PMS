@@ -13,8 +13,9 @@ public class BlindJudgeGroup {
 	private String Stu_id;
 	private String Teacher_id;
 	private int Teacher_Grade;
-	private int Teacher_Result;
+	//private int Teacher_Result;
 	private String Teacher_description;
+	enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
 	public String getStu_id() {
 		return Stu_id;
 	}
@@ -33,12 +34,12 @@ public class BlindJudgeGroup {
 	public void setTeacher_Grade(int teacher_Grade) {
 		Teacher_Grade = teacher_Grade;
 	}
-	public int getTeacher_Result() {
+	/*public int getTeacher_Result() {
 		return Teacher_Result;
 	}
 	public void setTeacher_Result(int teacher_Result) {
 		Teacher_Result = teacher_Result;
-	}
+	}*/
 	public String getTeacher_description() {
 		return Teacher_description;
 	}

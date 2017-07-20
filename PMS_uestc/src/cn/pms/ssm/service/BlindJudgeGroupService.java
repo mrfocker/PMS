@@ -17,5 +17,6 @@ public interface BlindJudgeGroupService {
 	public List<BlindJudgeGroupVo> do_findBlindJudgePaper(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//导师提交盲审结果
 	public void submitBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
-
+	//
+	public BlindJudgeGroupVo do_findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 }

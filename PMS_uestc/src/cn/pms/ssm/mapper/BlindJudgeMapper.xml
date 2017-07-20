@@ -34,16 +34,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!--导师查询已经盲审的结果-->
-<select id="findBlindResult" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
+<select id="findBlindResult" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" resultType="cn.pms.ssm.po.BlindJudgeGroupVo">
 		SELECT
-		  blindjudgegroup.Teacher_Grade,
-		  blindjudgegroup.Teacher_Result,
-		  blindjudgegroup.Teacher_description
+		  Teacher_Grade,
+		  Teacher_Result,
+		  Teacher_description
 		FROM 
-		  teacher,
 		  blindjudgegroup
 		WHERE 
-		  blindjudgegroup.Teacher_id  = teacher.Teacher_id
+		  Stu_id  = #{Stu_id}
 </select>
 
 </mapper>

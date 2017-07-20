@@ -106,7 +106,7 @@
               <td>${item.paper_researchTwo}</td>
               <td>${item.paper_researchThree}</td>
               <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.getStu_id()});'>评审</button><td> 
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.stu_id});'>评审</button><td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -126,7 +126,7 @@
                      &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                    论文盲审
+                    	论文盲审
                     </h4>
                 </div>
                   <div class="x_content">
@@ -144,13 +144,21 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <select name='organization' class="form-control">
-                          {% for val, item in choices%}
-                            <option value="{{val}}">同意答辩</option>
-                            <option value="{{val}}">论文修改</option>
-                            <option value="{{val}}">不能答辩</option>
-                            {%endfor%}
-                          </select>
+                         <c:choose>
+                          <c:when test="${teacher_Result == null}">
+                           <select name='organization' class="form-control">
+                             <option value="0"></option>
+                             <option value="1">同意答辩</option>
+                             <option value="2">不能答辩</option>
+                             <option value="3">论文修改</option>
+                           </select>
+                          </c:when>
+                          <c:otherwise> 
+                           <select name='organization' class="form-control">
+                            <option value="12">hao</option>
+                           </select>
+                          </c:otherwise>
+                         </c:choose>
                         </div>
                       </div>
 
@@ -230,7 +238,29 @@
 
 <!--将论文盲审信息映射倒模态框-->
 <script type="text/javascript">
-function 
+function show_blinddetails(val){
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/bingjudgeResult',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  console.log(data.teacher_Grade);
+	          console.log(data);
+	          console.log("ok");
+	          
+	          $('#score').val(data.teacher_Grade);
+	          $('#return_cont').val(data.teacher_description);
+	          },
+	         
+	    error: function(data){
+	          console.log('failed')
+	            }
+		
+	    });
+}
 
 
 </script>
