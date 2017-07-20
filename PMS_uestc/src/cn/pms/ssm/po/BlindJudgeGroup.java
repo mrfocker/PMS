@@ -15,7 +15,9 @@ public class BlindJudgeGroup {
 	private int Teacher_Grade;
 	//private int Teacher_Result;
 	private String Teacher_description;
+	
 	enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
+	
 	public String getStu_id() {
 		return Stu_id;
 	}
