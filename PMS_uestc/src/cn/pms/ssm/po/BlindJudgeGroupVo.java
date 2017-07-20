@@ -12,10 +12,10 @@ public class BlindJudgeGroupVo {
 	
 	private String Teacher_id;
 	private String Stu_id;
-	//private String Teacher_Result;
+	private String Teacher_Result;
 	private String Teacher_Grade;
 	private String Teacher_description;
-	enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
+	//enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
 	
 	private String Paper_stuId;
 	private String Paper_title;
@@ -47,12 +47,12 @@ public class BlindJudgeGroupVo {
 	public void setStu_id(String stu_id) {
 		Stu_id = stu_id;
 	}
-	/*public String getTeacher_Result() {
+	public String getTeacher_Result() {
 		return Teacher_Result;
 	}
 	public void setTeacher_Result(String teacher_Result) {
 		Teacher_Result = teacher_Result;
-	}*/
+	}
 	public String getPaper_stuId() {
 		return Paper_stuId;
 	}
