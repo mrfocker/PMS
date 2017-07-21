@@ -15,6 +15,7 @@ public class BlindJudgeGroupVo {
 	private String Teacher_Result;
 	private String Teacher_Grade;
 	private String Teacher_description;
+	private int result_code;
 	//enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
 	
 	private String Paper_stuId;
@@ -83,6 +84,16 @@ public class BlindJudgeGroupVo {
 	public void setPaper_researchThree(String paper_researchThree) {
 		Paper_researchThree = paper_researchThree;
 	}
+	public int getResult_code() {
+		return result_code;
+	}
+	public void setResult_code(int result_code) {
+		this.result_code = result_code;
+	}
+	
+	
+	
+	
 	
 	
 

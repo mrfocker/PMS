@@ -54,8 +54,21 @@ public class BlindJudgeController {
 	@RequestMapping("/bingjudgeResult")
 	public @ResponseBody BlindJudgeGroupVo show_blindjudgeResult(@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
-		blindJudgeGroupVo = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
-		return blindJudgeGroupVo;
+		BlindJudgeGroupVo blindJudgeGroupVo1 = null;
+		blindJudgeGroupVo1 = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
+		System.out.println(blindJudgeGroupVo1.getTeacher_Result());
+		
+		if(blindJudgeGroupVo1.getTeacher_Result().equals("同意答辩")){
+			blindJudgeGroupVo1.setResult_code(1);
+		}
+		else if(blindJudgeGroupVo1.getTeacher_Result().equals("不能答辩")){
+			blindJudgeGroupVo1.setResult_code(2);
+		}
+		else if(blindJudgeGroupVo1.getTeacher_Result().equals("论文修改")){
+			blindJudgeGroupVo1.setResult_code(3);
+		}
+		System.out.println(blindJudgeGroupVo1.getResult_code());
+		return blindJudgeGroupVo1;
 	}
 	
 }
