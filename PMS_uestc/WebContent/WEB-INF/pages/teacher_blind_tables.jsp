@@ -144,21 +144,12 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                         <c:choose>
-                          <c:when test="${teacher_Result == null}">
-                           <select name='organization' class="form-control">
+                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
                              <option value="0"></option>
-                             <option value="1">同意答辩</option>
-                             <option value="2">不能答辩</option>
-                             <option value="3">论文修改</option>
+                             <option value='1'>同意答辩</option>
+                             <option value='2'>不能答辩</option>
+                             <option value='3'>论文修改</option>
                            </select>
-                          </c:when>
-                          <c:otherwise> 
-                           <select name='organization' class="form-control">
-                            <option value="12">hao</option>
-                           </select>
-                          </c:otherwise>
-                         </c:choose>
                         </div>
                       </div>
 
@@ -253,6 +244,13 @@ function show_blinddetails(val){
 	          
 	          $('#score').val(data.teacher_Grade);
 	          $('#return_cont').val(data.teacher_description);
+	          $("#result_select").empty();
+	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.teacher_Result+"</option>");
+	          $("#result_select").append("<option value='0'>-------------</option>");
+	          $("#result_select").append("<option value='1'>同意答辩</option>");
+	          $("#result_select").append("<option value='2'>不能答辩</option>");
+	          $("#result_select").append("<option value='3'>论文修改</option>");
+	          
 	          },
 	         
 	    error: function(data){
