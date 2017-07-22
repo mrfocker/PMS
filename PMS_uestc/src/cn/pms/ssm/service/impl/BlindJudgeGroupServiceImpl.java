@@ -40,5 +40,11 @@ public class BlindJudgeGroupServiceImpl implements BlindJudgeGroupService {
 	public BlindJudgeGroupVo do_findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
 		return blindJudgeMapper.findBlindResult(blindJudgeGroupVo);
-	} 
+	}
+	
+	@Override
+	public void do_updateBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
+		
+		blindJudgeMapper.updateBlindJudge(blindJudgeGroupVo);
+	}
 }

@@ -34,9 +34,20 @@ public class BlindJudgeController {
 	private BlindJudgeGroupService blindJudgeGroupService;
 	
 	@RequestMapping("/submitblindjudge")
-	public void submit_BlindResult (BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
+	public void submit_BlindResult (@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
-		blindJudgeGroupService.submitBlindJudge(blindJudgeGroupVo);
+		if(blindJudgeGroupVo.getResult_code() == 1){
+			blindJudgeGroupVo.setTeacher_Result("同意答辩");
+		}
+		else if(blindJudgeGroupVo.getResult_code() == 2){
+			blindJudgeGroupVo.setTeacher_Result("不能答辩");
+		}
+		else if(blindJudgeGroupVo.getResult_code() == 3){
+			blindJudgeGroupVo.setTeacher_Result("论文修改");
+		}
+		System.out.println(blindJudgeGroupVo.getResult_code());
+		//blindJudgeGroupService.submitBlindJudge(blindJudgeGroupVo);
+		blindJudgeGroupService.do_updateBlindJudge(blindJudgeGroupVo);
 	}
 	
 	@RequestMapping("/blindjudge")

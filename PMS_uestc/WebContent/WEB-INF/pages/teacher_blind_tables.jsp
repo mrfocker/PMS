@@ -163,8 +163,10 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" onclick="do_blindjudge();">提交</button>
+                         <div class="modal-footer" id = "submit_result">
+                         
+                          <!-- <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button> -->
+                      
                           <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                          </div>
                         </div>
@@ -199,10 +201,11 @@
 
 <!--导师提交盲审结果-->
 <script type="text/javascript">
-  function do_blindjudge(){
+  function do_blindjudge(val1){
     var score = $('#score').val();
     var return_cont = $('#return_cont').val();
-    var str = {teacher_Grade:score,teacher_description:return_cont};
+    var select_val = $('#result_select').val();
+    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
@@ -213,10 +216,11 @@
       contentType:'application/json;charset=utf-8',
       data:str,
       /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
-      success: function(data){
+      success: function(){
           
           
           console.log("ok");
+          alter("ok")
           },
          
     error: function(data){
@@ -244,6 +248,7 @@ function show_blinddetails(val){
 	          
 	          $('#score').val(data.teacher_Grade);
 	          $('#return_cont').val(data.teacher_description);
+	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_blindjudge("+val+");'>提交</button>");
 	          $("#result_select").empty();
 	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.teacher_Result+"</option>");
 	          $("#result_select").append("<option value='0'>-------------</option>");

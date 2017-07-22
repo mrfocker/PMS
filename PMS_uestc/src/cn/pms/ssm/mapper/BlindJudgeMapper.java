@@ -22,4 +22,6 @@ public interface BlindJudgeMapper {
 	public void insertBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//模态框显示已经盲审的结果
 	public BlindJudgeGroupVo findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
+	//根据学生ID提交（修改）盲审结果
+	public void updateBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo);
 }

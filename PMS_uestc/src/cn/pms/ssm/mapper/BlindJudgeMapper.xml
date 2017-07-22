@@ -18,7 +18,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			)
 </insert>
 
-<!--查询盲审分配结果-->
+<update id="updateBlindJudge" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" >
+    update 
+      blindjudgegroup
+    set 
+      Teacher_Grade = #{Teacher_Grade},
+      Teacher_Result = #{Teacher_Result},
+      Teacher_description = #{Teacher_description}
+    where Stu_id = #{Stu_id}
+</update>
+
+<!--导师查询自己要盲审的论文-->
 <select id="findBlindJudgePaper" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" resultType="cn.pms.ssm.po.BlindJudgeGroupVo">
 		SELECT
 		 paper.Paper_title,
