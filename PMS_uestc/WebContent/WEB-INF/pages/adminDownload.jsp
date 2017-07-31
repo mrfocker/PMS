@@ -153,8 +153,8 @@
 							<%-- 	<td><a
 									href="${pageContext.request.contextPath }/pages/downloadSingleAdmin.action?id=${downloadVo.paper_stuId}&name=${downloadVo.paper_name}/">下载</a></td> --%>
 								<td><a
-									href="/resources/PaperFile/${downloadVo.file_name}" download="${downloadVo.paper_stuId}_论文.docx">下载</a></td>
-								<td class="pname" style="display: none;">${downloadVo.paper_name }</td>
+									href="/resources/PaperFile/${time}/${downloadVo.file_name}" download="${downloadVo.paper_stuId}_论文.docx" class="link">下载</a></td>
+								<td class="pname" style="display: none;">${downloadVo.file_name }</td>
 							</tr>
 						</c:forEach>
 
@@ -183,8 +183,12 @@
 					var str =  JSON.stringify(result);
 					console.log(str);
 					window.location.href="${pageContext.request.contextPath }/pages/downloadMulti.action?str="+str;
-										
 			}); 
+			 
+			$(".link").click(function(){
+				  var now= new Date();
+				  var year=now.getFullYear();
+			});
 		});
 	</script>
 </html>

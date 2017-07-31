@@ -104,6 +104,7 @@
 			<div class="box-head">
 				<h2>修改密码</h2>
 			</div>
+			
 			<div class="box-content">
 				<div class="form-row">
 					<p class="form-label" id="userOldPwd">当前密码：</p>
@@ -114,16 +115,18 @@
 				<div class="form-row">
 					<p class="form-label" id="userNewPwd">新密码：</p>
 					<div class="form-item">
-						<input type="password" />
+						<input type="password" id="password" name="password"/>
 					</div>
 				</div>
 				<div class="form-row">
 					<p class="form-label" id="checkPwd">确认密码：</p>
 					<div class="form-item">
-						<input type="password" />
+						<input type="password" id="password_again" name="password_again"/>
 					</div>
 				</div>
-				<div class="form-row"></div>
+				<div class="form-row">
+					<input type="submit" value="确定"/>
+				</div>
 				<div class="clear"></div>
 			</div>
 		</div>

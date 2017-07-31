@@ -35,9 +35,9 @@ import cn.pms.ssm.service.LoginService;
 @RequestMapping("/pages")
 public class LoginController{
 
-	private static final int ADMIN = 9;
-	private static final int TEACHER = 1;
-	private static final int STUDENT = 2;
+	private static final String ADMIN = "9";
+	private static final String TEACHER = "1";
+	private static final String STUDENT = "2";
 	
 	@Autowired
 	private LoginService loginService;
@@ -53,11 +53,11 @@ public class LoginController{
 			@RequestParam("userPwd") String userPwd) throws Exception {
 //		 TODO Auto-generated method stub
 		
-		int userTypes = 1;
+		String userTypes = "1";
 		ModelAndView modelAndView = new ModelAndView();
 		
 		if(null != userId){
-			userTypes = Integer.parseInt(userId.substring(0, 1));
+			userTypes = userId.substring(0, 1);
 		}
 //		Map<String, Object> model = new HashMap<String, Object>();
 //		httpSession.setAttribute("id", userId);
@@ -76,16 +76,16 @@ public class LoginController{
 						administrator.setSu_isonline(true);
 						loginService.updateAdminStatus(administrator);
 						modelAndView.addObject("success", "success");
-						modelAndView.setViewName("/tables");
+						modelAndView.setViewName("/adminDowload");
 						return modelAndView;
 					} else {
 						modelAndView.addObject("error", "当前用户已登录");
-						modelAndView.setViewName("/html/logining/index");
+						modelAndView.setViewName("/index");
 						return modelAndView;
 					}
 				} else {
 					modelAndView.addObject("error", "用户名或密码错误");
-					modelAndView.setViewName("/html/logining/index");
+					modelAndView.setViewName("/index");
 					return modelAndView;
 				}
 				
@@ -106,12 +106,12 @@ public class LoginController{
 						return modelAndView;
 					} else {
 						modelAndView.addObject("error", "当前用户已登录");
-						modelAndView.setViewName("/html/logining/index");
+						modelAndView.setViewName("/index");
 						return modelAndView;
 					}
 				} else {
 					modelAndView.addObject("error", "用户名或密码错误");
-					modelAndView.setViewName("/html/logining/index");
+					modelAndView.setViewName("/index");
 					return modelAndView;
 				}
 				
@@ -128,23 +128,24 @@ public class LoginController{
 						student.setStu_isonline(true);
 						loginService.updateStudentStatus(student);
 						modelAndView.addObject("success", "success");
-						modelAndView.setViewName("/logining/tables");
+						modelAndView.setViewName("/tables");
 						return modelAndView;
 					} else {
 						modelAndView.addObject("error", "当前用户已登录");
-						modelAndView.setViewName("/html/logining/index");
+						modelAndView.setViewName("/index");
 						return modelAndView;
 					}
 				} else {
 					modelAndView.addObject("error", "用户名或密码错误");
-					modelAndView.setViewName("/html/logining/index");
+					modelAndView.setViewName("/index");
 					return modelAndView;
 				}
 	
 			default:
-				break;
+				modelAndView.addObject("error", "用户名错误");
+				modelAndView.setViewName("/index");
+				return modelAndView;
 		}
-		return modelAndView;
 	}
 	
 	@RequestMapping(value="/exitLogin", method={RequestMethod.GET, RequestMethod.POST})

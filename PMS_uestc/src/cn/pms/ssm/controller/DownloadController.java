@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -52,13 +53,13 @@ public class DownloadController {
 
 	private Logger Log = Logger.getLogger(DownloadController.class);
 
-	private static final String FilePath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS"
-			+ File.separator + "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile"
-			+ File.separator;
+	private static final String FilePath = File.separator + "Users" + File.separator + "JJ" + File.separator + "Downloads"
+			+ File.separator + "resources" + File.separator + "PaperFile" + File.separator;
 
 	@RequestMapping(value = "/searchAll", method = { RequestMethod.POST, RequestMethod.GET })
 	public @ResponseBody ModelAndView getDownloadList() {
 		ModelAndView modelAndView = new ModelAndView();
+		Date date = new Date();
 		ArrayList<DownloadVo> list = downloadService.selectAllItem();
 
 		// DownloadVo downloadVo = new DownloadVo();
@@ -66,9 +67,9 @@ public class DownloadController {
 		// String s = list.get(3).getStu_name();
 		// downloadVo.setStu_name(s);
 		String s = null;
-
+		int year = date.getYear()+1900;
 		modelAndView.addObject("downloadList", list);
-		// modelAndView.addObject("type", arr);
+		modelAndView.addObject("time", year);
 		modelAndView.setViewName("/adminDownload");// adminDownload
 		return modelAndView;
 	}
@@ -77,11 +78,13 @@ public class DownloadController {
 	public ModelAndView downloadMulti(@RequestParam("str") String str, HttpServletResponse response) {
 
 		// 生成的ZIP文件名为selectedFile.zip
+		Date date = new Date();
 		String tmpFileName = "selectedFile.zip";
 		byte[] buffer = new byte[1024];
-		String strZipPath = FilePath + tmpFileName;
+		int year = date.getYear()+1900;
+		String strZipPath = FilePath + File.separator + year + File.separator + tmpFileName;
 		
-		//URL中的JSON不能被@equestbody解析，所以手动解析
+		//URL中的JSON不能被@Requestbody解析，所以手动解析
 		ArrayList<String> namelist = new ArrayList<String>();
 		JSONArray jsonArray = JSONArray.fromObject(str);
 		namelist = (ArrayList<String>) JSONArray.toList(jsonArray);
@@ -92,7 +95,7 @@ public class DownloadController {
 			File[] files = new File[1024];
 			for (int index = 0; index < namelist.size(); index++) {
 				if (null != namelist.get(index)) {
-					files[index] = new File(FilePath + namelist.get(index));
+					files[index] = new File(FilePath + File.separator + year + File.separator + namelist.get(index));
 				}
 			}
 

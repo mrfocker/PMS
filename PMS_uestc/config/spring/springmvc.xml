@@ -67,6 +67,35 @@
 		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 	</bean>
 
+	<!-- freemarker config for FreeMarkerViewResolver -->
+<!--     <bean id="freemarkerConfig"
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.freemarker.FreeMarkerView
+			</value>
+		</property>
+		<property name="cache">
+			<value>true</value>
+		</property>
+        <property name="templateLoaderPath" value="/freemarker/" />
+        <property name="defaultEncoding" value="GBK" />
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="extends" value-ref="extendsDirective"></entry>
+                <entry key="override" value-ref="overrideDirective"></entry>
+                <entry key="block" value-ref="blockDirective"></entry>
+                <entry key="super" value-ref="superDirective"></entry>
+            </map>
+        </property>
+        <property name="contentType">
+			<value>text/html; charset=UTF-8</value>
+		</property>
+        <property name="prefix" value="/WEB-INF/pages"></property>
+		<property name="suffix" value=".jsp"/>
+    </bean> -->
+    
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"

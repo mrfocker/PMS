@@ -7,6 +7,7 @@
 	String userPwd = request.getParameter("userPwd");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <head>
 <meta charset="utf-8">
 <title>研究生论文管理系统 - 登录</title>
@@ -50,6 +51,12 @@
 				expires : 1
 			});
 		});
+		
+		var err = "${error}";
+ 		if(err != null && err != "")
+		{
+		  alert(err);
+		} 
 	});
 </script>
 </head>
@@ -84,7 +91,7 @@
 							</ul>
 						</fieldset>
 					</form>
-					<span id="lost-psw"> <a href="#">修改密码</a>
+					<span id="lost-psw"> <a href="${pageContext.request.contextPath }/pages/updatePwd.jsp">修改密码</a>
 					</span>
 				</div>
 			</div>

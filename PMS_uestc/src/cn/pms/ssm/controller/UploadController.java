@@ -51,31 +51,48 @@ public class UploadController {
 	private static Logger logger = Logger.getLogger(UploadController.class);
 
 	@RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody ModelAndView upload(UploadVo uploadVo, @RequestParam("file") MultipartFile file) throws IOException {
+	public @ResponseBody ModelAndView upload(UploadVo uploadVo, @RequestParam("file") MultipartFile file)
+			throws IOException {
 
 		Date date = new Date();
 		Random random = new Random();
 		ModelAndView modelAndView = new ModelAndView();
-//		文件重命名
-		String newFileName = date.getTime() +"0"+ random.nextInt() + ".docx";
+		int num = random.nextInt(99999 - 0) + 1;
+		// 文件重命名
+		String newFileName = date.getTime() + "0" + num + ".docx";
 		logger.info(newFileName);
-//		绝对路径
-		String filepath = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
-				+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile";
 		
-		File newfile = new File(filepath, newFileName);
-
+		int year =  date.getYear()+1900;  //有问题！待讨论！
+	
+		// 绝对路径
+		String filepath = File.separator + "Users" + File.separator + "JJ" + File.separator + "Downloads" + File.separator
+				+ "resources" + File.separator + "PaperFile" + File.separator + year;
+		File dir = new File(filepath);
+		File newfile = null;
+		if (dir.exists()) {
+			if (dir.isDirectory()) {
+				System.out.println("dir exists");
+				newfile = new File(filepath, newFileName);
+			} else {
+				System.out.println("the same name file exists, can not create dir");
+			}
+		} else {
+			System.out.println("dir not exists, create it ...");
+			dir.mkdir();
+			newfile = new File(filepath, newFileName);
+		}
+		
 		if (!file.isEmpty()) {
 			logger.error("Process file: " + file.getOriginalFilename());
 			logger.error("Process file path: " + filepath);
-			
+
 			FileUtils.copyInputStreamToFile(file.getInputStream(), newfile);
 
 			uploadVo.setFile_name(newFileName);
 			if (null != uploadService.selectPaperIfExist(uploadVo)) {
-				logger.error(newFileName + " exist");
+				logger.error("-------------->exist");
 				// 删除已存在文件
-				File temp = new File(filepath+uploadVo.getFile_name());
+				File temp = new File(filepath + uploadVo.getFile_name());
 				temp.delete();
 				uploadService.updatePaperItem(uploadVo);
 			} else {
@@ -83,8 +100,8 @@ public class UploadController {
 				uploadService.insertFileItem(uploadVo);
 			}
 		}
-		
-		modelAndView.addObject("success","success");
+
+		modelAndView.addObject("success", "success");
 		modelAndView.setViewName("/tables");
 		return modelAndView;
 	}
