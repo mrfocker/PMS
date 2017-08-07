@@ -167,7 +167,7 @@
                          
                           <!-- <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button> -->
                       
-                          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
                          </div>
                         </div>
                       </div>
@@ -216,11 +216,9 @@
       contentType:'application/json;charset=utf-8',
       data:str,
       /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
-      success: function(){
-          
-          
+      success: function(){      
           console.log("ok");
-          alter("ok")
+          alert("提交成功")
           },
          
     error: function(data){
@@ -248,7 +246,9 @@ function show_blinddetails(val){
 	          
 	          $('#score').val(data.teacher_Grade);
 	          $('#return_cont').val(data.teacher_description);
+	          $("#submit_result").empty();
 	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_blindjudge("+val+");'>提交</button>");
+	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
 	          $("#result_select").empty();
 	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.teacher_Result+"</option>");
 	          $("#result_select").append("<option value='0'>-------------</option>");

@@ -34,7 +34,7 @@ public class BlindJudgeController {
 	private BlindJudgeGroupService blindJudgeGroupService;
 	
 	@RequestMapping("/submitblindjudge")
-	public void submit_BlindResult (@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
+	public @ResponseBody void submit_BlindResult (@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
 		if(blindJudgeGroupVo.getResult_code() == 1){
 			blindJudgeGroupVo.setTeacher_Result("同意答辩");
