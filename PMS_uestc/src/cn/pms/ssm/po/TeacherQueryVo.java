@@ -10,25 +10,16 @@ package cn.pms.ssm.po;
 */
 
 public class TeacherQueryVo {
-	//教师姓名
 	private String Teacher_name;
-	
-	//教师工号
 	private String Teacher_id;
-	
-	//学生ID
 	private String Stu_id;
-	
-	//学生姓名
 	private String Stu_name;
-	
-	//论文题目
 	private String Paper_title;
-	
-	//论文研究方向
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
+	private String Paper_advise;
+	private String Paper_ifpass;
 	public String getStu_id() {
 		return Stu_id;
 	}
@@ -76,6 +67,18 @@ public class TeacherQueryVo {
 	}
 	public void setTeacher_id(String teacher_id) {
 		Teacher_id = teacher_id;
+	}
+	public String getPaper_advise() {
+		return Paper_advise;
+	}
+	public void setPaper_advise(String paper_advise) {
+		Paper_advise = paper_advise;
+	}
+	public String getPaper_ifpass() {
+		return Paper_ifpass;
+	}
+	public void setPaper_ifpass(String paper_ifpass) {
+		Paper_ifpass = paper_ifpass;
 	}
 	
 	

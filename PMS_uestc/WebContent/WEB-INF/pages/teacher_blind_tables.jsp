@@ -12,11 +12,16 @@
   <!---CSS Files-->
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/tables.css">
+  
+  <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!---jQuery Files-->
+  <script src="bootstrap-fileinput/js/fileinput.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   
+  <!---jQuery Files-->
   <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  
   <!--<script src="js/jquery-1.7.1.min.js"></script>-->
   <!-- <script src="js/jquery-ui-1.8.17.min.js"></script> -->
   <script src="js/styler.js"></script>
@@ -25,8 +30,6 @@
   <script src="js/sticky.full.js"></script>
   <script src="js/global.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
-  <script src="bootstrap-fileinput/js/fileinput.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
   <!---Fonts-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
@@ -218,11 +221,12 @@
       /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
       success: function(){      
           console.log("ok");
-          alert("提交成功")
+          alert("提交审核成功")
           },
          
     error: function(data){
-          console.log('failed')
+          console.log('failed');
+          alert("提交审核失败")
             }
 	
     });

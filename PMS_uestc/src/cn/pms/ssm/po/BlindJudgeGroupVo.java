@@ -16,7 +16,6 @@ public class BlindJudgeGroupVo {
 	private String Teacher_Grade;
 	private String Teacher_description;
 	private int result_code;
-	//enum Teacher_Result{ 同意答辩,修改论文,不能答辩 ;};
 	
 	private String Paper_stuId;
 	private String Paper_title;

@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/tables.css">
   <!---jQuery Files-->
-  <script src="js/jquery-1.7.1.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <!--  <script src="js/jquery-1.7.1.min.js"></script> -->
   <script src="js/jquery-ui-1.8.17.min.js"></script>
   <script src="js/styler.js"></script>
   <script src="js/jquery.tipTip.js"></script>
@@ -22,6 +23,11 @@
   <script src="js/sticky.full.js"></script>
   <script src="js/global.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
+  <!--bootstrap Files-->
+  <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="bootstrap-fileinput/js/fileinput.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <!---Fonts-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
@@ -115,13 +121,12 @@
             <tr>
               <th>学生姓名</th>
               <th>学生学号</th>
+              <th>论文题目</th>
+              <th>研究方向1</th>
               <th>研究方向2</th>
               <th>研究方向3</th>
-              <th>全篇重复率</th>
-              <th>单章重复率</th>
-              <th>盲审审核</th>
-              <th>论文答辩</th>
-              <th>论文题目修改原因</th>
+              <th>论文下载</th>
+              <th>导师审核</th>
             </tr>
           </thead>
           <tbody>
@@ -129,21 +134,77 @@
             <tr class="odd gradeX">
               <td>${item.stu_name}</td>
               <td>${item.stu_id}</td>
-              <td>${item.teacher_name}</td>
-              <td>1234</td>
-              <td>%49</td>
-              <td>%4</td>
-              <td>通过</td>
-              <td>通过</td>
-              <td>无</td>
+              <td>${item.paper_title}</td>
+              <td>${item.paper_researchOne}</td>
+              <td>${item.paper_researchTwo}</td>
+              <td>${item.paper_researchThree}</td>
+              <td><button>下载</button></td>
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.stu_id});'>评审</button><td> 
             </tr>
            </c:forEach>
           </tbody>
          </table>
         </div>
       </div>
-
   </div>
+  
+  <!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
+          <div class="modal-dialog">
+            <div class="col-md-11 col-xs-22">                      
+             <div class="modal-content">
+                <div class="x_panel">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                    	导师审核
+                    </h4>
+                </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left">
+                    
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
+                             <option value="0"></option>
+                             <option value='1'>通过</option>
+                             <option value='2'>修改</option>
+                             <option value='3'>不通过</option>
+                           </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" rows="5" placeholder='' id='return_cont'></textarea>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <div class="modal-footer" id = "submit_result">
+                         
+                          <!-- <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button> -->
+                      
+                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+                         </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+             </div>
+         </div>
+ <!-- 模态框（Modal）完 -->     
 
 <div class="footer">
   <p>Powered by Adminity Administration Interface</p>
@@ -185,5 +246,72 @@ function requestJson(){
 }
 </script> -->
 
+<!--将导师审核自己学生论文得信息映射倒模态框-->
+<script type="text/javascript">
+function show_judgedetails(val){
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/bingjudgeResult',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  console.log(data.teacher_Grade);
+	          console.log(data);
+	          console.log("ok");
+	          
+	          $('#score').val(data.teacher_Grade);
+	          $('#return_cont').val(data.teacher_description);
+	          $("#submit_result").empty();
+	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_teacherjudge("+val+");'>提交</button>");
+	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
+	          $("#result_select").empty();
+	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.paper_ifpass+"</option>");
+	          $("#result_select").append("<option value='0'>-------------</option>");
+	          $("#result_select").append("<option value='1'>通过</option>");
+	          $("#result_select").append("<option value='2'>修改</option>");
+	          $("#result_select").append("<option value='3'>不通过</option>");
+	          
+	          },
+	         
+	    error: function(data){
+	          console.log('failed')
+	            }
+		
+	    });
+}
+</script>
+
+<!--导师提交对自己学生论文审核的结果-->
+<script type="text/javascript">
+  function do_blindjudge(val1){
+    var score = $('#score').val();
+    var return_cont = $('#return_cont').val();
+    var select_val = $('#result_select').val();
+    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val};
+    /* var str = []; */
+    /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
+    str = JSON.stringify(str);
+    console.log(str);
+    $.ajax({
+      url:'${pageContext.request.contextPath }/pages/submitblindjudge',
+      type:'post',
+      contentType:'application/json;charset=utf-8',
+      data:str,
+      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
+      success: function(){      
+          console.log("ok");
+          alert("提交审核成功")
+          },
+         
+    error: function(data){
+          console.log('failed');
+          alert("提交审核失败")
+            }
+	
+    });
+  }
+</script>
 </body>
 </html>
