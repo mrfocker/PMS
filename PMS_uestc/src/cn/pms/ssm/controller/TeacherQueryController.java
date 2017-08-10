@@ -42,20 +42,41 @@ public class TeacherQueryController {
 		return modelAndView;
 		}
 	
+	@RequestMapping("/teacherQueryAdvise")
+	public @ResponseBody ModelAndView teacherQueryAdvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
+		
+		TeacherQueryVo teacherQueryVo1 = null;
+		teacherQueryVo1 = teacherQueryService.do_findTeacherAdvise(teacherQueryVo);
+		
+		/*if(teacherQueryVo1.getPaper_ifPass().equals(null)){
+			teacherQueryVo1.setResult_code(0);
+		}*/
+		if(teacherQueryVo1.getPaper_ifPass().equals("通过")){
+			teacherQueryVo1.setResult_code(1);
+		}
+		if(teacherQueryVo1.getPaper_ifPass().equals("修改")){
+			teacherQueryVo1.setResult_code(2);
+		}
+		if(teacherQueryVo1.getPaper_ifPass().equals("不通过")){
+			teacherQueryVo1.setResult_code(3);
+		}
+		return null;
+		}
+	
 	@RequestMapping("/submitteacheradvise")
 	public @ResponseBody void submit_teacheradvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
 		
 		if(teacherQueryVo.getResult_code() == 0){
-			teacherQueryVo.setPaper_ifpass("无");
+			teacherQueryVo.setPaper_ifPass("无");
 		}
 		if(teacherQueryVo.getResult_code() == 1){
-			teacherQueryVo.setPaper_ifpass("通过");
+			teacherQueryVo.setPaper_ifPass("通过");
 		}
 		if(teacherQueryVo.getResult_code() == 2){
-			teacherQueryVo.setPaper_ifpass("修改");
+			teacherQueryVo.setPaper_ifPass("修改");
 		}
 		if(teacherQueryVo.getResult_code() == 3){
-			teacherQueryVo.setPaper_ifpass("不通过");
+			teacherQueryVo.setPaper_ifPass("不通过");
 		}
 		System.out.println(teacherQueryVo.getResult_code());
 		//调用提交评价接口

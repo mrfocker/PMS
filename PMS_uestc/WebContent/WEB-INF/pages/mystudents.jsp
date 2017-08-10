@@ -139,7 +139,7 @@
               <td>${item.paper_researchTwo}</td>
               <td>${item.paper_researchThree}</td>
               <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.stu_id});'>评审</button><td> 
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button><td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -249,25 +249,24 @@ function requestJson(){
 <!--将导师审核自己学生论文得信息映射倒模态框-->
 <script type="text/javascript">
 function show_judgedetails(val){
-	var str = {stu_id:val};
+	var str = {paper_stuId:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'${pageContext.request.contextPath }/pages/bingjudgeResult',
+	      url:'${pageContext.request.contextPath }/pages/teacherQueryAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
 	      success: function(data){
-	    	  console.log(data.teacher_Grade);
 	          console.log(data);
 	          console.log("ok");
 	          
 	          $('#score').val(data.teacher_Grade);
-	          $('#return_cont').val(data.teacher_description);
+	          $('#return_cont').val(data.paper_advise);
 	          $("#submit_result").empty();
 	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_teacherjudge("+val+");'>提交</button>");
 	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
 	          $("#result_select").empty();
-	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.paper_ifpass+"</option>");
+	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.paper_ifPass+"</option>");
 	          $("#result_select").append("<option value='0'>-------------</option>");
 	          $("#result_select").append("<option value='1'>通过</option>");
 	          $("#result_select").append("<option value='2'>修改</option>");

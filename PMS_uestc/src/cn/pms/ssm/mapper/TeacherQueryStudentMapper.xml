@@ -6,13 +6,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cn.pms.ssm.mapper.TeacherQueryStudentMapper">
 
-	<!--导师查询自己学生的论文信息-->
+<!--导师查询自己学生的论文信息-->
 <select id="findMyStuInfo" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
 		SELECT
 		  paper.Paper_title,
 		  paper.Paper_researchOne,
 		  paper.Paper_researchTwo,
 		  paper.Paper_researchThree,
+		  paper.Paper_stuId,
 		  student.Stu_name,
 		  student.Stu_id,
 		  teacher.Teacher_id,
@@ -25,12 +26,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  paper.Paper_stuId = student.Stu_id AND teacher.Teacher_id = student.Stu_teacherId
 </select>
 
+<select id="findTeacherAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
+		SELECT
+		  *
+		FROM 
+		  paper
+		WHERE 
+		  Paper_stuId = #{Paper_stuId}
+</select>
+
 <update id="updateTeacherAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" >
     update 
       paper
     set 
       Paper_ifpass = #{Paper_ifpass},
       Paper_advise = #{Paper_advise}
-    where student.Stu_id = paper.Paper_StuId
+    where 
+      Paper_stuId = #{Paper_stuId}
 </update>
 </mapper>

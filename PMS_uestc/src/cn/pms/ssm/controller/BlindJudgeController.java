@@ -72,6 +72,9 @@ public class BlindJudgeController {
 		blindJudgeGroupVo1 = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
 		System.out.println(blindJudgeGroupVo1.getTeacher_Result());
 		
+		if(blindJudgeGroupVo1.getTeacher_Result().equals(null)){
+			blindJudgeGroupVo1.setResult_code(0);
+		}
 		if(blindJudgeGroupVo1.getTeacher_Result().equals("同意答辩")){
 			blindJudgeGroupVo1.setResult_code(1);
 		}

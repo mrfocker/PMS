@@ -17,6 +17,8 @@ public interface TeacherQueryService {
 	
 	//导师查询自己学生的论文信息
 	public List<TeacherQueryVo> do_findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception;
-   //导师提交对自己学生论文的修改意见
+    //导师提交对自己学生论文的修改意见
 	public void do_updateTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
+	//教授查询自己学生论文评审的信息
+	public TeacherQueryVo do_findTeacherAdvise(TeacherQueryVo teacherQueryvo) throws Exception;
 }

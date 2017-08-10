@@ -18,8 +18,29 @@ public class Paper {
 	private String Paper_reason;
 	private Float Paper_repetitiveRateAll;
 	private Float Paper_repetitiveRateSingle;
-	private int Paper_ifPass;
+	private String Paper_ifPass;
+	private String Paper_advise;
 	private int Paper_blindJudge;
+	
+	
+	public String getPaper_stuId() {
+		return Paper_stuId;
+	}
+	public void setPaper_stuId(String paper_stuId) {
+		Paper_stuId = paper_stuId;
+	}
+	public Float getPaper_repetitiveRateSingle() {
+		return Paper_repetitiveRateSingle;
+	}
+	public void setPaper_repetitiveRateSingle(Float paper_repetitiveRateSingle) {
+		Paper_repetitiveRateSingle = paper_repetitiveRateSingle;
+	}
+	public String getPaper_advise() {
+		return Paper_advise;
+	}
+	public void setPaper_advise(String paper_advise) {
+		Paper_advise = paper_advise;
+	}
 	public String getPaper_stuid() {
 		return Paper_stuId;
 	}
@@ -68,10 +89,10 @@ public class Paper {
 	public void setPaper_repetitiveRateSing(Float paper_repetitiveRateSingle) {
 		Paper_repetitiveRateSingle = paper_repetitiveRateSingle;
 	}
-	public int getPaper_ifPass() {
+	public String getPaper_ifPass() {
 		return Paper_ifPass;
 	}
-	public void setPaper_ifPass(int paper_ifPass) {
+	public void setPaper_ifPass(String paper_ifPass) {
 		Paper_ifPass = paper_ifPass;
 	}
 	public int getPaper_blindJudge() {

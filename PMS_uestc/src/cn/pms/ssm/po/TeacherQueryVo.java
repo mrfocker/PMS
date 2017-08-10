@@ -20,7 +20,15 @@ public class TeacherQueryVo {
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
 	private String Paper_advise;
-	private String Paper_ifpass;
+	private String Paper_ifPass;
+	private String Paper_stuId;
+	
+	public String getPaper_stuId() {
+		return Paper_stuId;
+	}
+	public void setPaper_stuId(String paper_stuId) {
+		Paper_stuId = paper_stuId;
+	}
 	private int result_code;
 	
 	public String getStu_id() {
@@ -77,11 +85,11 @@ public class TeacherQueryVo {
 	public void setPaper_advise(String paper_advise) {
 		Paper_advise = paper_advise;
 	}
-	public String getPaper_ifpass() {
-		return Paper_ifpass;
+	public String getPaper_ifPass() {
+		return Paper_ifPass;
 	}
-	public void setPaper_ifpass(String paper_ifpass) {
-		Paper_ifpass = paper_ifpass;
+	public void setPaper_ifPass(String paper_ifPass) {
+		Paper_ifPass = paper_ifPass;
 	}
 	public int getResult_code() {
 		return result_code;
