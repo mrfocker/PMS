@@ -32,7 +32,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer selectstudentlogin(Student student) {
 		// TODO Auto-generated method stub
-		return loginMapper.selectstudentlogin(student);
+		int result = loginMapper.selectstudentlogin(student);
+		student.setStu_isonline(false);
+		if (1 == result) {
+			loginMapper.updateStudentStatus(student);
+		}
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -41,7 +46,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer selectteacherlogin(Teacher teacher) {
 		// TODO Auto-generated method stub
-		return loginMapper.selectteacherlogin(teacher);
+		int result = loginMapper.selectteacherlogin(teacher);
+		teacher.setTeacher_isonline(false);
+		if (1 == result) {
+			loginMapper.updateTeacherStatus(teacher);
+		}
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -50,7 +60,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer selectadminlogin(Administrator administrator) {
 		// TODO Auto-generated method stub
-		return loginMapper.selectadminlogin(administrator);
+		int result = loginMapper.selectadminlogin(administrator);
+		administrator.setSu_isonline(false);
+		if(1 == result){
+			loginMapper.updateAdminStatus(administrator);
+		}
+		return 0;
 	}
 
 	/* (non-Javadoc)

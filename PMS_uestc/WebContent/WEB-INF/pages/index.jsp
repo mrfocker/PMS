@@ -47,9 +47,9 @@
 			$.cookie('userId', $("#userId").val(), {
 				expires : 1
 			});
-			$.cookie('userPwd', $("#userPwd").val(), {
+			/* $.cookie('userPwd', $("#userPwd").val(), {
 				expires : 1
-			});
+			}); */
 		});
 		
 		var err = "${error}";

@@ -22,11 +22,18 @@
 <script src="js/sticky.full.js"></script>
 <script src="js/global.js"></script>
 <script src="js/jquery.dataTables.min.js"></script>
+<!-- <script src="js/beforeUnload.js"></script> -->
 <!---Fonts-->
 <link
 	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600"
 	rel="stylesheet" type="text/css">
 
+<!-- <script type="text/javascript">
+$(window).bind('beforeunload',function(){
+	window.location.href = "${pageContext.request.contextPath }/pages/exitLogin.action";
+    return '您输入的内容尚未保存，确定离开此页面吗？';
+});
+</script> -->
 </head>
 <body>
 	<div class="header">
@@ -51,7 +58,7 @@
 					</p>
 					<p>
 						<a href="#">Preferences</a><a href="#">Profile</a><a
-							href="index.html">Log out</a>
+							href="${pageContext.request.contextPath }/pages/exitLogin.action">Log out</a>
 					</p>
 				</div></li>
 			<li>
