@@ -16,7 +16,6 @@ public class BlindJudgeGroupVo {
 	private String Teacher_Grade;
 	private String Teacher_description;
 	private int result_code;
-	
 	private String Paper_stuId;
 	private String Paper_title;
 	private String Paper_researchOne;

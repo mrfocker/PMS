@@ -10,6 +10,7 @@ package cn.pms.ssm.po;
 */
 
 public class TeacherQueryVo {
+	
 	private String Teacher_name;
 	private String Teacher_id;
 	private String Stu_id;
@@ -20,6 +21,8 @@ public class TeacherQueryVo {
 	private String Paper_researchThree;
 	private String Paper_advise;
 	private String Paper_ifpass;
+	private int result_code;
+	
 	public String getStu_id() {
 		return Stu_id;
 	}
@@ -80,6 +83,14 @@ public class TeacherQueryVo {
 	public void setPaper_ifpass(String paper_ifpass) {
 		Paper_ifpass = paper_ifpass;
 	}
+	public int getResult_code() {
+		return result_code;
+	}
+	public void setResult_code(int result_code) {
+		this.result_code = result_code;
+	}
+	
+	
 	
 	
 	

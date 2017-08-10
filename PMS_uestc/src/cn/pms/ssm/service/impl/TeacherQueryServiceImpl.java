@@ -27,9 +27,14 @@ public class TeacherQueryServiceImpl implements TeacherQueryService{
 
 	@Override
 	public List<TeacherQueryVo> do_findMyStuInfo(TeacherQueryVo teacherQueryVo) throws Exception {
-		// TODO Auto-generated method stub
+
 		return teacherQueryStudentMapper.findMyStuInfo(teacherQueryVo);
 	}
 	
+	@Override
+	public void do_updateTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception{
+		//调用更新导师意见的Mapper接口
+		
+	}
 
 }

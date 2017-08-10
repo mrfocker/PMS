@@ -24,4 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 		  paper.Paper_stuId = student.Stu_id AND teacher.Teacher_id = student.Stu_teacherId
 </select>
+
+<update id="updateTeacherAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" >
+    update 
+      paper
+    set 
+      Paper_ifpass = #{Paper_ifpass},
+      Paper_advise = #{Paper_advise}
+    where Paper_StuId = #{Paper_StuId}
+</update>
 </mapper>
