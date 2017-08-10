@@ -34,7 +34,7 @@ public class TeacherQueryServiceImpl implements TeacherQueryService{
 	@Override
 	public void do_updateTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception{
 		//调用更新导师意见的Mapper接口
-		
+		teacherQueryStudentMapper.updateTeacherAdvise(teacherQueryVo);
 	}
 
 }

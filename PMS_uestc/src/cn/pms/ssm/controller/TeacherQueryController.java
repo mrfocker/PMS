@@ -59,6 +59,7 @@ public class TeacherQueryController {
 		}
 		System.out.println(teacherQueryVo.getResult_code());
 		//调用提交评价接口
+		teacherQueryService.do_updateTeacherAdvise(teacherQueryVo);
 	}
 	
 	

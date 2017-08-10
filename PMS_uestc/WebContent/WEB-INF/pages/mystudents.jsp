@@ -285,17 +285,16 @@ function show_judgedetails(val){
 
 <!--导师提交对自己学生论文审核的结果-->
 <script type="text/javascript">
-  function do_blindjudge(val1){
-    var score = $('#score').val();
+  function do_teacherjudge(val1){
     var return_cont = $('#return_cont').val();
     var select_val = $('#result_select').val();
-    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val};
+    var str = {stu_id:val1,paper_advise:return_cont,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
     console.log(str);
     $.ajax({
-      url:'${pageContext.request.contextPath }/pages/submitblindjudge',
+      url:'${pageContext.request.contextPath }/pages/submitteacheradvise',
       type:'post',
       contentType:'application/json;charset=utf-8',
       data:str,

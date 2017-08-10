@@ -31,6 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     set 
       Paper_ifpass = #{Paper_ifpass},
       Paper_advise = #{Paper_advise}
-    where Paper_StuId = #{Paper_StuId}
+    where student.Stu_id = paper.Paper_StuId
 </update>
 </mapper>
