@@ -43,31 +43,36 @@ public class TeacherQueryController {
 		}
 	
 	@RequestMapping("/teacherQueryAdvise")
-	public @ResponseBody ModelAndView teacherQueryAdvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
+	public @ResponseBody TeacherQueryVo teacherQueryAdvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
 		
 		TeacherQueryVo teacherQueryVo1 = null;
 		teacherQueryVo1 = teacherQueryService.do_findTeacherAdvise(teacherQueryVo);
 		
-		/*if(teacherQueryVo1.getPaper_ifPass().equals(null)){
+		if(teacherQueryVo1 == null){
+			teacherQueryVo1 = new TeacherQueryVo();
 			teacherQueryVo1.setResult_code(0);
-		}*/
-		if(teacherQueryVo1.getPaper_ifPass().equals("通过")){
-			teacherQueryVo1.setResult_code(1);
+			teacherQueryVo1.setPaper_advise(" ");
 		}
-		if(teacherQueryVo1.getPaper_ifPass().equals("修改")){
-			teacherQueryVo1.setResult_code(2);
+		else{
+			if(teacherQueryVo1.getPaper_ifPass().equals("通过")){
+				teacherQueryVo1.setResult_code(1);
+			}
+			if(teacherQueryVo1.getPaper_ifPass().equals("修改")){
+				teacherQueryVo1.setResult_code(2);
+			}
+			if(teacherQueryVo1.getPaper_ifPass().equals("不通过")){
+				teacherQueryVo1.setResult_code(3);
+			}
 		}
-		if(teacherQueryVo1.getPaper_ifPass().equals("不通过")){
-			teacherQueryVo1.setResult_code(3);
-		}
-		return null;
-		}
+	
+		return teacherQueryVo1;
+	}
 	
 	@RequestMapping("/submitteacheradvise")
 	public @ResponseBody void submit_teacheradvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
 		
 		if(teacherQueryVo.getResult_code() == 0){
-			teacherQueryVo.setPaper_ifPass("无");
+			teacherQueryVo.setPaper_ifPass(null);
 		}
 		if(teacherQueryVo.getResult_code() == 1){
 			teacherQueryVo.setPaper_ifPass("通过");

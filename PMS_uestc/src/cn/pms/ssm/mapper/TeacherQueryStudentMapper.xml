@@ -28,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="findTeacherAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
 		SELECT
-		  *
+		  Paper_ifPass,
+		  Paper_advise
 		FROM 
 		  paper
 		WHERE 

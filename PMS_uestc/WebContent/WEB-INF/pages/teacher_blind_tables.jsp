@@ -13,14 +13,14 @@
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/tables.css">
   
+  <!---jQuery Files-->
+  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  
   <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="bootstrap-fileinput/js/fileinput.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  
-  <!---jQuery Files-->
-  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
   
   <!--<script src="js/jquery-1.7.1.min.js"></script>-->
   <!-- <script src="js/jquery-ui-1.8.17.min.js"></script> -->
@@ -255,7 +255,6 @@ function show_blinddetails(val){
 	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
 	          $("#result_select").empty();
 	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.teacher_Result+"</option>");
-	          $("#result_select").append("<option value='0'>-------------</option>");
 	          $("#result_select").append("<option value='1'>同意答辩</option>");
 	          $("#result_select").append("<option value='2'>不能答辩</option>");
 	          $("#result_select").append("<option value='3'>论文修改</option>");

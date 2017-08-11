@@ -267,7 +267,6 @@ function show_judgedetails(val){
 	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
 	          $("#result_select").empty();
 	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.paper_ifPass+"</option>");
-	          $("#result_select").append("<option value='0'>-------------</option>");
 	          $("#result_select").append("<option value='1'>通过</option>");
 	          $("#result_select").append("<option value='2'>修改</option>");
 	          $("#result_select").append("<option value='3'>不通过</option>");
@@ -287,7 +286,7 @@ function show_judgedetails(val){
   function do_teacherjudge(val1){
     var return_cont = $('#return_cont').val();
     var select_val = $('#result_select').val();
-    var str = {stu_id:val1,paper_advise:return_cont,result_code:select_val};
+    var str = {paper_stuId:val1,paper_advise:return_cont,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
