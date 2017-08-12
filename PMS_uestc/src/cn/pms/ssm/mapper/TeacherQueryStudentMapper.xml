@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update 
       paper
     set 
-      Paper_ifpass = #{Paper_ifpass},
+      Paper_ifpass = #{Paper_ifPass},
       Paper_advise = #{Paper_advise}
     where 
       Paper_stuId = #{Paper_stuId}
