@@ -3,7 +3,7 @@ a,img{border:0;}
 body{font:12px/180% Arial, Helvetica, sans-serif, "鏂板畫浣�";}
 
 .formbox{width:1296px;margin:40px auto;}
-.formcon{padding:10px 0;border:solid 1px #ddd}
+.formcon{padding:10px 0;}
 .formcon table input{width:200px;}
 .formcon table td{padding:5px;line-height:24px;}
 

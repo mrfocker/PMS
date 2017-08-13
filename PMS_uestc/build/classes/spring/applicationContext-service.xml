@@ -21,5 +21,7 @@
 <!--导师盲审查询-->
 <bean id = "BlindJudgeGroupService" class = "cn.pms.ssm.service.impl.BlindJudgeGroupServiceImpl"/>
 <!--导师信息在页面展示-->
-<bean id = "ShowTeacherInfoService" class = "cn.pms.ssm.service.impl.ShowTeacherInfoServiceImpl"/>                  
+<bean id = "ShowTeacherInfoService" class = "cn.pms.ssm.service.impl.ShowTeacherInfoServiceImpl"/>
+<!--学术论文信息和流程页面展示-->
+<bean id = "StudentPaperInfoService" class = "cn.pms.ssm.service.impl.StudentPaperInfoServiceImpl"/>                  
 </beans>

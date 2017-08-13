@@ -127,25 +127,45 @@
                     <li id="qzfs" class="last">学位授予</li>
                 </ul>
             </div>
+    <!--论文信息-->
+    <div class="content container_12">
+      <div class="box grid_12">
+        <div class="box-head"><h2>毕业论文信息</h2></div>
+        <div class="box-content no-pad">
+          <table class="display">
+          <thead>
+            <tr>
+              <th>学生姓名</th>
+              <th>学生学号</th>
+              <th>论文题目</th>
+              <th>研究方向1</th>
+              <th>研究方向2</th>
+              <th>研究方向3</th>
+              <th>上传论文</th>
+            </tr>
+          </thead>
+          <tbody>
+           <c:forEach items="${mystulist}" var="item">
+            <tr class="odd gradeX">
+              <td>${item.stu_name}</td>
+              <td>${item.stu_id}</td>
+              <td>${item.paper_title}</td>
+              <td>${item.paper_researchOne}</td>
+              <td>${item.paper_researchTwo}</td>
+              <td>${item.paper_researchThree}</td>
+              <td><button>上传</button></td>
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button><td> 
+            </tr>
+           </c:forEach>
+          </tbody>
+         </table>
+        </div>
+      </div>
+  </div>
+   <!--论文信息完-->
             <div class="formcon">
                 <div id="one">
                     <table align="center">
-                        <tr>
-                            <td align="right" width="140px">户口所在地：</td>
-                            <td><input class="pwdTrigger" type="text"    placeholder="请输入户口所在地" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">中文姓：</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入中文姓" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">中文名：</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入中文名" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">身份证号：</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入身份证号码" /></td>
-                        </tr>
                         <tr>
                             <td></td>
                             <td><button type="button" onclick="one()">提交</button></td>
@@ -154,18 +174,6 @@
                 </div>
                 <div id="two" style="display:none">
                     <table align="center">
-                        <tr>
-                            <td align="right" width="140px">通行证号</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入证件号码" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">有效日期至</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入证件号码" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">联系电话</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输联系电话，建议是手机号码" /></td>
-                        </tr>
                         <tr>
                             <td></td> 
                             <td><button type="button" onclick="two()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="reone()">上一步</button></td>
@@ -209,41 +217,7 @@
   
         
         
-  <div class="content container_12">
-      <div class="box grid_12">
-        <div class="box-head"><h2>毕业论文信息</h2></div>
-        <div class="box-content no-pad">
-          <table class="display">
-          <thead>
-            <tr>
-              <th>学生姓名</th>
-              <th>学生学号</th>
-              <th>论文题目</th>
-              <th>研究方向1</th>
-              <th>研究方向2</th>
-              <th>研究方向3</th>
-              <th>论文下载</th>
-              <th>导师审核</th>
-            </tr>
-          </thead>
-          <tbody>
-           <c:forEach items="${mystulist }" var="item">
-            <tr class="odd gradeX">
-              <td>${item.stu_name}</td>
-              <td>${item.stu_id}</td>
-              <td>${item.paper_title}</td>
-              <td>${item.paper_researchOne}</td>
-              <td>${item.paper_researchTwo}</td>
-              <td>${item.paper_researchThree}</td>
-              <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button><td> 
-            </tr>
-           </c:forEach>
-          </tbody>
-         </table>
-        </div>
-      </div>
-  </div>
+ 
   
   <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">

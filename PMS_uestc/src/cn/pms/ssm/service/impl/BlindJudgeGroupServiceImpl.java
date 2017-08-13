@@ -19,7 +19,6 @@ import cn.pms.ssm.mapper.BlindJudgeMapper;
 */
 public class BlindJudgeGroupServiceImpl implements BlindJudgeGroupService {
 
-	//导师提交盲审结果
 	@Autowired
 	private BlindJudgeMapper blindJudgeMapper;
 
