@@ -43,6 +43,38 @@ function three()
 }
 
 /*
+  第四步的提交方法
+*/
+function four() 
+{
+    if (confirm("确定提交？")) {
+        $("#four").hide();
+        $("#five").show();
+
+        $("#grxx").attr("class","done");
+        $("#zjxx").attr("class","done");
+        $("#qzxx").attr("class","current_prev");
+        $("#qzfs").attr("class","current");
+    }
+}
+
+/*
+  第五步的提交方法
+*/
+function five() 
+{
+    if (confirm("确定提交？")) {
+        $("#five").hide();
+        $("#six").show();
+
+        $("#grxx").attr("class","done");
+        $("#zjxx").attr("class","done");
+        $("#qzxx").attr("class","current_prev");
+        $("#qzfs").attr("class","current");
+    }
+}
+
+/*
   返回第一步的提交方法
 */
 function reone() 

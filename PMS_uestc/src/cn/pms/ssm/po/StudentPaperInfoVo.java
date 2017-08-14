@@ -15,8 +15,9 @@ public class StudentPaperInfoVo {
 	private String Paper_title;
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
-	private String Paper_reaserchThree;
+	private String Paper_researchThree;
 	private String Paper_ifPass;
+	private String File_id;
 	
 	public String getStu_id() {
 		return Stu_id;
@@ -54,11 +55,18 @@ public class StudentPaperInfoVo {
 	public void setPaper_researchTwo(String paper_researchTwo) {
 		Paper_researchTwo = paper_researchTwo;
 	}
-	public String getPaper_reaserchThree() {
-		return Paper_reaserchThree;
+	
+	public String getPaper_researchThree() {
+		return Paper_researchThree;
 	}
-	public void setPaper_reaserchThree(String paper_reaserchThree) {
-		Paper_reaserchThree = paper_reaserchThree;
+	public void setPaper_researchThree(String paper_researchThree) {
+		Paper_researchThree = paper_researchThree;
+	}
+	public String getFile_id() {
+		return File_id;
+	}
+	public void setFile_id(String file_id) {
+		File_id = file_id;
 	}
 	public String getPaper_ifPass() {
 		return Paper_ifPass;

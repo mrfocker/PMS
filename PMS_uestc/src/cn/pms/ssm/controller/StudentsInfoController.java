@@ -1,11 +1,16 @@
 package cn.pms.ssm.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.pms.ssm.po.Student;
+import cn.pms.ssm.po.StudentPaperInfoVo;
+import cn.pms.ssm.service.StudentPaperInfoService;
 
 /** 
  * <p>Title: </p> 
@@ -20,11 +25,15 @@ import cn.pms.ssm.po.Student;
 @RequestMapping("/pages")
 public class StudentsInfoController {
 	
+	@Autowired
+	StudentPaperInfoService studentPaperInfoService;
+	
 	@RequestMapping("/studentinfo")
-	public @ResponseBody ModelAndView find_studentinfo(Student student) throws Exception{
+	public @ResponseBody ModelAndView find_studentinfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
-		
+		List<StudentPaperInfoVo> studentPaperInfoVo1 = studentPaperInfoService.do_findStudentPaperInfo(studentPaperInfoVo);
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("studentPaperInfoList",studentPaperInfoVo1);
 		modelAndView.setViewName("/students");
 		System.out.println(modelAndView);
 		return modelAndView;

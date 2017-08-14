@@ -1,5 +1,7 @@
 package cn.pms.ssm.mapper;
 
+import java.util.List;
+
 import cn.pms.ssm.po.StudentPaperInfoVo;
 
 /** 
@@ -13,5 +15,5 @@ import cn.pms.ssm.po.StudentPaperInfoVo;
 public interface StudentPaperInfoMapper {
         
 	//学生论文基本信息（上传页面）
-	public StudentPaperInfoVo findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public List<StudentPaperInfoVo> findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

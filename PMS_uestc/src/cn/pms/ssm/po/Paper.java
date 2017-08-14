@@ -14,15 +14,22 @@ public class Paper {
 	private String Paper_title;
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
-	private String Paper_reaserchThree;
+	private String Paper_researchThree;
 	private String Paper_reason;
 	private Float Paper_repetitiveRateAll;
 	private Float Paper_repetitiveRateSingle;
 	private String Paper_ifPass;
 	private String Paper_advise;
+	private String Paper_departPass;
 	private int Paper_blindJudge;
 	
 	
+	public String getPaper_departPass() {
+		return Paper_departPass;
+	}
+	public void setPaper_departPass(String paper_departPass) {
+		Paper_departPass = paper_departPass;
+	}
 	public String getPaper_stuId() {
 		return Paper_stuId;
 	}
@@ -66,10 +73,10 @@ public class Paper {
 		Paper_researchTwo = paper_researchTwo;
 	}
 	public String getPaper_reaserchThree() {
-		return Paper_reaserchThree;
+		return Paper_researchThree;
 	}
 	public void setPaper_reaserchThree(String paper_reaserchThree) {
-		Paper_reaserchThree = paper_reaserchThree;
+		Paper_researchThree = paper_reaserchThree;
 	}
 	public String getPaper_reason() {
 		return Paper_reason;

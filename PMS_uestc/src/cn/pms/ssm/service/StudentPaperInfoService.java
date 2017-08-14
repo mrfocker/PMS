@@ -1,5 +1,7 @@
 package cn.pms.ssm.service;
 
+import java.util.List;
+
 import cn.pms.ssm.po.StudentPaperInfoVo;
 
 /** 
@@ -13,5 +15,5 @@ import cn.pms.ssm.po.StudentPaperInfoVo;
 public interface StudentPaperInfoService {
 	
 	//学术查询论文基本信息（提交论文页面）
-	public StudentPaperInfoVo do_findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public List<StudentPaperInfoVo> do_findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

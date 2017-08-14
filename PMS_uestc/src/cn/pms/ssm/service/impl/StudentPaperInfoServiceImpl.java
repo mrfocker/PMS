@@ -1,5 +1,7 @@
 package cn.pms.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.pms.ssm.mapper.StudentPaperInfoMapper;
@@ -20,7 +22,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	private StudentPaperInfoMapper studentPaperInfoMapper;
 
 	@Override
-	public StudentPaperInfoVo do_findStudentPaperInfo(
+	public List<StudentPaperInfoVo> do_findStudentPaperInfo(
 			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
 			
 			return studentPaperInfoMapper.findStudentPaperInfo(studentPaperInfoVo);

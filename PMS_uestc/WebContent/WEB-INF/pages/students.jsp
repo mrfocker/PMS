@@ -119,11 +119,11 @@
     <div class="formbox">
             <div class="flow_steps">
                 <ul>
-                    <li id="grxx" class="current" >提交论文</li>
-                    <li id="zjxx" >导师审核</li>
+                    <li id="grxx" class="current">提交论文</li>
+                    <li id="zjxx">导师审核</li>
                     <li id="qzxx">学院审核</li>
-                    <li id="qzxx">论文盲审</li>
-                    <li id="qzxx">论文答辩</li>
+                    <li id="lwms">论文盲审</li>
+                    <li id="lwdb">论文答辩</li>
                     <li id="qzfs" class="last">学位授予</li>
                 </ul>
             </div>
@@ -145,7 +145,7 @@
             </tr>
           </thead>
           <tbody>
-           <c:forEach items="${mystulist}" var="item">
+           <c:forEach items="${studentPaperInfoList}" var="item">
             <tr class="odd gradeX">
               <td>${item.stu_name}</td>
               <td>${item.stu_id}</td>
@@ -154,7 +154,6 @@
               <td>${item.paper_researchTwo}</td>
               <td>${item.paper_researchThree}</td>
               <td><button>上传</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button><td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -183,18 +182,6 @@
                 <div id="three" style="display:none">
                     <table align="center">
                         <tr>
-                            <td align="right" width="140px">签注类别</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入签注类别" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">前往地</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入前往地" /></td>
-                        </tr>
-                        <tr>
-                            <td align="right">签证种类</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入签注种类" /></td>
-                        </tr>
-                        <tr>
                             <td></td> 
                             <td><button type="button" onclick="three()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="retwo()">上一步</button></td>
                         </tr>
@@ -203,12 +190,25 @@
                 <div id="four" style="display:none">
                     <table align="center">
                         <tr>
-                            <td align="right" width="140px">取证方式</td>
-                            <td><input class="pwdTrigger" type="text" placeholder="请输入取证方式" /></td>
-                        </tr>
-                        <tr>
                             <td></td> 
                             <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="rethree()">上一步</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+              <div id="five" style="display:none">
+                    <table align="center">
+                        <tr>
+                            <td></td> 
+                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refour()">上一步</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="six" style="display:none">
+                    <table align="center">
+                        <tr>
+                            <td></td> 
+                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refive()">上一步</button></td>
                         </tr>
                     </table>
                 </div>
