@@ -23,6 +23,7 @@ public class StudentsInfoController {
 	@RequestMapping("/studentinfo")
 	public @ResponseBody ModelAndView find_studentinfo(Student student) throws Exception{
 		
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("/students");
 		System.out.println(modelAndView);

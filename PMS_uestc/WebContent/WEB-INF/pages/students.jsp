@@ -119,7 +119,7 @@
     <div class="formbox">
             <div class="flow_steps">
                 <ul>
-                    <li id="grxx" class="current">提交论文</li>
+                    <li id="grxx" class="current" >提交论文</li>
                     <li id="zjxx" >导师审核</li>
                     <li id="qzxx">学院审核</li>
                     <li id="qzxx">论文盲审</li>
