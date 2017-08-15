@@ -41,7 +41,7 @@
   <script language="javascript" type="text/javascript" src="js/flot/excanvas.min.js"></script>
   <![endif]-->
 </head>
-<body>
+<body onload="load()">
 
   <!--- HEADER -->
 
@@ -213,8 +213,7 @@
                     </table>
                 </div>
             </div>
-        </div>
-  
+
         
         
  
