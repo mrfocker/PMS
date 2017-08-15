@@ -28,4 +28,11 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			return studentPaperInfoMapper.findStudentPaperInfo(studentPaperInfoVo);
 	}
 
+	@Override
+	public StudentPaperInfoVo do_getStudentPaperInfo(
+			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
