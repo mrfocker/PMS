@@ -18,7 +18,21 @@ public class StudentPaperInfoVo {
 	private String Paper_researchThree;
 	private String Paper_ifPass;
 	private String File_id;
+	private String Teacher_Result;
+	private String Reply_result;
 	
+	public String getTeacher_Result() {
+		return Teacher_Result;
+	}
+	public void setTeacher_Result(String teacher_Result) {
+		Teacher_Result = teacher_Result;
+	}
+	public String getReply_result() {
+		return Reply_result;
+	}
+	public void setReply_result(String reply_result) {
+		Reply_result = reply_result;
+	}
 	public String getStu_id() {
 		return Stu_id;
 	}
@@ -55,7 +69,6 @@ public class StudentPaperInfoVo {
 	public void setPaper_researchTwo(String paper_researchTwo) {
 		Paper_researchTwo = paper_researchTwo;
 	}
-	
 	public String getPaper_researchThree() {
 		return Paper_researchThree;
 	}

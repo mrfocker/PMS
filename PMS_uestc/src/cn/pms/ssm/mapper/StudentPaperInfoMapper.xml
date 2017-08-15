@@ -3,7 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="cn.pms.ssm.mapper.StudentPaperInfoMapper">
 <!--学生论文基本信息（上传论文页面）-->
 <select id="findStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
@@ -19,5 +18,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  student
 		WHERE 
 		  paper.Paper_stuId = "201522220299" AND student.Stu_id = "201522220299"
+</select>
+
+<!--查询论文信息（JS判断）-->
+<select id="getStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+	SELECT
+		 paper.Paper_title,
+		 paper.Paper_researchOne,
+		 paper.Paper_researchTwo,
+		 paper.Paper_researchThree,
+		 paper.Paper_ifPass,
+		 blindjudgegroup.Teacher_Result,
+		 replyjudgegroup.Reply_result,
+		 student.Stu_name,
+		 student.Stu_id,
+		 file.File.stu_Id
+		FROM 
+		  paper,
+		  blindjudegroup,
+		  replyjudgegroup,
+		  student
+		WHERE 
+		  paper.Paper_stuId = "201522220299" AND student.Stu_id = "201522220299" AND blindjudegroup.Stu_id = "201522220299"
+		  replyjudgegroup.Stu_id = "201522220299" AND File.stu_Id = "201522220299"
 </select>
 </mapper>

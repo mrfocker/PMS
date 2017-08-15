@@ -16,4 +16,6 @@ public interface StudentPaperInfoMapper {
         
 	//学生论文基本信息（上传页面）
 	public List<StudentPaperInfoVo> findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	//查询论文信息（JS判断）
+	public StudentPaperInfoVo getStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

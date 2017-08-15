@@ -27,6 +27,7 @@
   <script src="js/jquery.dataTables.min.js"></script>
   <!--jquery流程图JS文件-->
    <script src="js/stu_progress.js"></script>
+   <script src="js/stuinfo.js"></script>
   <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -134,7 +135,7 @@
         <div class="box-content no-pad">
           <table class="display">
           <thead>
-            <tr>
+            <tr id = "paperlistname">
               <th>学生姓名</th>
               <th>学生学号</th>
               <th>论文题目</th>
@@ -146,7 +147,7 @@
           </thead>
           <tbody>
            <c:forEach items="${studentPaperInfoList}" var="item">
-            <tr class="odd gradeX">
+            <tr class="odd gradeX" id = "paperlist">
               <td>${item.stu_name}</td>
               <td>${item.stu_id}</td>
               <td>${item.paper_title}</td>
