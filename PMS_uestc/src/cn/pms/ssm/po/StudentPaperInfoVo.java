@@ -17,10 +17,17 @@ public class StudentPaperInfoVo {
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
 	private String Paper_ifPass;
+	private String Paper_departPss;
 	private String File_id;
 	private String Teacher_Result;
 	private String Reply_result;
 	
+	public String getPaper_departPss() {
+		return Paper_departPss;
+	}
+	public void setPaper_departPss(String paper_departPss) {
+		Paper_departPss = paper_departPss;
+	}
 	public String getTeacher_Result() {
 		return Teacher_Result;
 	}

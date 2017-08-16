@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <!--查询论文信息（JS判断）-->
-<select id="getStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+<!-- <select id="getStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
 	SELECT
 		 paper.Paper_title,
 		 paper.Paper_researchOne,
@@ -41,31 +41,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 
 		  paper.Paper_stuId = "201522220299" AND student.Stu_id = "201522220299" AND blindjudgegroup.Stu_id = "201522220299"
 		  replyjudgegroup.Stu_id = "201522220299" AND File.stu_Id = "201522220299"
-</select>
+</select> -->
 
 <!--查询论文信息（JS判断）-->
-<select id="getStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+<!-- <select id="getStudentPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
 	SELECT
 		 paper.Paper_title,
 		 paper.Paper_researchOne,
 		 paper.Paper_researchTwo,
 		 paper.Paper_researchThree,
 		 paper.Paper_ifPass,
-		 blindjudgegroup.Teacher_Result,
-		 replyjudgegroup.Reply_result,
-		 student.Stu_name,
-		 student.Stu_id,
-		 file.File.stu_Id
+		 paper.Paper_departPss,
 		FROM 
 		  paper,
 		 blindjudgegroup,
 		  replyjudgegroup,
 		  student
 		<where>
-			<if test = "paper.Paper_stuId != null">
-				and paper.Paper_stuId = "201522220299"
+			<if test = "student.Stu_id != null">
+				and student.Stu_id  = #{Stu_id}
+				<if test = "file.File_stuId != null">
+					and file.File_stuId = #{Stu_id}
+				</if>
+				<if test = "blindjudgegroup.Stu_id != null">
+					and blindjudgegroup.Stu_id = #{Stu_id}
+				</if>
+				<if test = "replyjudgegroup.Stu_id != null">
+					and replyjudgegroup.Stu_id = #{Stu_id}
+				</if>
+				<if test = "paper.Paper_stuId != null">
+					and replyjudgegroup.Stu_id = #{Stu_id}
+				</if>
 			</if>
 		</where>
 		  
+</select> -->
+
+<select id="getPaperInfo" parameterType="java.lang.String" resultType="StudentPaperInfoVo">
+	SELECT
+		 Paper_title,
+		 Paper_researchOne,
+		 Paper_researchTwo,
+		 Paper_researchThree,
+		 Paper_ifPass
+	FROM
+		 paper
+    WHERE
+		 Paper_stuId = #{Paper_stuId}
+</select>
+
+<select id="getStudentPaperInfo" parameterType="java.lang.String" resultType="StudentPaperInfoVo">
+	SELECT
+		 Paper_title,
+		 Paper_researchOne,
+		 Paper_researchTwo,
+		 Paper_researchThree,
+		 Paper_ifPass
+	FROM
+		 paper
+    WHERE
+		 Paper_stuId = #{Stu_id}
 </select>
 </mapper>

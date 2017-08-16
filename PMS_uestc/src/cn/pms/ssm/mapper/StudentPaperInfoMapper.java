@@ -18,4 +18,8 @@ public interface StudentPaperInfoMapper {
 	public List<StudentPaperInfoVo> findStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//查询论文信息（JS判断）
 	public StudentPaperInfoVo getStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public StudentPaperInfoVo getPaperInfo(String stu_id) throws Exception;
+	public StudentPaperInfoVo getFileInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public StudentPaperInfoVo getBlindJudgeInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public StudentPaperInfoVo getReplyJudgeInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }
