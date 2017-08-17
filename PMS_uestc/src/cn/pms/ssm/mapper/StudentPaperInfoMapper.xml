@@ -119,4 +119,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Stu_id = #{Stu_id}
 </select>
 
+<select id="getGradeListInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+	SELECT
+		 Grade_ifPass
+	FROM
+		 gradelist
+    WHERE
+		 Stu_id = #{Stu_id}
+</select>
+
 </mapper>

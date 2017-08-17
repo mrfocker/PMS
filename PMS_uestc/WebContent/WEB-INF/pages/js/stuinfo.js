@@ -1,17 +1,20 @@
 /*papaper process, there are 6 steps here*/
 function load(){
 	
+	var str = {stu_id:"201522220299"};
+	str = JSON.stringify(str);
+	console.log(str);
 	$.ajax({
-	      url:'${pageContext.request.contextPath }/pages/getPaperInfo',
-	      type:'post',
-	     /* contentType:'application/json;charset=utf-8',
-	      data:str,*/
+	      url:'${pageContext.request.contextPath }/pages/getPaperAllInfo',
+	      type:'get',
+	     contentType:'application/json;charset=utf-8',
+	      data:str,
 	      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
-	      success: function(info){      
-	    	  console.log(info);
+	      success: function(data){      
+	    	  console.log(data);
 	          console.log("ok");
 	          
-	          if(info.paper_ifPass != null){
+	          if(data.paper_ifPass != null){
 	        	  
 	        	  $("#one").hide();
 	              $("#two").show();

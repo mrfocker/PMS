@@ -33,23 +33,41 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
 		
 			StudentPaperInfoVo allPaperInfo = new StudentPaperInfoVo();
-			
 			StudentPaperInfoVo myPaperInfo = new StudentPaperInfoVo();
+			StudentPaperInfoVo myFileInfo = new StudentPaperInfoVo();
+			StudentPaperInfoVo myBlindJudgeInfo = new StudentPaperInfoVo();
+			StudentPaperInfoVo myReplyJudgeInfo = new StudentPaperInfoVo();
+			StudentPaperInfoVo myGradeListInfo = new StudentPaperInfoVo();
+			
 			myPaperInfo = studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
+			myFileInfo =  studentPaperInfoMapper.getFileInfo(studentPaperInfoVo);
+			myBlindJudgeInfo = studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
+			myReplyJudgeInfo = studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
+			myGradeListInfo = studentPaperInfoMapper.getGradeListInfo(studentPaperInfoVo);
+			
 			allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
 			allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
 			allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
 			allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
 			allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
 			allPaperInfo.setPaper_departPss(myPaperInfo.getPaper_departPss());
+			allPaperInfo.setFile_id(myFileInfo.getFile_id());
+			allPaperInfo.setTeacher_Result(myBlindJudgeInfo.getTeacher_Result());
+			allPaperInfo.setReply_result(myReplyJudgeInfo.getReply_result());
+			allPaperInfo.setGrade_ifPass(myGradeListInfo.getGrade_ifPass());
 			
+			System.out.println(allPaperInfo.getPaper_title());
+			System.out.println(allPaperInfo.getPaper_researchOne());
+			System.out.println(allPaperInfo.getPaper_researchTwo());
+			System.out.println(allPaperInfo.getPaper_researchThree());
+			System.out.println(allPaperInfo.getPaper_ifPass());
+			System.out.println(allPaperInfo.getPaper_departPss());
+			System.out.println(allPaperInfo.getFile_id());
+			System.out.println(allPaperInfo.getTeacher_Result());
+			System.out.println(allPaperInfo.getReply_result());
+			System.out.println(allPaperInfo.getGrade_ifPass());
 			
 		    return allPaperInfo;
 	}
 
 }
-Paper_researchOne,
-Paper_researchTwo,
-Paper_researchThree,
-Paper_ifPass,
-paper.Paper_departPss

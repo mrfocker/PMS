@@ -68,7 +68,7 @@ public class BlindJudgeController {
 	@RequestMapping("/bingjudgeResult")
 	public @ResponseBody BlindJudgeGroupVo show_blindjudgeResult(@RequestBody BlindJudgeGroupVo blindJudgeGroupVo) throws Exception{
 		
-		BlindJudgeGroupVo blindJudgeGroupVo1 = null;
+		BlindJudgeGroupVo blindJudgeGroupVo1 = new BlindJudgeGroupVo();
 		blindJudgeGroupVo1 = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
 
 		if(blindJudgeGroupVo1 == null){

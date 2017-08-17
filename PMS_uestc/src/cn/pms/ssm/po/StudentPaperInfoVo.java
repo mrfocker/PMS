@@ -21,7 +21,14 @@ public class StudentPaperInfoVo {
 	private String File_id;
 	private String Teacher_Result;
 	private String Reply_result;
+	private String Grade_ifPass;
 	
+	public String getGrade_ifPass() {
+		return Grade_ifPass;
+	}
+	public void setGrade_ifPass(String grade_ifPass) {
+		Grade_ifPass = grade_ifPass;
+	}
 	public String getPaper_departPss() {
 		return Paper_departPss;
 	}

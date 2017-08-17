@@ -22,4 +22,5 @@ public interface StudentPaperInfoMapper {
 	public StudentPaperInfoVo getFileInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	public StudentPaperInfoVo getBlindJudgeInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	public StudentPaperInfoVo getReplyJudgeInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public StudentPaperInfoVo getGradeListInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

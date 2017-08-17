@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +39,16 @@ public class StudentsInfoController {
 		System.out.println(modelAndView);
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping("/getPaperAllInfo")
+	public @ResponseBody StudentPaperInfoVo getPaperAallInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+		
+		//studentPaperInfoVo.setStu_id("201522220299");
+		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
+		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
+		return studentPapperInfoVoList;
+	
 	}
 
 }
