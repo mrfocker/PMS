@@ -77,29 +77,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  
 </select> -->
 
-<select id="getPaperInfo" parameterType="java.lang.String" resultType="StudentPaperInfoVo">
+<!--查询论文信息（JS判断）-->
+<select id="getPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
 	SELECT
 		 Paper_title,
 		 Paper_researchOne,
 		 Paper_researchTwo,
 		 Paper_researchThree,
-		 Paper_ifPass
+		 Paper_ifPass,
+		 Paper_departPass
 	FROM
-		 paper
+		 paper 
     WHERE
 		 Paper_stuId = #{Paper_stuId}
 </select>
 
-<select id="getStudentPaperInfo" parameterType="java.lang.String" resultType="StudentPaperInfoVo">
+<select id="getFileInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
 	SELECT
-		 Paper_title,
-		 Paper_researchOne,
-		 Paper_researchTwo,
-		 Paper_researchThree,
-		 Paper_ifPass
+		 File_id
 	FROM
-		 paper
+		 file
     WHERE
-		 Paper_stuId = #{Stu_id}
+		 File_stuId = #{Stu_id}
 </select>
+
+<select id="getBlindJudgeInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+	SELECT
+		 Teacher_Result
+	FROM
+		 blindjudgegroup
+    WHERE
+		 Stu_id = #{Stu_id}
+</select>
+
+<select id="getReplyJudgeInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+	SELECT
+		 Reply_result
+	FROM
+		 replyjudgegroup
+    WHERE
+		 Stu_id = #{Stu_id}
+</select>
+
 </mapper>

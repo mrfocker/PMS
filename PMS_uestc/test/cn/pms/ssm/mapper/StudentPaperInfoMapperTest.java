@@ -26,7 +26,7 @@ public class StudentPaperInfoMapperTest {
 	}
 
 	
-	@Test
+	/*@Test
 	public void test_getStudentPaperInfo() throws Exception{
 		StudentPaperInfoMapper studentPaperInfoMapper = (StudentPaperInfoMapper) applicationContext.getBean("studentPaperInfoMapper");
 		StudentPaperInfoVo list = new StudentPaperInfoVo();
@@ -36,12 +36,27 @@ public class StudentPaperInfoMapperTest {
 		System.out.println(studentPaperInfoVo1);
 		System.out.println(studentPaperInfoVo1.getPaper_ifPass());
 		System.out.println(studentPaperInfoVo1.getPaper_title());
-	}
+	}*/
 	
-	/*@Test
+	@Test
 	public void test_getPaperInfo() throws Exception{
 		StudentPaperInfoMapper studentPaperInfoMapper = (StudentPaperInfoMapper) applicationContext.getBean("studentPaperInfoMapper");
-		StudentPaperInfoVo studentPaperInfoVo1 = studentPaperInfoMapper.getPaperInfo("201522220299");
+		StudentPaperInfoVo list = new StudentPaperInfoVo();
+		list.setStu_id("201522220299");
+		StudentPaperInfoVo studentPaperInfoVo1 = studentPaperInfoMapper.getPaperInfo(list);
 		System.out.println(studentPaperInfoVo1.getPaper_ifPass());
-	}*/
+		System.out.println(studentPaperInfoVo1.getPaper_ifPass());
+	}
+	
+	@Test
+	public void test_getFileInfo() throws Exception{
+		StudentPaperInfoMapper studentPaperInfoMapper = (StudentPaperInfoMapper) applicationContext.getBean("studentPaperInfoMapper");
+		StudentPaperInfoVo list = new StudentPaperInfoVo();
+		StudentPaperInfoVo list2 = new StudentPaperInfoVo();
+		list.setStu_id("201522220299");
+		StudentPaperInfoVo studentPaperInfoVo1 = studentPaperInfoMapper.getFileInfo(list);
+		list2.setTeacher_Result(studentPaperInfoVo1.getTeacher_Result());
+		System.out.println(list2.getTeacher_Result());
+		System.out.println(studentPaperInfoVo1.getFile_id());
+	}
 }

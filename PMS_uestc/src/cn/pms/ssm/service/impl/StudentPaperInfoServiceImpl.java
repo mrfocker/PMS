@@ -31,8 +31,25 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	@Override
 	public StudentPaperInfoVo do_getStudentPaperInfo(
 			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+			StudentPaperInfoVo allPaperInfo = new StudentPaperInfoVo();
+			
+			StudentPaperInfoVo myPaperInfo = new StudentPaperInfoVo();
+			myPaperInfo = studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
+			allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
+			allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
+			allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
+			allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
+			allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
+			allPaperInfo.setPaper_departPss(myPaperInfo.getPaper_departPss());
+			
+			
+		    return allPaperInfo;
 	}
 
 }
+Paper_researchOne,
+Paper_researchTwo,
+Paper_researchThree,
+Paper_ifPass,
+paper.Paper_departPss
