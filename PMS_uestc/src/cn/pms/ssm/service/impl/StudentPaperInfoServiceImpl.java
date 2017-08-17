@@ -31,7 +31,8 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	@Override
 	public StudentPaperInfoVo do_getStudentPaperInfo(
 			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
-		
+		System.out.println("here");
+		System.out.println(studentPaperInfoVo.getStu_id());
 			StudentPaperInfoVo allPaperInfo = new StudentPaperInfoVo();
 			StudentPaperInfoVo myPaperInfo = new StudentPaperInfoVo();
 			StudentPaperInfoVo myFileInfo = new StudentPaperInfoVo();
@@ -40,7 +41,40 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			StudentPaperInfoVo myGradeListInfo = new StudentPaperInfoVo();
 			
 			myPaperInfo = studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
+			if(myPaperInfo != null){
+				System.out.println("myPaperInfo ok");
+				allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
+				allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
+				allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
+				allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
+				allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
+				allPaperInfo.setPaper_departPass(myPaperInfo.getPaper_departPass());	
+			}
+			
+			myBlindJudgeInfo = studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
+			if(myBlindJudgeInfo != null){
+				System.out.println("myBlindJudgeInfo ok");
+				allPaperInfo.setTeacher_Result(myBlindJudgeInfo.getTeacher_Result());
+			}
+			
+			myReplyJudgeInfo = studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
+			if(myReplyJudgeInfo != null){
+				System.out.println("myReplyJudgeInfo ok");
+				allPaperInfo.setReply_result(myReplyJudgeInfo.getReply_result());
+			}
+			
+			myGradeListInfo = studentPaperInfoMapper.getGradeListInfo(studentPaperInfoVo);
+			if(myGradeListInfo != null){
+				System.out.println("myGradeListInfo ok");
+				allPaperInfo.setGrade_ifPass(myGradeListInfo.getGrade_ifPass());
+			}
+			
 			myFileInfo =  studentPaperInfoMapper.getFileInfo(studentPaperInfoVo);
+			if(myFileInfo != null){
+				System.out.println("myFileInfo ok");
+				allPaperInfo.setFile_id(myFileInfo.getFile_id());
+			}
+			/*myFileInfo =  studentPaperInfoMapper.getFileInfo(studentPaperInfoVo);
 			myBlindJudgeInfo = studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
 			myReplyJudgeInfo = studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
 			myGradeListInfo = studentPaperInfoMapper.getGradeListInfo(studentPaperInfoVo);
@@ -65,7 +99,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			System.out.println(allPaperInfo.getFile_id());
 			System.out.println(allPaperInfo.getTeacher_Result());
 			System.out.println(allPaperInfo.getReply_result());
-			System.out.println(allPaperInfo.getGrade_ifPass());
+			System.out.println(allPaperInfo.getGrade_ifPass());*/
 			
 		    return allPaperInfo;
 	}

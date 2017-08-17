@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	FROM
 		 paper 
     WHERE
-		 Paper_stuId = #{Paper_stuId}
+		 Paper_stuId = #{Stu_id}
 </select>
 
 <select id="getFileInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
@@ -114,7 +114,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT
 		 Reply_result
 	FROM
-		 replyjudgegroup
+		 replyjudgegrouplist
     WHERE
 		 Stu_id = #{Stu_id}
 </select>

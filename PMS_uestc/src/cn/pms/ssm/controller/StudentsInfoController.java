@@ -42,9 +42,10 @@ public class StudentsInfoController {
 	}
 	
 	@RequestMapping("/getPaperAllInfo")
-	public @ResponseBody StudentPaperInfoVo getPaperAallInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+	public @ResponseBody StudentPaperInfoVo getPaperAllInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		//studentPaperInfoVo.setStu_id("201522220299");
+		System.out.println(studentPaperInfoVo.getStu_id());
 		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
 		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return studentPapperInfoVoList;

@@ -6,15 +6,15 @@ function load(){
 	console.log(str);
 	$.ajax({
 	      url:'${pageContext.request.contextPath }/pages/getPaperAllInfo',
-	      type:'get',
-	     contentType:'application/json;charset=utf-8',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
 	      data:str,
 	      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
 	      success: function(data){      
 	    	  console.log(data);
 	          console.log("ok");
 	          
-	          if(data.paper_ifPass != null){
+	        /*  if(data.paper_ifPass != null){
 	        	  
 	        	  $("#one").hide();
 	              $("#two").show();
@@ -35,7 +35,7 @@ function load(){
 	              $("#paperlist").append("<td>"+info.paper_researchThree+"</td>");
 	              $("#paperlist").append("<td>"+info.paper_ifPass+"</td>")
 	 
-	          } 
+	          } */
 	          },
 	         
 	    error: function(data){

@@ -26,8 +26,8 @@
   <script src="js/global.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
   <!--jquery流程图JS文件-->
+  <!-- <script src="js/stuinfo.js"></script> -->
    <script src="js/stu_progress.js"></script>
-   <script src="js/stuinfo.js"></script>
   <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -42,7 +42,7 @@
   <script language="javascript" type="text/javascript" src="js/flot/excanvas.min.js"></script>
   <![endif]-->
 </head>
-<body onload="load()">
+<body onload = "load()">
 
   <!--- HEADER -->
 
@@ -169,6 +169,8 @@
                         <tr>
                             <td></td>
                             <td><button type="button" onclick="one()">提交</button></td>
+                            <td></td>
+                            <td><button type="button" onclick="oonload()">提交2</button></td>
                         </tr>
                     </table>
                 </div>
@@ -352,34 +354,55 @@ function show_judgedetails(val){
 }
 </script>
 
-<!--导师提交对自己学生论文审核的结果-->
+<!--根据论文评审信息更新论文流程栏目-->
 <script type="text/javascript">
-  function do_teacherjudge(val1){
-    var return_cont = $('#return_cont').val();
-    var select_val = $('#result_select').val();
-    var str = {paper_stuId:val1,paper_advise:return_cont,result_code:select_val};
-    /* var str = []; */
-    /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
-    str = JSON.stringify(str);
-    console.log(str);
-    $.ajax({
-      url:'${pageContext.request.contextPath }/pages/submitteacheradvise',
-      type:'post',
-      contentType:'application/json;charset=utf-8',
-      data:str,
-      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
-      success: function(){      
-          console.log("ok");
-          alert("提交审核成功")
-          },
-         
-    error: function(data){
-          console.log('failed');
-          alert("提交审核失败")
-            }
+function load(){
 	
-    });
-  }
+	var str = {stu_id:"201522220299"};
+	str = JSON.stringify(str);
+	console.log(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/getPaperAllInfo',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
+	      success: function(data){      
+	    	  console.log(data);
+	          console.log("ok");
+	          
+	       if(data.paper_ifPass != null){
+	        	  
+	        	  $("#one").hide();
+	              $("#two").show();
+	              $("#grxx").attr("class","current_prev");
+	              $("#zjxx").attr("class","current");
+	              
+	              $("#paperlistname").append("<th>学生姓名</th>");
+	              $("#paperlist").append("<th>学生学号</th>");
+	              $("#paperlist").append("<th>研究方向一</th>");
+	              $("#paperlist").append("<th>研究方向二</th>");
+	              $("#paperlist").append("<th>研究方向三</th>");
+	              $("#paperlist").append("<th>导师评审</th>");
+	              
+	              $("#paperlist").append("<td>"+data.stu_name+"</td>");
+	              $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+	              $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+	              $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+	              $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+	              $("#paperlist").append("<td>"+data.paper_ifPass+"</td>")
+	 
+	          }
+	          },
+	         
+	    error: function(data){
+	          console.log('failed');
+	          alert("提交审核失败")
+	            }
+		
+	    });
+}
+
 </script>
 </body>
 </html>
