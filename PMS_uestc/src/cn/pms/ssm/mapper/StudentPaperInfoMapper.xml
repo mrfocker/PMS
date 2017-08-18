@@ -95,7 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Paper_researchTwo,
 		 Paper_researchThree,
 		 Paper_ifPass,
-		 Paper_departPass
+		 Paper_departPass,
+		 Paper_ifSubmit
 	FROM
 		 paper 
     WHERE

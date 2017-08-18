@@ -169,8 +169,6 @@
                         <tr>
                             <td></td>
                             <td><button type="button" onclick="one()">提交</button></td>
-                            <td></td>
-                            <td><button type="button" onclick="oonload()">提交2</button></td>
                         </tr>
                     </table>
                 </div>
@@ -371,20 +369,22 @@ function load(){
 	    	  console.log(data);
 	          console.log("ok");
 	          
-	       if(data.paper_ifPass != null){
+	       if(data.paper_ifSubmit == 0 && (data.file_id != null)){
 	        	  
 	        	  $("#one").hide();
 	              $("#two").show();
 	              $("#grxx").attr("class","current_prev");
 	              $("#zjxx").attr("class","current");
 	              
+	              $("#paperlistname").empty();
 	              $("#paperlistname").append("<th>学生姓名</th>");
-	              $("#paperlist").append("<th>学生学号</th>");
-	              $("#paperlist").append("<th>研究方向一</th>");
-	              $("#paperlist").append("<th>研究方向二</th>");
-	              $("#paperlist").append("<th>研究方向三</th>");
-	              $("#paperlist").append("<th>导师评审</th>");
+	              $("#paperlistname").append("<th>学生学号</th>");
+	              $("#paperlistname").append("<th>研究方向一</th>");
+	              $("#paperlistname").append("<th>研究方向二</th>");
+	              $("#paperlistname").append("<th>研究方向三</th>");
+	              $("#paperlistname").append("<th>导师评审</th>");
 	              
+	              $("#paperlist").empty();
 	              $("#paperlist").append("<td>"+data.stu_name+"</td>");
 	              $("#paperlist").append("<td>"+data.stu_Id+"</td>");
 	              $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
