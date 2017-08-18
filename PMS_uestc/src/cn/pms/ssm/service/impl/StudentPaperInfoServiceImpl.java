@@ -39,6 +39,14 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			StudentPaperInfoVo myBlindJudgeInfo = new StudentPaperInfoVo();
 			StudentPaperInfoVo myReplyJudgeInfo = new StudentPaperInfoVo();
 			StudentPaperInfoVo myGradeListInfo = new StudentPaperInfoVo();
+			StudentPaperInfoVo mySelfInfo = new StudentPaperInfoVo();
+			
+			mySelfInfo = studentPaperInfoMapper.getStuInfo(studentPaperInfoVo);
+			if(mySelfInfo != null){
+				System.out.println("myselfInfo ok");
+				allPaperInfo.setStu_name(mySelfInfo.getStu_name());
+				allPaperInfo.setStu_ifdegree(mySelfInfo.getStu_ifdegree());
+			}
 			
 			myPaperInfo = studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
 			if(myPaperInfo != null){

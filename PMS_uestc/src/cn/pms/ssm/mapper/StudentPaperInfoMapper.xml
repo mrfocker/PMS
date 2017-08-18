@@ -78,6 +78,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select> -->
 
 <!--查询论文信息（JS判断）-->
+<select id="getStuInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
+	SELECT
+		Stu_name,
+		Stu_ifdegree
+	FROM
+		 student 
+    WHERE
+		 Stu_id = #{Stu_id}
+</select>
+
 <select id="getPaperInfo" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" resultType="StudentPaperInfoVo">
 	SELECT
 		 Paper_title,

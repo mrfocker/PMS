@@ -11,6 +11,7 @@ public class StudentPaperInfoVo {
 
 	private String Stu_id;
 	private String Stu_name;
+	private String Stu_ifdegree;
 	private String Paper_stuId;
 	private String Paper_title;
 	private String Paper_researchOne;
@@ -23,6 +24,12 @@ public class StudentPaperInfoVo {
 	private String Reply_result;
 	private String Grade_ifPass;
 	
+	public String getStu_ifdegree() {
+		return Stu_ifdegree;
+	}
+	public void setStu_ifdegree(String stu_ifdegree) {
+		Stu_ifdegree = stu_ifdegree;
+	}
 	public String getGrade_ifPass() {
 		return Grade_ifPass;
 	}
