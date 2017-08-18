@@ -355,7 +355,6 @@ function show_judgedetails(val){
 <!--根据论文评审信息更新论文流程栏目-->
 <script type="text/javascript">
 function load(){
-	
 	var str = {stu_id:"201522220299"};
 	str = JSON.stringify(str);
 	console.log(str);
@@ -369,30 +368,22 @@ function load(){
 	    	  console.log(data);
 	          console.log("ok");
 	          
-	       if(data.paper_ifSubmit == 0 && (data.file_id != null)){
-	        	  
-	        	  $("#one").hide();
-	              $("#two").show();
-	              $("#grxx").attr("class","current_prev");
-	              $("#zjxx").attr("class","current");
-	              
-	              $("#paperlistname").empty();
-	              $("#paperlistname").append("<th>学生姓名</th>");
-	              $("#paperlistname").append("<th>学生学号</th>");
-	              $("#paperlistname").append("<th>研究方向一</th>");
-	              $("#paperlistname").append("<th>研究方向二</th>");
-	              $("#paperlistname").append("<th>研究方向三</th>");
-	              $("#paperlistname").append("<th>导师评审</th>");
-	              
-	              $("#paperlist").empty();
-	              $("#paperlist").append("<td>"+data.stu_name+"</td>");
-	              $("#paperlist").append("<td>"+data.stu_Id+"</td>");
-	              $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-	              $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-	              $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-	              $("#paperlist").append("<td>"+data.paper_ifPass+"</td>")
-	 
-	          }
+	       if(data.paper_ifSubmit == 1 && (data.file_id != null) && (data.paper_ifPass == null || data.paper_ifPass == "" )){
+	    	      console.log("go to 2");
+	              step2(data);
+	          	}
+	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" ){
+	    	      console.log("go to 1");
+	    	   	  step1(data);
+	       }
+	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == null || data.paper_departPass == "")){
+	    	      console.log("go to 3");
+	    	   	  step3(data);
+	       }
+	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "修改"){
+	    	      console.log("go to 2");
+	    	   	  step2(data);
+	       }
 	          },
 	         
 	    error: function(data){
@@ -403,6 +394,79 @@ function load(){
 	    });
 }
 
+function step1(data){
+	
+	$("#one").show();
+    $("#two").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button>上传</button></td>")
+    
+}
+
+function step2(data){
+	$("#one").hide();
+    $("#two").show();
+    $("#grxx").attr("class","current_prev");
+    $("#zjxx").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师评审</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.paper_ifPass+"</td>")
+	
+}
+
+function step3(data){
+	
+	 $("#two").hide();
+     $("#three").show();
+     $("#grxx").attr("class","done");
+     $("#zjxx").attr("class","current_prev");
+     $("#qzxx").attr("class","current");
+     
+     $("#paperlistname").empty();
+     $("#paperlistname").append("<th>学生姓名</th>");
+     $("#paperlistname").append("<th>学生学号</th>");
+     $("#paperlistname").append("<th>研究方向一</th>");
+     $("#paperlistname").append("<th>研究方向二</th>");
+     $("#paperlistname").append("<th>研究方向三</th>");
+     $("#paperlistname").append("<th>学院评审</th>");
+     
+     $("#paperlist").empty();
+     $("#paperlist").append("<td>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td>"+data.paper_departPass+"</td>")
+}
 </script>
 </body>
 </html>

@@ -58,6 +58,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 				allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
 				allPaperInfo.setPaper_departPass(myPaperInfo.getPaper_departPass());
 				allPaperInfo.setPaper_ifSubmit(myPaperInfo.getPaper_ifSubmit());
+				System.out.println(allPaperInfo.getPaper_ifSubmit());
 			}
 			
 			myBlindJudgeInfo = studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
