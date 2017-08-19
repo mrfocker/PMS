@@ -67,6 +67,13 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 					if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.2){
 						allPaperInfo.setPaper_ifPaper_repetitiveRatePass("不通过");
 					}
+					if((Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) < 0.2 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.15)|| Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) > 0.25 ){
+						allPaperInfo.setPaper_ifPaper_repetitiveRatePass("修改");
+						allPaperInfo.setPaper_ifSubmit(0);
+					}
+					if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) <= 0.15 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) <= 0.25){
+						allPaperInfo.setPaper_ifPaper_repetitiveRatePass("通过");
+					}
 				}
 				System.out.println(allPaperInfo.getPaper_ifSubmit());
 			}

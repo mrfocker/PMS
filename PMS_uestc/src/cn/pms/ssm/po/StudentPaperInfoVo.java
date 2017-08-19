@@ -23,7 +23,7 @@ public class StudentPaperInfoVo {
 	private String Teacher_Result;
 	private String Reply_result;
 	private String Grade_ifPass;
-	private String Paper_ifSubmit;
+	private int Paper_ifSubmit;
 	private String Paper_repetitiveRateAll;
 	private String Paper_repetitiveRateSingle;
 	
@@ -48,10 +48,10 @@ public class StudentPaperInfoVo {
 			String paper_ifPaper_repetitiveRatePass) {
 		Paper_ifPaper_repetitiveRatePass = paper_ifPaper_repetitiveRatePass;
 	}
-	public String getPaper_ifSubmit() {
+	public int getPaper_ifSubmit() {
 		return Paper_ifSubmit;
 	}
-	public void setPaper_ifSubmit(String paper_ifSubmit) {
+	public void setPaper_ifSubmit(int paper_ifSubmit) {
 		Paper_ifSubmit = paper_ifSubmit;
 	}
 	public String getStu_ifdegree() {
