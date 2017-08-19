@@ -96,6 +96,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Paper_researchThree,
 		 Paper_ifPass,
 		 Paper_departPass,
+		 Paper_repetitiveRateAll,
+		 Paper_repetitiveRateSingle,
 		 Paper_ifSubmit
 	FROM
 		 paper 

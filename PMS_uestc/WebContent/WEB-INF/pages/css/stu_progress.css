@@ -2,14 +2,14 @@
 a,img{border:0;}
 body{font:12px/180% Arial, Helvetica, sans-serif, "鏂板畫浣�";}
 
-.formbox{width:1296px;margin:40px auto;}
+.formbox{width:1280px;margin:40px auto;}
 .formcon{padding:10px 0;}
 .formcon table input{width:200px;}
 .formcon table td{padding:5px;line-height:24px;}
 
 /* flow_steps ，此处的样式控制比较重要，完成环节、当前环节的上一步、当前环节三种样式的变换使整个流程看起来是不断变化流动的。*/
 .flow_steps{height:23px;overflow:hidden;}
-.flow_steps li{width:216px;float:left;height:23px;padding:0 10px 0 5px;line-height:23px;text-align:center;background:url(progressBar.png) no-repeat 100% 0 #E4E4E4;font-weight:bold;}
+.flow_steps li{width:180px;float:left;height:23px;padding:0 10px 0 5px;line-height:23px;text-align:center;background:url(progressBar.png) no-repeat 100% 0 #E4E4E4;font-weight:bold;}
 .flow_steps li.done{background-position:100% -46px;background-color:#FFEDA2;}
 .flow_steps li.current_prev{background-position:100% -23px;background-color:#FFEDA2;}
 .flow_steps li.current{color:#fff;background-color:#990D1B;}

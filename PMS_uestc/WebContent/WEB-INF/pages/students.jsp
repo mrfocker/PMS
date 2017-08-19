@@ -123,6 +123,7 @@
                     <li id="grxx" class="current">提交论文</li>
                     <li id="zjxx">导师审核</li>
                     <li id="qzxx">学院审核</li>
+                    <li id="lwcc">论文查重</li>
                     <li id="lwms">论文盲审</li>
                     <li id="lwdb">论文答辩</li>
                     <li id="qzfs" class="last">学位授予</li>
@@ -384,6 +385,14 @@ function load(){
 	    	      console.log("go to 2");
 	    	   	  step2(data);
 	       }
+	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	    	      console.log("go to 4");
+	    	      step4(data);
+	       }
+	       if(data.paper_ifSubmit == 0 && data.teacher_Result == "修改"){
+	    	      console.log("wait in 4");
+	    	      step4_wait(data);
+	       }
 	          },
 	         
 	    error: function(data){
@@ -466,6 +475,38 @@ function step3(data){
      $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
      $("#paperlist").append("<td>"+data.paper_departPass+"</td>")
+}
+
+function step4(data){
+	
+	$("#three").hide();
+    $("#four").show();
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","current_prev");
+    $("#lwms").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>论文盲审</th>");
+    $("#paperlistname").append("<th>论文修改意见</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+}
+
+/* 盲审要求修改，停留在盲审阶段，上传论文后可以到下一步 */
+function step4_wait(data){
+	
 }
 </script>
 </body>
