@@ -368,15 +368,23 @@ function load(){
 	      success: function(data){      
 	    	  console.log(data);
 	          console.log("ok");
-	          
+	       
+	       /*提交论文*/
 	       if(data.paper_ifSubmit == 1 && (data.file_id != null) && (data.paper_ifPass == null || data.paper_ifPass == "" )){
 	    	      console.log("go to 2");
 	              step2(data);
 	          	}
+	       /*导师审核*/
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" ){
 	    	      console.log("2 go to 1");
 	    	   	  step1(data);
 	       }
+	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "不通过" ){
+	    	      console.log("wait in 2");
+	    	   	  step2(data);
+	    	   	  /*不通过的原因*/
+	       }
+	       /*学院审核*/
 	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == null || data.paper_departPass == "")){
 	    	      console.log("go to 3");
 	    	   	  step3(data);
@@ -385,7 +393,13 @@ function load(){
 	    	      console.log("3 go to 1");
 	    	   	  step1(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.Paper_ifPaperRepetitiveRatePass == null || data.Paper_ifPaperRepetitiveRatePass == "")){
+	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "不通过"){
+	    	      console.log("wait in 3");
+	    	   	  step3(data);
+	    	   	/*不通过的原因*/
+	       }
+	       /*论文查重*/
+	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
 	    	      console.log("go to 4");
 	    	      step4(data);
 	       }
@@ -393,7 +407,43 @@ function load(){
 	    	      console.log("4 go to 1");
 	    	      step1(data);
 	       }
+	       if(data.paper_ifSubmit == 0 && data.Paper_ifPaperRepetitiveRatePass == "修改"){
+	    	      console.log("wait in 4");
+	    	      step4(data);
+	    	      /*不通过的原因*/
+	       }
+	       /*论文盲审*/
+	       if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	    	      console.log("go to 5");
+	    	      step5(data);
+	       }
+	       if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "不通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	    	      console.log("wait in 5");
+	    	      step5(data);
+	    	      /*不通过的原因*/
+	       }
+	       /*论文答辩*/
+	       if(data.paper_ifSubmit == 1 && data.teacher_Result == "通过" && (data.reply_result == null || data.reply_result == "")){
+	    	      console.log("go to 6");
+	    	      step6(data);
+	       }
+	       if(data.paper_ifSubmit == 1 && data.teacher_Result == "不通过" && (data.reply_result == null || data.reply_result == "")){
+	    	      console.log("wait in 6");
+	    	      step6(data);
+	    	      /*不通过的原因*/
+	       }
+	       /*学位授予*/
+	       if(data.paper_ifSubmit == 1 && data.reply_result == "通过" && (data.stu_ifdegree == null || data.stu_ifdegree == "")){
+	    	   	  console.log("go to 7");
+	    	   	  step7(data);
+	       }
+	       if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
+	    	   	  console.log("wait in 7");
+	    	   	  step7(data);
+	    	   	  /*不通过原因*/
+	       }
 	          },
+	      
 	         
 	    error: function(data){
 	          console.log('failed');
@@ -413,6 +463,7 @@ function step1(data){
     $("#paperlistname").empty();
     $("#paperlistname").append("<th>学生姓名</th>");
     $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
     $("#paperlistname").append("<th>研究方向一</th>");
     $("#paperlistname").append("<th>研究方向二</th>");
     $("#paperlistname").append("<th>研究方向三</th>");
@@ -421,6 +472,7 @@ function step1(data){
     $("#paperlist").empty();
     $("#paperlist").append("<td>"+data.stu_name+"</td>");
     $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
@@ -492,8 +544,8 @@ function step4(data){
     $("#paperlistname").append("<th>研究方向一</th>");
     $("#paperlistname").append("<th>研究方向二</th>");
     $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>论文盲审</th>");
-    $("#paperlistname").append("<th>论文修改意见</th>");
+    $("#paperlistname").append("<th>全篇重复率</th>");
+    $("#paperlistname").append("<th>单章重复率</th>");
     
     $("#paperlist").empty();
     $("#paperlist").append("<td>"+data.stu_name+"</td>");
@@ -501,9 +553,48 @@ function step4(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>")
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>")
 }
 
+function step5(data){
+	
+	$("#four").hide();
+    $("#five").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","current_prev");
+    $("#lwms").attr("class","current");
+}
+
+function step6(data){
+	
+	$("#five").hide();
+    $("#six").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","current_prev");
+    $("#lwdb").attr("class","current");
+}
+
+function step7(data){
+	
+	$("#five").hide();
+    $("#six").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","done");
+    $("#lwdb").attr("class","current_prev");
+    $("#qzfs").attr("class","current");
+}
 
 
 </script>
