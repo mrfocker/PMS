@@ -175,9 +175,9 @@
                 </div>
                 <div id="two" style="display:none">
                     <table align="center">
-                        <tr>
-                            <td></td> 
-                            <td><button type="button" onclick="two()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="reone()">上一步</button></td>
+                        <tr id= "two1">
+                            <!-- <td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> 
+                            <td><button type="button" onclick="two_one()">确认</button></td> -->
                         </tr>
                     </table>
                 </div>
@@ -377,7 +377,11 @@ function load(){
 	       /*导师审核*/
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" ){
 	    	      console.log("2 go to 1");
-	    	   	  step1(data);
+	    	      step2(data);
+	    	      $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	      $("#two1").append("<button type='button' onclick='two_one();'>确认</button>");
+	    	   	  
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "不通过" ){
 	    	      console.log("wait in 2");
@@ -453,6 +457,27 @@ function load(){
 	    });
 }
 
+function two_one(){
+	$("#one").show();
+    $("#two").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师审核</th>");
+	$("#paperlistname").append("<th>修改意见</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+	
+	$("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>");
+}
+
 function step1(data){
 	
 	$("#one").show();
@@ -489,6 +514,7 @@ function step2(data){
     $("#paperlistname").empty();
     $("#paperlistname").append("<th>学生姓名</th>");
     $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
     $("#paperlistname").append("<th>研究方向一</th>");
     $("#paperlistname").append("<th>研究方向二</th>");
     $("#paperlistname").append("<th>研究方向三</th>");
@@ -497,6 +523,7 @@ function step2(data){
     $("#paperlist").empty();
     $("#paperlist").append("<td>"+data.stu_name+"</td>");
     $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
