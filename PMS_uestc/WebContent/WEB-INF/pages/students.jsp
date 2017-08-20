@@ -374,7 +374,7 @@ function load(){
 	              step2(data);
 	          	}
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" ){
-	    	      console.log("go to 1");
+	    	      console.log("2 go to 1");
 	    	   	  step1(data);
 	       }
 	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == null || data.paper_departPass == "")){
@@ -382,16 +382,16 @@ function load(){
 	    	   	  step3(data);
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "修改"){
-	    	      console.log("go to 2");
-	    	   	  step2(data);
+	    	      console.log("3 go to 1");
+	    	   	  step1(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.Paper_ifPaperRepetitiveRatePass == null || data.Paper_ifPaperRepetitiveRatePass == "")){
 	    	      console.log("go to 4");
 	    	      step4(data);
 	       }
-	       if(data.paper_ifSubmit == 0 && data.teacher_Result == "修改"){
-	    	      console.log("wait in 4");
-	    	      step4_wait(data);
+	       if(data.paper_ifSubmit == 0 && data.Paper_ifPaperRepetitiveRatePass == "修改"){
+	    	      console.log("4 go to 1");
+	    	      step1(data);
 	       }
 	          },
 	         
@@ -484,7 +484,7 @@ function step4(data){
     $("#grxx").attr("class","done");
     $("#zjxx").attr("class","done");
     $("#qzxx").attr("class","current_prev");
-    $("#lwms").attr("class","current");
+    $("#lwcc").attr("class","current");
     
     $("#paperlistname").empty();
     $("#paperlistname").append("<th>学生姓名</th>");
@@ -504,10 +504,8 @@ function step4(data){
     $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
 }
 
-/* 盲审要求修改，停留在盲审阶段，上传论文后可以到下一步 */
-function step4_wait(data){
-	
-}
+
+
 </script>
 </body>
 </html>

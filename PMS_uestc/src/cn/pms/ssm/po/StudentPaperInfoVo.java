@@ -26,6 +26,7 @@ public class StudentPaperInfoVo {
 	private int Paper_ifSubmit;
 	private String Paper_repetitiveRateAll;
 	private String Paper_repetitiveRateSingle;
+	private String Paper_ifPaperRepetitiveRatePass;
 	
 	public String getPaper_repetitiveRateAll() {
 		return Paper_repetitiveRateAll;
@@ -39,14 +40,12 @@ public class StudentPaperInfoVo {
 	public void setPaper_repetitiveRateSingle(String paper_repetitiveRateSingle) {
 		Paper_repetitiveRateSingle = paper_repetitiveRateSingle;
 	}
-	private String Paper_ifPaper_repetitiveRatePass;
-	
-	public String getPaper_ifPaper_repetitiveRatePass() {
-		return Paper_ifPaper_repetitiveRatePass;
+	public String getPaper_ifPaperRepetitiveRatePass() {
+		return Paper_ifPaperRepetitiveRatePass;
 	}
-	public void setPaper_ifPaper_repetitiveRatePass(
-			String paper_ifPaper_repetitiveRatePass) {
-		Paper_ifPaper_repetitiveRatePass = paper_ifPaper_repetitiveRatePass;
+	public void setPaper_ifPaperRepetitiveRatePass(
+			String paper_ifPaperRepetitiveRatePass) {
+		Paper_ifPaperRepetitiveRatePass = paper_ifPaperRepetitiveRatePass;
 	}
 	public int getPaper_ifSubmit() {
 		return Paper_ifSubmit;
