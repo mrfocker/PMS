@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.pms.ssm.po.Student;
 import cn.pms.ssm.po.StudentPaperInfoVo;
+import cn.pms.ssm.service.PaperService;
 import cn.pms.ssm.service.StudentPaperInfoService;
 
 /** 
@@ -28,7 +29,7 @@ public class StudentsInfoController {
 	
 	@Autowired
 	StudentPaperInfoService studentPaperInfoService;
-	
+		
 	@RequestMapping("/studentinfo")
 	public @ResponseBody ModelAndView find_studentinfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
@@ -37,8 +38,7 @@ public class StudentsInfoController {
 		modelAndView.addObject("studentPaperInfoList",studentPaperInfoVo1);
 		modelAndView.setViewName("/students");
 		System.out.println(modelAndView);
-		return modelAndView;
-		
+		return modelAndView;	
 	}
 	
 	@RequestMapping("/getPaperAllInfo")
@@ -56,8 +56,8 @@ public class StudentsInfoController {
 	public @ResponseBody StudentPaperInfoVo requeryPaperInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		System.out.println(studentPaperInfoVo.getStu_id());
+		studentPaperInfoService.do_updateForePaperInfo1(studentPaperInfoVo);
 		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
-		//之前的步骤的数据清空
 		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return studentPapperInfoVoList;
 	}

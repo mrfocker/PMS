@@ -25,7 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       Teacher_Grade = #{Teacher_Grade},
       Teacher_Result = #{Teacher_Result},
       Teacher_description = #{Teacher_description}
-    where Stu_id = #{Stu_id}
+    where 
+      Stu_id = #{Stu_id}
 </update>
 
 <!--导师查询自己要盲审的论文-->

@@ -270,7 +270,6 @@ function show_judgedetails(val){
 	          $("#result_select").append("<option value='1'>通过</option>");
 	          $("#result_select").append("<option value='2'>修改</option>");
 	          $("#result_select").append("<option value='3'>不通过</option>");
-	          
 	          },
 	         
 	    error: function(data){

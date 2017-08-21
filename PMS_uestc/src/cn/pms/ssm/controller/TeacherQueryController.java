@@ -79,6 +79,7 @@ public class TeacherQueryController {
 		}
 		if(teacherQueryVo.getResult_code() == 2){
 			teacherQueryVo.setPaper_ifPass("修改");
+			teacherQueryVo.setPaper_ifSubmit(0);
 		}
 		if(teacherQueryVo.getResult_code() == 3){
 			teacherQueryVo.setPaper_ifPass("不通过");

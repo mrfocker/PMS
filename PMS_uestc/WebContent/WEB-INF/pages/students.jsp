@@ -380,7 +380,7 @@ function load(){
 	    	      step2(data);
 	    	      $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
-	    	      $("#two1").append("<button type='button' onclick='two_one();'>确认</button>");
+	    	      $("#two1").append("<button type='button' onclick='two_one("+data.stu_id+");'>确认</button>");
 	    	   	  
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "不通过" ){
@@ -459,7 +459,7 @@ function load(){
 
 function two_one(val){
 	
-	var str = {Stu_id:val};
+	var str = {stu_id:val};
 	str = JSON.stringify(str);
 	$.ajax({
 	      url:'${pageContext.request.contextPath }/pages/requeryPaperInfo',
@@ -551,7 +551,7 @@ function step2(data){
     
     $("#paperlist").empty();
     $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
     $("#paperlist").append("<td>"+data.paper_title+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");

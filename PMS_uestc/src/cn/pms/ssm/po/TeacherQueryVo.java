@@ -22,7 +22,14 @@ public class TeacherQueryVo {
 	private String Paper_advise;
 	private String Paper_ifPass;
 	private String Paper_stuId;
+	private int Paper_ifSubmit;
 	
+	public int getPaper_ifSubmit() {
+		return Paper_ifSubmit;
+	}
+	public void setPaper_ifSubmit(int paper_ifSubmit) {
+		Paper_ifSubmit = paper_ifSubmit;
+	}
 	public String getPaper_stuId() {
 		return Paper_stuId;
 	}

@@ -45,6 +45,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			if(mySelfInfo != null){
 				System.out.println("myselfInfo ok");
 				allPaperInfo.setStu_name(mySelfInfo.getStu_name());
+				allPaperInfo.setStu_id(mySelfInfo.getStu_id());
 				allPaperInfo.setStu_ifdegree(mySelfInfo.getStu_ifdegree());
 			}
 			
@@ -130,4 +131,9 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 		    return allPaperInfo;
 	}
 
+	@Override
+	public void do_updateForePaperInfo1(StudentPaperInfoVo studentPaperInfoVo)
+			throws Exception {
+		studentPaperInfoMapper.updateForePaperInfo1(studentPaperInfoVo);
+	}
 }

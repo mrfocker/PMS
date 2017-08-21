@@ -24,10 +24,17 @@ public class StudentPaperInfoVo {
 	private String Reply_result;
 	private String Grade_ifPass;
 	private int Paper_ifSubmit;
+	private int Paper_ifAdvise;
 	private String Paper_repetitiveRateAll;
 	private String Paper_repetitiveRateSingle;
 	private String Paper_ifPaperRepetitiveRatePass;
 	
+	public int getPaper_ifAdvise() {
+		return Paper_ifAdvise;
+	}
+	public void setPaper_ifAdvise(int paper_ifAdvise) {
+		Paper_ifAdvise = paper_ifAdvise;
+	}
 	public String getPaper_repetitiveRateAll() {
 		return Paper_repetitiveRateAll;
 	}
