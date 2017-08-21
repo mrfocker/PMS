@@ -51,5 +51,15 @@ public class StudentsInfoController {
 		return studentPapperInfoVoList;
 	
 	}
+	
+	@RequestMapping("/requeryPaperInfo")
+	public @ResponseBody StudentPaperInfoVo requeryPaperInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+		
+		System.out.println(studentPaperInfoVo.getStu_id());
+		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
+		//之前的步骤的数据清空
+		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
+		return studentPapperInfoVoList;
+	}
 
 }

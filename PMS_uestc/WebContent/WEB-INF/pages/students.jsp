@@ -457,25 +457,54 @@ function load(){
 	    });
 }
 
-function two_one(){
-	$("#one").show();
-    $("#two").hide();
-    $("#grxx").attr("class","current");
-    $("#zjxx").attr("class","");
-    
-    $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师审核</th>");
-	$("#paperlistname").append("<th>修改意见</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
-    
+function two_one(val){
 	
-	$("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>");
+	var str = {Stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/requeryPaperInfo',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  
+	          console.log("two_one ok");
+	          
+	          $("#one").show();
+	          $("#two").hide();
+	          $("#grxx").attr("class","current");
+	          $("#zjxx").attr("class","");
+	          
+	          $("#paperlistname").empty();
+	          $("#paperlistname").append("<th>学生姓名</th>");
+	          $("#paperlistname").append("<th>学生学号</th>");
+	          $("#paperlistname").append("<th>论文题目</th>");
+	          $("#paperlistname").append("<th>研究方向一</th>");
+	          $("#paperlistname").append("<th>研究方向二</th>");
+	          $("#paperlistname").append("<th>研究方向三</th>");
+	          $("#paperlistname").append("<th>导师审核</th>");
+	      	  $("#paperlistname").append("<th>修改意见</th>");
+	          $("#paperlistname").append("<th>上传论文</th>");
+	          
+	          $("#paperlist").empty();
+	          $("#paperlist").append("<td>"+data.stu_name+"</td>");
+	          $("#paperlist").append("<td>"+data.stu_id+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_title+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
+	          $("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_judgedetails("+data.stu_id+");'>评审</button></td>");
+	         // $("#paperlist").append("<td>"+data.paper_advise+"</td>");
+	          $("#paperlist").append("<td><button>上传</button></td>");	          
+	          },
+	         
+	    error: function(data){
+	          console.log('failed');
+	          alert("提交审核失败")
+	            }
+		
+	    });
 }
 
 function step1(data){
