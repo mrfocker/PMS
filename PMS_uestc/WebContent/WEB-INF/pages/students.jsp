@@ -374,7 +374,7 @@ function load(){
 	    	      console.log("go to 2");
 	              step2(data);
 	          	}
-	       /*导师审核*/
+	       /*导师审核ok*/
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" ){
 	    	      console.log("2 go to 1");
 	    	      step2(data);
