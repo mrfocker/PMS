@@ -62,4 +62,14 @@ public class StudentsInfoController {
 		return studentPapperInfoVoList;
 	}
 
+	@RequestMapping("/queryTeacherAdvise")
+	public @ResponseBody StudentPaperInfoVo queryTeacherAdvise(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+		
+		StudentPaperInfoVo teacheradvise = new StudentPaperInfoVo();
+		teacheradvise = studentPaperInfoService.do_queryTeacherAdvise(studentPaperInfoVo);
+		return teacheradvise;
+		
+	}
+	
+	
 }

@@ -231,14 +231,14 @@
                      &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                    	导师审核
+                    	修改意见
                     </h4>
                 </div>
                   <div class="x_content">
                     <br />
                     <form class="form-horizontal form-label-left">
                     
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -249,25 +249,25 @@
                              <option value='3'>不通过</option>
                            </select>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required">*</span>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="5" placeholder='' id='return_cont'></textarea>
+                          <textarea class="form-control" rows="10" placeholder='' id='return_cont' readonly="readonly"></textarea>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <!-- <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                          <div class="modal-footer" id = "submit_result">
                          
-                          <!-- <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button> -->
+                         <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button>
                       
-                          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+                          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
                          </div>
-                        </div>
+                        </div> -->
                       </div>
                     </form>
                   </div>
@@ -320,6 +320,30 @@ function requestJson(){
 
 <!--将导师审核自己学生论文得信息映射倒模态框-->
 <script type="text/javascript">
+function show_teacherAdvise(val){
+	var str = {paper_stuId:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/queryTeacherAdvise',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	          console.log(data);
+	          console.log("ok"); 
+	          $('#return_cont').val(data.paper_advise);        
+	          },
+	         
+	    error: function(data){
+	          console.log('failed')
+	            }
+		
+	    });
+}
+</script>
+
+<!--将导师审核自己学生论文得信息映射倒模态框-->
+<!-- <script type="text/javascript">
 function show_judgedetails(val){
 	var str = {paper_stuId:val};
 	str = JSON.stringify(str);
@@ -350,7 +374,7 @@ function show_judgedetails(val){
 	            }
 		
 	    });
-}
+} -->
 </script>
 
 <!--根据论文评审信息更新论文流程栏目-->
@@ -494,7 +518,7 @@ function two_one(val){
 	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
-	          $("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_judgedetails("+data.stu_id+");'>评审</button></td>");
+	          $("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
 	         // $("#paperlist").append("<td>"+data.paper_advise+"</td>");
 	          $("#paperlist").append("<td><button>上传</button></td>");	          
 	          },

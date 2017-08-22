@@ -136,4 +136,11 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			throws Exception {
 		studentPaperInfoMapper.updateForePaperInfo1(studentPaperInfoVo);
 	}
+
+	@Override
+	public StudentPaperInfoVo do_queryTeacherAdvise(
+			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
+		
+		return studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
+	}
 }
