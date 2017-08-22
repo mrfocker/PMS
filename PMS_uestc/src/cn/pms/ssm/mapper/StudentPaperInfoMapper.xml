@@ -99,6 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Paper_departPass,
 		 Paper_repetitiveRateAll,
 		 Paper_repetitiveRateSingle,
+		 Paper_advise,
 		 Paper_ifSubmit
 	FROM
 		 paper 
@@ -147,6 +148,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       paper
     set 
       Paper_ifAdvise = 1
+    where 
+      Paper_stuId = #{Stu_id}
+</update>
+
+<update id="updateSubmit" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+    update 
+      paper
+    set 
+      Paper_ifSubmit = 1
     where 
       Paper_stuId = #{Stu_id}
 </update>

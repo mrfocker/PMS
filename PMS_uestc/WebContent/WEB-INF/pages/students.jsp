@@ -27,7 +27,7 @@
   <script src="js/jquery.dataTables.min.js"></script>
   <!--jquery流程图JS文件-->
   <!-- <script src="js/stuinfo.js"></script> -->
-   <script src="js/stu_progress.js"></script>
+ <!--   <script src="js/stu_progress.js"></script> -->
   <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -169,7 +169,7 @@
                     <table align="center">
                         <tr>
                             <td></td>
-                            <td><button type="button" onclick="one()">提交</button></td>
+                            <td><button type="button" onclick="one_two('201522220299')">提交</button></td>
                         </tr>
                     </table>
                 </div>
@@ -255,7 +255,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="10" placeholder='' id='return_cont' readonly="readonly"></textarea>
+                          <textarea class="form-control" rows="20" placeholder='' id='return_cont' readonly="readonly"></textarea>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
@@ -296,33 +296,13 @@
     }); /* For the data tables */
   });
 </script>
-<!-- <script type = "text/javascript">
-function requestJson(){
-	
-	$.ajax({
-		type:'post',
-		url:'${pageContext.request.contextPath }/pages/requestJson',
-		contentType: 'application/json;charset=UTF-8',
-		success: function(data){
-	          
-	          data = $.parseJSON(data);
-	          console.log("ok");
-	          console.log(data);},
-	         
-	    error: function(data){
-	          console.log('failed')
-	            }
-		
-	});
-	
-}
-</script> -->
 
 <!--将导师审核自己学生论文得信息映射倒模态框-->
 <script type="text/javascript">
 function show_teacherAdvise(val){
-	var str = {paper_stuId:val};
+	var str = {stu_id:val};
 	str = JSON.stringify(str);
+	console.log(str);
 	$.ajax({
 	      url:'${pageContext.request.contextPath }/pages/queryTeacherAdvise',
 	      type:'post',
@@ -374,8 +354,8 @@ function show_judgedetails(val){
 	            }
 		
 	    });
-} -->
-</script>
+} 
+</script>-->
 
 <!--根据论文评审信息更新论文流程栏目-->
 <script type="text/javascript">
@@ -394,7 +374,7 @@ function load(){
 	          console.log("ok");
 	       
 	       /*提交论文*/
-	       if(data.paper_ifSubmit == 1 && (data.file_id != null) && (data.paper_ifPass == null || data.paper_ifPass == "" )){
+	       if(data.paper_ifSubmit == 1 && data.file_id != null && (data.paper_ifPass == null || data.paper_ifPass == "" )){
 	    	      console.log("go to 2");
 	              step2(data);
 	          	}
@@ -481,6 +461,55 @@ function load(){
 	    });
 }
 
+function one_two(val){
+	
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/onejumptwo',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  
+	          console.log("one_two ok");
+	          console.log(data);
+	          
+	          if (confirm("确定提交？")) {
+	              $("#one").hide();
+	              $("#two").show();
+	              $("#grxx").attr("class","current_prev");
+	              $("#zjxx").attr("class","current");
+	          }
+	          
+	          $("#paperlistname").empty();
+	          $("#paperlistname").append("<th>学生姓名</th>");
+	          $("#paperlistname").append("<th>学生学号</th>");
+	          $("#paperlistname").append("<th>论文题目</th>");
+	          $("#paperlistname").append("<th>研究方向一</th>");
+	          $("#paperlistname").append("<th>研究方向二</th>");
+	          $("#paperlistname").append("<th>研究方向三</th>");
+	          $("#paperlistname").append("<th>导师评审</th>");
+	          
+	          $("#paperlist").empty();
+	          $("#paperlist").append("<td>"+data.stu_name+"</td>");
+	          $("#paperlist").append("<td>"+data.stu_id+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_title+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");	          
+	          },
+	         
+	    error: function(data){
+	          console.log('failed');
+	          alert("提交审核失败")
+	            }
+		
+	    });
+}
+
+
 function two_one(val){
 	
 	var str = {stu_id:val};
@@ -506,7 +535,7 @@ function two_one(val){
 	          $("#paperlistname").append("<th>研究方向一</th>");
 	          $("#paperlistname").append("<th>研究方向二</th>");
 	          $("#paperlistname").append("<th>研究方向三</th>");
-	          $("#paperlistname").append("<th>导师审核</th>");
+	          $("#paperlistname").append("<th>导师评审</th>");
 	      	  $("#paperlistname").append("<th>修改意见</th>");
 	          $("#paperlistname").append("<th>上传论文</th>");
 	          

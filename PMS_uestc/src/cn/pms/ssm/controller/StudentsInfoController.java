@@ -56,12 +56,14 @@ public class StudentsInfoController {
 	public @ResponseBody StudentPaperInfoVo requeryPaperInfo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		System.out.println(studentPaperInfoVo.getStu_id());
-		studentPaperInfoService.do_updateForePaperInfo1(studentPaperInfoVo);
+		//关闭老师评审状态位
+		studentPaperInfoService.do_updateForePaperInfo1(studentPaperInfoVo);         
 		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
 		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return studentPapperInfoVoList;
 	}
 
+	//映射到学生论文模态框，导师的评价
 	@RequestMapping("/queryTeacherAdvise")
 	public @ResponseBody StudentPaperInfoVo queryTeacherAdvise(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
@@ -71,5 +73,14 @@ public class StudentsInfoController {
 		
 	}
 	
+	@RequestMapping("/onejumptwo")
+	public @ResponseBody StudentPaperInfoVo onejumptwo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+		
+		StudentPaperInfoVo onejumptwoList = new StudentPaperInfoVo();
+		studentPaperInfoService.do_updatSubmit(studentPaperInfoVo);
+		onejumptwoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
+		return onejumptwoList;
+		
+	}
 	
 }

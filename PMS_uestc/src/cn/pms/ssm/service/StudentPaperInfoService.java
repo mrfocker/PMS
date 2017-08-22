@@ -20,6 +20,8 @@ public interface StudentPaperInfoService {
 	public StudentPaperInfoVo do_getStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//更新老师可评价状态位
 	public void do_updateForePaperInfo1(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	//更新论文可以提交状态位
+	public void do_updatSubmit(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//导师审核阶段修改建议查询
 	public StudentPaperInfoVo do_queryTeacherAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

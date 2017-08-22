@@ -26,4 +26,7 @@ public interface StudentPaperInfoMapper {
 	public StudentPaperInfoVo getStuInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//更新老师可评价状态位
 	public void updateForePaperInfo1(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	//更新老师可评价状态位
+	public void updateSubmit(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	
 }

@@ -143,4 +143,11 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 		
 		return studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
 	}
+
+	@Override
+	public void do_updatSubmit(StudentPaperInfoVo studentPaperInfoVo)
+			throws Exception {
+		studentPaperInfoMapper.updateSubmit(studentPaperInfoVo);
+		
+	}
 }

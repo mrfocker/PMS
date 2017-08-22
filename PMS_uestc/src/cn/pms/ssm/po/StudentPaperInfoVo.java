@@ -28,7 +28,14 @@ public class StudentPaperInfoVo {
 	private String Paper_repetitiveRateAll;
 	private String Paper_repetitiveRateSingle;
 	private String Paper_ifPaperRepetitiveRatePass;
+	private String Paper_advise;
 	
+	public String getPaper_advise() {
+		return Paper_advise;
+	}
+	public void setPaper_advise(String paper_advise) {
+		Paper_advise = paper_advise;
+	}
 	public int getPaper_ifAdvise() {
 		return Paper_ifAdvise;
 	}
