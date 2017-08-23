@@ -57,7 +57,7 @@ public class StudentsInfoController {
 		
 		System.out.println(studentPaperInfoVo.getStu_id());
 		//关闭老师评审状态位
-		studentPaperInfoService.do_updateForePaperInfo1(studentPaperInfoVo);         
+		studentPaperInfoService.do_updateIfTeacherAdvise(studentPaperInfoVo);         
 		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
 		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return studentPapperInfoVoList;
@@ -77,7 +77,7 @@ public class StudentsInfoController {
 	public @ResponseBody StudentPaperInfoVo onejumptwo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		StudentPaperInfoVo onejumptwoList = new StudentPaperInfoVo();
-		studentPaperInfoService.do_updatSubmit(studentPaperInfoVo);
+		studentPaperInfoService.do_updatSubmit_Pass(studentPaperInfoVo);
 		onejumptwoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return onejumptwoList;
 		

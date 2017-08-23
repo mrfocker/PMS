@@ -132,9 +132,9 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	}
 
 	@Override
-	public void do_updateForePaperInfo1(StudentPaperInfoVo studentPaperInfoVo)
+	public void do_updateIfTeacherAdvise(StudentPaperInfoVo studentPaperInfoVo)
 			throws Exception {
-		studentPaperInfoMapper.updateForePaperInfo1(studentPaperInfoVo);
+		studentPaperInfoMapper.updateIfTeacherAdvise(studentPaperInfoVo);
 	}
 
 	@Override
@@ -145,9 +145,10 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	}
 
 	@Override
-	public void do_updatSubmit(StudentPaperInfoVo studentPaperInfoVo)
+	public void do_updatSubmit_Pass(StudentPaperInfoVo studentPaperInfoVo)
 			throws Exception {
-		studentPaperInfoMapper.updateSubmit(studentPaperInfoVo);
+		studentPaperInfoMapper.updateSubmit_Pass(studentPaperInfoVo);
 		
 	}
+
 }

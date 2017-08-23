@@ -143,7 +143,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Stu_id = #{Stu_id}
 </select>
 
-<update id="updateForePaperInfo1" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+<update id="updateIfTeacherAdvise" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
     update 
       paper
     set 
@@ -152,12 +152,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       Paper_stuId = #{Stu_id}
 </update>
 
-<update id="updateSubmit" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+<update id="updateSubmit_Pass" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
     update 
       paper
     set 
-      Paper_ifSubmit = 1
+      Paper_ifSubmit = 1,
+      Paper_ifPass = null
     where 
       Paper_stuId = #{Stu_id}
 </update>
+
 </mapper>

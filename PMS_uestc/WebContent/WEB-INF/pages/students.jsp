@@ -169,7 +169,7 @@
                     <table align="center">
                         <tr>
                             <td></td>
-                            <td><button type="button" onclick="one_two('201522220299')">提交</button></td>
+                            <td id = "submit_button"><!-- <button type="button" onclick="one_two('201522220299')">提交</button> --></td>
                         </tr>
                     </table>
                 </div>
@@ -183,9 +183,9 @@
                 </div>
                 <div id="three" style="display:none">
                     <table align="center">
-                        <tr>
-                            <td></td> 
-                            <td><button type="button" onclick="three()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="retwo()">上一步</button></td>
+                        <tr id = "three1">
+                            <!-- <td></td> 
+                            <td><button type="button" onclick="three()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="retwo()">上一步</button></td> -->
                         </tr>
                     </table>
                 </div>
@@ -230,7 +230,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                      &times;
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">
+                    <h4 class="modal-title" id="myModalLabel" style="width:100%;text-align:center;font-weight:bold;">
                     	修改意见
                     </h4>
                 </div>
@@ -255,7 +255,7 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="20" placeholder='' id='return_cont' readonly="readonly"></textarea>
+                          <textarea class="form-control" rows="20" placeholder='' id='return_cont' readonly="readonly" style="position:relative;right:55px;width:450px"></textarea>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
@@ -276,7 +276,7 @@
               </div>
              </div>
          </div>
- <!-- 模态框（Modal）完 -->     
+ <!-- 模态框（Modal）完 -->
 
 <div class="footer">
   <p>Powered by Adminity Administration Interface</p>
@@ -373,6 +373,12 @@ function load(){
 	    	  console.log(data);
 	          console.log("ok");
 	       
+	        /*系统起始状态*/
+	        if(data.paper_ifSubmit == 0 && (data.paper_ifPass == null || data.paper_ifPass == "" )){
+	        	console.log("system start");
+	        	$("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
+	
+	        }
 	       /*提交论文*/
 	       if(data.paper_ifSubmit == 1 && data.file_id != null && (data.paper_ifPass == null || data.paper_ifPass == "" )){
 	    	      console.log("go to 2");
@@ -384,7 +390,7 @@ function load(){
 	    	      step2(data);
 	    	      $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
-	    	      $("#two1").append("<button type='button' onclick='two_one("+data.stu_id+");'>确认</button>");
+	    	      $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	    	   	  
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "不通过" ){
@@ -399,7 +405,10 @@ function load(){
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "修改"){
 	    	      console.log("3 go to 1");
-	    	   	  step1(data);
+	    	   	  step3(data);
+	    	   	  $("#three1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	      $("#three1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "不通过"){
 	    	      console.log("wait in 3");
@@ -498,7 +507,8 @@ function one_two(val){
 	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");	          
+	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
+	          $("#two1").empty();
 	          },
 	         
 	    error: function(data){
@@ -510,7 +520,7 @@ function one_two(val){
 }
 
 
-function two_one(val){
+function return_one(val){
 	
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
@@ -521,13 +531,25 @@ function two_one(val){
 	      data:str,
 	      success: function(data){
 	    	  
-	          console.log("two_one ok");
-	          
-	          $("#one").show();
-	          $("#two").hide();
-	          $("#grxx").attr("class","current");
-	          $("#zjxx").attr("class","");
-	          
+	    	  if(data.paper_ifPass == "修改"){
+	    		  console.log("two_one ok");
+		          $("#one").show();
+		          $("#two").hide();
+		          $("#grxx").attr("class","current");
+		          $("#zjxx").attr("class","");
+	    	  }
+	        
+	          if(data.paper_departPass == "修改"){
+	        	  console.log("three_one ok");
+		          $("#one").show();
+		          $("#two").hide();
+		          $("#three").hide();
+		          $("#grxx").attr("class","current");
+		          $("#zjxx").attr("class","");
+		          $("#qzxx").attr("class","");
+	        	  
+	          }
+	    	  
 	          $("#paperlistname").empty();
 	          $("#paperlistname").append("<th>学生姓名</th>");
 	          $("#paperlistname").append("<th>学生学号</th>");
@@ -535,7 +557,12 @@ function two_one(val){
 	          $("#paperlistname").append("<th>研究方向一</th>");
 	          $("#paperlistname").append("<th>研究方向二</th>");
 	          $("#paperlistname").append("<th>研究方向三</th>");
-	          $("#paperlistname").append("<th>导师评审</th>");
+	          if(data.paper_ifPass == "修改"){
+	        	  $("#paperlistname").append("<th>导师审核</th>");
+	          }
+	          if(data.paper_departPass == "修改"){
+	        	  $("#paperlistname").append("<th>学院审核</th>");
+	          }
 	      	  $("#paperlistname").append("<th>修改意见</th>");
 	          $("#paperlistname").append("<th>上传论文</th>");
 	          
@@ -546,10 +573,15 @@ function two_one(val){
 	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
 	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
-	          $("#paperlist").append("<button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-	         // $("#paperlist").append("<td>"+data.paper_advise+"</td>");
-	          $("#paperlist").append("<td><button>上传</button></td>");	          
+	          if(data.paper_ifPass == "修改"){
+	        	  $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
+	          }
+	          if(data.paper_departPass == "修改"){
+	        	  $("#paperlist").append("<td>"+data.paper_departPass+"</td>");
+	          }
+	          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+	          $("#paperlist").append("<td><button>上传</button></td>");
+	          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	          },
 	         
 	    error: function(data){
@@ -559,6 +591,7 @@ function two_one(val){
 		
 	    });
 }
+
 
 function step1(data){
 	
@@ -631,7 +664,7 @@ function step3(data){
      
      $("#paperlist").empty();
      $("#paperlist").append("<td>"+data.stu_name+"</td>");
-     $("#paperlist").append("<td>"+data.stu_Id+"</td>");
+     $("#paperlist").append("<td>"+data.stu_id+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
@@ -705,7 +738,7 @@ function step7(data){
     $("#qzfs").attr("class","current");
 }
 
-
 </script>
+
 </body>
 </html>
