@@ -37,6 +37,36 @@
 		<property name="mapperLocations" value="/config/sqlmap/*.xml"></property>
 	</bean>
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+	<!-- 原始dao接口 -->
+	<bean id = "teacherDao" class = "cn.pms.ssm.dao.TeacherDaoImpl">
+		<!-- 加载mybatis -->
+		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
+	</bean>
+	
+
+   <!-- mapper配置 
+   MapperFactoryBean:根据mapper接口生成代理对象
+   -->
+ <!--   <bean id = "teacherMapper" class = "org.mybatis.spring.mapper.MapperFactoryBean">
+   		mapperInterface 指定mapper接口
+   		<property name="mapperInterface" value = "cn.pms.ssm.mapper.TeacherMapper"></property>
+   		<property name="sqlSessionFactory" ref = "sqlSessionFactory"></property>
+   </bean> -->
+   
+   <!-- mapper的批量扫描 ，从mapper包中扫描出mapper接口，自动创建代理对象并且在spring容器中注册
+   	遵循规范，将mapper。java和mapper。xml放在一个文件  夹-->
+   <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+   		<!-- 指定扫描的包名 -->
+   		<property name="basePackage" value = "cn.pms.ssm.mapper"></property>
+   		<property name="sqlSessionFactoryBeanName" value = "sqlSessionFactory"></property>
+   </bean>
+
+
+=======
+=======
+>>>>>>> jj_branch
 	<!-- mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
@@ -48,5 +78,40 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
+<<<<<<< HEAD
+=======
+	
+	<!-- Mapper注册 -->
+	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	
+	<bean id="loginDAOImpl" class="cn.pms.ssm.mapper.impl.LoginDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+
+	<!-- Service注册 -->
+	<bean id="loginService" class="cn.pms.ssm.service.impl.LoginServiceImpl">
+		<property name="loginDAOImpl" ref="loginDAOImpl"></property>
+	</bean>
+	
+	<!-- Controller注册 -->
+<!-- 	<bean id="loginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginService" ref="loginService"/>
+	</bean> -->
+	
+	<!-- JSP action -->
+<!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="login.action">loginController</prop>
+			</props>
+		</property>
+	</bean>  -->
+<<<<<<< HEAD
+>>>>>>> jj_branch
+=======
+>>>>>>> jj_branch
+>>>>>>> 982fbbb5d7796541ec44f5a9a2f26acd958d5f18
 
 </beans>

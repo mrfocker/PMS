@@ -1,7 +1,15 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+<<<<<<< HEAD
+encoding//src/cn/pms/ssm/mapper/TeacherMapper.java=UTF-8
+encoding/<project>=UTF-8
+=======
+encoding//src/cn/pms/ssm/controller/read.txt=UTF-8
+>>>>>>> jj_branch
+=======
 encoding//src/cn/pms/ssm/controller/read.txt=UTF-8
 =======
 encoding//src/cn/pms/ssm/mapper/TeacherMapper.java=UTF-8
 encoding/<project>=UTF-8
 >>>>>>> 43c3e52f1b7e516f13b09fdaf7938c8d63642491
+>>>>>>> jj_branch
