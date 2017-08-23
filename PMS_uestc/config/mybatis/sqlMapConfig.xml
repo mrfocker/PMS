@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<setting name="mapUnderscoreCamelCase" value="true"/>
 	</settings> -->
 	<!-- 配置别名 -->
+<<<<<<< HEAD
 <!-- 	<typeAliases>
 		批量扫描别名
 <<<<<<< HEAD
@@ -93,6 +94,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 >>>>>>> 43c3e52f1b7e516f13b09fdaf7938c8d63642491
 >>>>>>> jj_branch
 >>>>>>> 982fbbb5d7796541ec44f5a9a2f26acd958d5f18
+=======
+	<typeAliases>
+		<!-- 批量扫描别名 -->
+		<package name="cn.pms.ssm.po"/>
+	</typeAliases>
+
+>>>>>>> jj_branch
 	<!-- 配置mapper
 	由于使用spring和mybatis的整合包进行mapper扫描，这里不需要配置了。
 	 -->

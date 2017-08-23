@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.ResultMapper">
+
+	<select id="selectAllPaperResult" resultType="cn.pms.ssm.vo.StudentPaperVo">
+		select * from student_paper
+	</select>
+	
+	<select id="selectAllBlindResult" resultType="cn.pms.ssm.vo.BlindJudgeResultVo">
+		select * from blindjudge_result
+	</select>
+	
+	<select id="selectAllReplyResult" resultType="cn.pms.ssm.vo.ReplyResultVo">
+		select * from reply_result
+	</select>
+	
+	<update id="updatePaperSubmitResult">
+		update paper
+		set Paper_ifPass = #{paperIfPass},Paper_ifSubmit = 0
+		where Paper_stuId = #{stuId}
+	</update>
+	
+	<update id="updateSubmitResult">
+		update paper
+		set Paper_ifSubmit = 0
+		where Paper_stuId = #{stuId}
+	</update>
+	
+	<update id="updatePaperResult">
+		update paper
+		set Paper_ifPass = #{paperIfPass}
+		where Paper_stuId = #{stuId}
+	</update>
+
+	<update id="updateBlindResult">
+		update blindjudgegroup
+		set Teacher_Grade = #{teacherGrade},Teacher_result = #{teacherResult}
+		where Stu_id = #{stuId} and Teacher_id = #{teacherId}
+	</update>
+
+	<select id="findAllBlindResult" resultType="java.lang.String">
+		select Teacher_Result
+		from blindjudge_result
+		where Stu_id = #{stuId}
+	</select>
+
+	<update id="updatePaperBlindJudgeResult">
+		update paper
+		set Paper_blindjudgePass = #{blindResult}
+		where Paper_Stuid = #{stuId}
+	</update>
+
+	<update id="updateReplyGrade">
+		update replyresult
+		set Reply_grade = #{replyGrade}
+		where Stu_id = #{stuId} and Group_id = #{groupId} and Teacher_id = #{teacherId}
+	</update>
+
+	<select id="findAllReplyResult" resultType="java.lang.Integer">
+		select Reply_grade
+		from replyresult
+		where Stu_id = #{stuId} and Group_id = #{groupId}
+	</select>
+	
+	<update id="updatePaperReplyResult">
+		update replyjudgegrouplist
+		set Reply_result = #{replyResult}
+		where Stu_id = #{stuId} and Group_id = #{groupId}
+	</update>
+
+	<update id="updateDepartPassResult">
+		update paper
+		set Paper_departPass = #{paperDepartPass}
+		where Paper_stuId = #{stuId}
+	</update>
+		
+</mapper>

@@ -25,13 +25,19 @@ import cn.pms.ssm.po.Teacher;
  * @version 1.0
  */
 
-@Service("loginService")
+@Service
 public interface LoginService {
 	public Integer selectstudentlogin(Student student);
 
 	public Integer selectteacherlogin(Teacher teacher);
 
 	public Integer selectadminlogin(Administrator administrator);
+
+	public Boolean selectStudentStatus(String id);
+
+	public Boolean selectTeacherStatus(String id);
+
+	public Boolean selectAdminStatus(String id);
 
 	public void updateStudentStatus(Student student);
 

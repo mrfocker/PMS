@@ -158,6 +158,7 @@ public class Teacher {
 	  private String Teacher_tel;
 	  private int Teacher_count;
 	  private int Teacher_limit;
+	  private String Teacher_idNumber;
 	  /**
 	 * @return the teacher_count
 	 */
@@ -303,6 +304,7 @@ public class Teacher {
 		Teacher_tel = teacher_tel;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> jj_branch
 =======
 	@Override
@@ -337,5 +339,17 @@ public class Teacher {
 	public Teacher(){
 		
 	}
+>>>>>>> jj_branch
+=======
+	
+	public String getTeacher_idNumber() {
+		return Teacher_idNumber;
+	}
+	
+	public void setTeacher_idNumber(String teacher_idNumber) {
+		Teacher_idNumber = teacher_idNumber;
+	}
+	
+	
 >>>>>>> jj_branch
 }

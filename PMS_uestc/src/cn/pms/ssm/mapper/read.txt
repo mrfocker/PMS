@@ -1,1 +1,14 @@
-¹ØÏµÓ³Éä
+ï¿½ï¿½ÏµÓ³ï¿½ï¿½
+
+//		for (int i = 0; i < list.size(); i++) {
+//			if (null != list.get(i)) {
+//				s = list.get(i).getPaper_name();
+//				if (null != s) {
+//					list.get(i).setPaper_reason(s.substring(s.lastIndexOf("a") + 1, s.lastIndexOf("a") + 2));
+//				} else {
+//					System.out.println("error");
+//				}
+//			} else {
+//				System.out.println("error");
+//			}
+//		}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.UpLoadMapper">
+
+	<select id="selectPaperIfExist" parameterType="cn.pms.ssm.vo.UploadVo"
+		resultType="cn.pms.ssm.vo.UploadVo">
+		SELECT
+		*
+		FROM
+		upload_paper
+		WHERE
+		Paper_stuId=#{Paper_stuId} and File_type=#{File_type}
+	</select>
+
+	<insert id="insertPaperItem" parameterType="cn.pms.ssm.vo.UploadVo">
+		INSERT INTO
+		Paper(Paper_stuId,Paper_title,Paper_researchOne,Paper_researchTwo)
+		VALUES(#{Paper_stuId},#{Paper_title},#{Paper_researchOne},#{Paper_researchTwo})
+	</insert>
+	
+	<insert id="insertFileItem" parameterType="cn.pms.ssm.vo.UploadVo">
+		INSERT INTO File(File_name,File_type,File_stuId)
+		VALUES(#{File_name},#{File_type},#{Paper_stuId})
+	</insert>
+
+	<update id="updatePaperItem" parameterType="cn.pms.ssm.vo.UploadVo">
+		UPDATE
+		upload_paper
+		SET
+		File_name = #{File_name}
+		WHERE
+		Paper_stuId = #{Paper_stuId}
+	</update>
+
+	<select id="selectPaperItem" parameterType="cn.pms.ssm.vo.UploadVo"
+		resultType="Integer">
+		SELECT
+		File_type
+		FROM
+		upload_paper
+		WHERE
+		Paper_stuId = #{Paper_stuId}
+	</select>
+</mapper>

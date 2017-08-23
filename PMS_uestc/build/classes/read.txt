@@ -1,0 +1,59 @@
+<!-- 没用 -->
+<!-- Mapper注册 -->
+<!-- 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
+	 -->
+	<!-- <bean id="loginDAOImpl" class="cn.pms.ssm.mapper.impl.LoginDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean> -->
+	<!-- Controller注册 -->
+<!-- 	<bean id="loginController" name="/login.action" class="cn.pms.ssm.controller.LoginController">
+		<property name="loginService" ref="loginService"/>
+	</bean> -->
+	
+	<!-- JSP action -->
+<!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="login.action">loginController</prop>
+			</props>
+		</property>
+	</bean>  -->
+	
+		<!-- <bean name="/uploadfile.action" class="cn.pms.ssm.controller.UploadController" 
+		/> -->
+<!-- END -->
+
+		<!-- 有问题 -->
+		<!-- 	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error/error.jsp页面
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">index</prop>
+			</props>
+		</property>
+	</bean> -->
+	<!-- END -->
+		
+<!-- 	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.freemarker.FreeMarkerView
+			</value>
+		</property>
+		<property name="cache">
+			<value>true</value>
+		</property>
+		<property name="prefix" value="/WEB-INF/pages"></property>
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+		<property name="contentType">
+			<value>text/html; charset=UTF-8</value>
+		</property>
+	</bean> -->

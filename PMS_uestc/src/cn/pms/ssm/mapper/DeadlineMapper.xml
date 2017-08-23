@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pms.ssm.mapper.DeadlineMapper">
+	
+	<select id="getPaperPassDeadline" resultType="java.lang.String">
+		select Paper_deadline from paper limit 1
+	</select>
+	
+	<select id="getBlindJudgeDeadline" resultType="java.lang.String">
+		select Teacher_deadline from blindjudgegroup limit 1
+	</select>
+	
+	<select id="getReplyDeadline" resultType="java.lang.String">
+		select Reply_deadline from replyresult limit 1
+	</select>
+	
+	<update id="updatePaperPassDeadline">
+		update paper set Paper_deadline = #{paperDeadline}
+	</update>
+	
+	<update id="updateBlindJudgeDeadline">
+		update blindjudgegroup set Teacher_deadline = #{blindDeadline}
+	</update>
+	
+	<update id="updateReplyDeadline">
+		update replyresult set Reply_deadline = #{replyDeadline}
+	</update>
+</mapper>

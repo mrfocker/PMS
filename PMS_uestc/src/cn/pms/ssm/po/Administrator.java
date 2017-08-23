@@ -20,9 +20,10 @@ package cn.pms.ssm.po;
  */
 public class Administrator {
 
-	private float su_id;
+	private String su_id;
 	private String su_password;
 	private Boolean su_isonline;
+	private String su_idnumber;
 	/**
 	 * @return the su_password
 	 */
@@ -50,13 +51,22 @@ public class Administrator {
 	/**
 	 * @return the su_id
 	 */
-	public float getSu_id() {
+	public String getSu_id() {
 		return su_id;
 	}
 	/**
 	 * @param su_id the su_id to set
 	 */
-	public void setSu_id(float su_id) {
+	public void setSu_id(String su_id) {
 		this.su_id = su_id;
 	}
+	
+	public String getSu_idnumber() {
+		return su_idnumber;
+	}
+	
+	public void setSu_idnumber(String su_idnumber) {
+		this.su_idnumber = su_idnumber;
+	}
+	
 }

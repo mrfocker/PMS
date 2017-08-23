@@ -15,6 +15,7 @@
 
 	<!-- 加载db.properties文件中的内容 -->
 	<context:property-placeholder location="classpath:db.properties" />
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -27,6 +28,8 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+=======
+>>>>>>> jj_branch
 	
 <<<<<<< HEAD
 >>>>>>> jj_branch
@@ -51,7 +54,7 @@
 =======
 >>>>>>> jj_branch
 		<property name="maxActive" value="30" />
-		<property name="maxIdle" value="5" />
+		<property name="maxIdle" value="10" />
 	</bean>
 	
 	<!-- sqlSessionFactory -->
@@ -69,6 +72,7 @@
 <<<<<<< HEAD
 =======
 		<property name="typeAliasesPackage" value="cn.pms.ssm.po"/>
+<<<<<<< HEAD
 		<property name="mapperLocations" value="classpath:sqlmap/*.xml"></property>
 		<property name="maxActive" value="30" /> 
 		<property name="maxIdle" value="5" />
@@ -86,12 +90,15 @@
 >>>>>>> jj_branch
 =======
 >>>>>>> jj_branch
+=======
+		<property name="mapperLocations" value="classpath:sqlmap/*.xml"/>
+>>>>>>> jj_branch
 	</bean>
 	
 	<!-- mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 扫描包路径，如果需要扫描多个包，中间使用半角逗号隔开 -->
-		<property name="basePackage" value="cn.pms.ssm.mapper,cn.pms.ssm.mapper.impl"></property>
+		<property name="basePackage" value="cn.pms.ssm.mapper cn.pms.ssm.mapper.impl"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
      
@@ -100,6 +107,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
+<<<<<<< HEAD
 	<!-- Mapper注册 -->
 	<bean id="studentInfoDAOImpl" class="cn.pms.ssm.mapper.impl.StudentInfoDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
@@ -145,15 +153,30 @@
 	<!-- JSP action -->
 <!-- 	<bean id="mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
+=======
+	<bean id="freemarkerConfig"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/pages/" />
+		<property name="freemarkerSettings">
+>>>>>>> jj_branch
 			<props>
-				<prop key="login.action">loginController</prop>
+				<prop key="template_update_delay">0</prop>
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="number_format">0.##########</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="classic_compatible">true</prop>
+				<prop key="template_exception_handler">ignore</prop>
 			</props>
 		</property>
+<<<<<<< HEAD
 	</bean>  -->
 <<<<<<< HEAD
 >>>>>>> jj_branch
 
 =======
  
+>>>>>>> jj_branch
+=======
+	</bean>
 >>>>>>> jj_branch
 </beans>

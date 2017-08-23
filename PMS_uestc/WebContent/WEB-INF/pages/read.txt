@@ -1,0 +1,106 @@
+function postID() {
+	var id = ${};
+	$.ajax({
+		url:"",
+		data:{},
+		dataType:'String',
+		type:'POST',
+		success:function(data){
+            window.clearInterval(timer);
+            console.log("over..");
+        };
+	});}
+	
+			var str = "";
+			$.each( downloadList, function(index, downloadVo) {
+				var i = index + 1;
+				str += "<tr><td>" + i
+				+ "</td><td>" + downloadVo.paper_stuId
+				+ "</td><td>" + downloadVo.stu_name
+				+ "</td><td>" + downloadVo.paper_title
+				+ "</td><td>" + downloadVo.paper_reason
+				+ "</td><td><input type='checkbox' /> </td><td><a href='"
+				+ ${ pageContext.request.contextPath }
+				+"/pages/downloadSingle.action?id="
+				+ downloadVo.paper_stuId + "'>下载</a></td></tr>";
+			});
+			$("#id2 tbody").empty().append(str);
+			}
+			
+// 目标文件名
+		String fileName;
+		// 获取输入流
+		InputStream bis;
+		int index = 0;
+		
+		for (index = 0; index < list.size(); index++) {
+			fileName = File.separator + "Users" + File.separator + "JJ" + File.separator + "PMS" + File.separator
+					+ "PMS_uestc" + File.separator + "resources" + File.separator + "PaperFile" + File.separator
+					+ list.get(index);
+			try {
+				bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
+				// 假如以中文名下载的话
+				String filename = stuId + "_Paper.docx";
+				// 转码，免得文件名中文乱码
+				filename = URLEncoder.encode(filename, "UTF-8");
+				// 设置文件下载头
+				response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+				// 1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+				response.setContentType("multipart/form-data");
+				
+				BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+				int len = 0;
+				while ((len = bis.read()) != -1) {
+					out.write(len);
+					out.flush();
+				}
+				out.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// private ModelAndView downFile(HttpServletResponse response, String str) {
+	// try {
+	// String path = FilePath + str;
+	// File file = new File(path);
+	// if (file.exists()) {
+	// BufferedInputStream bins = new BufferedInputStream(new
+	// FileInputStream(file));// 放到缓冲流里面
+	// BufferedOutputStream bouts = new
+	// BufferedOutputStream(response.getOutputStream()); // 获取文件输出IO流
+	// response.setContentType("multipart/form-data");// 设置response内容的类型
+	// application/x-download
+	// response.setHeader(
+	// "Content-disposition",
+	// "attachment;filename="
+	// + URLEncoder.encode(str, "UTF-8"));// 设置头部信息
+	// int bytesRead = 0;
+	// byte[] buffer = new byte[8192];
+	// // 开始向网络传输文件流
+	// while ((bytesRead = bins.read(buffer, 0, 8192)) != -1) {
+	//// while ((bytesRead = bins.read()) != -1) {
+	// bouts.write(buffer, 0, bytesRead);
+	// }
+	// bouts.flush();// 这里一定要调用flush()方法
+	//// bins.close();
+	// bouts.close();
+	// } else {
+	// response.sendRedirect("../index.jsp");
+	// }
+	// } catch (IOException e) {
+	// Log.error("文件下载出错", e);
+	// }
+	// return null;
+	// }
+	
+	application/x-download
+	
+	/*  */
