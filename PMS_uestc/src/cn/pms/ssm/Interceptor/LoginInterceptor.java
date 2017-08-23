@@ -50,21 +50,26 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	}
 
+	//执行Handler方法之前执行
 	/* (non-Javadoc)
 	 * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 		// TODO Auto-generated method stub
+		//获取请求的url
 		String url = request.getRequestURI();
 		Boolean status = true;
 		
+		//如果进行登录提交，放行
 		if (url.indexOf("login.action") >= 0) {
 			return true;
 		}
 		
+		//判断Session
 		HttpSession httpSession = request.getSession();
 		
+		//从Session中取出用户信息
 		String id = (String) httpSession.getAttribute("id");
 		int userTypes = (int) httpSession.getAttribute("userTypes");
 		
@@ -88,6 +93,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (status == false) {
 			return true;
 		}else {
+			//用户需要身份验证，跳转到登录界面
 			request.getRequestDispatcher("/WEB-INF/pages/html/logining/index.jsp").forward(request, response);
 			return false;
 		}

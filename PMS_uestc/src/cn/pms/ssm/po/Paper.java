@@ -29,7 +29,8 @@ public class Paper {
 	private String Paper_reason;
 	private float Paper_repetitiveRateAll;
 	private float Paper_repetitiveRateSingle;
-	private int Paper_ifPass;
+	private String Paper_ifPass;
+	private int Paper_ifSubmit;
 	
 	
 	/**
@@ -128,18 +129,15 @@ public class Paper {
 	public void setPaper_repetitiveRateSingle(float paper_repetitiveRateSingle) {
 		Paper_repetitiveRateSingle = paper_repetitiveRateSingle;
 	}
-	/**
-	 * @return the paper_ifPass
-	 */
-	public int getPaper_ifPass() {
+
+	public String getPaper_ifPass() {
 		return Paper_ifPass;
 	}
-	/**
-	 * @param paper_ifPass the paper_ifPass to set
-	 */
-	public void setPaper_ifPass(int paper_ifPass) {
+	
+	public void setPaper_ifPass(String paper_ifPass) {
 		Paper_ifPass = paper_ifPass;
 	}
+	
 	/**
 	 * @return the paper_name
 	 */
@@ -153,4 +151,12 @@ public class Paper {
 		Paper_name = paper_name;
 	}
 	
+	public int getPaper_ifSubmit() {
+		return Paper_ifSubmit;
+	}
+	
+	public void setPaper_ifSubmit(int paper_ifSubmit) {
+		Paper_ifSubmit = paper_ifSubmit;
+	}
+
 }

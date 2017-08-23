@@ -5,7 +5,6 @@ package cn.pms.ssm.mapper;
 
 import java.util.ArrayList;
 
-import cn.pms.ssm.po.Paper;
 import cn.pms.ssm.vo.UploadVo;
 
 /** 

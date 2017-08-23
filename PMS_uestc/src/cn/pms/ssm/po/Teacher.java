@@ -24,6 +24,7 @@ public class Teacher {
 	  private String Teacher_tel;
 	  private int Teacher_count;
 	  private int Teacher_limit;
+	  private String Teacher_idNumber;
 	  /**
 	 * @return the teacher_count
 	 */
@@ -168,4 +169,14 @@ public class Teacher {
 	public void setTeacher_tel(String teacher_tel) {
 		Teacher_tel = teacher_tel;
 	}
+	
+	public String getTeacher_idNumber() {
+		return Teacher_idNumber;
+	}
+	
+	public void setTeacher_idNumber(String teacher_idNumber) {
+		Teacher_idNumber = teacher_idNumber;
+	}
+	
+	
 }

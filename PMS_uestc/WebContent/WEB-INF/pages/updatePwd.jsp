@@ -100,6 +100,7 @@
 		</ul>
 	</div>
 	<div class="content container_12">
+	<form action = "${pageContext.request.contextPath }/pages/updatePwd.action" method="post">
 		<div class="box grid_6">
 			<div class="box-head">
 				<h2>修改密码</h2>
@@ -107,29 +108,94 @@
 			
 			<div class="box-content">
 				<div class="form-row">
-					<p class="form-label" id="userOldPwd">当前密码：</p>
+					<p class="form-label">用户名：</p>
 					<div class="form-item">
-						<input type="password" />
+						<input type="text" id="userId" name="userId"/>
 					</div>
 				</div>
 				<div class="form-row">
-					<p class="form-label" id="userNewPwd">新密码：</p>
+					<p class="form-label">身份证：</p>
 					<div class="form-item">
-						<input type="password" id="password" name="password"/>
+						<input type="text" id="userIdNum" name="userIdNum"/>
+						<div class="form-item" style="margin-top:10px">
+							<span id = "userIdNumInfo"></span>
+						</div>
 					</div>
 				</div>
 				<div class="form-row">
-					<p class="form-label" id="checkPwd">确认密码：</p>
+					<p class="form-label">新密码：</p>
 					<div class="form-item">
-						<input type="password" id="password_again" name="password_again"/>
+						<input type="password" id="userNewPwd" name="userNewPwd"/>
 					</div>
 				</div>
 				<div class="form-row">
-					<input type="submit" value="确定"/>
+					<p class="form-label">确认密码：</p>
+					<div class="form-item">
+						<input type="password" id="checkNewPwd" name="checkNewPwd"/>
+						<div class="form-item" style="margin-top:10px">
+							<span id = "newPwdInfo"></span>
+						</div>
+					</div>
+					<div class="form-item" style="margin-top:10px">
+						<span id = "wrongInfo"></span>
+					</div>
+				</div>
+				<div class="form-row">
+					<input type="submit" value="确定" id="formButton"/>
 				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
+		</form>
 	</div>
 </body>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/pages/js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+    	var flag1 = false;
+    	var flag2 = false;
+    	
+        //调用blur方法，失去焦点时触发事件
+        $("#userIdNum").blur(function(){
+        	var userId = $("#userId").val();
+        	var userIdNum = $("#userIdNum").val();
+        	$.ajax({
+        		type:"POST",
+        		url:"${pageContext.request.contextPath}/pages/validateUser.action",
+        		data:{userId:$.trim(userId),userIdNum:$.trim(userIdNum)},
+        		success:function(data){
+        			if($.trim(data) == "error"){
+        				$("#userIdNumInfo").html("用户名和身份证号码不匹配").css({"color":'red',"font-size":'12px'});
+        			}else if($.trim(data) == "success"){
+        				$("#userIdNumInfo").html("验证用户成功").css({"color":'green',"font-size":'12px'});
+        				flag1 = true;
+        			}
+        		},
+        		error:function(){
+        			alert("出现异常");
+        		}
+        	});
+        })
+        $("#checkNewPwd").blur(function(){
+        	var userNewPwd = $("#userNewPwd").val();
+        	var checkNewPwd = $("#checkNewPwd").val();
+        	if(userNewPwd != checkNewPwd){
+        		$("#newPwdInfo").html("两次密码输入不一致").css({"color":'red',"font-size":'12px'});
+        	}else{
+        		flag2 = true;
+        	}
+        })
+        $("#formButton").click(function(check){ 
+        	//alert("flag1="+flag1+",flag2="+flag2);
+            if(flag1 == false || flag2 == false){
+                alert("请填写完整信息！"); 
+                $("#wrongInfo").html("请填写完整信息！").css({"color":'red',"font-size":'12px'});
+                check.preventDefault();//此处阻止提交表单  
+            }  
+        }); 
+    });
+</script>
+
 </html>

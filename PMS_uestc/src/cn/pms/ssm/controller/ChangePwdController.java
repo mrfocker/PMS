@@ -15,7 +15,6 @@ import cn.pms.ssm.po.Administrator;
 import cn.pms.ssm.po.Student;
 import cn.pms.ssm.po.Teacher;
 import cn.pms.ssm.service.ChangePwdService;
-import net.sf.cglib.transform.AbstractClassLoader;
 
 /**
  * <p>
@@ -45,7 +44,7 @@ public class ChangePwdController {
 
 	// 从Cookie中获取ID，从页面上获取用户填写的当前密码,AJAX刷新页面,成功才能修改密码
 	@RequestMapping(value = "/checkPwd", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView checkPwd(@RequestParam("userId") String userId, @RequestParam("userOldPwd") String userPwd) {
+	public ModelAndView checkPwd(@RequestParam(value = "userId") String userId, @RequestParam("userOldPwd") String userPwd) {
 		int userTypes = 1;
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -56,7 +55,7 @@ public class ChangePwdController {
 		switch (userTypes) {
 		case ADMIN:
 			Administrator administrator = new Administrator();
-			administrator.setSu_id(Float.parseFloat(userId));
+			administrator.setSu_id(String.valueOf(userId));
 			if (userPwd == changePwdService.selectPwdByAdminId(administrator)) {
 				modelAndView.addObject("success", "success");
 			} else {
@@ -107,7 +106,7 @@ public class ChangePwdController {
 		switch (userTypes) {
 		case ADMIN:
 			Administrator administrator = new Administrator();
-			administrator.setSu_id(Float.parseFloat(userId));
+			administrator.setSu_id(String.valueOf(userId));
 			administrator.setSu_password(userPwd);
 			changePwdService.updatePwdAdmin(administrator);
 			break;

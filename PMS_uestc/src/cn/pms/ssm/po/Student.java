@@ -3,8 +3,6 @@
  */
 package cn.pms.ssm.po;
 
-import java.sql.Date;
-
 /**
  * @author Xiaozhe
  *
@@ -19,7 +17,8 @@ public class Student {
 	private String Stu_stuType;
 	private String Stu_degreeType;
 	private String Stu_teacherCompany;
-	private Date Stu_requestReplyTime;
+	private String Stu_requestReplyTime;
+	private String Stu_idNumber;
 	/**
 	 * @return the stu_id
 	 */
@@ -128,23 +127,21 @@ public class Student {
 	/**
 	 * @return the stu_requestReplyTime
 	 */
-	public Date getStu_requestReplyTime() {
-		return Stu_requestReplyTime;
-	}
 
-	/**
-	 * @param stu_requestReplyTime
-	 *            the stu_requestReplyTime to set
-	 */
-	public void setStu_requestReplyTime(Date stu_requestReplyTime) {
-		Stu_requestReplyTime = stu_requestReplyTime;
-	}
 
 	/**
 	 * @return the stu_isonline
 	 */
 	public Boolean getStu_isonline() {
 		return Stu_isonline;
+	}
+
+	public String getStu_requestReplyTime() {
+		return Stu_requestReplyTime;
+	}
+
+	public void setStu_requestReplyTime(String stu_requestReplyTime) {
+		Stu_requestReplyTime = stu_requestReplyTime;
 	}
 
 	/**
@@ -167,5 +164,15 @@ public class Student {
 	public void setStu_password(String stu_password) {
 		Stu_password = stu_password;
 	}
+
+	public String getStu_idNumber() {
+		return Stu_idNumber;
+	}
+
+	public void setStu_idNumber(String stu_idNumber) {
+		Stu_idNumber = stu_idNumber;
+	}
+	
+	
 
 }

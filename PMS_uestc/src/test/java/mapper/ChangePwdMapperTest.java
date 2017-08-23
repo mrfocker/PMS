@@ -49,7 +49,7 @@ public class ChangePwdMapperTest {
 		student.setStu_password("555");
 		teacher.setTeacher_id("111111111111");
 		teacher.setTeacher_password("122");
-		administrator.setSu_id(9123);
+		administrator.setSu_id("9123");
 		administrator.setSu_password("123");
 
 		ChangePwdMapper changePwdMapper = ctx.getBean("changePwdMapper", ChangePwdMapper.class);
@@ -69,7 +69,7 @@ public class ChangePwdMapperTest {
 
 		student.setStu_id("121");
 		teacher.setTeacher_id("111111111111");
-		administrator.setSu_id(9123);
+		administrator.setSu_id("9123");
 
 		ChangePwdMapper changePwdMapper = ctx.getBean("changePwdMapper", ChangePwdMapper.class);
 		String result = "result------------------------------>Admin: "
