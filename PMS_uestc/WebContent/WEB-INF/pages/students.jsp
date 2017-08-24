@@ -385,16 +385,26 @@ function load(){
 	              step2(data);
 	          	}
 	       /*导师审核ok*/
-	       if((data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == ""))
-	    		   ||(data.paper_ifPass == "修改" && data.paper_departPass == "修改")){
+	      /*  if((data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")) ||
+	    		   (data.paper_ifPass == "修改" && data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == ""))
+	    		   || (data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && (data.paper_departPass == null || data.paper_departPass == "")) 
+	    		   || (data.paper_ifPass == "修改" && data.paper_departPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改")){
 	    	      console.log("2 go to 1");
 	    	      step2(data);
 	    	      $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
-	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	    
 	    	      $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	    	   	  
-	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_ifPass == "不通过" ){
+	       } */
+	    	   
+	       if(data.paper_ifPass == "修改"){
+	    	   console.log("2 go to 1");
+	    	      step2(data);
+	    	      $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	    
+	    	      $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
+	       }	   
+	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "不通过" ){
 	    	      console.log("wait in 2");
 	    	   	  step2(data);
 	    	   	  /*不通过的原因*/
@@ -404,7 +414,8 @@ function load(){
 	    	      console.log("go to 3");
 	    	   	  step3(data);
 	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "修改" && data.paper_ifPass != "修改"){
+	       if((data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "") && data.paper_ifPass == "通过") 
+	    		   || (data.paper_departPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && data.paper_ifPass == "通过")){
 	    	      console.log("3 go to 1");
 	    	   	  step3(data);
 	    	   	  $("#three1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
@@ -421,7 +432,7 @@ function load(){
 	    	      console.log("go to 4");
 	    	      step4(data);
 	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_ifPaperRepetitiveRatePass == "修改"){
+	       if(data.paper_ifSubmit == 0 && data.paper_departPass == "通过" && data.paper_ifPaperRepetitiveRatePass == "修改"){
 	    	      console.log("4 go to 1");
 	    	      step4(data);
 	    	      $("#four1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
@@ -577,10 +588,10 @@ function return_one(val){
 	          $("#paperlistname").append("<th>研究方向一</th>");
 	          $("#paperlistname").append("<th>研究方向二</th>");
 	          $("#paperlistname").append("<th>研究方向三</th>");
-	          if(data.paper_ifPass == "修改"){
+	          if(data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
 	        	  $("#paperlistname").append("<th>导师审核</th>");
 	          }
-	          if(data.paper_departPass == "修改"){
+	          if(data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "") && (data.paper_ifPass == null || data.paper_ifPass == "")){
 	        	  $("#paperlistname").append("<th>学院审核</th>");
 	          }
 	          if(data.paper_ifPaperRepetitiveRatePass == "修改"){
