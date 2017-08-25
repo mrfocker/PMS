@@ -100,6 +100,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Paper_repetitiveRateAll,
 		 Paper_repetitiveRateSingle,
 		 Paper_advise,
+		 Paper_ifAdvise,
 		 Paper_ifSubmit
 	FROM
 		 paper 
@@ -143,11 +144,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 Stu_id = #{Stu_id}
 </select>
 
-<update id="updateIfTeacherAdvise" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+<update id="updateIfSubmit" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
     update 
       paper
     set 
-      Paper_ifAdvise = 1
+      Paper_ifSubmit = 0
     where 
       Paper_stuId = #{Stu_id}
 </update>
@@ -157,7 +158,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       paper
     set 
       Paper_ifSubmit = 1,
-      Paper_ifPass = null
+      Paper_ifAdvise = 0
     where 
       Paper_stuId = #{Stu_id}
 </update>

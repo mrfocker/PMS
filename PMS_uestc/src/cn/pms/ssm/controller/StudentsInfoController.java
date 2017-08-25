@@ -57,7 +57,7 @@ public class StudentsInfoController {
 		
 		System.out.println(studentPaperInfoVo.getStu_id());
 		//关闭老师评审状态位
-		studentPaperInfoService.do_updateIfTeacherAdvise(studentPaperInfoVo);         
+		studentPaperInfoService.do_updateIfSubmit(studentPaperInfoVo);         
 		StudentPaperInfoVo studentPapperInfoVoList = new StudentPaperInfoVo();
 		studentPapperInfoVoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return studentPapperInfoVoList;

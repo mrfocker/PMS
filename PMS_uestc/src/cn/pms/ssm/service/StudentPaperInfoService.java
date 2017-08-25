@@ -19,7 +19,7 @@ public interface StudentPaperInfoService {
 	//获取论文信息（JS判断）
 	public StudentPaperInfoVo do_getStudentPaperInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//更新老师可评价状态位
-	public void do_updateIfTeacherAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public void do_updateIfSubmit(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//更新论文可以提交状态位
 	public void do_updatSubmit_Pass(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//导师审核阶段修改建议查询

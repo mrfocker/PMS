@@ -61,6 +61,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 				allPaperInfo.setPaper_ifSubmit(myPaperInfo.getPaper_ifSubmit());
 				allPaperInfo.setPaper_repetitiveRateAll(myPaperInfo.getPaper_repetitiveRateAll());
 				allPaperInfo.setPaper_repetitiveRateSingle(myPaperInfo.getPaper_repetitiveRateSingle());
+				allPaperInfo.setPaper_ifAdvise(myPaperInfo.getPaper_ifAdvise());
 				
 				if((myPaperInfo.getPaper_repetitiveRateAll() != null) && (myPaperInfo.getPaper_repetitiveRateSingle() != null)){
 					System.out.println("check here");
@@ -132,9 +133,9 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	}
 
 	@Override
-	public void do_updateIfTeacherAdvise(StudentPaperInfoVo studentPaperInfoVo)
+	public void do_updateIfSubmit(StudentPaperInfoVo studentPaperInfoVo)
 			throws Exception {
-		studentPaperInfoMapper.updateIfTeacherAdvise(studentPaperInfoVo);
+		studentPaperInfoMapper.updateIfSubmit(studentPaperInfoVo);
 	}
 
 	@Override
