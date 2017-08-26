@@ -372,9 +372,10 @@ function load(){
 	      success: function(data){      
 	    	  console.log(data);
 	          console.log("ok");
-	       
+	      	  var n = 0;
 	        /*系统起始状态*/
-	        if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1){
+	        if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.teacher_Result == null || data.teacher_Result == "")
+	        		&& (data.reply_Result == null || data.reply_Result == "")){
 	        	console.log("system start or wait 1");
 	        	$("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	
@@ -387,7 +388,7 @@ function load(){
 	    	      console.log("go to 2");
 	              step2(data);
 	          	} */
-	      if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "修改" ||(data.paper_ifPass == null || data.paper_ifPass == ""))){
+	      if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && (data.paper_ifPass == "修改" || data.paper_ifPass == null || data.paper_ifPass == "")){
 	    	  console.log("1 go to 2,wait 2 +");
               step2(data);
 	      }
@@ -406,16 +407,16 @@ function load(){
 	    	     console.log("2 go to 1 ,wait 2 -");
 	    	     step2(data);
 	    	     //$("#two1").empty();
-	    	     $("#two1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	     $("#two1").append("<td>您的论文在该审核阶段的评审结果已经完成，请点击确认查看结果详情</td> ");
 	    	     $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	      
 	       /*学院审核*/
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.paper_ifPass == "修改" && (data.paper_departPass == "修改" || (data.paper_departPass == null || data.paper_departPass == ""))){
+	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == "修改" || (data.paper_departPass == null || data.paper_departPass == ""))){
 	    	      console.log("2 go to 3,wait 3 +");
 	    	   	  step3(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && data.paper_ifPass == "修改" && (data.paper_departPass == "修改" || data.paper_departPass == "不通过")){
+	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "" || data.paper_ifPass == null)&& (data.paper_departPass == "修改" || data.paper_departPass == "不通过")){
 	    	      console.log("3 go to 1,wait 3 -");
 	    	   	  step3(data);
 	    	   	  $("#three1").append("<td>您的论文需要修改，请点击“确认”按钮查看学院意见并重新上传修改后的论文！</td> ");
@@ -423,13 +424,12 @@ function load(){
 	    	      $("#three1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       /*论文查重*/
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.paper_departPass == "通过" 
-	    		   && (data.ifPaperRepetitiveRatePass == "修改" || (data.ifPaperRepetitiveRatePass == null || data.ifPaperRepetitiveRatePass == ""))){
+	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == null || data.data_ifPaperRepetitiveRatePass == "")){
 	    	      console.log("go to 4,wait4 +");
 	    	      step4(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && data.paper_departPass == "通过" 
-    		   && (data.ifPaperRepetitiveRatePass == "修改" || data.ifPaperRepetitiveRatePass == "不通过")){
+	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == null || data.paper_ifPass == "") && (data.paper_departPass == null || data.paper_departPass == "") 
+    		   && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == "不通过")){
 	    	      console.log("4 go to 1,wait 4 -");
 	    	      step4(data);
 	    	      $("#four1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
@@ -437,21 +437,31 @@ function load(){
 	    	      $("#four1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       /*论文盲审*/
-	      if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.ifPaperRepetitiveRatePass == "通过" 
-	    		  && ((data.teacher_Result == null || data.teacher_Result == "") || data.teacher_Result == "通过")){
+	      if(data.paper_ifPaperRepetitiveRatePass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
 	    	      console.log("go to 5,wait 5 +");
 	    	      step5(data);
 	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.teacher_Result == "通过" || data.teacher_Result == "不通过")){
+	      if(data.teacher_Result == "通过" && data.paper_ifSubmit == 0 && (data.reply_result == "" || data.reply_result == null)){
+    	         console.log("go to 5,wait 5 +");
+    	      	 step5(data);
+          }
+	       if(n = 0 && data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.teacher_Result == "通过" || data.teacher_Result == "不通过")){
 	    	      console.log("wait in 5,-");
 	    	      step5(data);
+	    	      n = n + 1;
 	    	      $("#five1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#five1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	    	      /*不通过的原因*/
 	       }
 	       /*论文答辩*/
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.teacher_Result == "通过" && (data.reply_result == "通过" || data.reply_result == null)){
+	       if(n= 1 && data.paper_ifSubmit == 1 && data.teacher_Result == "通过" && (data.reply_result == "" || data.reply_result == null || data.reply_result == "通过")){
+	    	      console.log("go to 6,wait 6 +");
+	    	      n = n + 1;
+	    	      console.log(n);
+	    	      step6(data);
+	       }
+	       if(data.reply_result == "通过" && data.paper_ifSubmit == 0){
 	    	      console.log("go to 6,wait 6 +");
 	    	      step6(data);
 	       }
@@ -461,14 +471,9 @@ function load(){
 	    	      /*不通过的原因*/
 	       }
 	       /*学位授予*/
-	       if(data.paper_ifSubmit == 1 && data.reply_result == "通过" && (data.stu_ifdegree == null || data.stu_ifdegree == "")){
+	       if(data.stu_ifdegree != null || (data.reply_result == "通过" && data.paper_ifSubmit == 1)){
 	    	   	  console.log("go to 7,wait 7");
 	    	   	  step7(data);
-	       }
-	       if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
-	    	   	  console.log("wait in 7");
-	    	   	  step7(data);
-	    	   	  /*不通过原因*/
 	       }
 	          },
 	      
@@ -702,7 +707,7 @@ function return_one(val){
 		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 	    	 }
 	    	 
-	    	 if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && (data.paper_departPass == null || data.paper_departPass == "")){
+	    	 if(data.paper_ifSubmit == 1 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && (data.paper_departPass == null || data.paper_departPass == "")){
 	    		 
 	    		 consle.log("4,1,2,1 wait ok");
 	    		 
