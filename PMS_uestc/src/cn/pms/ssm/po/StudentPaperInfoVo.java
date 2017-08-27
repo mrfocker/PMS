@@ -29,7 +29,28 @@ public class StudentPaperInfoVo {
 	private String Paper_repetitiveRateSingle;
 	private String Paper_ifPaperRepetitiveRatePass;
 	private String Paper_advise;
+	private String Paper_departadvise;
+	private String Teacher_description;
+	private String Reply_advise;
 	
+	public String getPaper_departadvise() {
+		return Paper_departadvise;
+	}
+	public void setPaper_departadvise(String paper_departadvise) {
+		Paper_departadvise = paper_departadvise;
+	}
+	public String getTeacher_description() {
+		return Teacher_description;
+	}
+	public void setTeacher_description(String teacher_description) {
+		Teacher_description = teacher_description;
+	}
+	public String getReply_advise() {
+		return Reply_advise;
+	}
+	public void setReply_advise(String reply_advise) {
+		Reply_advise = reply_advise;
+	}
 	public String getPaper_advise() {
 		return Paper_advise;
 	}

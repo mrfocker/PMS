@@ -30,51 +30,51 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 
 	@Override
 	public StudentPaperInfoVo do_getStudentPaperInfo(
-			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
+		StudentPaperInfoVo studentPaperInfoVo) throws Exception {
 		System.out.println("here");
 		System.out.println(studentPaperInfoVo.getStu_id());
-			StudentPaperInfoVo allPaperInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo myPaperInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo myFileInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo myBlindJudgeInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo myReplyJudgeInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo myGradeListInfo = new StudentPaperInfoVo();
-			StudentPaperInfoVo mySelfInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo allPaperInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo myPaperInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo myFileInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo myBlindJudgeInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo myReplyJudgeInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo myGradeListInfo = new StudentPaperInfoVo();
+		StudentPaperInfoVo mySelfInfo = new StudentPaperInfoVo();
 			
-			mySelfInfo = studentPaperInfoMapper.getStuInfo(studentPaperInfoVo);
-			if(mySelfInfo != null){
-				System.out.println("myselfInfo ok");
-				allPaperInfo.setStu_name(mySelfInfo.getStu_name());
-				allPaperInfo.setStu_id(mySelfInfo.getStu_id());
-				allPaperInfo.setStu_ifdegree(mySelfInfo.getStu_ifdegree());
-			}
+		mySelfInfo = studentPaperInfoMapper.getStuInfo(studentPaperInfoVo);
+		if(mySelfInfo != null){
+			System.out.println("myselfInfo ok");
+			allPaperInfo.setStu_name(mySelfInfo.getStu_name());
+			allPaperInfo.setStu_id(mySelfInfo.getStu_id());
+			allPaperInfo.setStu_ifdegree(mySelfInfo.getStu_ifdegree());
+		}
 			
 			myPaperInfo = studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
 			if(myPaperInfo != null){
-				System.out.println("myPaperInfo ok");
-				allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
-				allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
-				allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
-				allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
-				allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
-				allPaperInfo.setPaper_departPass(myPaperInfo.getPaper_departPass());
-				allPaperInfo.setPaper_ifSubmit(myPaperInfo.getPaper_ifSubmit());
-				allPaperInfo.setPaper_repetitiveRateAll(myPaperInfo.getPaper_repetitiveRateAll());
-				allPaperInfo.setPaper_repetitiveRateSingle(myPaperInfo.getPaper_repetitiveRateSingle());
-				allPaperInfo.setPaper_ifAdvise(myPaperInfo.getPaper_ifAdvise());
+			System.out.println("myPaperInfo ok");
+			allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
+			allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
+			allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
+			allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
+			allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
+			allPaperInfo.setPaper_departPass(myPaperInfo.getPaper_departPass());
+			allPaperInfo.setPaper_ifSubmit(myPaperInfo.getPaper_ifSubmit());
+			allPaperInfo.setPaper_repetitiveRateAll(myPaperInfo.getPaper_repetitiveRateAll());
+			allPaperInfo.setPaper_repetitiveRateSingle(myPaperInfo.getPaper_repetitiveRateSingle());
+			allPaperInfo.setPaper_ifAdvise(myPaperInfo.getPaper_ifAdvise());
 				
-				if((myPaperInfo.getPaper_repetitiveRateAll() != null) && (myPaperInfo.getPaper_repetitiveRateSingle() != null)){
-					System.out.println("check here");
-					System.out.println(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()));
-					if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.2){
-						allPaperInfo.setPaper_ifPaperRepetitiveRatePass("不通过");
-					}
-					if((Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) < 0.2 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.15)|| Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) > 0.25 ){
-						allPaperInfo.setPaper_ifPaperRepetitiveRatePass("修改");
-					}
-					if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) <= 0.15 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) <= 0.25){
-						allPaperInfo.setPaper_ifPaperRepetitiveRatePass("通过");
-					}
+			if((myPaperInfo.getPaper_repetitiveRateAll() != null) && (myPaperInfo.getPaper_repetitiveRateSingle() != null)){
+				System.out.println("check here");
+				System.out.println(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()));
+				if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.2){
+					allPaperInfo.setPaper_ifPaperRepetitiveRatePass("不通过");
+				}
+				if((Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) < 0.2 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) >= 0.15)|| Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) > 0.25 ){
+					allPaperInfo.setPaper_ifPaperRepetitiveRatePass("修改");
+				}
+				if(Float.parseFloat(myPaperInfo.getPaper_repetitiveRateAll()) <= 0.15 && Float.parseFloat(myPaperInfo.getPaper_repetitiveRateSingle()) <= 0.25){
+					allPaperInfo.setPaper_ifPaperRepetitiveRatePass("通过");
+				}
 				}
 				System.out.println(allPaperInfo.getPaper_ifSubmit());
 			}
@@ -102,33 +102,6 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 				System.out.println("myFileInfo ok");
 				allPaperInfo.setFile_id(myFileInfo.getFile_id());
 			}
-			/*myFileInfo =  studentPaperInfoMapper.getFileInfo(studentPaperInfoVo);
-			myBlindJudgeInfo = studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
-			myReplyJudgeInfo = studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
-			myGradeListInfo = studentPaperInfoMapper.getGradeListInfo(studentPaperInfoVo);
-			
-			allPaperInfo.setPaper_title(myPaperInfo.getPaper_title());
-			allPaperInfo.setPaper_researchOne(myPaperInfo.getPaper_researchOne());
-			allPaperInfo.setPaper_researchTwo(myPaperInfo.getPaper_researchTwo());
-			allPaperInfo.setPaper_researchThree(myPaperInfo.getPaper_researchThree());
-			allPaperInfo.setPaper_ifPass(myPaperInfo.getPaper_ifPass());
-			allPaperInfo.setPaper_departPss(myPaperInfo.getPaper_departPss());
-			allPaperInfo.setFile_id(myFileInfo.getFile_id());
-			allPaperInfo.setTeacher_Result(myBlindJudgeInfo.getTeacher_Result());
-			allPaperInfo.setReply_result(myReplyJudgeInfo.getReply_result());
-			allPaperInfo.setGrade_ifPass(myGradeListInfo.getGrade_ifPass());
-			
-			System.out.println(allPaperInfo.getPaper_title());
-			System.out.println(allPaperInfo.getPaper_researchOne());
-			System.out.println(allPaperInfo.getPaper_researchTwo());
-			System.out.println(allPaperInfo.getPaper_researchThree());
-			System.out.println(allPaperInfo.getPaper_ifPass());
-			System.out.println(allPaperInfo.getPaper_departPss());
-			System.out.println(allPaperInfo.getFile_id());
-			System.out.println(allPaperInfo.getTeacher_Result());
-			System.out.println(allPaperInfo.getReply_result());
-			System.out.println(allPaperInfo.getGrade_ifPass());*/
-			
 		    return allPaperInfo;
 	}
 
@@ -139,7 +112,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 	}
 
 	@Override
-	public StudentPaperInfoVo do_queryTeacherAdvise(
+	public StudentPaperInfoVo do_queryTeacherDepartAdvise(
 			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
 		
 		return studentPaperInfoMapper.getPaperInfo(studentPaperInfoVo);
@@ -150,6 +123,18 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			throws Exception {
 		studentPaperInfoMapper.updateSubmit_Pass(studentPaperInfoVo);
 		
+	}
+
+	@Override
+	public StudentPaperInfoVo do_queryBlindJudgeAdvise(
+			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
+		return studentPaperInfoMapper.getBlindJudgeInfo(studentPaperInfoVo);
+	}
+
+	@Override
+	public StudentPaperInfoVo do_queryReplyJudgeAdvise(
+			StudentPaperInfoVo studentPaperInfoVo) throws Exception {
+		return studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
 	}
 
 }

@@ -64,14 +64,33 @@ public class StudentsInfoController {
 	}
 
 	//映射到学生论文模态框，导师的评价
-	@RequestMapping("/queryTeacherAdvise")
+	@RequestMapping("/queryTeacherDepartAdvise")
 	public @ResponseBody StudentPaperInfoVo queryTeacherAdvise(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		StudentPaperInfoVo teacheradvise = new StudentPaperInfoVo();
-		teacheradvise = studentPaperInfoService.do_queryTeacherAdvise(studentPaperInfoVo);
+		teacheradvise = studentPaperInfoService.do_queryTeacherDepartAdvise(studentPaperInfoVo);
 		return teacheradvise;
 		
 	}
+	
+	//映射到学生论文模态框，盲审的评价
+	@RequestMapping("/queryBlindJudgeAdvise")
+	public @ResponseBody StudentPaperInfoVo queryBlindJudgeAdvise(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+			
+		StudentPaperInfoVo blindjudgeadvise = new StudentPaperInfoVo();
+		blindjudgeadvise = studentPaperInfoService.do_queryBlindJudgeAdvise(studentPaperInfoVo);
+		return blindjudgeadvise;
+			
+		}
+	
+	@RequestMapping("/queryReplyAdvise")
+	public @ResponseBody StudentPaperInfoVo queryReplyJudgeAdvise(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+			
+		StudentPaperInfoVo replyadvise = new StudentPaperInfoVo();
+		replyadvise = studentPaperInfoService.do_queryReplyJudgeAdvise(studentPaperInfoVo);
+		return replyadvise;
+			
+		}
 	
 	@RequestMapping("/onejumptwo")
 	public @ResponseBody StudentPaperInfoVo onejumptwo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{

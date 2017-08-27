@@ -23,5 +23,9 @@ public interface StudentPaperInfoService {
 	//更新论文可以提交状态位
 	public void do_updatSubmit_Pass(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//导师审核阶段修改建议查询
-	public StudentPaperInfoVo do_queryTeacherAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	public StudentPaperInfoVo do_queryTeacherDepartAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	//盲审核阶段修改建议查询
+	public StudentPaperInfoVo do_queryBlindJudgeAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
+	//答辩核阶段修改建议查询
+	public StudentPaperInfoVo do_queryReplyJudgeAdvise(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

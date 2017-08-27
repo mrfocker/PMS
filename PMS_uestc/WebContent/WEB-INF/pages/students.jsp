@@ -167,9 +167,9 @@
             <div class="formcon">
                 <div id="one">
                     <table align="center">
-                        <tr>
-                            <td></td>
-                            <td id = "submit_button"><!-- <button type="button" onclick="one_two('201522220299')">提交</button> --></td>
+                        <tr id = "submit_button">
+                            <!-- <td></td>
+                            <td id = "submit_button"><button type="button" onclick="one_two('201522220299')">提交</button></td> -->
                         </tr>
                     </table>
                 </div>
@@ -219,8 +219,7 @@
         
         
  
-  
-  <!-- 模态框（Modal） -->
+<!-- 模态框 导师意见（Modal） -->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
           <div class="modal-dialog">
             <div class="col-md-11 col-xs-22">                      
@@ -231,7 +230,7 @@
                      &times;
                     </button>
                     <h4 class="modal-title" id="myModalLabel" style="width:100%;text-align:center;font-weight:bold;">
-                    	修改意见
+                    	导师意见
                     </h4>
                 </div>
                   <div class="x_content">
@@ -276,7 +275,181 @@
               </div>
              </div>
          </div>
- <!-- 模态框（Modal）完 -->
+ <!-- 模态框导师意见（Modal）完 -->
+ 
+ <!-- 模态框 学院意见（Modal） -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
+          <div class="modal-dialog">
+            <div class="col-md-11 col-xs-22">                      
+             <div class="modal-content">
+                <div class="x_panel">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="width:100%;text-align:center;font-weight:bold;">
+                    	学院意见
+                    </h4>
+                </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left">
+                    
+                      <!-- <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
+                             <option value="0"></option>
+                             <option value='1'>通过</option>
+                             <option value='2'>修改</option>
+                             <option value='3'>不通过</option>
+                           </select>
+                        </div>
+                      </div> -->
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" rows="20" placeholder='' id='return_cont2' readonly="readonly" style="position:relative;right:55px;width:450px"></textarea>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <!-- <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <div class="modal-footer" id = "submit_result">
+                         
+                         <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button>
+                      
+                          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+                         </div>
+                        </div> -->
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+             </div>
+         </div>
+ <!-- 模态框学院意见（Modal）完 -->
+ 
+ <!-- 模态框盲审意见（Modal） -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
+          <div class="modal-dialog">
+            <div class="col-md-11 col-xs-22">                      
+             <div class="modal-content">
+                <div class="x_panel">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="width:100%;text-align:center;font-weight:bold;">
+                    	盲审组意见
+                    </h4>
+                </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left">
+                    
+                      <!-- <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
+                             <option value="0"></option>
+                             <option value='1'>通过</option>
+                             <option value='2'>修改</option>
+                             <option value='3'>不通过</option>
+                           </select>
+                        </div>
+                      </div> -->
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" rows="20" placeholder='' id='return_cont3' readonly="readonly" style="position:relative;right:55px;width:450px"></textarea>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <!-- <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <div class="modal-footer" id = "submit_result">
+                         
+                         <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button>
+                      
+                          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+                         </div>
+                        </div> -->
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+             </div>
+         </div>
+ <!-- 模态框盲审（Modal）完 -->
+ 
+ <!-- 模态框 答辩意见（Modal） -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
+          <div class="modal-dialog">
+            <div class="col-md-11 col-xs-22">                      
+             <div class="modal-content">
+                <div class="x_panel">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                     &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="width:100%;text-align:center;font-weight:bold;">
+                    	答辩组意见
+                    </h4>
+                </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left">
+                    
+                      <!-- <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
+                             <option value="0"></option>
+                             <option value='1'>通过</option>
+                             <option value='2'>修改</option>
+                             <option value='3'>不通过</option>
+                           </select>
+                        </div>
+                      </div> -->
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10"><span class="required"></span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <textarea class="form-control" rows="20" placeholder='' id='return_cont4' readonly="readonly" style="position:relative;right:55px;width:450px"></textarea>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <!-- <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                         <div class="modal-footer" id = "submit_result">
+                         
+                         <button type="button" class="btn btn-primary" onclick="do_blindjudge(val);">提交</button>
+                      
+                          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+                         </div>
+                        </div> -->
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+             </div>
+         </div>
+ <!-- 模态框答辩（Modal）完 -->
 
 <div class="footer">
   <p>Powered by Adminity Administration Interface</p>
@@ -297,20 +470,20 @@
   });
 </script>
 
-<!--将导师审核自己学生论文得信息映射倒模态框-->
 <script type="text/javascript">
+<!--将导师审核自己学生论文得信息映射倒模态框-->
 function show_teacherAdvise(val){
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-	      url:'${pageContext.request.contextPath }/pages/queryTeacherAdvise',
+	      url:'${pageContext.request.contextPath }/pages/queryTeacherDepartAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
 	      success: function(data){
 	          console.log(data);
-	          console.log("ok"); 
+	          console.log("teacher ok"); 
 	          $('#return_cont').val(data.paper_advise);        
 	          },
 	         
@@ -320,33 +493,21 @@ function show_teacherAdvise(val){
 		
 	    });
 }
-</script>
 
-<!--将导师审核自己学生论文得信息映射倒模态框-->
-<!-- <script type="text/javascript">
-function show_judgedetails(val){
-	var str = {paper_stuId:val};
+<!--将学院审核自己学生论文得信息映射倒模态框-->
+function show_departAdvise(val){
+	var str = {stu_id:val};
 	str = JSON.stringify(str);
+	console.log(str);
 	$.ajax({
-	      url:'${pageContext.request.contextPath }/pages/teacherQueryAdvise',
+	      url:'${pageContext.request.contextPath }/pages/queryTeacherDepartAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
 	      success: function(data){
 	          console.log(data);
-	          console.log("ok");
-	          
-	          $('#score').val(data.teacher_Grade);
-	          $('#return_cont').val(data.paper_advise);
-	          $("#submit_result").empty();
-	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_teacherjudge("+val+");'>提交</button>");
-	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
-	          $("#result_select").empty();
-	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.paper_ifPass+"</option>");
-	          $("#result_select").append("<option value='1'>通过</option>");
-	          $("#result_select").append("<option value='2'>修改</option>");
-	          $("#result_select").append("<option value='3'>不通过</option>");
-	          
+	          console.log("depart ok"); 
+	          $('#return_cont2').val(data.paper_departadvise);        
 	          },
 	         
 	    error: function(data){
@@ -354,8 +515,54 @@ function show_judgedetails(val){
 	            }
 		
 	    });
-} 
-</script>-->
+}
+<!--将盲审信息映射倒模态框-->
+function show_blindjudgeAdvise(val){
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	console.log(str);
+	$.ajax({
+		     url:'${pageContext.request.contextPath }/pages/queryBlindJudgeAdvise',
+		     type:'post',
+		     contentType:'application/json;charset=utf-8',
+		     data:str,
+		     success: function(data){
+		         console.log(data);
+		         console.log("blindjudge ok"); 
+		         $('#return_cont3').val(data.teacher_description);        
+		         },
+		         
+		    error: function(data){
+		          console.log('failed')
+		            }
+			
+		    });
+}
+
+<!--将答辩信息映射倒模态框-->
+function show_replyAdvise(val){
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	console.log(str);
+	$.ajax({
+		     url:'${pageContext.request.contextPath }/pages/queryReplyAdvise',
+		     type:'post',
+		     contentType:'application/json;charset=utf-8',
+		     data:str,
+		     success: function(data){
+		         console.log(data);
+		         console.log("replyjudge ok"); 
+		         $('#return_cont4').val(data.teacher_description);        
+		         },
+		         
+		    error: function(data){
+		          console.log('failed')
+		            }
+			
+		    });
+}
+
+</script>
 
 <!--根据论文评审信息更新论文流程栏目-->
 <script type="text/javascript">
@@ -432,7 +639,6 @@ function load(){
 	      else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "修改" || data.paper_ifPass == "不通过")){
 	    	     console.log("2 go to 1 ,wait 2 -");
 	    	     step2(data);
-	    	     //$("#two1").empty();
 	    	     $("#two1").append("<td>您的论文在该审核阶段的评审结果已经完成，请点击确认查看结果详情</td> ");
 	    	     $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
@@ -506,6 +712,7 @@ function load(){
 	       else{
 	    	   
 	    	   console.log("system start or wait 1");
+	    	   $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
 	           $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	       }
 	          },
@@ -1007,6 +1214,7 @@ function step21(data){
      $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
      $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
      $("#paperlist").append("<td><button>上传</button></td>");
+     $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
      $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 } 
 
@@ -1037,8 +1245,9 @@ function step31(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
     $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -1068,15 +1277,17 @@ function step3121(data){
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
     $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
 function step4121(data){
+	
 	 console.log("4,1,2,1 wait ok");
 	 
-	  $("#one").show();
+	 $("#one").show();
      $("#two").hide();
      $("#grxx").attr("class","current");
      $("#zjxx").attr("class","");
@@ -1100,10 +1311,11 @@ function step4121(data){
      $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
      $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
      $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
      $("#paperlist").append("<td><button>上传</button></td>");
+     $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
      $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -1124,8 +1336,9 @@ function step4131(data){
     $("#paperlistname").append("<th>研究方向一</th>");
     $("#paperlistname").append("<th>研究方向二</th>");
     $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师意见</th>");
     $("#paperlistname").append("<th>学院意见</th>");
+    $("#paperlistname").append("<th>单章重复率</th>");
+    $("#paperlistname").append("<th>全篇重复率</th>");
     $("#paperlistname").append("<th>上传论文</th>");
     
     $("#paperlist").empty();
@@ -1135,9 +1348,11 @@ function step4131(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
     $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	
 }
@@ -1171,11 +1386,12 @@ function step413121(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
     $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
     $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
     $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -1212,8 +1428,10 @@ function step41(data){
     $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
     $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
     $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
+
 </script>
 
 </body>
