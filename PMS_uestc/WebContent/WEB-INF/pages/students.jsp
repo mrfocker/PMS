@@ -199,10 +199,10 @@
                 </div>
             </div>
               <div id="five" style="display:none">
-                    <table align="center">
+                    <table align="center" id = "five1">
                         <tr>
-                            <td></td> 
-                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refour()">上一步</button></td>
+                            <!-- <td></td> 
+                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refour()">上一步</button></td> -->
                         </tr>
                     </table>
                 </div>
@@ -676,17 +676,15 @@ function load(){
 	       else if(data.paper_ifSubmit == 1 && data.teacher_Result == "不通过"){
 	    	   console.log("wait in 5,-");
 	    	   step5(data);
-	    	   $("#five1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
-	    	   /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
-	    	   $("#five1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
+	    	   $("#five1").append("<td>您的论文没有通过盲审考核。</td> ");	  
 	    	   /*不通过的原因*/
 	       }
 	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "通过" && (data.reply_result == null || data.reply_result == "")){
 	    	      console.log("wait in 5,-");
-	    	      step5(data);
-	    	      $("#five1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	      step5_5(data);
+	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
-	    	      $("#five1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
+	    	      $("#five1").append("<button type='button' onclick='five_six("+data.stu_id+")'>提交</button>");
 	    	      /*不通过的原因*/
 	       }
 	       /*论文答辩*/
@@ -775,11 +773,41 @@ function one_two(val){
 	    });
 }
 
+function five_six(val){
+	
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/onejumptwo',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  
+	          console.log("one_two ok");
+	          console.log(data);
+	          
+	          if (confirm("确定提交？")) {
+	             step6(data);
+	          }
+	          
+	         
+	          },
+	         
+	    error: function(data){
+	          console.log('failed');
+	          alert("提交审核失败")
+	            }
+		
+	    });
+}
+
 ///////////////////////////
 function return_one(val){
 	
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
+	  console.log("adf");
 	$.ajax({
 	      url:'${pageContext.request.contextPath }/pages/requeryPaperInfo',
 	      type:'post',
@@ -1157,6 +1185,24 @@ function step5(data){
     $("#qzxx").attr("class","done");
     $("#lwcc").attr("class","current_prev");
     $("#lwms").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>盲审核结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+    
+    
 }
 
 function step6(data){
@@ -1430,6 +1476,37 @@ function step41(data){
     $("#paperlist").append("<td><button>上传</button></td>");
     $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
+
+function step5_5(data){
+	
+	console.log("wait 5 -");
+	$("#four").hide();
+    $("#five").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","current_prev");
+    $("#lwms").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>盲审意见</th>");
+    $("#paperlistname").append("<th>盲审结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal3' onclick='show_blindjudgeAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
 }
 
 </script>
