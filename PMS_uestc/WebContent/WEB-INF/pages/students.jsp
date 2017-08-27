@@ -373,19 +373,63 @@ function load(){
 	    	  console.log(data);
 	          console.log("ok");
 	        /*系统起始状态*/
-	        if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.teacher_Result == null || data.teacher_Result == "")
+	        /* if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.teacher_Result == null || data.teacher_Result == "")
 	        		&& (data.reply_Result == null || data.reply_Result == "")){
 	        	console.log("system start or wait 1");
 	        	$("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	
-	        }
+	        } */
+	        /*2到1*/
+	    	if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
+	    		  
+	    		  console.log("2，1，1 wait,ok");
+		          step21(data);
+	    	  }
+	    	  
+	    	else if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
+	    		 
+	    		  console.log("3,1,2,1 1 wait ok");
+		          step3121(data);
+	    	 }
+	    	 
+	    	else if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && (data.paper_departPass == null || data.paper_departPass == "")){
+	    		 
+	    		  console.log("4,1,2,1 wait ok");
+		          step4121(data);
+	    	 } 
+	    	 
+	    	else if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && data.paper_departPass == "修改"){
+	    		 
+	    		  console.log("4,1,3,1,2,1 wait ok");
+		          step4231(data);
+	    	 }
+		    
+		    /*3到1*/
+		    else if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
+	    		 
+	    		  console.log("3,1, 1 wait ok");
+		          step31(data);
+	    	 }
+		    
+		    else if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && data.paper_departPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改"){
+	    		 
+	    		  console.log("4,1,3,1 1 wait ok");
+		          step4131(data);
+	    	 }
+		    
+		    /*4到1*/
+		   else if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && (data.paper_departPass == "" || data.paper_departPass == null) && data.paper_ifPaperRepetitiveRatePass == "修改"){
+	    		 
+	    		  console.log("4,1 1 wait ok");
+		          step41(data);
+	    	 }
 	      /*提交论文*/
-	      if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && (data.paper_ifPass == "修改" || data.paper_ifPass == null || data.paper_ifPass == "")){
+	      else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && (data.paper_ifPass == "修改" || data.paper_ifPass == null || data.paper_ifPass == "")){
 	    	  console.log("1 go to 2,wait 2 +");
               step2(data);
 	      }
 	      /*导师审核ok*/
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "修改" || data.paper_ifPass == "不通过")){
+	      else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "修改" || data.paper_ifPass == "不通过")){
 	    	     console.log("2 go to 1 ,wait 2 -");
 	    	     step2(data);
 	    	     //$("#two1").empty();
@@ -394,11 +438,11 @@ function load(){
 	       }
 	      
 	       /*学院审核*/
-	       if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == "修改" || (data.paper_departPass == null || data.paper_departPass == ""))){
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifPass == "通过" && (data.paper_departPass == "修改" || (data.paper_departPass == null || data.paper_departPass == ""))){
 	    	      console.log("2 go to 3,wait 3 +");
 	    	   	  step3(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "" || data.paper_ifPass == null)&& (data.paper_departPass == "修改" || data.paper_departPass == "不通过")){
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "" || data.paper_ifPass == null)&& (data.paper_departPass == "修改" || data.paper_departPass == "不通过")){
 	    	      console.log("3 go to 1,wait 3 -");
 	    	   	  step3(data);
 	    	   	  $("#three1").append("<td>您的论文需要修改，请点击“确认”按钮查看学院意见并重新上传修改后的论文！</td> ");
@@ -406,11 +450,11 @@ function load(){
 	    	      $("#three1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       /*论文查重*/
-	       if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == null || data.data_ifPaperRepetitiveRatePass == "")){
+	       else if(data.paper_ifSubmit == 1 && data.paper_departPass == "通过" && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == null || data.data_ifPaperRepetitiveRatePass == "")){
 	    	      console.log("go to 4,wait4 +");
 	    	      step4(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == null || data.paper_ifPass == "") && (data.paper_departPass == null || data.paper_departPass == "") 
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == null || data.paper_ifPass == "") && (data.paper_departPass == null || data.paper_departPass == "") 
     		   && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == "不通过")){
 	    	      console.log("4 go to 1,wait 4 -");
 	    	      step4(data);
@@ -419,11 +463,11 @@ function load(){
 	    	      $("#four1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       /*论文盲审*/
-	      if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
 	    	      console.log("go to 5,wait 5 +");
 	    	      step5(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.teacher_Result == "不通过"){
+	       else if(data.paper_ifSubmit == 1 && data.teacher_Result == "不通过"){
 	    	   console.log("wait in 5,-");
 	    	   step5(data);
 	    	   $("#five1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
@@ -431,7 +475,7 @@ function load(){
 	    	   $("#five1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	    	   /*不通过的原因*/
 	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "通过" && (data.reply_result == null || data.reply_result == "")){
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "通过" && (data.reply_result == null || data.reply_result == "")){
 	    	      console.log("wait in 5,-");
 	    	      step5(data);
 	    	      $("#five1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
@@ -440,23 +484,29 @@ function load(){
 	    	      /*不通过的原因*/
 	       }
 	       /*论文答辩*/
-	       if(data.paper_ifSubmit == 1 && data.teacher_Result == "通过" && (data.reply_result == "" || data.reply_result == null)){
+	       else if(data.paper_ifSubmit == 1 && data.teacher_Result == "通过" && (data.reply_result == "" || data.reply_result == null)){
 	    	      console.log("go to 6,wait 6 +");
 	    	      step6(data);
 	       }
-	       if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
+	       else if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
 	    	      console.log("go to 6,wait 6 -");
 	    	      step6(data);
 	       }
-	       if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.reply_result == "通过"){
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.reply_result == "通过"){
 	    	      console.log("wait 6 -");
 	    	      step6(data);
 	    	      /*不通过的原因*/
 	       }
 	       /*学位授予*/
-	       if(data.stu_ifdegree != null || (data.reply_result == "通过" && data.paper_ifSubmit == 1)){
+	       else if(data.stu_ifdegree != null || (data.reply_result == "通过" && data.paper_ifSubmit == 1)){
 	    	   	  console.log("go to 7,wait 7");
 	    	   	  step7(data);
+	       }
+	       
+	       else{
+	    	   
+	    	   console.log("system start or wait 1");
+	           $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	       }
 	          },
 	      
@@ -518,104 +568,6 @@ function one_two(val){
 	    });
 }
 
-
-/* function return_one(val){
-	
-	var str = {stu_id:val};
-	str = JSON.stringify(str);
-	$.ajax({
-	      url:'${pageContext.request.contextPath }/pages/requeryPaperInfo',
-	      type:'post',
-	      contentType:'application/json;charset=utf-8',
-	      data:str,
-	      success: function(data){
-	    	  
-	    	  if(data.paper_ifPass == "修改"){
-	    		  
-	    		  console.log("two_one ok");
-		          $("#one").show();
-		          $("#two").hide();
-		          $("#grxx").attr("class","current");
-		          $("#zjxx").attr("class","");
-	    	  }
-	        
-	          if(data.paper_departPass == "修改"){
-	        	  
-	        	  console.log("three_one ok");
-		          $("#one").show();
-		          $("#two").hide();
-		          $("#three").hide();
-		          $("#grxx").attr("class","current");
-		          $("#zjxx").attr("class","");
-		          $("#qzxx").attr("class","");
-	        	  
-	          }
-	          
-	          if(data.paper_ifPaperRepetitiveRatePass == "修改"){
-	        	  
-	        	  console.log("four_one ok");
-	        	  $("#one").show();
-		          $("#two").hide();
-		          $("#three").hide();
-		          $("#four").hide();
-		          $("#grxx").attr("class","current");
-		          $("#zjxx").attr("class","");
-		          $("#qzxx").attr("class","");
-		          $("#lwcc").attr("class","");
-	        	  
-	          }
-	    	  
-	          $("#paperlistname").empty();
-	          $("#paperlistname").append("<th>学生姓名</th>");
-	          $("#paperlistname").append("<th>学生学号</th>");
-	          $("#paperlistname").append("<th>论文题目</th>");
-	          $("#paperlistname").append("<th>研究方向一</th>");
-	          $("#paperlistname").append("<th>研究方向二</th>");
-	          $("#paperlistname").append("<th>研究方向三</th>");
-	          if(data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
-	        	  $("#paperlistname").append("<th>导师审核</th>");
-	          }
-	          if(data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "") && (data.paper_ifPass == null || data.paper_ifPass == "")){
-	        	  $("#paperlistname").append("<th>学院审核</th>");
-	          }
-	          if(data.paper_ifPaperRepetitiveRatePass == "修改"){
-	        	  $("#paperlistname").append("<th>论文查重</th>");
-	        	  $("#paperlistname").append("<th>全篇重复率</th>");
-	        	  $("#paperlistname").append("<th>单章重复率</th>");
-	          }
-	      	  $("#paperlistname").append("<th>修改意见</th>");
-	          $("#paperlistname").append("<th>上传论文</th>");
-	           
-	          $("#paperlist").empty();
-	          $("#paperlist").append("<td>"+data.stu_name+"</td>");
-	          $("#paperlist").append("<td>"+data.stu_id+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_title+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-	          if(data.paper_ifPass == "修改"){
-	        	  $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
-	          }
-	          if(data.paper_departPass == "修改"){
-	        	  $("#paperlist").append("<td>"+data.paper_departPass+"</td>");
-	          }
-	          if(data.paper_ifPaperRepetitiveRatePass == "修改"){
-	        	  $("#paperlist").append("<td>"+data.paper_ifPaperRepetitiveRatePass+"</td>");
-	        	  $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-	        	  $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
-	          }
-	          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-	          $("#paperlist").append("<td><button>上传</button></td>");
-	          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
-	          },
-	         
-	    error: function(data){
-	          console.log('failed');
-	          alert("提交审核失败")
-	            }
-		
-	    });
-} */
 ///////////////////////////
 function return_one(val){
 	
@@ -630,7 +582,7 @@ function return_one(val){
 	    	  /*2到1*/
 	    	  if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && (data.paper_departPass == null || data.paper_departPass == "") && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
 	    		  
-	    		  console.log("2，1，1 wait,ok");
+	    		  /* console.log("2，1，1 wait,ok");
 		          $("#one").show();
 		          $("#two").hide();
 		          $("#grxx").attr("class","current");
@@ -655,12 +607,13 @@ function return_one(val){
 		          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); */
+		          step21(data);
 	    	  }
 	    	  
 	    	 if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
 	    		 
-	    		  console.log("3,1,2，1 wait ok");
+	    		  /* console.log("3,1,2,1 1 wait ok");
 	    		  $("#one").show();
 		          $("#two").hide();
 		          $("#grxx").attr("class","current");
@@ -687,13 +640,13 @@ function return_one(val){
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step3121(data);
 	    	 }
 	    	 
 	    	 if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && (data.paper_departPass == null || data.paper_departPass == "")){
 	    		 
-	    		 console.log("4,1,2,1 wait ok");
-	    		 
+	    		 /* console.log("4,1,2,1 wait ok");
 	    		  $("#one").show();
 		          $("#two").hide();
 		          $("#grxx").attr("class","current");
@@ -722,12 +675,13 @@ function return_one(val){
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step4121(data);
 	    	 } 
 	    	 
 		    if(data.paper_ifSubmit == 0 && data.paper_ifPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改" && data.paper_departPass == "修改"){
 	    		 
-	    		 console.log("4,1,3,1,2,1 wait ok");
+	    		 /* console.log("4,1,3,1,2,1 wait ok");
 	    		 
 	    		  $("#one").show();
 		          $("#two").hide();
@@ -759,13 +713,14 @@ function return_one(val){
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step4231(data);
 	    	 }
 		    
 		    /*3到1*/
 		    if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && data.paper_departPass == "修改" && (data.paper_ifPaperRepetitiveRatePass == null || data.paper_ifPaperRepetitiveRatePass == "")){
 	    		 
-	    		  console.log("3,1,2，1 wait ok");
+	    		  /* console.log("3,1, 1 wait ok");
 	    		  $("#one").show();
 		          $("#two").hide();
 		          $("#three").hide();
@@ -780,7 +735,6 @@ function return_one(val){
 		          $("#paperlistname").append("<th>研究方向一</th>");
 		          $("#paperlistname").append("<th>研究方向二</th>");
 		          $("#paperlistname").append("<th>研究方向三</th>");
-		          $("#paperlistname").append("<th>导师意见</th>");
 		          $("#paperlistname").append("<th>学院意见</th>");
 		          $("#paperlistname").append("<th>上传论文</th>");
 		          
@@ -792,14 +746,14 @@ function return_one(val){
 		          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
 		          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step31(data);
 	    	 }
 		    
 		    if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && data.paper_departPass == "修改" && data.paper_ifPaperRepetitiveRatePass == "修改"){
 	    		 
-	    		  console.log("4,1,3,1 1 wait ok");
+	    		  /* console.log("4,1,3,1 1 wait ok");
 	    		  $("#one").show();
 		          $("#two").hide();
 		          $("#three").hide();
@@ -828,13 +782,14 @@ function return_one(val){
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step4131(data);
 	    	 }
 		    
 		    /*4到1*/
 		    if(data.paper_ifSubmit == 0 && (data.paper_ifPass == "" || data.paper_ifPass == null) && (data.paper_departPass == "" || data.paper_departPass == null) && data.paper_ifPaperRepetitiveRatePass == "修改"){
 	    		 
-	    		  console.log("4,1 1 wait ok");
+	    		  /* console.log("4,1 1 wait ok");
 	    		  $("#one").show();
 		          $("#two").hide();
 		          $("#three").hide();
@@ -865,7 +820,8 @@ function return_one(val){
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
 		          $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
 		          $("#paperlist").append("<td><button>上传</button></td>");
-		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+		          $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");  */
+		          step41(data);
 	    	 }
 	          },
 	    error: function(data){
@@ -876,7 +832,7 @@ function return_one(val){
 	    });
 }
 
-//////////////////////////
+///////////////////////////////////////////////////////
 
 function step1(data){
 	
@@ -1023,6 +979,241 @@ function step7(data){
     $("#qzfs").attr("class","current");
 }
 
+///////////////////////////////////////////////////////
+/*wait 1*/
+function step21(data){
+	 console.log("2，1，1 wait,ok");
+     $("#one").show();
+     $("#two").hide();
+     $("#grxx").attr("class","current");
+     $("#zjxx").attr("class","");
+     
+     $("#paperlistname").empty();
+     $("#paperlistname").append("<th>学生姓名</th>");
+     $("#paperlistname").append("<th>学生学号</th>");
+     $("#paperlistname").append("<th>论文题目</th>");
+     $("#paperlistname").append("<th>研究方向一</th>");
+     $("#paperlistname").append("<th>研究方向二</th>");
+     $("#paperlistname").append("<th>研究方向三</th>");
+     $("#paperlistname").append("<th>导师意见</th>");
+     $("#paperlistname").append("<th>上传论文</th>");
+     
+     $("#paperlist").empty();
+     $("#paperlist").append("<td>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td>"+data.stu_id+"</td>");
+     $("#paperlist").append("<td>"+data.paper_title+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+     $("#paperlist").append("<td><button>上传</button></td>");
+     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
+} 
+
+function step31(data){
+	
+	console.log("3,1, 1 wait ok");
+	$("#one").show();
+    $("#two").hide();
+    $("#three").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    $("#qzxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>学院意见</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
+
+function step3121(data){
+	console.log("3,1,2,1 1 wait ok");
+	$("#one").show();
+    $("#two").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师意见</th>");
+    $("#paperlistname").append("<th>学院意见</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
+
+function step4121(data){
+	 console.log("4,1,2,1 wait ok");
+	 
+	  $("#one").show();
+     $("#two").hide();
+     $("#grxx").attr("class","current");
+     $("#zjxx").attr("class","");
+     
+     $("#paperlistname").empty();
+     $("#paperlistname").append("<th>学生姓名</th>");
+     $("#paperlistname").append("<th>学生学号</th>");
+     $("#paperlistname").append("<th>论文题目</th>");
+     $("#paperlistname").append("<th>研究方向一</th>");
+     $("#paperlistname").append("<th>研究方向二</th>");
+     $("#paperlistname").append("<th>研究方向三</th>");
+     $("#paperlistname").append("<th>导师意见</th>");
+     $("#paperlistname").append("<th>单章查重</th>");
+     $("#paperlistname").append("<th>全篇查重</th>");
+     $("#paperlistname").append("<th>上传论文</th>");
+     
+     $("#paperlist").empty();
+     $("#paperlist").append("<td>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td>"+data.stu_id+"</td>");
+     $("#paperlist").append("<td>"+data.paper_title+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+     $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
+     $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
+     $("#paperlist").append("<td><button>上传</button></td>");
+     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
+
+function step4131(data){
+	
+	console.log("4,1,3,1 1 wait ok");
+	$("#one").show();
+    $("#two").hide();
+    $("#three").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    $("#qzxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师意见</th>");
+    $("#paperlistname").append("<th>学院意见</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
+	
+}
+
+function step413121(data){
+	
+	console.log("4,1,3,1,2,1 wait ok");
+	 
+	$("#one").show();
+    $("#two").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师意见</th>");
+    $("#paperlistname").append("<th>学院意见</th>");
+    $("#paperlistname").append("<th>单章查重</th>");
+    $("#paperlistname").append("<th>全篇查重</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
+
+function step41(data){
+	
+	console.log("4,1 1 wait ok");
+	$("#one").show();
+    $("#two").hide();
+    $("#three").hide();
+    $("#four").hide();
+    $("#grxx").attr("class","current");
+    $("#zjxx").attr("class","");
+    $("#qzxx").attr("class","");
+    $("#lwcc").attr("class","");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>论文题目</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>单章重复率</th>");
+    $("#paperlistname").append("<th>全篇重复率</th>");
+    $("#paperlistname").append("<th>上传论文</th>");
+    
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
+}
 </script>
 
 </body>
