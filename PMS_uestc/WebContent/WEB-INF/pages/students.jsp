@@ -16,9 +16,9 @@
   <!--jquery流程图css文件-->
   <link rel="stylesheet" href="css/stu_progress.css">
   <!---jQuery Files-->
-  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/jquery-ui-2.1.1.min.js"></script>
   <!--  <script src="js/jquery-1.7.1.min.js"></script> -->
-  <script src="js/jquery-ui-1.8.17.min.js"></script>
+  <!-- <script src="js/jquery-ui-1.8.17.min.js"></script> -->
   <script src="js/styler.js"></script>
   <script src="js/jquery.tipTip.js"></script>
   <script src="js/colorpicker.js"></script>

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="css/tables.css">
   
   <!---jQuery Files-->
-  <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/jquery-ui-2.1.1.min.js"></script>
   
   <!--bootstrap Files-->
   <link rel="stylesheet" href="bootstrap-fileinput/css/fileinput.min.css">
@@ -98,7 +98,7 @@
               <th>研究方向2</th>
               <th>研究方向3</th>
               <th>论文下载</th>
-              <th>论文评审</th>
+              <th>论文评审</th>         
             </tr>
           </thead>
           <tbody>
@@ -109,7 +109,7 @@
               <td>${item.paper_researchTwo}</td>
               <td>${item.paper_researchThree}</td>
               <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.stu_id});'>评审</button><td> 
+              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.stu_id});'>评审</button></td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -143,7 +143,7 @@
                       </div>
 
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -154,13 +154,13 @@
                              <option value='3'>论文修改</option>
                            </select>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required">*</span>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="5" placeholder='' id='return_cont'></textarea>
+                          <textarea class="form-control" rows="10" placeholder='' id='return_cont'></textarea>
                         </div>
                       </div>
                       <div class="ln_solid"></div>
@@ -207,8 +207,9 @@
   function do_blindjudge(val1){
     var score = $('#score').val();
     var return_cont = $('#return_cont').val();
-    var select_val = $('#result_select').val();
-    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val};
+    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont};
+    /* var select_val = $('#result_select').val(); */
+    /* var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val}; */
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);

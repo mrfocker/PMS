@@ -21,8 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="updateBlindJudge" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" >
     update 
       blindjudgegroup
-    set 
-      Teacher_Grade = #{Teacher_Grade},
+    set  
       Teacher_Result = #{Teacher_Result},
       Teacher_description = #{Teacher_description}
     where 
