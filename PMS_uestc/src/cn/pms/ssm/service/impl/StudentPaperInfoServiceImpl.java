@@ -137,4 +137,11 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 		return studentPaperInfoMapper.getReplyJudgeInfo(studentPaperInfoVo);
 	}
 
+	@Override
+	public void do_updateAdvise_Pass(StudentPaperInfoVo studentPaperInfoVo)
+			throws Exception {
+		studentPaperInfoMapper.updateAdvise_Pass(studentPaperInfoVo);
+		
+	}
+
 }

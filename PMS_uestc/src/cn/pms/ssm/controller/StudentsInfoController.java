@@ -96,9 +96,23 @@ public class StudentsInfoController {
 	public @ResponseBody StudentPaperInfoVo onejumptwo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		StudentPaperInfoVo onejumptwoList = new StudentPaperInfoVo();
+		//置1
 		studentPaperInfoService.do_updatSubmit_Pass(studentPaperInfoVo);
+		//置0 
+		studentPaperInfoService.do_updateAdvise_Pass(studentPaperInfoVo);
 		onejumptwoList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return onejumptwoList;
+		
+	}
+	
+	@RequestMapping("/sixjumpseven")
+	public @ResponseBody StudentPaperInfoVo sixjumpseven(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
+		
+		StudentPaperInfoVo sixjumpsevenList = new StudentPaperInfoVo();
+		//置1
+		studentPaperInfoService.do_updatSubmit_Pass(studentPaperInfoVo);
+		sixjumpsevenList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
+		return sixjumpsevenList;
 		
 	}
 	

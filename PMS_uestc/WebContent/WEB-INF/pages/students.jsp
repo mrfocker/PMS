@@ -207,10 +207,18 @@
                     </table>
                 </div>
                 <div id="six" style="display:none">
-                    <table align="center">
+                    <table align="center" id = "six1">
                         <tr>
-                            <td></td> 
-                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refive()">上一步</button></td>
+                            <!-- <td></td> 
+                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refive()">上一步</button></td> -->
+                        </tr>
+                    </table>
+                </div>
+                <div id="seven" style="display:none">
+                    <table align="center" id = "seven">
+                        <tr>
+                            <!-- <td></td> 
+                            <td><button type="button" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="refive()">上一步</button></td> -->
                         </tr>
                     </table>
                 </div>
@@ -552,7 +560,7 @@ function show_replyAdvise(val){
 		     success: function(data){
 		         console.log(data);
 		         console.log("replyjudge ok"); 
-		         $('#return_cont4').val(data.teacher_description);        
+		         $('#return_cont4').val(data.reply_advise);        
 		         },
 		         
 		    error: function(data){
@@ -694,19 +702,28 @@ function load(){
 	       }
 	       else if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
 	    	      console.log("go to 6,wait 6 -");
+	    	      $("#six1").append("<td>您的论文未通过答辩考核！</td> ");
 	    	      step6(data);
+	    	      
 	       }
 	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.reply_result == "通过"){
 	    	      console.log("wait 6 -");
-	    	      step6(data);
+	    	      step6_6(data);
+	    	      $("#six1").append("<td>您的论文需要已经通过答辩考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	      $("#six1").append("<button type='button' onclick='six_seven("+data.stu_id+")'>提交</button>");
 	    	      /*不通过的原因*/
 	       }
 	       /*学位授予*/
-	       else if(data.stu_ifdegree != null || (data.reply_result == "通过" && data.paper_ifSubmit == 1)){
+	       else if((data.stu_ifdegree == null || data.stu_ifdegree == "" || data.stu_ifdegree == "否") && data.reply_result == "通过" && data.paper_ifSubmit == 1){
 	    	   	  console.log("go to 7,wait 7");
 	    	   	  step7(data);
 	       }
-	       
+	       /*同意授位*/
+	       else if(data.stu_ifdegree == "是"){
+	    	   	  console.log("授位");
+	    	   	  step8(data);
+	       }
 	       else{
 	    	   
 	    	   console.log("system start or wait 1");
@@ -789,6 +806,35 @@ function five_six(val){
 	          
 	          if (confirm("确定提交？")) {
 	             step6(data);
+	          }
+	          
+	         
+	          },
+	         
+	    error: function(data){
+	          console.log('failed');
+	          alert("提交审核失败")
+	            }
+		
+	    });
+}
+
+function six_seven(val){
+	
+	var str = {stu_id:val};
+	str = JSON.stringify(str);
+	$.ajax({
+	      url:'${pageContext.request.contextPath }/pages/sixjumpseven',
+	      type:'post',
+	      contentType:'application/json;charset=utf-8',
+	      data:str,
+	      success: function(data){
+	    	  
+	          console.log("six_seven ok");
+	          console.log(data);
+	          
+	          if (confirm("确定提交？")) {
+	             step7(data);
 	          }
 	          
 	         
@@ -1092,7 +1138,7 @@ function step1(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button>上传</button></td>")
+    $("#paperlist").append("<td><button>上传</button></td>");
     
 }
 
@@ -1118,7 +1164,7 @@ function step2(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_ifPass+"</td>")
+    $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
 	
 }
 
@@ -1144,7 +1190,7 @@ function step3(data){
      $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
      $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-     $("#paperlist").append("<td>"+data.paper_departPass+"</td>")
+     $("#paperlist").append("<td>"+data.paper_departPass+"</td>");
 }
 
 function step4(data){
@@ -1171,8 +1217,8 @@ function step4(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>")
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>")
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
 }
 
 function step5(data){
@@ -1200,7 +1246,7 @@ function step5(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+    $("#paperlist").append("<td>"+data.teacher_Result+"</td>");
     
     
 }
@@ -1216,12 +1262,28 @@ function step6(data){
     $("#lwcc").attr("class","done");
     $("#lwms").attr("class","current_prev");
     $("#lwdb").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>答辩审核结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.reply_result+"</td>");
 }
 
 function step7(data){
 	
-	$("#five").hide();
-    $("#six").show();
+	$("#six").hide();
+    $("#seven").show();
 	
     $("#grxx").attr("class","done");
     $("#zjxx").attr("class","done");
@@ -1230,8 +1292,54 @@ function step7(data){
     $("#lwms").attr("class","done");
     $("#lwdb").attr("class","current_prev");
     $("#qzfs").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>是否授位</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.stu_ifdegree+"</td>");
+    
 }
 
+function step8(data){
+	
+	 $("#seven").hide();
+	
+	 $("#grxx").attr("class","done");
+	 $("#zjxx").attr("class","done");
+	 $("#qzxx").attr("class","done");
+	 $("#lwcc").attr("class","done");
+	 $("#lwms").attr("class","done");
+	 $("#lwdb").attr("class","done");
+	 $("#qzfs").attr("class","done");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>是否授位</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>"+data.stu_ifdegree+"</td>");
+    
+}
 ///////////////////////////////////////////////////////
 /*wait 1*/
 function step21(data){
@@ -1509,6 +1617,37 @@ function step5_5(data){
     $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
 }
 
+function step6_6(data){
+	
+	console.log("wait 6 -");
+	$("#five").hide();
+    $("#six").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","current_prev");
+    $("#lwdb").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>答辩意见</th>");
+    $("#paperlistname").append("<th>答辩结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal4' onclick='show_replyAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+}
 </script>
 
 </body>

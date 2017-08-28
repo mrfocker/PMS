@@ -24,9 +24,10 @@ public interface StudentPaperInfoMapper {
 	public StudentPaperInfoVo getReplyJudgeInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	public StudentPaperInfoVo getGradeListInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	public StudentPaperInfoVo getStuInfo(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
-	//更新老师可评价状态位
+	//学生可提交状态置0
 	public void updateIfSubmit(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 	//更新论文提交状态位,导师评审结果
 	public void updateSubmit_Pass(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
-
+	//置0
+	public void updateAdvise_Pass(StudentPaperInfoVo studentPaperInfoVo) throws Exception;
 }

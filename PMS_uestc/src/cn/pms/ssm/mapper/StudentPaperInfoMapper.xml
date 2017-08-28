@@ -160,10 +160,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update 
       paper
     set 
-      Paper_ifSubmit = 1,
-      Paper_ifAdvise = 0
+      Paper_ifSubmit = 1
     where 
       Paper_stuId = #{Stu_id}
 </update>
 
+<update id="updateAdvise_Pass" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+    update 
+      paper
+    set 
+      Paper_ifAdvise = 0
+    where 
+      Paper_stuId = #{Stu_id}
+</update>
 </mapper>
