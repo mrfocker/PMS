@@ -39,17 +39,16 @@ public class BlindJudgeController {
 		if(blindJudgeGroupVo.getResult_code() == 0){
 			blindJudgeGroupVo.setTeacher_Result(null);
 		}
-		if(blindJudgeGroupVo.getResult_code() == 1){
-			blindJudgeGroupVo.setTeacher_Result("同意答辩");
+		else if(blindJudgeGroupVo.getResult_code() == 1){
+			blindJudgeGroupVo.setTeacher_Result("同意答辩——通过");
 		}
 		else if(blindJudgeGroupVo.getResult_code() == 2){
-			blindJudgeGroupVo.setTeacher_Result("不能答辩");
+			blindJudgeGroupVo.setTeacher_Result("修改后重审——不通过");
 		}
 		else if(blindJudgeGroupVo.getResult_code() == 3){
-			blindJudgeGroupVo.setTeacher_Result("论文修改");
+			blindJudgeGroupVo.setTeacher_Result("不同意答辩——不通过");
 		}
 		System.out.println(blindJudgeGroupVo.getResult_code());
-		//blindJudgeGroupService.submitBlindJudge(blindJudgeGroupVo);
 		blindJudgeGroupService.do_updateBlindJudge(blindJudgeGroupVo);
 	}
 	
@@ -71,22 +70,24 @@ public class BlindJudgeController {
 		BlindJudgeGroupVo blindJudgeGroupVo1 = new BlindJudgeGroupVo();
 		blindJudgeGroupVo1 = blindJudgeGroupService.do_findBlindResult(blindJudgeGroupVo);
 
-		if(blindJudgeGroupVo1 == null){
+		    if(blindJudgeGroupVo1 == null ){
 			blindJudgeGroupVo1 = new BlindJudgeGroupVo();
 			blindJudgeGroupVo1.setResult_code(0);
-		}
-		else{
-			if(blindJudgeGroupVo1.getTeacher_Result().equals("同意答辩")){
+		    }
+		    else if(blindJudgeGroupVo1.getTeacher_Result().equals("")){
+				blindJudgeGroupVo1.setResult_code(0);
+			}
+		    else if(blindJudgeGroupVo1.getTeacher_Result().equals("同意答辩——通过")){
 				blindJudgeGroupVo1.setResult_code(1);
 			}
-			if(blindJudgeGroupVo1.getTeacher_Result().equals("不能答辩")){
+		    else if(blindJudgeGroupVo1.getTeacher_Result().equals("修改后重审——不通过")){
 				blindJudgeGroupVo1.setResult_code(2);
 			}
-			if(blindJudgeGroupVo1.getTeacher_Result().equals("论文修改")){
+		    else if(blindJudgeGroupVo1.getTeacher_Result().equals("不同意答辩——不通过")){
 				blindJudgeGroupVo1.setResult_code(3);
 			}
 			System.out.println(blindJudgeGroupVo1.getResult_code());
-		}
+		
 		return blindJudgeGroupVo1;
 	}
 	

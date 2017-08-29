@@ -13,7 +13,7 @@ public class BlindJudgeGroupVo {
 	private String Teacher_id;
 	private String Stu_id;
 	private String Teacher_Result;
-	private String Teacher_Grade;
+	private float Teacher_Grade;
 	private String Teacher_description;
 	private int result_code;
 	private String Paper_stuId;
@@ -22,10 +22,11 @@ public class BlindJudgeGroupVo {
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
 	
-	public String getTeacher_Grade() {
+	
+	public float getTeacher_Grade() {
 		return Teacher_Grade;
 	}
-	public void setTeacher_Grade(String teacher_Grade) {
+	public void setTeacher_Grade(float teacher_Grade) {
 		Teacher_Grade = teacher_Grade;
 	}
 	public String getTeacher_description() {

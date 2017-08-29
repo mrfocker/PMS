@@ -119,27 +119,27 @@
           <table class="display">
           <thead>
             <tr>
-              <th>学生姓名</th>
-              <th>学生学号</th>
-              <th>论文题目</th>
-              <th>研究方向1</th>
-              <th>研究方向2</th>
-              <th>研究方向3</th>
-              <th>论文下载</th>
-              <th>导师审核</th>
+              <th style="text-align:center;">学生姓名</th>
+              <th style="text-align:center;">学生学号</th>
+              <th style="text-align:center;">论文题目</th>
+              <th style="text-align:center;">研究方向1</th>
+              <th style="text-align:center;">研究方向2</th>
+              <th style="text-align:center;">研究方向3</th>
+              <th style="text-align:center;">论文下载</th>
+              <th style="text-align:center;">导师审核</th>
             </tr>
           </thead>
           <tbody>
            <c:forEach items="${mystulist }" var="item">
             <tr class="odd gradeX">
-              <td>${item.stu_name}</td>
-              <td>${item.stu_id}</td>
-              <td>${item.paper_title}</td>
-              <td>${item.paper_researchOne}</td>
-              <td>${item.paper_researchTwo}</td>
-              <td>${item.paper_researchThree}</td>
-              <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button><td> 
+              <td style="text-align:center;">${item.stu_name}</td>
+              <td style="text-align:center;">${item.stu_id}</td>
+              <td style="text-align:center;">${item.paper_title}</td>
+              <td style="text-align:center;">${item.paper_researchOne}</td>
+              <td style="text-align:center;">${item.paper_researchTwo}</td>
+              <td style="text-align:center;">${item.paper_researchThree}</td>
+              <td style="text-align:center;"><button>下载</button></td>
+              <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -167,7 +167,7 @@
                     <form class="form-horizontal form-label-left">
                     
                       <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                            <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
@@ -180,10 +180,10 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required">*</span>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                          <textarea class="form-control" rows="5" placeholder='' id='return_cont'></textarea>
+                          <textarea class="form-control" rows="10" placeholder='' id='return_cont'></textarea>
                         </div>
                       </div>
                       <div class="ln_solid"></div>

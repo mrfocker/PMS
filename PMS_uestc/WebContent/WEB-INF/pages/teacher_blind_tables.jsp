@@ -93,23 +93,23 @@
           <table class="display">
           <thead>
             <tr>
-              <th>论文题目</th>
-              <th>研究方向1</th>
-              <th>研究方向2</th>
-              <th>研究方向3</th>
-              <th>论文下载</th>
-              <th>论文评审</th>         
+              <th style="text-align:center;">论文题目</th>
+              <th style="text-align:center;">研究方向1</th>
+              <th style="text-align:center;">研究方向2</th>
+              <th style="text-align:center;">研究方向3</th>
+              <th style="text-align:center;">论文下载</th>
+              <th style="text-align:center;">论文评审</th>         
             </tr>
           </thead>
           <tbody>
            <c:forEach items="${blindJudgelist }" var="item">
             <tr class="odd gradeX">
-              <td>${item.paper_title}</td>
-              <td>${item.paper_researchOne}</td>
-              <td>${item.paper_researchTwo}</td>
-              <td>${item.paper_researchThree}</td>
-              <td><button>下载</button></td>
-              <td><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.stu_id});'>评审</button></td> 
+              <td style="text-align:center;">${item.paper_title}</td>
+              <td style="text-align:center;">${item.paper_researchOne}</td>
+              <td style="text-align:center;">${item.paper_researchTwo}</td>
+              <td style="text-align:center;">${item.paper_researchThree}</td>
+              <td style="text-align:center;"><button>下载</button></td>
+              <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_blinddetails(${item.stu_id});'>评审</button></td> 
             </tr>
            </c:forEach>
           </tbody>
@@ -143,18 +143,18 @@
                       </div>
 
 
-                      <!-- <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required">*</span>
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                            <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
-                             <option value="0"></option>
-                             <option value='1'>同意答辩</option>
-                             <option value='2'>不能答辩</option>
-                             <option value='3'>论文修改</option>
+                             <option value='0'></option>
+                             <option value='1'>同意答辩——通过</option>
+                             <option value='2'>修改后重审——不通过</option>
+                             <option value='3'>不同意答辩——不通过</option>
                            </select>
                         </div>
-                      </div> -->
+                      </div> 
 
                       <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">修改意见 <span class="required"></span>
@@ -206,10 +206,9 @@
 <script type="text/javascript">
   function do_blindjudge(val1){
     var score = $('#score').val();
-    var return_cont = $('#return_cont').val();
-    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont};
-    /* var select_val = $('#result_select').val(); */
-    /* var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val}; */
+    var select_val = $('#result_select').val();
+    var return_cont = $('#return_cont').val(); 
+    var str = {stu_id:val1,teacher_Grade:score,teacher_description:return_cont,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
