@@ -147,11 +147,12 @@
                         <label class="control-label col-md-2 col-sm-2 col-xs-10">审核结果<span class="required"></span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                           <select name='organization' class="form-control" id ="result_select" onchange="getvalue(this)">
+                           <select name='organization' class="form-control" id ="result_select">
                              <option value='0'></option>
-                             <option value='1'>同意答辩——通过</option>
-                             <option value='2'>修改后重审——不通过</option>
-                             <option value='3'>不同意答辩——不通过</option>
+                             <option value='1'>同意答辩</option>
+                             <option value='2'>修改后重审</option>
+                             <option value='3'>不同意答辩</option>
+                             <option value='4'>不同意答辩</option>
                            </select>
                         </div>
                       </div> 
@@ -221,7 +222,8 @@
       /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
       success: function(){      
           console.log("ok");
-          alert("提交审核成功")
+          confirm("提交后不能修改，确定提交？");
+          $("#submit_result").empty()
           },
          
     error: function(data){
@@ -251,13 +253,16 @@ function show_blinddetails(val){
 	          $('#score').val(data.teacher_Grade);
 	          $('#return_cont').val(data.teacher_description);
 	          $("#submit_result").empty();
-	          $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_blindjudge("+val+");'>提交</button>");
-	          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
+	          if(data.paper_ifAdvise == 0){
+	        	  $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_blindjudge("+val+");'>提交</button>");
+		          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>");
+	          }
 	          $("#result_select").empty();
 	          $("#result_select").append("<option value='"+data.result_code+"'>"+data.teacher_Result+"</option>");
 	          $("#result_select").append("<option value='1'>同意答辩</option>");
-	          $("#result_select").append("<option value='2'>不能答辩</option>");
-	          $("#result_select").append("<option value='3'>论文修改</option>");
+	          $("#result_select").append("<option value='2'>修改后答辩</option>");
+	          $("#result_select").append("<option value='3'>修改后重审</option>");
+	          $("#result_select").append("<option value='4'>不同意答辩</option>");
 	          
 	          },
 	         

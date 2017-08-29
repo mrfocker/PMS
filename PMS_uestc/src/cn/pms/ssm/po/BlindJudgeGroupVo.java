@@ -21,8 +21,15 @@ public class BlindJudgeGroupVo {
 	private String Paper_researchOne;
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
+	private String Paper_ifAdvise;
 	
 	
+	public String getPaper_ifAdvise() {
+		return Paper_ifAdvise;
+	}
+	public void setPaper_ifAdvise(String paper_ifAdvise) {
+		Paper_ifAdvise = paper_ifAdvise;
+	}
 	public float getTeacher_Grade() {
 		return Teacher_Grade;
 	}

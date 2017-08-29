@@ -20,12 +20,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <update id="updateBlindJudge" parameterType="cn.pms.ssm.po.BlindJudgeGroupVo" >
     update 
-      blindjudgegroup
-    set  
+      blindjudgegroup,
+      paper
+    set 
+      Teacher_Grade = #{Teacher_Grade}, 
       Teacher_Result = #{Teacher_Result},
-      Teacher_description = #{Teacher_description}
+      Teacher_description = #{Teacher_description},
+      Paper_ifAdvise = 1
     where 
-      Stu_id = #{Stu_id}
+      Stu_id  = #{Stu_id} AND Paper_stuId = #{Stu_id}
 </update>
 
 <!--导师查询自己要盲审的论文-->
@@ -48,11 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 		  Teacher_Grade,
 		  Teacher_Result,
-		  Teacher_description
-		FROM 
+		  Teacher_description,
+		  Paper_ifAdvise
+		FROM
+		  paper, 
 		  blindjudgegroup
 		WHERE 
-		  Stu_id  = #{Stu_id}
+		  Stu_id  = #{Stu_id} AND Paper_stuId = #{Stu_id}
 </select>
 
 </mapper>
