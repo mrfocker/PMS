@@ -588,7 +588,7 @@ function load(){
 	    	  console.log(data);
 	          console.log("ok");
 	        /*系统起始状态*/
-	        /* if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.teacher_Result == null || data.teacher_Result == "")
+	        /* if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.paper_blindjudgePass == null || data.paper_blindjudgePass == "")
 	        		&& (data.reply_Result == null || data.reply_Result == "")){
 	        	console.log("system start or wait 1");
 	        	$("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
@@ -677,17 +677,18 @@ function load(){
 	    	      $("#four1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	       /*论文盲审*/
-	       else if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "通过" && (data.teacher_Result == null || data.teacher_Result == "")){
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifPaperRepetitiveRatePass == "通过" && (data.paper_blindjudgePass == null || data.paper_blindjudgePass == "")){
 	    	      console.log("go to 5,wait 5 +");
 	    	      step5(data);
 	       }
-	       else if(data.paper_ifSubmit == 1 && data.teacher_Result == "不通过"){
+	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "不通过"){
 	    	   console.log("wait in 5,-");
 	    	   step5(data);
 	    	   $("#five1").append("<td>您的论文没有通过盲审考核。</td> ");	  
 	    	   /*不通过的原因*/
 	       }
-	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "通过" && (data.reply_result == null || data.reply_result == "")){
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过"
+	    		   && (data.reply_result == null || data.reply_result == "")){
 	    	      console.log("wait in 5,-");
 	    	      step5_5(data);
 	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
@@ -696,7 +697,7 @@ function load(){
 	    	      /*不通过的原因*/
 	       }
 	       /*论文答辩*/
-	       else if(data.paper_ifSubmit == 1 && data.teacher_Result == "通过" && (data.reply_result == "" || data.reply_result == null)){
+	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && (data.reply_result == "" || data.reply_result == null)){
 	    	      console.log("go to 6,wait 6 +");
 	    	      step6(data);
 	       }
@@ -1246,7 +1247,7 @@ function step5(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.teacher_Result+"</td>");
+    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>");
     
     
 }
@@ -1614,7 +1615,7 @@ function step5_5(data){
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal3' onclick='show_blindjudgeAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
 }
 
 function step6_6(data){
@@ -1646,7 +1647,7 @@ function step6_6(data){
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal4' onclick='show_replyAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td>"+data.teacher_Result+"</td>")
+    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
 }
 </script>
 

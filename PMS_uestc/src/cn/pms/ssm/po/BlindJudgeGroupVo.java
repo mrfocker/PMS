@@ -22,8 +22,14 @@ public class BlindJudgeGroupVo {
 	private String Paper_researchTwo;
 	private String Paper_researchThree;
 	private String Paper_ifAdvise;
+	private String Paper_blindjudgePass;
 	
-	
+	public String getPaper_blindjudgePass() {
+		return Paper_blindjudgePass;
+	}
+	public void setPaper_blindjudgePass(String paper_blindjudgePass) {
+		Paper_blindjudgePass = paper_blindjudgePass;
+	}
 	public String getPaper_ifAdvise() {
 		return Paper_ifAdvise;
 	}

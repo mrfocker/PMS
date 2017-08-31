@@ -62,6 +62,7 @@ public class StudentPaperInfoServiceImpl implements StudentPaperInfoService {
 			allPaperInfo.setPaper_repetitiveRateAll(myPaperInfo.getPaper_repetitiveRateAll());
 			allPaperInfo.setPaper_repetitiveRateSingle(myPaperInfo.getPaper_repetitiveRateSingle());
 			allPaperInfo.setPaper_ifAdvise(myPaperInfo.getPaper_ifAdvise());
+			allPaperInfo.setPaper_blindjudgePass(myPaperInfo.getPaper_blindjudgePass());
 				
 			if((myPaperInfo.getPaper_repetitiveRateAll() != null) && (myPaperInfo.getPaper_repetitiveRateSingle() != null)){
 				System.out.println("check here");

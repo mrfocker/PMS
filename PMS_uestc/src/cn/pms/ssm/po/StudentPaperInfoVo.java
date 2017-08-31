@@ -32,6 +32,14 @@ public class StudentPaperInfoVo {
 	private String Paper_departadvise;
 	private String Teacher_description;
 	private String Reply_advise;
+    private String Paper_blindjudgePass;
+	
+	public String getPaper_blindjudgePass() {
+		return Paper_blindjudgePass;
+	}
+	public void setPaper_blindjudgePass(String paper_blindjudgePass) {
+		Paper_blindjudgePass = paper_blindjudgePass;
+	}
 	
 	public String getPaper_departadvise() {
 		return Paper_departadvise;
