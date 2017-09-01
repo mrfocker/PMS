@@ -37,7 +37,7 @@ public class TeacherQueryController {
 		List<TeacherQueryVo> mystulist = teacherQueryService.do_findMyStuInfo(teacherQueryVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("mystulist",mystulist);
-		modelAndView.setViewName("/mystudents");
+		modelAndView.setViewName("teacherheader");
 		System.out.println(modelAndView);
 		return modelAndView;
 		}
@@ -48,8 +48,7 @@ public class TeacherQueryController {
 		TeacherQueryVo teacherQueryVo1 = null;
 		teacherQueryVo1 = teacherQueryService.do_findTeacherAdvise(teacherQueryVo);
 		
-		if(teacherQueryVo1 == null){
-			teacherQueryVo1 = new TeacherQueryVo();
+		if(teacherQueryVo1.getPaper_ifPass() == null || teacherQueryVo1.getPaper_ifPass().equals("")){
 			teacherQueryVo1.setResult_code(0);
 			teacherQueryVo1.setPaper_advise(" ");
 		}
@@ -64,7 +63,6 @@ public class TeacherQueryController {
 				teacherQueryVo1.setResult_code(3);
 			}
 		}
-	
 		return teacherQueryVo1;
 	}
 	
@@ -85,8 +83,8 @@ public class TeacherQueryController {
 			teacherQueryVo.setPaper_ifPass("不通过");
 		}
 		System.out.println(teacherQueryVo.getResult_code());
-		//调用提交评价接口
 		teacherQueryService.do_updateTeacherAdvise(teacherQueryVo);
+		teacherQueryService.do_updateAdvise_1(teacherQueryVo);
 	}
 	
 	

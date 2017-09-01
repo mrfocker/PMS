@@ -2,6 +2,7 @@ package cn.pms.ssm.service;
 
 import java.util.List;
 
+import cn.pms.ssm.po.BlindJudgeGroupVo;
 import cn.pms.ssm.po.TeacherQueryVo;
 
 /** 
@@ -21,4 +22,6 @@ public interface TeacherQueryService {
 	public void do_updateTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
 	//教授查询自己学生论文评审的信息
 	public TeacherQueryVo do_findTeacherAdvise(TeacherQueryVo teacherQueryvo) throws Exception;
+	//如果评价为修改，将advise置1
+    public void do_updateAdvise_1(TeacherQueryVo teacherQueryvo) throws Exception;
 }

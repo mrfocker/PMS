@@ -60,4 +60,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  Stu_id  = #{Stu_id} AND Paper_stuId = #{Stu_id}
 </select>
 
+<update id="updateAdvise_1" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+    update 
+      paper
+    set 
+      Paper_ifAdvise = 1
+    where 
+      Paper_stuId = #{Stu_id}
+</update>
+
+<update id="updatesubmit_0" parameterType="cn.pms.ssm.po.StudentPaperInfoVo" >
+    update 
+      paper
+    set 
+      Paper_ifSubmit = 0
+    where 
+      Paper_stuId = #{Stu_id}
+</update>
+
 </mapper>

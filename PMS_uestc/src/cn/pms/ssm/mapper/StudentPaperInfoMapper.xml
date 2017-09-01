@@ -161,7 +161,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update 
       paper
     set 
-      Paper_ifSubmit = 1
+      Paper_ifSubmit = 1,
     where 
       Paper_stuId = #{Stu_id}
 </update>

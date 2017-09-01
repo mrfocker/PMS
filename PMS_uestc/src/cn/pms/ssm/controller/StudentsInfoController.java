@@ -96,7 +96,7 @@ public class StudentsInfoController {
 	public @ResponseBody StudentPaperInfoVo onejumptwo(@RequestBody StudentPaperInfoVo studentPaperInfoVo) throws Exception{
 		
 		StudentPaperInfoVo onejumptwoList = new StudentPaperInfoVo();
-		//置1
+		//置1and文件类型置0表示（初审版）
 		studentPaperInfoService.do_updatSubmit_Pass(studentPaperInfoVo);
 		//置0 
 		studentPaperInfoService.do_updateAdvise_Pass(studentPaperInfoVo);

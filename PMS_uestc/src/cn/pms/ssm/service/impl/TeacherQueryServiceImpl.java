@@ -43,4 +43,10 @@ public class TeacherQueryServiceImpl implements TeacherQueryService{
 		return teacherQueryStudentMapper.findTeacherAdvise(teacherQueryvo);
 	}
 
+	@Override
+	public void do_updateAdvise_1(TeacherQueryVo teacherQueryvo) throws Exception {
+		teacherQueryStudentMapper.updateAdvise_1(teacherQueryvo);
+		
+	}
+
 }

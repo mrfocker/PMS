@@ -46,4 +46,19 @@ public class BlindJudgeGroupServiceImpl implements BlindJudgeGroupService {
 		
 		blindJudgeMapper.updateBlindJudge(blindJudgeGroupVo);
 	}
+
+	@Override
+	public void do_updateAdvise_1(BlindJudgeGroupVo blindJudgeGroupVo)
+			throws Exception {
+		blindJudgeMapper.updateAdvise_1(blindJudgeGroupVo);
+		
+	}
+
+	@Override
+	public void do_updatesubmit_0(BlindJudgeGroupVo blindJudgeGroupVo)
+			throws Exception {
+		
+		blindJudgeMapper.updatesubmit_0(blindJudgeGroupVo);
+	}
+
 }

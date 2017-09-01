@@ -53,13 +53,31 @@
 		</property>
 </bean> -->
 
-<bean
+<!-- <bean
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	<property name="prefix" value="/WEB-INF/pages"></property>
 	<property name="suffix" value=".jsp"/>
-</bean>
+</bean> -->
 
+<!--模板页继承-->
+<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.tiles2.TilesView
+			</value>
+		</property>
+	</bean>
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-definitions.xml</value>
+			</list>
+		</property>
+	</bean>
+	
 <!-- 注解映射器 -->
 <bean class = "org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 <!-- 注解适配器 -->

@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="findTeacherAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" resultType="cn.pms.ssm.po.TeacherQueryVo">
 		SELECT
 		  Paper_ifPass,
+		  Paper_ifAdvise,
 		  Paper_advise
 		FROM 
 		  paper
@@ -43,6 +44,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       Paper_ifSubmit = #{Paper_ifSubmit},
       Paper_ifPass = #{Paper_ifPass},
       Paper_advise = #{Paper_advise}
+    where 
+      Paper_stuId = #{Paper_stuId}
+</update>
+
+<update id="updateAdvise_1" parameterType="cn.pms.ssm.po.TeacherQueryVo" >
+    update 
+      paper
+    set 
+      Paper_ifAdvise = 1
     where 
       Paper_stuId = #{Paper_stuId}
 </update>

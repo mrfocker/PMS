@@ -21,4 +21,8 @@ public interface BlindJudgeGroupService {
 	public BlindJudgeGroupVo do_findBlindResult(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 	//导师更新盲审结果
 	public void do_updateBlindJudge(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
+	//如果评价为修改，将advise置1
+    public void do_updateAdvise_1(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
+    //评价为修改 submit置为1
+    public void do_updatesubmit_0(BlindJudgeGroupVo blindJudgeGroupVo) throws Exception;
 }

@@ -44,6 +44,8 @@ public class BlindJudgeController {
 		}
 		else if(blindJudgeGroupVo.getResult_code() == 2){
 			blindJudgeGroupVo.setTeacher_Result("修改后答辩");
+			//将submit置0
+			blindJudgeGroupService.do_updatesubmit_0(blindJudgeGroupVo);
 		}
 		else if(blindJudgeGroupVo.getResult_code() == 3){
 			blindJudgeGroupVo.setTeacher_Result("修改后重审");
@@ -52,6 +54,7 @@ public class BlindJudgeController {
 			blindJudgeGroupVo.setTeacher_Result("不同意答辩");
 		}
 		System.out.println(blindJudgeGroupVo.getResult_code());
+		blindJudgeGroupService.do_updateAdvise_1(blindJudgeGroupVo);
 		blindJudgeGroupService.do_updateBlindJudge(blindJudgeGroupVo);
 	}
 	

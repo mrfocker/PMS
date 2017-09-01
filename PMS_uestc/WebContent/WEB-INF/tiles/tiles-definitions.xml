@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+     "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+     "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+  <definition name="login" template="/WEB-INF/pages/index.jsp"></definition>
+  <definition name="downloadIndex" template="/WEB-INF/pages/adminDownload.jsp"></definition>
+  <!-- tiles管理员基础模板 -->
+  <definition name="adminTemplate" template="/WEB-INF/jsp/template/layout.jsp">
+  	<put-attribute name="title" value="标题" />
+  	<put-attribute name="cssresources" value="/WEB-INF/jsp/template/css.jsp" />
+	<put-attribute name="jsresources" value="/WEB-INF/jsp/template/js.jsp" />
+    <put-attribute name="header" value="/WEB-INF/jsp/admin/adminHeader.jsp" />
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
+  </definition>
+  <!-- 继承自管理员的子模板 -->
+  <definition name="adminIndex" extends="adminTemplate">
+  	<put-attribute name="title" value="毕业论文管理系统" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminIndex.jsp" />
+  </definition>
+  
+  <definition name="adminUserinfo" extends="adminTemplate">
+  	<put-attribute name="title" value="显示用户信息（学生及老师）" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminUserinfo.jsp" />
+  </definition>
+  
+  <definition name="adminVertification" extends="adminTemplate">
+  	<put-attribute name="title" value="论文审核" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminVertification.jsp" />
+  </definition>
+  
+  <definition name="adminChangePwd" extends="adminTemplate">
+  	<put-attribute name="title" value="修改密码" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/adminChangePwd.jsp" />
+  </definition>
+  
+  <definition name="DeadlineSetting" extends="adminTemplate">
+  	<put-attribute name="title" value="修改最后期限" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/DeadlineSetting.jsp" />
+  </definition>
+  
+  <definition name="paperResult" extends="adminTemplate">
+  	<put-attribute name="title" value="修改论文审核状态" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/paperResult.jsp" />
+  </definition>
+
+  <definition name="requestReplyTime" extends="adminTemplate">
+  	<put-attribute name="title" value="修改请求答辩时间" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/requestReplyTime.jsp" />
+  </definition>
+
+  <definition name="stuReplyTime" extends="adminTemplate">
+  	<put-attribute name="title" value="修改答辩时间" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/stuReplyTime.jsp" />
+  </definition>
+  
+  <definition name="teacherOperation" extends="adminTemplate">
+  	<put-attribute name="title" value="修改导师能否对论文进行操作" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/teacherOperation.jsp" />
+  </definition>
+  
+  <definition name="degreeResult" extends="adminTemplate">
+  	<put-attribute name="title" value="修改学生授位结果" />
+    <put-attribute name="body" value="/WEB-INF/jsp/admin/degreeResult.jsp" />
+  </definition>
+  <!--项目-->
+  
+  <!--老师模块-->
+   <definition name="teacherTemplate" template="/WEB-INF/pages/teacherlayout.jsp">
+  	<put-attribute name="title" value="标题" />
+    <put-attribute name="header" value="" />
+    <put-attribute name="body" value="" />
+  </definition>
+  
+  <definition name="teacherheader" extends="teacherTemplate">
+  	<put-attribute name="title" value="老师" />
+    <put-attribute name="header" value="/WEB-INF/pages/teacherHeader.jsp" />
+  </definition>
+</tiles-definitions>
