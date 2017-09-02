@@ -68,14 +68,18 @@
   <!--项目-->
   
   <!--老师模块-->
-   <definition name="teacherTemplate" template="/WEB-INF/pages/teacherlayout.jsp">
-  	<put-attribute name="title" value="标题" />
-    <put-attribute name="header" value="" />
+   <definition name="teacherTemplate" template="/WEB-INF/jsp/teacher/teacherlayout.jsp">
+    <put-attribute name="title" value="标题" />
+  	<put-attribute name="cssresources" value="/WEB-INF/jsp/template/css.jsp" />
+	<put-attribute name="jsresources" value="/WEB-INF/jsp/teacher/teacherjs.jsp" />
+	<put-attribute name="tea_jsresources" value="/WEB-INF/jsp/teacher/tea_jsresources.jsp" />
+    <put-attribute name="header" value="/WEB-INF/jsp/teacher/teacherHeader.jsp"/>
     <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
   </definition>
   
-  <definition name="teacherheader" extends="teacherTemplate">
-  	<put-attribute name="title" value="老师" />
-    <put-attribute name="header" value="/WEB-INF/pages/teacherHeader.jsp" />
+  <definition name="mystuIndex" extends="teacherTemplate">
+  	<put-attribute name="title" value="毕业论文管理系统" />
+    <put-attribute name="body" value="/WEB-INF/jsp/teacher/mystuIndex.jsp" />
   </definition>
 </tiles-definitions>

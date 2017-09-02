@@ -37,7 +37,7 @@ public class TeacherQueryController {
 		List<TeacherQueryVo> mystulist = teacherQueryService.do_findMyStuInfo(teacherQueryVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("mystulist",mystulist);
-		modelAndView.setViewName("teacherheader");
+		modelAndView.setViewName("mystuIndex");
 		System.out.println(modelAndView);
 		return modelAndView;
 		}

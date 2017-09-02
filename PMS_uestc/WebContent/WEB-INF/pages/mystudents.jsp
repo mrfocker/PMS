@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="css/master.css">
   <link rel="stylesheet" href="css/tables.css">
   <!---jQuery Files-->
-   <script src="js/jquery-ui-2.1.1.min.js"></script>
+   <script src="js/jquery-2.1.1.min.js"></script>
   <!--  <script src="js/jquery-1.7.1.min.js"></script> -->
   <script src="js/jquery-ui-1.8.17.min.js"></script>
   <script src="js/styler.js"></script>
