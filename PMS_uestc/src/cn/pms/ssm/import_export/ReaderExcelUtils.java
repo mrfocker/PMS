@@ -65,8 +65,10 @@ public class ReaderExcelUtils {
 				Sheet sheet = workbook.getSheet(i);
 				
 				//当前页 总记录行数和列数
-				int rowCount = sheet.getRows();			//获取行数
-				int columeCount = sheet.getColumns();	//获取列数
+				int rowCount = sheet.getRows();
+				//获取行数
+				int columeCount = sheet.getColumns();
+				//获取列数
 				System.out.println("总记录数 : "+rowCount);
 				System.out.println("总列数 : "+columeCount);
 				

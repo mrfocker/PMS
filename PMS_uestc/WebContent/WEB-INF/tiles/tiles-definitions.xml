@@ -78,8 +78,15 @@
     <put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
   </definition>
   
+  <!--导师评审自己学生的论文-->
   <definition name="mystuIndex" extends="teacherTemplate">
   	<put-attribute name="title" value="毕业论文管理系统" />
     <put-attribute name="body" value="/WEB-INF/jsp/teacher/mystuIndex.jsp" />
+  </definition>
+  
+   <!--论文盲审-->
+  <definition name="blindjudgeIndex" extends="teacherTemplate">
+  	<put-attribute name="title" value="毕业论文管理系统" />
+    <put-attribute name="body" value="/WEB-INF/jsp/teacher/blindjudgeIndex.jsp" />
   </definition>
 </tiles-definitions>

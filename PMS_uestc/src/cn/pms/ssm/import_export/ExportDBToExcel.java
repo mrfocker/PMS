@@ -27,17 +27,15 @@ public class ExportDBToExcel {
 		String[] column = "Teacher_id,Teacher_password,Teacher_name,Teacher_proTitle,Teacher_researchOne,Teacher_researchTwo,Teacher_researchThree,Teacher_email,Teacher_tel"
 				.split(",");
 		List<Map> data = selectAll();
-		String fileName = "Export Excel By MyBatis";
+		String fileName = "Export Excel test";
 		eeu.getOutputFile(title, column, data, fileName);
 
 	}
 
 	@SuppressWarnings("rawtypes")
 	public static List<Map> selectAll() {
-		applicationContext = new ClassPathXmlApplicationContext(
-				"classpath:spring/applicationContext-dao.xml ");
-		TeacherMapper teacherMapper = (TeacherMapper) applicationContext
-				.getBean("teacherMapper");
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
+		TeacherMapper teacherMapper = (TeacherMapper) applicationContext.getBean("teacherMapper");
 		List<Map> studentList = null;
 		try {
 			studentList = teacherMapper.getTeacherList();
@@ -49,12 +47,12 @@ public class ExportDBToExcel {
 		return studentList;
 	}
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static void selectOneById() {
-		applicationContext = new ClassPathXmlApplicationContext(
-				"classpath:spring/applicationContext-dao.xml ");
-		TeacherMapper teacherMapper = (TeacherMapper) applicationContext
-				.getBean("teacherMapper");
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
+		TeacherMapper teacherMapper = (TeacherMapper) applicationContext.getBean("teacherMapper");
 		Map studentInfoMap = new HashMap();
 		studentInfoMap.put("userId", "12");
 		Map studentMap = null;
@@ -69,8 +67,7 @@ public class ExportDBToExcel {
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static void deleteStudentById() {
-		applicationContext = new ClassPathXmlApplicationContext(
-				"classpath:spring/applicationContext-dao.xml ");
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
 		TeacherMapper teacherMapper = (TeacherMapper) applicationContext
 				.getBean("teacherMapper");
 		Map studentInfoMap = new HashMap();
@@ -87,8 +84,7 @@ public class ExportDBToExcel {
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public static void insertStudent() {
-		applicationContext = new ClassPathXmlApplicationContext(
-				"classpath:spring/applicationContext-dao.xml ");
+		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
 		TeacherMapper teacherMapper = (TeacherMapper) applicationContext
 				.getBean("teacherMapper");
 		Map studentInfoMap = new HashMap();
@@ -104,5 +100,4 @@ public class ExportDBToExcel {
 		}
 		System.out.println("添加" + result + "个学生");
 	}
-
 }

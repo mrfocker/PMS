@@ -64,7 +64,7 @@ public class BlindJudgeController {
 		List<BlindJudgeGroupVo> blindJudgelist = blindJudgeGroupService.do_findBlindJudgePaper(blindJudgeGroupVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("blindJudgelist",blindJudgelist);
-		modelAndView.setViewName("/teacher_blind_tables");
+		modelAndView.setViewName("blindjudgeIndex");
 		System.out.println(modelAndView);
 		return modelAndView;
 		

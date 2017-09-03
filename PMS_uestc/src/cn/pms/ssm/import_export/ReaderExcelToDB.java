@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.ibatis.session.SqlSession;
-import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
 
@@ -35,13 +33,6 @@ public class ReaderExcelToDB {
 		InsertToDataBase();
 	}
 
-	/**
-	 * 读取Excel文件,将数据存入数据库
-	 * 
-	 * @param data
-	 *            数据
-	 * @throws Exception
-	 */
 	@SuppressWarnings({ "rawtypes", "static-access" })
 	public static void InsertToDataBase() throws Exception {
 		applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-dao.xml ");
@@ -95,12 +86,7 @@ public class ReaderExcelToDB {
 		}
 	}
 
-	/**
-	 * 获取Map中的key值
-	 * 
-	 * @param dataMap
-	 * @return
-	 */
+	// 获取Map中的key值
 	public static String[] getMapKey(Map dataMap) {
 		String[] keyArr = new String[dataMap.size()];
 		if (dataMap.size() < 0 || dataMap == null) {

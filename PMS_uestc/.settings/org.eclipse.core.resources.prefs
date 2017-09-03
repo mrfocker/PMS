@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/jsp/teacher/blindjudgeIndex.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/css/stu_progress.css=UTF-8
 encoding//WebContent/WEB-INF/pages/tables.jsp=UTF-8
 encoding//src/cn/pms/ssm/mapper/TeacherMapper.java=UTF-8

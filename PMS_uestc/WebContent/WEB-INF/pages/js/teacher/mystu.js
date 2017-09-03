@@ -18,7 +18,7 @@ function show_judgedetails(val){
 	var str = {paper_stuId:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc/pages/teacherQueryAdvise',
+	      url:'window.location.host/pages/teacherQueryAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,

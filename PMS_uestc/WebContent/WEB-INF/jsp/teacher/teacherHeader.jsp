@@ -16,7 +16,7 @@
         <li>
             <ul id="top-nav" style="z-index: 999">
                 <li class="nav-item">
-                    <a href="<%=basePath%>/"><img src="<%=basePath%>/img/nav/group.png" alt="" /><p>我的学生</p></a>
+                    <a href="<%=basePath%>/pages/teacherQueryStu"><img src="<%=basePath%>/img/nav/group.png" alt="" /><p>我的学生</p></a>
                 </li>
                 <li class="nav-item">
                     <a href="<%=basePath%>/"><img src="<%=basePath%>/img/nav/blind.png" alt="" /><p>论文盲审</p></a>

@@ -6,3 +6,4 @@
 
 <!-- teacher model jQuery -->
 <script src="<%=basePath%>js/teacher/mystu.js"></script>
+<script src="<%=basePath%>js/teacher/blindjudge.js"></script>
