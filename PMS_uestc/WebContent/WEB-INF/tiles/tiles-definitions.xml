@@ -89,4 +89,21 @@
   	<put-attribute name="title" value="毕业论文管理系统" />
     <put-attribute name="body" value="/WEB-INF/jsp/teacher/blindjudgeIndex.jsp" />
   </definition>
+  
+  <!--学生模块-->
+   <definition name="studentTemplate" template="/WEB-INF/jsp/student/studentlayout.jsp">
+    <put-attribute name="title" value="标题" />
+  	<put-attribute name="cssresources" value="/WEB-INF/jsp/template/css.jsp" />
+	<put-attribute name="jsresources" value="/WEB-INF/jsp/student/studentjs.jsp" />
+	<put-attribute name="stu_jsresources" value="/WEB-INF/jsp/student/stu_jsresources.jsp" />
+    <put-attribute name="header" value="/WEB-INF/jsp/student/studentHeader.jsp"/>
+    <put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
+  </definition>
+  
+   <!--学生论文模块-->
+  <definition name="stupaperIndex" extends="studentTemplate">
+  	<put-attribute name="title" value="毕业论文管理系统" />
+    <put-attribute name="body" value="/WEB-INF/jsp/student/stupaperinfoIndex.jsp" />
+  </definition>
 </tiles-definitions>

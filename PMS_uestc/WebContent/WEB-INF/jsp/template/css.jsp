@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%=basePath%>css/tables.css">
 <link rel="stylesheet" href="<%=basePath%>css/iphone-check.css">
 <link rel="stylesheet" href="<%=basePath%>css/icons.css">
+ <link rel="stylesheet" href="<%=basePath%>css/stu_progress.css">
 <!--bootstrap CSS-->
 <link rel="stylesheet" href="<%=basePath%>pages/bootstrap-fileinput/css/fileinput.min.css">
 <link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css">

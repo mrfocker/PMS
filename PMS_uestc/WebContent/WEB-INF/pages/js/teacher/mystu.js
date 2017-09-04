@@ -13,12 +13,12 @@
   
 //将导师审核自己学生论文得信息映射倒模态框
 function show_judgedetails(val){
-	console.log('failed');
+	console.log('ok');
 	console.log(val);
 	var str = {paper_stuId:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'window.location.host/pages/teacherQueryAdvise',
+	      url:'http://localhost:8080/PMS_uestc/pages/teacherQueryAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -58,7 +58,7 @@ function show_judgedetails(val){
     str = JSON.stringify(str);
     console.log(str);
     $.ajax({
-      url:'window.location.host/pages/submitteacheradvise',
+      url:'http://localhost:8080/PMS_uestc/pages/submitteacheradvise',
       type:'post',
       contentType:'application/json;charset=utf-8',
       data:str,

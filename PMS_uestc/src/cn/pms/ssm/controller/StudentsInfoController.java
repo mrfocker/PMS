@@ -36,7 +36,7 @@ public class StudentsInfoController {
 		List<StudentPaperInfoVo> studentPaperInfoVo1 = studentPaperInfoService.do_findStudentPaperInfo(studentPaperInfoVo);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("studentPaperInfoList",studentPaperInfoVo1);
-		modelAndView.setViewName("/students");
+		modelAndView.setViewName("stupaperIndex");
 		System.out.println(modelAndView);
 		return modelAndView;	
 	}
