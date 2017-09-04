@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.pms.ssm.po.BlindJudgeGroupVo;
-import cn.pms.ssm.po.PaperInfoExtend;
 import cn.pms.ssm.po.PaperQueryVo;
 import cn.pms.ssm.po.TeacherQueryVo;
 import cn.pms.ssm.service.BlindJudgeGroupService;

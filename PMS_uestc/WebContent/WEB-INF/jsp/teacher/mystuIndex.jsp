@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+
  <div class="content container_12">
       <div class="box grid_12">
         <div class="box-head"><h2>毕业论文信息</h2></div>
@@ -13,6 +14,7 @@
               <th style="text-align:center;">研究方向1</th>
               <th style="text-align:center;">研究方向2</th>
               <th style="text-align:center;">研究方向3</th>
+              <th style="text-align:center;">论文类型</th>
               <th style="text-align:center;">论文下载</th>
               <th style="text-align:center;">导师审核</th>
             </tr>
@@ -26,8 +28,33 @@
               <td style="text-align:center;">${item.paper_researchOne}</td>
               <td style="text-align:center;">${item.paper_researchTwo}</td>
               <td style="text-align:center;">${item.paper_researchThree}</td>
-              <td style="text-align:center;"><button>下载</button></td>
-              <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td> 
+              <%-- <c:if test="${item.paper_blindjudgePass == null || item.paper_blindjudgePass == ''}">
+                  <td style="text-align:center;">初审</td>
+              	  <td style="text-align:center;"><button>下载</button></td>
+                  <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
+             
+              if test="${item.paper_blindjudgePass =! null && (item.Paper_replyPass == null || item.Paper_replyPass == '')}">
+                  <td style="text-align:center;">盲审</td>
+              	  <td style="text-align:center;"><button>下载</button></td>
+                  <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
+              </c:if>  --%>
+              <c:choose>
+              	<c:when test="${item.paper_blindjudgePass == null || item.paper_blindjudgePass == ''}">
+                  <td style="text-align:center;">初审版</td>
+              	  <td style="text-align:center;"><button>下载</button></td>
+                  <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
+              	</c:when >
+              	<c:when test="${item.paper_blindjudgePass != null && (item.paper_replyPass == null || item.paper_replyPass == '')}">
+                  <td style="text-align:center;">盲审修改版</td>
+              	  <td style="text-align:center;"><button>下载</button></td>
+                  <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
+              	</c:when>
+              	<c:when test="${item.paper_blindjudgePass == '通过' && item.paper_replyPass != null}">
+                  <td style="text-align:center;">答辩修改版</td>
+              	  <td style="text-align:center;"><button>下载</button></td>
+                  <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
+              	</c:when>
+              </c:choose> 
             </tr>
            </c:forEach>
           </tbody>

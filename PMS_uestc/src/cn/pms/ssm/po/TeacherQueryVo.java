@@ -24,8 +24,28 @@ public class TeacherQueryVo {
 	private String Paper_stuId;
 	private int Paper_ifSubmit;
 	private int Paper_ifAdvise;
+	private String Paper_blindjudgePass;
+	private String Paper_status;
+	private String Paper_replyPass;
 	
-	
+	public String getPaper_replyPass() {
+		return Paper_replyPass;
+	}
+	public void setPaper_replyPass(String paper_replyPass) {
+		Paper_replyPass = paper_replyPass;
+	}
+	public String getPaper_status() {
+		return Paper_status;
+	}
+	public void setPaper_status(String paper_status) {
+		Paper_status = paper_status;
+	}
+	public String getPaper_blindjudgePass() {
+		return Paper_blindjudgePass;
+	}
+	public void setPaper_blindjudgePass(String paper_blindjudgePass) {
+		Paper_blindjudgePass = paper_blindjudgePass;
+	}
 	public int getPaper_ifAdvise() {
 		return Paper_ifAdvise;
 	}

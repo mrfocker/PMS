@@ -29,7 +29,7 @@ function show_judgedetails(val){
 	          $('#score').val(data.teacher_Grade);
 	          $('#return_cont').val(data.paper_advise);
 	          $("#submit_result").empty();
-	          if(data.paper_ifAdvise == 0){
+	          if(data.paper_ifAdvise == 0 && data.paper_ifPass != "通过" && data.paper_ifPass != "不通过"){
 	        	  $("#submit_result").append("<button type='button' class='btn btn-primary' onclick='+do_teacherjudge("+val+");'>提交</button>");
 		          $("#submit_result").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>"); 
 	          }

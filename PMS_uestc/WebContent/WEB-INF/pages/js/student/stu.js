@@ -19,7 +19,7 @@ function show_teacherAdvise(val){
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/queryTeacherDepartAdvise',
+	      url:'http://localhost:8080/PMS_uestc/pages/queryTeacherDepartAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -42,7 +42,7 @@ function show_departAdvise(val){
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/queryTeacherDepartAdvise',
+	      url:'http://localhost:8080/PMS_uestc/pages/queryTeacherDepartAdvise',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -64,7 +64,7 @@ function show_blindjudgeAdvise(val){
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-		     url:'http://localhost:8080/PMS_uestc//pages/queryBlindJudgeAdvise',
+		     url:'http://localhost:8080/PMS_uestc/pages/queryBlindJudgeAdvise',
 		     type:'post',
 		     contentType:'application/json;charset=utf-8',
 		     data:str,
@@ -87,7 +87,7 @@ function show_replyAdvise(val){
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-		     url:'http://localhost:8080/PMS_uestc//pages/queryReplyAdvise',
+		     url:'http://localhost:8080/PMS_uestc/pages/queryReplyAdvise',
 		     type:'post',
 		     contentType:'application/json;charset=utf-8',
 		     data:str,
@@ -112,7 +112,7 @@ function load(){
 	str = JSON.stringify(str);
 	console.log(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/getPaperAllInfo',
+	      url:'http://localhost:8080/PMS_uestc/pages/getPaperAllInfo',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -280,7 +280,7 @@ function one_two(val){
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/onejumptwo',
+	      url:'http://localhost:8080/PMS_uestc/pages/onejumptwo',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -329,7 +329,7 @@ function five_six(val){
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/onejumptwo',
+	      url:'http://localhost:8080/PMS_uestc/pages/onejumptwo',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -358,7 +358,7 @@ function six_seven(val){
 	var str = {stu_id:val};
 	str = JSON.stringify(str);
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/sixjumpseven',
+	      url:'http://localhost:8080/PMS_uestc/pages/sixjumpseven',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -389,7 +389,7 @@ function return_one(val){
 	str = JSON.stringify(str);
 	  console.log("adf");
 	$.ajax({
-	      url:'http://localhost:8080/PMS_uestc//pages/requeryPaperInfo',
+	      url:'http://localhost:8080/PMS_uestc/pages/requeryPaperInfo',
 	      type:'post',
 	      contentType:'application/json;charset=utf-8',
 	      data:str,
@@ -963,7 +963,6 @@ function step6_6(data){
     $("#paperlistname").append("<th>研究方向一</th>");
     $("#paperlistname").append("<th>研究方向二</th>");
     $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>答辩意见</th>");
     $("#paperlistname").append("<th>答辩结果</th>");
    
     $("#paperlist").empty();
@@ -972,6 +971,5 @@ function step6_6(data){
     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal4' onclick='show_replyAdvise("+data.stu_id+");'>评审</button></td>");
     $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
 }
