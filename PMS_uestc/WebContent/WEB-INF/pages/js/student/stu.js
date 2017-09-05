@@ -221,7 +221,7 @@ function load(){
 	    	   /*不通过的原因*/
 	       }
 	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过"
-	    		   && (data.reply_result == null || data.reply_result == "")){
+	    		   && (data.paper_ifReply == null || data.paper_ifReply == "")){
 	    	      console.log("wait in 5,-");
 	    	      step5_5(data);
 	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
@@ -229,18 +229,33 @@ function load(){
 	    	      $("#five1").append("<button type='button' onclick='five_six("+data.stu_id+")'>提交</button>");
 	    	      /*不通过的原因*/
 	       }
+	      /*盲神修改版等待导师审核*/
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过" && data.paper_ifReply == "修改"){
+	    	      console.log("wait in 5 blind fix");
+	    	      step5(data);
+	       }
+	      /* 导师要求盲审论文再修改*/
+	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && (data.paper_ifReply == "" || data.paper_ifReply == null)){
+	    	      console.log("wait in 5 blind fix");
+	    	      console.log("wait in 5,--");
+	    	      step5_5_2(data);
+	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	      $("#five1").append("<button type='button' onclick='five_six("+data.stu_id+")'>提交</button>");
+	       }
+	      
 	       /*论文答辩*/
-	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && (data.reply_result == "" || data.reply_result == null)){
+	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && paper_ifReply == "通过"){
 	    	      console.log("go to 6,wait 6 +");
 	    	      step6(data);
 	       }
-	       else if(data.paper_ifSubmit == 1 && data.reply_result == "不通过"){
+	       else if(data.paper_ifSubmit == 1 && paper_replyPass == "不通过"){
 	    	      console.log("go to 6,wait 6 -");
 	    	      $("#six1").append("<td>您的论文未通过答辩考核！</td> ");
 	    	      step6(data);
 	    	      
 	       }
-	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.reply_result == "通过"){
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.paper_replyPass == "通过"){
 	    	      console.log("wait 6 -");
 	    	      step6_6(data);
 	    	      $("#six1").append("<td>您的论文需要已经通过答辩考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
@@ -249,7 +264,7 @@ function load(){
 	    	      /*不通过的原因*/
 	       }
 	       /*学位授予*/
-	       else if((data.stu_ifdegree == null || data.stu_ifdegree == "" || data.stu_ifdegree == "否") && data.reply_result == "通过" && data.paper_ifSubmit == 1){
+	       else if((data.stu_ifdegree == null || data.stu_ifdegree == "" || data.stu_ifdegree == "否") && data.data.paper_replyPass == "通过" && data.paper_ifSubmit == 1){
 	    	   	  console.log("go to 7,wait 7");
 	    	   	  step7(data);
 	       }
@@ -941,6 +956,68 @@ function step5_5(data){
     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal3' onclick='show_blindjudgeAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+}
+
+function  step5(data){
+	
+	console.log("wait 5, wait for teacher answer");
+	$("#four").hide();
+    $("#five").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","current_prev");
+    $("#lwms").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师意见</th>");
+    $("#paperlistname").append("<th>盲审结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>导师未审核</td>");
+    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+}
+
+step5_5_2(data){
+	
+	console.log("wait 5, teacher answer is fix");
+	$("#four").hide();
+    $("#five").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","current_prev");
+    $("#lwms").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th>学生姓名</th>");
+    $("#paperlistname").append("<th>学生学号</th>");
+    $("#paperlistname").append("<th>研究方向一</th>");
+    $("#paperlistname").append("<th>研究方向二</th>");
+    $("#paperlistname").append("<th>研究方向三</th>");
+    $("#paperlistname").append("<th>导师意见</th>");
+    $("#paperlistname").append("<th>盲审结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td>修改</td>");
     $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
 }
 

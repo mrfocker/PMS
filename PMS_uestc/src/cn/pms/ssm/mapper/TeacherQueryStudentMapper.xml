@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  paper.Paper_stuId,
 		  paper.Paper_blindjudgePass,
 		  Paper.Paper_replyPass,
+		  Paper.Paper_ifSubmit,
 		  student.Stu_name,
 		  student.Stu_id,
 		  teacher.Teacher_id,
@@ -46,6 +47,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       Paper_ifSubmit = #{Paper_ifSubmit},
       Paper_ifPass = #{Paper_ifPass},
       Paper_advise = #{Paper_advise}
+    where 
+      Paper_stuId = #{Paper_stuId}
+</update>
+
+<update id="updateblindfixAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" >
+    update 
+      paper
+    set 
+      Paper_ifSubmit = #{Paper_ifSubmit},
+      Paper_ifReply = #{Paper_ifReply}
+    where 
+      Paper_stuId = #{Paper_stuId}
+</update>
+
+<update id="updatereplyfixAdvise" parameterType="cn.pms.ssm.po.TeacherQueryVo" >
+    update 
+      paper
+    set 
+      Paper_ifSubmit = #{Paper_ifSubmit},
+      Paper_over = #{Paper_over}
     where 
       Paper_stuId = #{Paper_stuId}
 </update>

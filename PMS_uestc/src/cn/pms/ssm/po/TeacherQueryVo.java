@@ -27,7 +27,28 @@ public class TeacherQueryVo {
 	private String Paper_blindjudgePass;
 	private String Paper_status;
 	private String Paper_replyPass;
+	private String Paper_ifReply;
+	private String Paper_over;
+	private int result_code1;
 	
+	public int getResult_code1() {
+		return result_code1;
+	}
+	public void setResult_code1(int result_code1) {
+		this.result_code1 = result_code1;
+	}
+	public String getPaper_over() {
+		return Paper_over;
+	}
+	public void setPaper_over(String paper_over) {
+		Paper_over = paper_over;
+	}
+	public String getPaper_ifReply() {
+		return Paper_ifReply;
+	}
+	public void setPaper_ifReply(String paper_ifReply) {
+		Paper_ifReply = paper_ifReply;
+	}
 	public String getPaper_replyPass() {
 		return Paper_replyPass;
 	}

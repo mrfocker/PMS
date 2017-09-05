@@ -20,6 +20,10 @@ public interface TeacherQueryStudentMapper {
 	public TeacherQueryVo findTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
 	//教师提交对自己学生审核的结果
 	public void updateTeacherAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
+	//教师提交对自己学生盲审修改版审核的结果
+	public void updateblindfixAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
+	//教师提交对自己学生盲审修改版审核的结果
+	public void updatereplyfixAdvise(TeacherQueryVo teacherQueryVo) throws Exception;
 	//导师提交评审后advise置1
 	public void updateAdvise_1(TeacherQueryVo teacherQueryVo) throws Exception;
 

@@ -49,4 +49,15 @@ public class TeacherQueryServiceImpl implements TeacherQueryService{
 		
 	}
 
+	@Override
+	public void do_updateblindfixAdvise(TeacherQueryVo teacherQueryvo) throws Exception {
+		teacherQueryStudentMapper.updateblindfixAdvise(teacherQueryvo);
+	}
+
+	@Override
+	public void do_updatereplyfixAdvise(TeacherQueryVo teacherQueryvo) throws Exception {
+		teacherQueryStudentMapper.updatereplyfixAdvise(teacherQueryvo);
+		
+	}
+
 }
