@@ -96,17 +96,17 @@ public class TeacherQueryController {
 		teacherQueryVo1 = teacherQueryService.do_findTeacherAdvise(teacherQueryVo);
 		
 		if(teacherQueryVo1.getPaper_ifReply() == null || teacherQueryVo1.getPaper_ifReply().equals("")){
-			teacherQueryVo1.setResult_code1(0);
+			teacherQueryVo1.setResult_code(0);
 		}
 		else{
 			if(teacherQueryVo1.getPaper_ifReply().equals("通过")){
-				teacherQueryVo1.setResult_code1(1);
+				teacherQueryVo1.setResult_code(1);
 			}
 			if(teacherQueryVo1.getPaper_ifReply().equals("修改")){
-				teacherQueryVo1.setResult_code1(2);
+				teacherQueryVo1.setResult_code(2);
 			}
 			if(teacherQueryVo1.getPaper_ifReply().equals("不通过")){
-				teacherQueryVo1.setResult_code1(3);
+				teacherQueryVo1.setResult_code(3);
 			}
 		}
 		return teacherQueryVo1;
@@ -115,20 +115,20 @@ public class TeacherQueryController {
 	@RequestMapping("/submitblindfixadvise")
 	public @ResponseBody void submit_blindfixadvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
 		
-		if(teacherQueryVo.getResult_code1() == 0){
+		if(teacherQueryVo.getResult_code() == 0){
 			teacherQueryVo.setPaper_ifReply(null);
 		}
-		if(teacherQueryVo.getResult_code1() == 1){
+		if(teacherQueryVo.getResult_code() == 1){
 			teacherQueryVo.setPaper_ifReply("通过");
 		}
-		if(teacherQueryVo.getResult_code1() == 2){
+		if(teacherQueryVo.getResult_code() == 2){
 			teacherQueryVo.setPaper_ifReply("修改");
 			teacherQueryVo.setPaper_ifSubmit(0);
 		}
-		if(teacherQueryVo.getResult_code1() == 3){
+		if(teacherQueryVo.getResult_code() == 3){
 			teacherQueryVo.setPaper_ifReply("不通过");
 		}
-		System.out.println(teacherQueryVo.getResult_code1());
+		System.out.println(teacherQueryVo.getResult_code());
 		teacherQueryService.do_updateblindfixAdvise(teacherQueryVo);
 		teacherQueryService.do_updateAdvise_1(teacherQueryVo);
 	}
@@ -141,17 +141,17 @@ public class TeacherQueryController {
 			teacherQueryVo1 = teacherQueryService.do_findTeacherAdvise(teacherQueryVo);
 			
 			if(teacherQueryVo1.getPaper_over() == null || teacherQueryVo1.getPaper_over().equals("")){
-				teacherQueryVo1.setResult_code1(0);
+				teacherQueryVo1.setResult_code(0);
 			}
 			else{
 				if(teacherQueryVo1.getPaper_over().equals("通过")){
-					teacherQueryVo1.setResult_code1(1);
+					teacherQueryVo1.setResult_code(1);
 				}
 				if(teacherQueryVo1.getPaper_over().equals("修改")){
-					teacherQueryVo1.setResult_code1(2);
+					teacherQueryVo1.setResult_code(2);
 				}
 				if(teacherQueryVo1.getPaper_over().equals("不通过")){
-					teacherQueryVo1.setResult_code1(3);
+					teacherQueryVo1.setResult_code(3);
 				}
 			}
 			return teacherQueryVo1;
@@ -160,20 +160,20 @@ public class TeacherQueryController {
 		@RequestMapping("/submitreplyfixadvise")
 		public @ResponseBody void submitblindfixadvise(@RequestBody TeacherQueryVo teacherQueryVo) throws Exception{
 			
-			if(teacherQueryVo.getResult_code1() == 0){
+			if(teacherQueryVo.getResult_code() == 0){
 				teacherQueryVo.setPaper_over(null);
 			}
-			if(teacherQueryVo.getResult_code1() == 1){
+			if(teacherQueryVo.getResult_code() == 1){
 				teacherQueryVo.setPaper_over("通过");
 			}
-			if(teacherQueryVo.getResult_code1() == 2){
+			if(teacherQueryVo.getResult_code() == 2){
 				teacherQueryVo.setPaper_over("修改");
 				teacherQueryVo.setPaper_ifSubmit(0);
 			}
-			if(teacherQueryVo.getResult_code1() == 3){
+			if(teacherQueryVo.getResult_code() == 3){
 				teacherQueryVo.setPaper_over("不通过");
 			}
-			System.out.println(teacherQueryVo.getResult_code1());
+			System.out.println(teacherQueryVo.getResult_code());
 			teacherQueryService.do_updatereplyfixAdvise(teacherQueryVo);
 			teacherQueryService.do_updateAdvise_1(teacherQueryVo);
 		}

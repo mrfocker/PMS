@@ -29,14 +29,8 @@ public class TeacherQueryVo {
 	private String Paper_replyPass;
 	private String Paper_ifReply;
 	private String Paper_over;
-	private int result_code1;
+	private int result_code;
 	
-	public int getResult_code1() {
-		return result_code1;
-	}
-	public void setResult_code1(int result_code1) {
-		this.result_code1 = result_code1;
-	}
 	public String getPaper_over() {
 		return Paper_over;
 	}
@@ -85,7 +79,6 @@ public class TeacherQueryVo {
 	public void setPaper_stuId(String paper_stuId) {
 		Paper_stuId = paper_stuId;
 	}
-	private int result_code;
 	
 	public String getStu_id() {
 		return Stu_id;

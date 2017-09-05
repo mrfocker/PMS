@@ -14,7 +14,7 @@
               <th style="text-align:center;">研究方向1</th>
               <th style="text-align:center;">研究方向2</th>
               <th style="text-align:center;">研究方向3</th>
-              <th style="text-align:center;">论文类型</th>
+              <th style="text-align:center;">论文状态</th>
               <th style="text-align:center;">论文下载</th>
               <th style="text-align:center;">导师审核</th>
             </tr>
@@ -29,18 +29,18 @@
               <td style="text-align:center;">${item.paper_researchTwo}</td>
               <td style="text-align:center;">${item.paper_researchThree}</td>
               <c:choose>
-              	<c:when test="${item.paper_ifSubmit == 1 && item.paper_blindjudgePass == null || item.paper_blindjudgePass == ''}">
-                  <td style="text-align:center;">初审版</td>
+              	<c:when test="${item.paper_blindjudgePass == null || item.paper_blindjudgePass == ''}">
+                  <td style="text-align:center;">初审</td>
               	  <td style="text-align:center;"><button>下载</button></td>
                   <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal1" onclick='show_judgedetails(${item.paper_stuId});'>评审</button></td>
               	</c:when >
-              	<c:when test="${item.paper_ifSubmit == 1 && item.paper_blindjudgePass == '通过' && (item.paper_replyPass == null || item.paper_replyPass == '')}">
-                  <td style="text-align:center;">盲审修改版</td>
+              	<c:when test="${item.paper_blindjudgePass == '通过' && (item.paper_replyPass == null || item.paper_replyPass == '')}">
+                  <td style="text-align:center;">盲审</td>
               	  <td style="text-align:center;"><button>下载</button></td>
                   <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal2" onclick='show_blindjudgedetails(${item.paper_stuId});'>评审</button></td>
               	</c:when>
-              	<c:when test="${item.paper_ifSubmit == 1 && item.paper_blindjudgePass == '通过' && item.paper_replyPass == '通过'}">
-                  <td style="text-align:center;">答辩修改版</td>
+              	<c:when test="${item.paper_blindjudgePass == '通过' && item.paper_replyPass == '通过'}">
+                  <td style="text-align:center;">答辩</td>
               	  <td style="text-align:center;"><button>下载</button></td>
                   <td style="text-align:center;"><button class="fa fa-child" data-toggle="modal" data-target="#myModal3" onclick='show_replyjudgedetails(${item.paper_stuId});'>评审</button></td>
               	</c:when>

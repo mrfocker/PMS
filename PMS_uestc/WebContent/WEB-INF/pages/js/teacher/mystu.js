@@ -89,19 +89,19 @@ function show_judgedetails(val){
   	      contentType:'application/json;charset=utf-8',
   	      data:str,
   	      success: function(data){
-  	          console.log(data);
-  	          console.log("ok");
+  	          console.log(data.paper_ifReply);
+  	          console.log("ok2");
   	          
-  	          $("#submit_result").empty();
+  	          $("#submit_result2").empty();
   	          if(data.paper_ifAdvise == 0 && data.paper_ifReply != "通过" && data.paper_ifReply != "不通过"){
   	        	  $("#submit_result2").append("<button type='button' class='btn btn-primary' onclick='+do_blindfixjudge("+val+");'>提交</button>");
   		          $("#submit_result2").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>"); 
   	          }
-  	          $("#result_select").empty();
-  	          $("#result_select").append("<option value='"+data.result_code1+"'>"+data.paper_ifRely+"</option>");
-  	          $("#result_select").append("<option value='1'>通过</option>");
-  	          $("#result_select").append("<option value='2'>修改</option>");
-  	          $("#result_select").append("<option value='3'>不通过</option>");
+  	          $("#result_select2").empty();
+  	          $("#result_select2").append("<option value='"+data.result_code+"'>"+data.paper_ifReply+"</option>");
+  	          $("#result_select2").append("<option value='1'>通过</option>");
+  	          $("#result_select2").append("<option value='2'>修改</option>");
+  	          $("#result_select2").append("<option value='3'>不通过</option>");
   	          },
   	         
   	    error: function(data){
@@ -114,7 +114,7 @@ function show_judgedetails(val){
 //导师提交对自己学生盲审修改论文审核的结果
   function do_blindfixjudge(val1){
     var select_val = $('#result_select2').val();
-    var str = {paper_stuId:val1,result_code1:select_val};
+    var str = {paper_stuId:val1,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
@@ -128,7 +128,7 @@ function show_judgedetails(val){
       success: function(){      
           console.log("ok");
           confirm("提交后不能修改，确定提交？");
-          $("#submit_result").empty()
+          $("#submit_result2").empty()
           },
          
     error: function(data){
@@ -154,16 +154,16 @@ function show_judgedetails(val){
   	          console.log(data);
   	          console.log("ok");
   	          
-  	          $("#submit_result").empty();
+  	          $("#submit_result3").empty();
   	          if(data.paper_ifAdvise == 0 && data.paper_over != "通过" && data.paper_over != "不通过"){
   	        	  $("#submit_result3").append("<button type='button' class='btn btn-primary' onclick='+do_replyfixjudge("+val+");'>提交</button>");
   		          $("#submit_result3").append("<button type='button' class='btn btn-default' data-dismiss='modal'>关闭</button>"); 
   	          }
-  	          $("#result_select").empty();
-  	          $("#result_select").append("<option value='"+data.result_code1+"'>"+data.paper_over+"</option>");
-  	          $("#result_select").append("<option value='1'>通过</option>");
-  	          $("#result_select").append("<option value='2'>修改</option>");
-  	          $("#result_select").append("<option value='3'>不通过</option>");
+  	          $("#result_select3").empty();
+  	          $("#result_select3").append("<option value='"+data.result_code+"'>"+data.paper_over+"</option>");
+  	          $("#result_select3").append("<option value='1'>通过</option>");
+  	          $("#result_select3").append("<option value='2'>修改</option>");
+  	          $("#result_select3").append("<option value='3'>不通过</option>");
   	          },
   	         
   	    error: function(data){
@@ -176,7 +176,7 @@ function show_judgedetails(val){
 //导师提交对自己学生答辩修改论文审核的结果
   function do_replyfixjudge(val1){
     var select_val = $('#result_select3').val();
-    var str = {paper_stuId:val1,result_code1:select_val};
+    var str = {paper_stuId:val1,result_code:select_val};
     /* var str = []; */
     /* str.push({teacher_Grade:score,teacher_description:return_cont}); */
     str = JSON.stringify(str);
@@ -190,7 +190,7 @@ function show_judgedetails(val){
       success: function(){      
           console.log("ok");
           confirm("提交后不能修改，确定提交？");
-          $("#submit_result").empty()
+          $("#submit_result3").empty()
           },
          
     error: function(data){
