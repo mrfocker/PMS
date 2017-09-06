@@ -168,7 +168,7 @@
  <!-- 模态框（Modal）完 --> 
  
  <!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidde="true">
           <div class="modal-dialog">
             <div class="col-md-11 col-xs-22">                      
              <div class="modal-content">

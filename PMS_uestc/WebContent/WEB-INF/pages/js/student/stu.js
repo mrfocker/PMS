@@ -119,7 +119,7 @@ function load(){
 	      /* data:'{teacher_Grade:score,teacher_description:return_cont}', */
 	      success: function(data){      
 	    	  console.log(data);
-	          console.log("ok");
+	          console.log("ajax ok");
 	        /*系统起始状态*/
 	        /* if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && (data.paper_blindjudgePass == null || data.paper_blindjudgePass == "")
 	        		&& (data.reply_Result == null || data.reply_Result == "")){
@@ -180,7 +180,7 @@ function load(){
 	      else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "修改" || data.paper_ifPass == "不通过")){
 	    	     console.log("2 go to 1 ,wait 2 -");
 	    	     step2(data);
-	    	     $("#two1").append("<td>您的论文在该审核阶段的评审结果已经完成，请点击确认查看结果详情</td> ");
+	    	     $("#two1").append("<td style='text-align:center;'>您的论文在该审核阶段的评审结果已经完成，请点击确认查看结果详情</td> ");
 	    	     $("#two1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
 	      
@@ -192,7 +192,7 @@ function load(){
 	       else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 1 && (data.paper_ifPass == "" || data.paper_ifPass == null)&& (data.paper_departPass == "修改" || data.paper_departPass == "不通过")){
 	    	      console.log("3 go to 1,wait 3 -");
 	    	   	  step3(data);
-	    	   	  $("#three1").append("<td>您的论文需要修改，请点击“确认”按钮查看学院意见并重新上传修改后的论文！</td> ");
+	    	   	  $("#three1").append("<td style='text-align:center;'>您的论文需要修改，请点击“确认”按钮查看学院意见并重新上传修改后的论文！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#three1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
@@ -205,7 +205,7 @@ function load(){
     		   && (data.paper_ifPaperRepetitiveRatePass == "修改" || data.paper_ifPaperRepetitiveRatePass == "不通过")){
 	    	      console.log("4 go to 1,wait 4 -");
 	    	      step4(data);
-	    	      $("#four1").append("<td>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
+	    	      $("#four1").append("<td style='text-align:center;'>您的论文需要修改，请点击“确认”按钮查看导师意见并重新上传修改后的论文！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#four1").append("<button type='button' onclick='return_one("+data.stu_id+");'>确认</button>");
 	       }
@@ -217,66 +217,77 @@ function load(){
 	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "不通过"){
 	    	   console.log("wait in 5,-");
 	    	   step5(data);
-	    	   $("#five1").append("<td>您的论文没有通过盲审考核。</td> ");	  
+	    	   $("#five1").append("<td style='text-align:center;'>您的论文没有通过盲审考核。</td> ");	  
 	    	   /*不通过的原因*/
 	       }
 	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过"
 	    		   && (data.paper_ifReply == null || data.paper_ifReply == "")){
 	    	      console.log("wait in 5,-");
 	    	      step5_5(data);
-	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	    	      $("#five1").append("<td style='text-align:center;'>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#five1").append("<button type='button' onclick='five_six("+data.stu_id+")'>提交</button>");
 	    	      /*不通过的原因*/
 	       }
 	      /*盲神修改版等待导师审核*/
-	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过" && data.paper_ifReply == "修改"){
-	    	      console.log("wait in 5 blind fix");
-	    	      step5(data);
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.teacher_Result == "修改后答辩" && data.paper_blindjudgePass == "通过" && (data.paper_ifReply == null || data.paper_ifReply == "")){
+	    	      console.log("wait in 5 blind teacher,5_51");
+	    	      step5_51(data);
 	       }
 	      /* 导师要求盲审论文再修改*/
-	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && (data.paper_ifReply == "" || data.paper_ifReply == null)){
-	    	      console.log("wait in 5 blind fix");
-	    	      console.log("wait in 5,--");
-	    	      step5_5_2(data);
-	    	      $("#five1").append("<td>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	       else if(data.paper_ifSubmit == 0 && data.paper_blindjudgePass == "通过" && data.paper_ifReply == "修改"){
+	    	      console.log("wait in 5 blind fix, 5_52");
+	    	      step5_52(data);
+	    	      $("#five1").append("<td style='text-align:center;'>您的论文需要已经通过盲审考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#five1").append("<button type='button' onclick='five_six("+data.stu_id+")'>提交</button>");
 	       }
 	      
 	       /*论文答辩*/
-	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && paper_ifReply == "通过"){
+	       else if(data.paper_ifSubmit == 1 && data.paper_blindjudgePass == "通过" && data.paper_ifReply == "通过" && data.grade_ifPass == 1 
+	    		   && (data.paper_replyPass == null || data.paper_replyPass == "")){
 	    	      console.log("go to 6,wait 6 +");
 	    	      step6(data);
 	       }
-	       else if(data.paper_ifSubmit == 1 && paper_replyPass == "不通过"){
+	       else if(data.paper_ifSubmit == 1 && data.paper_replyPass == "不通过"){
 	    	      console.log("go to 6,wait 6 -");
-	    	      $("#six1").append("<td>您的论文未通过答辩考核！</td> ");
+	    	      $("#six1").append("<td style='text-align:center;'>您的论文未通过答辩考核！</td> ");
 	    	      step6(data);
 	    	      
 	       }
-	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.paper_replyPass == "通过"){
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.paper_replyPass == "通过" && (data.paper_over == null || data.paper_over == "")){
 	    	      console.log("wait 6 -");
 	    	      step6_6(data);
-	    	      $("#six1").append("<td>您的论文需要已经通过答辩考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	    	      $("#six1").append("<td style='text-align:center;'>您的论文需要已经通过答辩考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
 	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
 	    	      $("#six1").append("<button type='button' onclick='six_seven("+data.stu_id+")'>提交</button>");
 	    	      /*不通过的原因*/
 	       }
+	       else if(data.paper_ifSubmit == 1 && data.paper_ifAdvise == 0 && data.paper_replyPass == "通过" && (data.paper_over == null || data.paper_over == "")){
+	    	      console.log("wait 6 ,wait for teacher answer reply");
+	    	      step6_61(data);
+	       }
+	       else if(data.paper_ifSubmit == 0 && data.paper_ifAdvise == 1 && data.paper_replyPass == "通过" && data.paper_over == "修改"){
+	    	      console.log("wait 6 ,wait for teacher reply is fix");
+	    	      step6_62(data);
+	    	      $("#six1").append("<td style='text-align:center;'>您的论文需要已经通过答辩考核，请查看盲审意见并修改论文，然后点击“提交”按钮！！！</td> ");
+	    	      /*添加确认按钮,回到第一步点击以后出发一个AJAX路由重新从后台拉数据*/
+	    	      $("#six1").append("<button type='button' onclick='six_seven("+data.stu_id+")'>提交</button>");
+	       }
 	       /*学位授予*/
-	       else if((data.stu_ifdegree == null || data.stu_ifdegree == "" || data.stu_ifdegree == "否") && data.data.paper_replyPass == "通过" && data.paper_ifSubmit == 1){
+	       else if((data.stu_ifdegree == null || data.stu_ifdegree == "" || data.stu_ifdegree == "否") && data.paper_replyPass == "通过" && data.paper_ifSubmit == 1){
 	    	   	  console.log("go to 7,wait 7");
 	    	   	  step7(data);
 	       }
 	       /*同意授位*/
 	       else if(data.stu_ifdegree == "是"){
 	    	   	  console.log("授位");
-	    	   	  step8(data);
+	    	   	  step71(data);
 	       }
 	       else{
 	    	   
 	    	   console.log("system start or wait 1");
-	    	   $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+	    	   $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
 	           $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	       }
 	          },
@@ -312,22 +323,22 @@ function one_two(val){
 	          }
 	          
 	          $("#paperlistname").empty();
-	          $("#paperlistname").append("<th>学生姓名</th>");
-	          $("#paperlistname").append("<th>学生学号</th>");
-	          $("#paperlistname").append("<th>论文题目</th>");
-	          $("#paperlistname").append("<th>研究方向一</th>");
-	          $("#paperlistname").append("<th>研究方向二</th>");
-	          $("#paperlistname").append("<th>研究方向三</th>");
-	          $("#paperlistname").append("<th>导师评审</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+	          $("#paperlistname").append("<th style='text-align:center;'>导师评审</th>");
 	          
 	          $("#paperlist").empty();
-	          $("#paperlist").append("<td>"+data.stu_name+"</td>");
-	          $("#paperlist").append("<td>"+data.stu_id+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_title+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-	          $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+	          $("#paperlist").append("<td style='text-align:center;'>"+data.paper_ifPass+"</td>");
 	          $("#two1").empty();
 	          },
 	         
@@ -465,22 +476,22 @@ function step1(data){
     $("#zjxx").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
     
 }
 
@@ -491,22 +502,22 @@ function step2(data){
     $("#zjxx").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师评审</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师评审</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_ifPass+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_ifPass+"</td>");
 	
 }
 
@@ -519,20 +530,20 @@ function step3(data){
      $("#qzxx").attr("class","current");
      
      $("#paperlistname").empty();
-     $("#paperlistname").append("<th>学生姓名</th>");
-     $("#paperlistname").append("<th>学生学号</th>");
-     $("#paperlistname").append("<th>研究方向一</th>");
-     $("#paperlistname").append("<th>研究方向二</th>");
-     $("#paperlistname").append("<th>研究方向三</th>");
-     $("#paperlistname").append("<th>学院评审</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学院评审</th>");
      
      $("#paperlist").empty();
-     $("#paperlist").append("<td>"+data.stu_name+"</td>");
-     $("#paperlist").append("<td>"+data.stu_id+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-     $("#paperlist").append("<td>"+data.paper_departPass+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_departPass+"</td>");
 }
 
 function step4(data){
@@ -545,22 +556,22 @@ function step4(data){
     $("#lwcc").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>全篇重复率</th>");
-    $("#paperlistname").append("<th>单章重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>全篇重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>单章重复率</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_Id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_Id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateSingle+"</td>");
 }
 
 function step5(data){
@@ -575,20 +586,20 @@ function step5(data){
     $("#lwms").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>盲审核结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>盲审核结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_blindjudgePass+"</td>");
     
     
 }
@@ -606,20 +617,20 @@ function step6(data){
     $("#lwdb").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>答辩审核结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>答辩审核结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.reply_result+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.reply_result+"</td>");
 }
 
 function step7(data){
@@ -636,20 +647,20 @@ function step7(data){
     $("#qzfs").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>是否授位</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>是否授位</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.stu_ifdegree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_ifdegree+"</td>");
     
 }
 
@@ -666,20 +677,20 @@ function step8(data){
 	 $("#qzfs").attr("class","done");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>是否授位</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>是否授位</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.stu_ifdegree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_ifdegree+"</td>");
     
 }
 ///////////////////////////////////////////////////////
@@ -692,25 +703,25 @@ function step21(data){
      $("#zjxx").attr("class","");
      
      $("#paperlistname").empty();
-     $("#paperlistname").append("<th>学生姓名</th>");
-     $("#paperlistname").append("<th>学生学号</th>");
-     $("#paperlistname").append("<th>论文题目</th>");
-     $("#paperlistname").append("<th>研究方向一</th>");
-     $("#paperlistname").append("<th>研究方向二</th>");
-     $("#paperlistname").append("<th>研究方向三</th>");
-     $("#paperlistname").append("<th>导师意见</th>");
-     $("#paperlistname").append("<th>上传论文</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
      
      $("#paperlist").empty();
-     $("#paperlist").append("<td>"+data.stu_name+"</td>");
-     $("#paperlist").append("<td>"+data.stu_id+"</td>");
-     $("#paperlist").append("<td>"+data.paper_title+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-     $("#paperlist").append("<td><button>上传</button></td>");
-     $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+     $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+     $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
      $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 } 
 
@@ -725,25 +736,25 @@ function step31(data){
     $("#qzxx").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>学院意见</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学院意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
-    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+    $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -755,27 +766,27 @@ function step3121(data){
     $("#zjxx").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师意见</th>");
-    $("#paperlistname").append("<th>学院意见</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学院意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
-    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+    $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -789,29 +800,29 @@ function step4121(data){
      $("#zjxx").attr("class","");
      
      $("#paperlistname").empty();
-     $("#paperlistname").append("<th>学生姓名</th>");
-     $("#paperlistname").append("<th>学生学号</th>");
-     $("#paperlistname").append("<th>论文题目</th>");
-     $("#paperlistname").append("<th>研究方向一</th>");
-     $("#paperlistname").append("<th>研究方向二</th>");
-     $("#paperlistname").append("<th>研究方向三</th>");
-     $("#paperlistname").append("<th>导师意见</th>");
-     $("#paperlistname").append("<th>单章查重</th>");
-     $("#paperlistname").append("<th>全篇查重</th>");
-     $("#paperlistname").append("<th>上传论文</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>单章查重</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>全篇查重</th>");
+     $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
      
      $("#paperlist").empty();
-     $("#paperlist").append("<td>"+data.stu_name+"</td>");
-     $("#paperlist").append("<td>"+data.stu_id+"</td>");
-     $("#paperlist").append("<td>"+data.paper_title+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-     $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-     $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-     $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
-     $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-     $("#paperlist").append("<td><button>上传</button></td>");
-     $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateSingle+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateAll+"</td>");
+     $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+     $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
      $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -826,29 +837,29 @@ function step4131(data){
     $("#qzxx").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>学院意见</th>");
-    $("#paperlistname").append("<th>单章重复率</th>");
-    $("#paperlistname").append("<th>全篇重复率</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学院意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>单章重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>全篇重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
-    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+    $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>");
 	
 }
@@ -863,31 +874,31 @@ function step413121(data){
     $("#zjxx").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师意见</th>");
-    $("#paperlistname").append("<th>学院意见</th>");
-    $("#paperlistname").append("<th>单章查重</th>");
-    $("#paperlistname").append("<th>全篇查重</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学院意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>单章查重</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>全篇查重</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
-    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal1' onclick='show_teacherAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal2' onclick='show_departAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+    $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -904,27 +915,27 @@ function step41(data){
     $("#lwcc").attr("class","");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>论文题目</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>单章重复率</th>");
-    $("#paperlistname").append("<th>全篇重复率</th>");
-    $("#paperlistname").append("<th>上传论文</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>论文题目</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>单章重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>全篇重复率</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>上传论文</th>");
     
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_title+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateSingle+"</td>");
-    $("#paperlist").append("<td>"+data.paper_repetitiveRateAll+"</td>");
-    $("#paperlist").append("<td><button>上传</button></td>");
-    $("#submit_button").append("<td>请先上传论文，然后点击提交！！！</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_title+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateSingle+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_repetitiveRateAll+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button>上传</button></td>");
+    $("#submit_button").append("<td style='text-align:center;'>请先上传论文，然后点击提交！！！</td>");
     $("#submit_button").append("<button type='button' onclick='one_two("+data.stu_id+")'>提交</button>"); 
 }
 
@@ -941,25 +952,25 @@ function step5_5(data){
     $("#lwms").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>盲审意见</th>");
-    $("#paperlistname").append("<th>盲审结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>盲审意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>盲审结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td><button class='fa fa-child' data-toggle='modal' data-target='#myModal3' onclick='show_blindjudgeAdvise("+data.stu_id+");'>评审</button></td>");
-    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'><button class='fa fa-child' data-toggle='modal' data-target='#myModal3' onclick='show_blindjudgeAdvise("+data.stu_id+");'>评审</button></td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_blindjudgePass+"</td>")
 }
 
-function  step5(data){
+function step5_51(data){
 	
 	console.log("wait 5, wait for teacher answer");
 	$("#four").hide();
@@ -972,25 +983,25 @@ function  step5(data){
     $("#lwms").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师意见</th>");
-    $("#paperlistname").append("<th>盲审结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>盲审结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>导师未审核</td>");
-    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>导师未审核</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_blindjudgePass+"</td>")
 }
 
-step5_5_2(data){
+function step5_52(data){
 	
 	console.log("wait 5, teacher answer is fix");
 	$("#four").hide();
@@ -1003,22 +1014,22 @@ step5_5_2(data){
     $("#lwms").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>导师意见</th>");
-    $("#paperlistname").append("<th>盲审结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>盲审结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>修改</td>");
-    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>修改</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_blindjudgePass+"</td>")
 }
 
 function step6_6(data){
@@ -1035,18 +1046,141 @@ function step6_6(data){
     $("#lwdb").attr("class","current");
     
     $("#paperlistname").empty();
-    $("#paperlistname").append("<th>学生姓名</th>");
-    $("#paperlistname").append("<th>学生学号</th>");
-    $("#paperlistname").append("<th>研究方向一</th>");
-    $("#paperlistname").append("<th>研究方向二</th>");
-    $("#paperlistname").append("<th>研究方向三</th>");
-    $("#paperlistname").append("<th>答辩结果</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>答辩结果</th>");
    
     $("#paperlist").empty();
-    $("#paperlist").append("<td>"+data.stu_name+"</td>");
-    $("#paperlist").append("<td>"+data.stu_id+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchOne+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchTwo+"</td>");
-    $("#paperlist").append("<td>"+data.paper_researchThree+"</td>");
-    $("#paperlist").append("<td>"+data.paper_blindjudgePass+"</td>")
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_replyPass+"</td>")
+}
+
+function step6_61(data){
+	
+	$("#five").hide();
+    $("#six").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","current_prev");
+    $("#lwdb").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>答辩结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>导师未审核</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_replyPass+"</td>")
+}
+
+function step6_62(data){
+	
+	$("#five").hide();
+    $("#six").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","current_prev");
+    $("#lwdb").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>导师意见</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>答辩结果</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>修改</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_replyPass+"</td>")
+	
+}
+
+function step7(data){
+	
+	$("#six").hide();
+    $("#seven").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","done");
+    $("#lwdb").attr("class","current_prev");
+    $("#qzfs").attr("class","current");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>是否授位</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_ifdegree+"</td>");
+}
+
+function step71(data){
+	
+	$("#six").hide();
+    $("#seven").show();
+	
+    $("#grxx").attr("class","done");
+    $("#zjxx").attr("class","done");
+    $("#qzxx").attr("class","done");
+    $("#lwcc").attr("class","done");
+    $("#lwms").attr("class","done");
+    $("#lwdb").attr("class","done");
+    $("#qzfs").attr("class","done");
+    
+    $("#paperlistname").empty();
+    $("#paperlistname").append("<th style='text-align:center;'>学生姓名</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>学生学号</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向一</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向二</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>研究方向三</th>");
+    $("#paperlistname").append("<th style='text-align:center;'>是否授位</th>");
+   
+    $("#paperlist").empty();
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_name+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_id+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchOne+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchTwo+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.paper_researchThree+"</td>");
+    $("#paperlist").append("<td style='text-align:center;'>"+data.stu_ifdegree+"</td>");
 }

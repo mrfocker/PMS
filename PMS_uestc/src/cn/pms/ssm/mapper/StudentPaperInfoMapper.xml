@@ -103,7 +103,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 paper_departadvise,
 		 Paper_ifAdvise,
 		 Paper_ifSubmit,
-		 Paper_blindjudgePass
+		 Paper_blindjudgePass,
+		 Paper_ifReply,
+		 Paper_replyPass,
+		 Paper_over
 	FROM
 		 paper 
     WHERE
@@ -161,7 +164,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     update 
       paper
     set 
-      Paper_ifSubmit = 1,
+      Paper_ifSubmit = 1
     where 
       Paper_stuId = #{Stu_id}
 </update>

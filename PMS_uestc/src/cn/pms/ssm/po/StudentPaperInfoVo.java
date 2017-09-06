@@ -33,7 +33,28 @@ public class StudentPaperInfoVo {
 	private String Teacher_description;
 	private String Reply_advise;
     private String Paper_blindjudgePass;
+    private String Paper_replyPass;
+	private String Paper_ifReply;
+	private String Paper_over;
 	
+	public String getPaper_over() {
+		return Paper_over;
+	}
+	public void setPaper_over(String paper_over) {
+		Paper_over = paper_over;
+	}
+	public String getPaper_replyPass() {
+		return Paper_replyPass;
+	}
+	public void setPaper_replyPass(String paper_replyPass) {
+		Paper_replyPass = paper_replyPass;
+	}
+	public String getPaper_ifReply() {
+		return Paper_ifReply;
+	}
+	public void setPaper_ifReply(String paper_ifReply) {
+		Paper_ifReply = paper_ifReply;
+	}
 	public String getPaper_blindjudgePass() {
 		return Paper_blindjudgePass;
 	}

@@ -109,6 +109,8 @@ public class StudentsInfoController {
 		StudentPaperInfoVo sixjumpsevenList = new StudentPaperInfoVo();
 		//置1
 		studentPaperInfoService.do_updatSubmit_Pass(studentPaperInfoVo);
+		//置0
+		studentPaperInfoService.do_updateAdvise_Pass(studentPaperInfoVo);
 		sixjumpsevenList = studentPaperInfoService.do_getStudentPaperInfo(studentPaperInfoVo);
 		return sixjumpsevenList;
 		
